@@ -148,6 +148,13 @@ def fetch_unique_reply_makers(mint_address):
         # Try to parse the JSON response
         try:
             data = response.json()
+            # Log a sample of the data structure for debugging
+            if isinstance(data, dict):
+                logging.info(f"Response keys: {list(data.keys())}")
+            elif isinstance(data, list) and len(data) > 0:
+                logging.info(f"Response is a list with {len(data)} items")
+                if isinstance(data[0], dict):
+                    logging.info(f"First item keys: {list(data[0].keys())}")
         except Exception as json_err:
             logging.error(f"JSON parsing error: {json_err}")
             logging.info(f"Raw response content: {response.text[:500]}...")  # Log first 500 chars
@@ -182,23 +189,43 @@ def fetch_unique_reply_makers(mint_address):
             if not isinstance(reply, dict):
                 continue
                 
+            # Log a sample reply structure 
+            if len(unique_users) == 0:
+                logging.info(f"Sample reply keys: {list(reply.keys())}")
+                
             # Try different possible structures for finding the user
             if "user" in reply and reply["user"]:
                 user = reply["user"]
                 if isinstance(user, dict):
+                    # Log user structure for the first one
+                    if len(unique_users) == 0:
+                        logging.info(f"User keys: {list(user.keys())}")
+                        
                     # Try different ID fields
                     user_id = (user.get("walletAddress") or 
                               user.get("id") or 
+                              user.get("wallet") or
                               user.get("username") or 
                               user.get("address"))
                     if user_id:
                         unique_users.add(user_id)
                         
-            # Alternative structure
-            elif "owner" in reply:
-                owner = reply.get("owner")
-                if owner:
-                    unique_users.add(owner)
+            # Alternative structure: top level wallet/owner fields
+            for field in ["owner", "wallet", "walletAddress", "address", "userId"]:
+                if field in reply and reply[field]:
+                    unique_users.add(reply[field])
+                    break
+                    
+            # Check for creator field
+            if "creator" in reply and isinstance(reply["creator"], dict):
+                creator = reply["creator"]
+                creator_id = (creator.get("walletAddress") or 
+                             creator.get("id") or 
+                             creator.get("wallet") or
+                             creator.get("username") or 
+                             creator.get("address"))
+                if creator_id:
+                    unique_users.add(creator_id)
         
         maker_count = len(unique_users)
         logging.info(f"Found {maker_count} unique reply makers for {mint_address}")
