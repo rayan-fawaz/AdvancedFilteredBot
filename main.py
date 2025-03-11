@@ -135,25 +135,70 @@ def get_dex_data(token_mint):
 def fetch_unique_reply_makers(mint_address):
     """Fetch and count unique reply makers for a given coin."""
     try:
+        # Print the URL we're calling for debugging
         replies_url = f"https://frontend-api-v3.pump.fun/replies/{mint_address}?limit=1000&offset=0"
-        response = requests.get(replies_url, timeout=10)
+        logging.info(f"Calling replies API: {replies_url}")
+        
+        response = requests.get(replies_url, timeout=15)
         response.raise_for_status()
-        data = response.json()
         
-        # Debug the full response for one request to understand structure
-        if mint_address:
-            logging.info(f"Reply API full response sample: {data}")
+        # Log the raw response for debugging
+        logging.info(f"Response status code: {response.status_code}")
         
+        # Try to parse the JSON response
+        try:
+            data = response.json()
+        except Exception as json_err:
+            logging.error(f"JSON parsing error: {json_err}")
+            logging.info(f"Raw response content: {response.text[:500]}...")  # Log first 500 chars
+            return 0
+        
+        # First, check if we got an error response
+        if isinstance(data, dict) and "error" in data:
+            logging.error(f"API returned error: {data['error']}")
+            return 0
+            
+        # Check the structure of the response
+        if isinstance(data, dict) and "data" in data and "replies" in data["data"]:
+            # Handle nested structure
+            replies = data["data"]["replies"]
+            logging.info(f"Found {len(replies)} replies in nested structure")
+        elif isinstance(data, dict) and "replies" in data:
+            # Handle flat structure
+            replies = data["replies"]
+            logging.info(f"Found {len(replies)} replies in flat structure")
+        elif isinstance(data, list):
+            # Handle direct list response
+            replies = data
+            logging.info(f"Found {len(replies)} replies in direct list")
+        else:
+            # Unknown structure
+            logging.warning(f"Unknown API response structure. Keys: {data.keys() if isinstance(data, dict) else 'not a dict'}")
+            return 0
+        
+        # Process the replies to count unique users
         unique_users = set()
-        # The API returns data directly in the response, not under a "replies" key
-        if isinstance(data, list):
-            logging.info(f"Found {len(data)} replies for {mint_address}")
-            for reply in data:
-                if isinstance(reply, dict) and "user" in reply and reply["user"]:
-                    user = reply["user"]
-                    user_id = user.get("walletAddress") or user.get("id") or user.get("username")
+        for reply in replies:
+            if not isinstance(reply, dict):
+                continue
+                
+            # Try different possible structures for finding the user
+            if "user" in reply and reply["user"]:
+                user = reply["user"]
+                if isinstance(user, dict):
+                    # Try different ID fields
+                    user_id = (user.get("walletAddress") or 
+                              user.get("id") or 
+                              user.get("username") or 
+                              user.get("address"))
                     if user_id:
                         unique_users.add(user_id)
+                        
+            # Alternative structure
+            elif "owner" in reply:
+                owner = reply.get("owner")
+                if owner:
+                    unique_users.add(owner)
         
         maker_count = len(unique_users)
         logging.info(f"Found {maker_count} unique reply makers for {mint_address}")
