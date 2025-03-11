@@ -4,8 +4,9 @@ import logging
 from datetime import datetime, timezone, timedelta
 
 # Telegram API (still used for sending messages)
-BOT_TOKEN = "8046651136:AAGHoEFIJhW3zHTe6CI0iOcn6FgePpljXqM"
-GROUP_ID = "-1002429691769"
+import os
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8046651136:AAGHoEFIJhW3zHTe6CI0iOcn6FgePpljXqM")
+GROUP_ID = os.environ.get("TELEGRAM_GROUP_ID", "-1002429691769")
 
 # Featured Coins API
 API_URL = "https://frontend-api-v3.pump.fun/coins/for-you?offset=0&limit=50&includeNsfw=false"
