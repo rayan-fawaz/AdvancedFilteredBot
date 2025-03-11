@@ -132,6 +132,27 @@ def get_dex_data(token_mint):
         return None
 
 
+def fetch_unique_reply_makers(mint_address):
+    """Fetch and count unique reply makers for a given coin."""
+    try:
+        replies_url = f"https://frontend-api-v3.pump.fun/replies/{mint_address}?limit=1000&offset=0"
+        response = requests.get(replies_url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        
+        unique_users = set()
+        if "replies" in data and data["replies"]:
+            for reply in data["replies"]:
+                if "user" in reply and reply["user"]:
+                    user_id = reply["user"].get("id")
+                    if user_id:
+                        unique_users.add(user_id)
+        
+        return len(unique_users)
+    except Exception as e:
+        logging.error(f"Error fetching reply makers for {mint_address}: {e}")
+        return 0
+
 def fetch_token_holders(token_mint):
     """Fetch token holder count and distribution from Helius and Birdeye APIs."""
     try:
@@ -255,6 +276,9 @@ def format_coin_message(coin, holders_info, dex_data):
     # Get reply count from the coin data
     reply_count = coin.get("reply_count", 0)
     
+    # Get unique reply makers
+    unique_reply_makers = fetch_unique_reply_makers(mint_address)
+    
     volume_text = ""
     price_text = ""
 
@@ -328,7 +352,7 @@ def format_coin_message(coin, holders_info, dex_data):
             f"{price_text}"
             f"{volume_text}"
             f"{ath_text}"
-            f"💬 <b>Replies:</b> {reply_count}\n\n"
+            f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
             f"{format_holders_message(holders_info)}"
             f"🔗 <a href='{pumpfun_link}'>PF</a> | "
             f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
@@ -386,7 +410,8 @@ async def scan_coins():
                 for coin, holders_info, dex_data in new_coins)
             await send_telegram_message(message)
         total_replies = sum(coin[0].get("reply_count", 0) for coin in new_coins) if new_coins else 0
-        logging.info(f"Checked: {len(new_coins)} new coins meeting criteria. Total replies: {total_replies}")
+        total_makers = sum(fetch_unique_reply_makers(coin[0]["mint"]) for coin in new_coins) if new_coins else 0
+        logging.info(f"Checked: {len(new_coins)} new coins meeting criteria. Total replies: {total_replies}, Total reply makers: {total_makers}")
         await asyncio.sleep(15)
 
 
