@@ -140,15 +140,25 @@ def fetch_unique_reply_makers(mint_address):
         response.raise_for_status()
         data = response.json()
         
+        # Log the structure of the response for debugging
+        logging.info(f"Reply API response for {mint_address}: {data.keys()}")
+        
         unique_users = set()
         if "replies" in data and data["replies"]:
+            logging.info(f"Found {len(data['replies'])} replies for {mint_address}")
             for reply in data["replies"]:
                 if "user" in reply and reply["user"]:
                     user_id = reply["user"].get("id")
                     if user_id:
                         unique_users.add(user_id)
+                    else:
+                        user_name = reply["user"].get("username")
+                        if user_name:
+                            unique_users.add(user_name)
         
-        return len(unique_users)
+        maker_count = len(unique_users)
+        logging.info(f"Found {maker_count} unique reply makers for {mint_address}")
+        return maker_count
     except Exception as e:
         logging.error(f"Error fetching reply makers for {mint_address}: {e}")
         return 0
