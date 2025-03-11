@@ -135,100 +135,102 @@ def get_dex_data(token_mint):
 def fetch_unique_reply_makers(mint_address):
     """Fetch and count unique reply makers for a given coin."""
     try:
-        # Print the URL we're calling for debugging
-        replies_url = f"https://frontend-api-v3.pump.fun/replies/{mint_address}?limit=1000&offset=0"
-        logging.info(f"Calling replies API: {replies_url}")
+        # Try a different API endpoint that might work better
+        replies_url = f"https://pump.fun/api/v1/replies?address={mint_address}"
+        logging.info(f"Trying alternative replies API: {replies_url}")
         
-        response = requests.get(replies_url, timeout=15)
-        response.raise_for_status()
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
         
-        # Log the raw response for debugging
+        response = requests.get(replies_url, headers=headers, timeout=15)
+        
+        # Log detailed response info
         logging.info(f"Response status code: {response.status_code}")
+        logging.info(f"Response headers: {response.headers}")
         
         # Try to parse the JSON response
         try:
             data = response.json()
-            # Log a sample of the data structure for debugging
-            if isinstance(data, dict):
-                logging.info(f"Response keys: {list(data.keys())}")
-            elif isinstance(data, list) and len(data) > 0:
-                logging.info(f"Response is a list with {len(data)} items")
-                if isinstance(data[0], dict):
-                    logging.info(f"First item keys: {list(data[0].keys())}")
+            # Log a sample of the data to understand structure
+            logging.info(f"API response structure: {str(data)[:1000]}")  # Log first 1000 chars
         except Exception as json_err:
             logging.error(f"JSON parsing error: {json_err}")
             logging.info(f"Raw response content: {response.text[:500]}...")  # Log first 500 chars
-            return 0
-        
-        # First, check if we got an error response
-        if isinstance(data, dict) and "error" in data:
-            logging.error(f"API returned error: {data['error']}")
-            return 0
             
-        # Check the structure of the response
-        if isinstance(data, dict) and "data" in data and "replies" in data["data"]:
-            # Handle nested structure
-            replies = data["data"]["replies"]
-            logging.info(f"Found {len(replies)} replies in nested structure")
-        elif isinstance(data, dict) and "replies" in data:
-            # Handle flat structure
-            replies = data["replies"]
-            logging.info(f"Found {len(replies)} replies in flat structure")
-        elif isinstance(data, list):
-            # Handle direct list response
-            replies = data
-            logging.info(f"Found {len(replies)} replies in direct list")
-        else:
-            # Unknown structure
-            logging.warning(f"Unknown API response structure. Keys: {data.keys() if isinstance(data, dict) else 'not a dict'}")
-            return 0
+            # Let's try the original API endpoint as fallback
+            fallback_url = f"https://frontend-api-v3.pump.fun/replies/{mint_address}?limit=1000&offset=0"
+            logging.info(f"Trying fallback API: {fallback_url}")
+            fallback_response = requests.get(fallback_url, headers=headers, timeout=15)
+            try:
+                data = fallback_response.json()
+                logging.info(f"Fallback API response structure: {str(data)[:1000]}")
+            except Exception:
+                return 0
         
+        # Extract replies from various possible API structures
+        replies = []
+        
+        # For original API structure (list format)
+        if isinstance(data, list):
+            replies = data
+            logging.info(f"Found {len(replies)} replies in list format")
+        
+        # For newer API with nested 'data' structure
+        elif isinstance(data, dict):
+            if "data" in data:
+                if isinstance(data["data"], list):
+                    replies = data["data"]
+                    logging.info(f"Found {len(replies)} replies in data list")
+                elif isinstance(data["data"], dict) and "replies" in data["data"]:
+                    replies = data["data"]["replies"]
+                    logging.info(f"Found {len(replies)} replies in nested data.replies")
+            elif "replies" in data:
+                replies = data["replies"]
+                logging.info(f"Found {len(replies)} replies in top-level replies field")
+                
         # Process the replies to count unique users
         unique_users = set()
+        
+        # Log one complete reply for debugging
+        if len(replies) > 0:
+            logging.info(f"Sample reply structure: {replies[0]}")
+        
         for reply in replies:
             if not isinstance(reply, dict):
                 continue
+            
+            # Log each reply's user info for debugging
+            if "user" in reply:
+                logging.info(f"User field in reply: {reply['user']}")
                 
-            # Log a sample reply structure 
-            if len(unique_users) == 0:
-                logging.info(f"Sample reply keys: {list(reply.keys())}")
-                
-            # Try different possible structures for finding the user
+            # First try - standard user structure
             if "user" in reply and reply["user"]:
                 user = reply["user"]
                 if isinstance(user, dict):
-                    # Log user structure for the first one
-                    if len(unique_users) == 0:
-                        logging.info(f"User keys: {list(user.keys())}")
-                        
-                    # Try different ID fields
-                    user_id = (user.get("walletAddress") or 
-                              user.get("id") or 
-                              user.get("wallet") or
-                              user.get("username") or 
-                              user.get("address"))
+                    user_id = None
+                    # Try all possible ID fields
+                    for id_field in ["walletAddress", "id", "username", "address", "publicKey", "wallet"]:
+                        if id_field in user and user[id_field]:
+                            user_id = user[id_field]
+                            logging.info(f"Found user ID in field {id_field}: {user_id}")
+                            break
+                    
                     if user_id:
                         unique_users.add(user_id)
-                        
-            # Alternative structure: top level wallet/owner fields
-            for field in ["owner", "wallet", "walletAddress", "address", "userId"]:
+                    else:
+                        # If we couldn't find an ID field, use the whole user object as a string
+                        unique_users.add(str(user))
+            
+            # Try alternative field names
+            for field in ["owner", "author", "creator", "walletAddress", "publicKey"]:
                 if field in reply and reply[field]:
-                    unique_users.add(reply[field])
-                    break
-                    
-            # Check for creator field
-            if "creator" in reply and isinstance(reply["creator"], dict):
-                creator = reply["creator"]
-                creator_id = (creator.get("walletAddress") or 
-                             creator.get("id") or 
-                             creator.get("wallet") or
-                             creator.get("username") or 
-                             creator.get("address"))
-                if creator_id:
-                    unique_users.add(creator_id)
+                    unique_users.add(str(reply[field]))
+                    logging.info(f"Found user in {field} field: {reply[field]}")
         
         maker_count = len(unique_users)
         logging.info(f"Found {maker_count} unique reply makers for {mint_address}")
+        logging.info(f"Unique users: {unique_users}")
         return maker_count
     except Exception as e:
         logging.error(f"Error fetching reply makers for {mint_address}: {e}")
