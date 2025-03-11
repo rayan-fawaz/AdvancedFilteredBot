@@ -251,7 +251,10 @@ def format_coin_message(coin, holders_info, dex_data):
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
-
+    
+    # Get reply count from the coin data
+    reply_count = coin.get("reply_count", 0)
+    
     volume_text = ""
     price_text = ""
 
@@ -322,6 +325,7 @@ def format_coin_message(coin, holders_info, dex_data):
     return (f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
             f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
             f"🎯 <b>DEX Paid:</b> {dex_status}\n"
+            f"💬 <b>Replies:</b> {reply_count}\n"
             f"{price_text}"
             f"{volume_text}"
             f"{ath_text}"
@@ -381,7 +385,8 @@ async def scan_coins():
                 format_coin_message(coin, holders_info, dex_data)
                 for coin, holders_info, dex_data in new_coins)
             await send_telegram_message(message)
-        logging.info(f"Checked: {len(new_coins)} new coins meeting criteria")
+        total_replies = sum(coin[0].get("reply_count", 0) for coin in new_coins) if new_coins else 0
+        logging.info(f"Checked: {len(new_coins)} new coins meeting criteria. Total replies: {total_replies}")
         await asyncio.sleep(15)
 
 
