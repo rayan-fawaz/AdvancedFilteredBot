@@ -18,13 +18,22 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_VOLUME_1H = 4000
-MIN_HOLDERS = 20
-BIGGEST_WALLET_MAX = 4.0  # in percentage
+MIN_HOLDERS = 25
+MIN_TRADES_1H = 80
+MAX_VOLUME_5M = 20000
+
+# Price Momentum Filters
+MIN_PRICE_5M = 30
+MIN_PRICE_1H = 80
+HIGH_PRICE_1H = 95
+
+# Volume Filters
+MIN_VOLUME_5M = 2000
+MIN_VOLUME_1H = 7000
+
+# Market Cap Limits
 MIN_MARKET_CAP = 7000
 MAX_MARKET_CAP = 20000
-MIN_BUYS = 7
-MIN_SELLS = 7
 
 # Logging Configuration
 logging.basicConfig(level=logging.INFO)
@@ -502,11 +511,44 @@ async def scan_coins():
                     "sell_1h", 0) < MIN_SELLS:
                 continue
 
-            # DEX data & volume filter
+            # DEX data
             dex_data = get_dex_data(mint)
             if not dex_data:
                 continue
-            if dex_data.get("volume_1h", 0) < MIN_VOLUME_1H:
+
+            # Get volumes and price changes
+            volume_5m = dex_data.get("volume_5m", 0)
+            volume_1h = dex_data.get("volume_1h", 0)
+            price_change_5m = dex_data.get("price_change_5m", 0)
+            price_change_1h = dex_data.get("price_change_1h", 0)
+            trades_1h = holders_info.get("trade_1h", 0)
+
+            # Check if 5m volume is too high
+            if volume_5m > MAX_VOLUME_5M:
+                continue
+
+            # 1. Price Momentum Check
+            price_momentum_check = (
+                (price_change_5m >= MIN_PRICE_5M) or 
+                (price_change_1h >= HIGH_PRICE_1H) or 
+                (price_change_1h >= MIN_PRICE_1H)
+            )
+
+            # 2. Volume Liquidity Check
+            volume_check = (
+                (volume_5m >= MIN_VOLUME_5M) or
+                (volume_1h >= MIN_VOLUME_1H) or
+                (volume_1h >= (2.5 * volume_5m))
+            )
+
+            # 3. Trades Check
+            trades_check = trades_1h >= MIN_TRADES_1H
+
+            # 4. Holders Check
+            holders_check = holders_info.get("total_holders", 0) >= MIN_HOLDERS
+
+            # All conditions must be true
+            if not all([price_momentum_check, volume_check, trades_check, holders_check]):
                 continue
 
             new_coins.append((coin, holders_info, dex_data))
