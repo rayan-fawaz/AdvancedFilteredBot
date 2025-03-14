@@ -5,7 +5,9 @@ from datetime import datetime, timezone, timedelta
 
 # Telegram API (still used for sending messages)
 import os
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8046651136:AAGHoEFIJhW3zHTe6CI0iOcn6FgePpljXqM")
+
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN",
+                           "8046651136:AAGHoEFIJhW3zHTe6CI0iOcn6FgePpljXqM")
 GROUP_ID = os.environ.get("TELEGRAM_GROUP_ID", "-1002429691769")
 
 # Featured Coins API
@@ -16,7 +18,7 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_VOLUME = 4000
+MIN_VOLUME = 7000
 MIN_HOLDERS = 20
 BIGGEST_WALLET_MAX = 4.0  # in percentage
 MIN_MARKET_CAP = 7000
@@ -138,98 +140,116 @@ def fetch_unique_reply_makers(mint_address):
         # Try a different API endpoint that might work better
         replies_url = f"https://pump.fun/api/v1/replies?address={mint_address}"
         logging.info(f"Trying alternative replies API: {replies_url}")
-        
+
         headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
-        
+
         response = requests.get(replies_url, headers=headers, timeout=15)
-        
+
         # Log detailed response info
         logging.info(f"Response status code: {response.status_code}")
         logging.info(f"Response headers: {response.headers}")
-        
+
         # Try to parse the JSON response
         try:
             data = response.json()
             # Log a sample of the data to understand structure
-            logging.info(f"API response structure: {str(data)[:1000]}")  # Log first 1000 chars
+            logging.info(f"API response structure: {str(data)[:1000]}"
+                         )  # Log first 1000 chars
         except Exception as json_err:
             logging.error(f"JSON parsing error: {json_err}")
-            logging.info(f"Raw response content: {response.text[:500]}...")  # Log first 500 chars
-            
+            logging.info(f"Raw response content: {response.text[:500]}..."
+                         )  # Log first 500 chars
+
             # Let's try the original API endpoint as fallback
             fallback_url = f"https://frontend-api-v3.pump.fun/replies/{mint_address}?limit=1000&offset=0"
             logging.info(f"Trying fallback API: {fallback_url}")
-            fallback_response = requests.get(fallback_url, headers=headers, timeout=15)
+            fallback_response = requests.get(fallback_url,
+                                             headers=headers,
+                                             timeout=15)
             try:
                 data = fallback_response.json()
-                logging.info(f"Fallback API response structure: {str(data)[:1000]}")
+                logging.info(
+                    f"Fallback API response structure: {str(data)[:1000]}")
             except Exception:
                 return 0
-        
+
         # Extract replies from various possible API structures
         replies = []
-        
+
         # For original API structure (list format)
         if isinstance(data, list):
             replies = data
             logging.info(f"Found {len(replies)} replies in list format")
-        
+
         # For newer API with nested 'data' structure
         elif isinstance(data, dict):
             if "data" in data:
                 if isinstance(data["data"], list):
                     replies = data["data"]
                     logging.info(f"Found {len(replies)} replies in data list")
-                elif isinstance(data["data"], dict) and "replies" in data["data"]:
+                elif isinstance(data["data"],
+                                dict) and "replies" in data["data"]:
                     replies = data["data"]["replies"]
-                    logging.info(f"Found {len(replies)} replies in nested data.replies")
+                    logging.info(
+                        f"Found {len(replies)} replies in nested data.replies")
             elif "replies" in data:
                 replies = data["replies"]
-                logging.info(f"Found {len(replies)} replies in top-level replies field")
-                
+                logging.info(
+                    f"Found {len(replies)} replies in top-level replies field")
+
         # Process the replies to count unique users
         unique_users = set()
-        
+
         # Log one complete reply for debugging
         if len(replies) > 0:
             logging.info(f"Sample reply structure: {replies[0]}")
-        
+
         for reply in replies:
             if not isinstance(reply, dict):
                 continue
-            
+
             # Log each reply's user info for debugging
             if "user" in reply:
                 logging.info(f"User field in reply: {reply['user']}")
-                
+
             # First try - standard user structure
             if "user" in reply and reply["user"]:
                 user = reply["user"]
                 if isinstance(user, dict):
                     user_id = None
                     # Try all possible ID fields
-                    for id_field in ["walletAddress", "id", "username", "address", "publicKey", "wallet"]:
+                    for id_field in [
+                            "walletAddress", "id", "username", "address",
+                            "publicKey", "wallet"
+                    ]:
                         if id_field in user and user[id_field]:
                             user_id = user[id_field]
-                            logging.info(f"Found user ID in field {id_field}: {user_id}")
+                            logging.info(
+                                f"Found user ID in field {id_field}: {user_id}"
+                            )
                             break
-                    
+
                     if user_id:
                         unique_users.add(user_id)
                     else:
                         # If we couldn't find an ID field, use the whole user object as a string
                         unique_users.add(str(user))
-            
+
             # Try alternative field names
-            for field in ["owner", "author", "creator", "walletAddress", "publicKey"]:
+            for field in [
+                    "owner", "author", "creator", "walletAddress", "publicKey"
+            ]:
                 if field in reply and reply[field]:
                     unique_users.add(str(reply[field]))
-                    logging.info(f"Found user in {field} field: {reply[field]}")
-        
+                    logging.info(
+                        f"Found user in {field} field: {reply[field]}")
+
         maker_count = len(unique_users)
-        logging.info(f"Found {maker_count} unique reply makers for {mint_address}")
+        logging.info(
+            f"Found {maker_count} unique reply makers for {mint_address}")
         logging.info(f"Unique users: {unique_users}")
         return maker_count
     except Exception as e:
@@ -238,6 +258,7 @@ def fetch_unique_reply_makers(mint_address):
         import traceback
         logging.error(traceback.format_exc())
         return 0
+
 
 def fetch_token_holders(token_mint):
     """Fetch token holder count and distribution from Helius and Birdeye APIs."""
@@ -358,13 +379,13 @@ def format_coin_message(coin, holders_info, dex_data):
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
-    
+
     # Get reply count from the coin data
     reply_count = coin.get("reply_count", 0)
-    
+
     # Get unique reply makers
     unique_reply_makers = fetch_unique_reply_makers(mint_address)
-    
+
     volume_text = ""
     price_text = ""
 
@@ -432,18 +453,19 @@ def format_coin_message(coin, holders_info, dex_data):
         dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
-    return (f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
-            f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
-            f"🎯 <b>DEX Paid:</b> {dex_status}\n"
-            f"{price_text}"
-            f"{volume_text}"
-            f"{ath_text}"
-            f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
-            f"{format_holders_message(holders_info)}"
-            f"🔗 <a href='{pumpfun_link}'>PF</a> | "
-            f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
-            f"🆔 Mint: <code>{mint_address}</code>\n"
-            f"——————————————————————————————\n")
+    return (
+        f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
+        f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
+        f"🎯 <b>DEX Paid:</b> {dex_status}\n"
+        f"{price_text}"
+        f"{volume_text}"
+        f"{ath_text}"
+        f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
+        f"{format_holders_message(holders_info)}"
+        f"🔗 <a href='{pumpfun_link}'>PF</a> | "
+        f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
+        f"🆔 Mint: <code>{mint_address}</code>\n"
+        f"——————————————————————————————\n")
 
 
 async def scan_coins():
@@ -495,9 +517,14 @@ async def scan_coins():
                 format_coin_message(coin, holders_info, dex_data)
                 for coin, holders_info, dex_data in new_coins)
             await send_telegram_message(message)
-        total_replies = sum(coin[0].get("reply_count", 0) for coin in new_coins) if new_coins else 0
-        total_makers = sum(fetch_unique_reply_makers(coin[0]["mint"]) for coin in new_coins) if new_coins else 0
-        logging.info(f"Checked: {len(new_coins)} new coins meeting criteria. Total replies: {total_replies}, Total reply makers: {total_makers}")
+        total_replies = sum(coin[0].get("reply_count", 0)
+                            for coin in new_coins) if new_coins else 0
+        total_makers = sum(
+            fetch_unique_reply_makers(coin[0]["mint"])
+            for coin in new_coins) if new_coins else 0
+        logging.info(
+            f"Checked: {len(new_coins)} new coins meeting criteria. Total replies: {total_replies}, Total reply makers: {total_makers}"
+        )
         await asyncio.sleep(15)
 
 
@@ -505,21 +532,22 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 import json
 
+
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        response = {
-            'status': 'running',
-            'message': 'Crypto scanner is active'
-        }
+        response = {'status': 'running', 'message': 'Crypto scanner is active'}
         self.wfile.write(json.dumps(response).encode())
+
 
 def run_http_server():
     server = HTTPServer(('0.0.0.0', 8080), SimpleHTTPRequestHandler)
     logging.info("Server started on port 8080")
     server.serve_forever()
+
 
 if __name__ == "__main__":
     # Start HTTP server in a separate thread
