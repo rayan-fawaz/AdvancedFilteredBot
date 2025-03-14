@@ -21,6 +21,7 @@ HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 MIN_HOLDERS = 25
 MIN_TRADES_1H = 80
 MAX_VOLUME_5M = 20000
+BIGGEST_WALLET_MAX = 30  # Maximum percentage for the biggest wallet
 
 # Price Momentum Filters
 MIN_PRICE_5M = 30
