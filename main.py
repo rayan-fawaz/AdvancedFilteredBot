@@ -22,6 +22,8 @@ MIN_HOLDERS = 25
 MIN_TRADES_1H = 80
 MAX_VOLUME_5M = 20000
 BIGGEST_WALLET_MAX = 30  # Maximum percentage for the biggest wallet
+MIN_BUYS = 40  # Minimum buy transactions in 1h
+MIN_SELLS = 40  # Minimum sell transactions in 1h
 
 # Price Momentum Filters
 MIN_PRICE_5M = 30
