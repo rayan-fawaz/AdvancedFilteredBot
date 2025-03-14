@@ -18,7 +18,7 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_VOLUME = 4000
+MIN_VOLUME = 7000
 MIN_HOLDERS = 20
 BIGGEST_WALLET_MAX = 4.0  # in percentage
 MIN_MARKET_CAP = 7000
@@ -374,27 +374,11 @@ def format_holders_message(holders_info):
         f"{makers_24h}\n")
 
 
-def get_bundle_percentage(mint_address):
-    """Fetch bundle percentage from Trench API."""
-    try:
-        response = requests.get(f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}")
-        if response.ok:
-            data = response.json()
-            # Get the first token percentage which represents total bundle supply
-            if data and isinstance(data, list) and len(data) > 0:
-                return data[0].get("token_percentage", 0)
-    except Exception as e:
-        logging.error(f"Error fetching bundle data: {e}")
-    return 0
-
 def format_coin_message(coin, holders_info, dex_data):
     """Format coin information into a readable Telegram message."""
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
-    
-    # Get bundle percentage
-    bundle_percentage = get_bundle_percentage(mint_address)
 
     # Get reply count from the coin data
     reply_count = coin.get("reply_count", 0)
@@ -472,7 +456,6 @@ def format_coin_message(coin, holders_info, dex_data):
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
-        f"📦 <b>Total Bundle % Supply:</b> {bundle_percentage:.2f}%\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
         f"{price_text}"
         f"{volume_text}"
