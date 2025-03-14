@@ -18,13 +18,27 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_VOLUME_1H = 4000
 MIN_HOLDERS = 20
 BIGGEST_WALLET_MAX = 4.0  # in percentage
 MIN_MARKET_CAP = 7000
 MAX_MARKET_CAP = 20000
 MIN_BUYS = 7
 MIN_SELLS = 7
+
+# Volume Filters
+MIN_VOLUME_5M = 3000
+MIN_VOLUME_1H = 10000
+EXCEPTION_VOLUME_5M = 2500
+EXCEPTION_VOLUME_1H = 8000
+HIGH_VOLUME_5M = 6000
+HIGH_VOLUME_1H = 15000
+
+# Price Increase Filters
+MIN_PRICE_INCREASE_5M = 30
+MIN_PRICE_INCREASE_1H = 100
+EXCEPTION_PRICE_5M = 50
+EXCEPTION_PRICE_1H = 80
+HIGH_PRICE_1H = 120
 
 # Logging Configuration
 logging.basicConfig(level=logging.INFO)
@@ -502,11 +516,34 @@ async def scan_coins():
                     "sell_1h", 0) < MIN_SELLS:
                 continue
 
-            # DEX data & volume filter
+            # DEX data & complex filters
             dex_data = get_dex_data(mint)
             if not dex_data:
                 continue
-            if dex_data.get("volume_1h", 0) < MIN_VOLUME_1H:
+
+            # Get volumes
+            volume_5m = dex_data.get("volume_5m", 0)
+            volume_1h = dex_data.get("volume_1h", 0)
+            
+            # Get price changes
+            price_change_5m = dex_data.get("price_change_5m", 0)
+            price_change_1h = dex_data.get("price_change_1h", 0)
+
+            # Volume filter logic with exceptions
+            volume_check = (
+                (volume_5m >= MIN_VOLUME_5M and volume_1h >= MIN_VOLUME_1H) or
+                (volume_5m >= EXCEPTION_VOLUME_5M and volume_1h >= HIGH_VOLUME_1H) or
+                (volume_5m >= HIGH_VOLUME_5M and volume_1h >= EXCEPTION_VOLUME_1H)
+            )
+
+            # Price increase filter logic with exceptions
+            price_check = (
+                (price_change_5m >= MIN_PRICE_INCREASE_5M and price_change_1h >= MIN_PRICE_INCREASE_1H) or
+                (price_change_5m >= MIN_PRICE_INCREASE_5M and price_change_1h >= HIGH_PRICE_1H) or
+                (price_change_5m >= EXCEPTION_PRICE_5M and price_change_1h >= EXCEPTION_PRICE_1H)
+            )
+
+            if not (volume_check and price_check):
                 continue
 
             new_coins.append((coin, holders_info, dex_data))
