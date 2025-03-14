@@ -283,14 +283,14 @@ def fetch_token_holders(token_mint):
 
         # Skip the first holder (bonding curve) and use the rest
         real_holders = holders[1:]
-        top_5 = [
-            float(holder["amount"]) / total_supply * 100
-            for holder in real_holders[:5]
-        ]
+        top_5_amounts = [float(holder["amount"]) for holder in real_holders[:5]]
+        top_5_percentages = [(amount / total_supply * 100) for amount in top_5_amounts]
 
-        # Only proceed if the largest wallet is within acceptable limits (<= 4%)
-        if max(top_5) > BIGGEST_WALLET_MAX:
+        # Check for minimum and maximum wallet percentage limits
+        if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(top_5_percentages) < 2.0:
             return None
+
+        top_5 = top_5_percentages
 
         # Birdeye request for additional holder/trade info
         birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={token_mint}"
