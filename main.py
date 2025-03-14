@@ -18,7 +18,7 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_VOLUME = 7000
+MIN_VOLUME_1H = 4000
 MIN_HOLDERS = 20
 BIGGEST_WALLET_MAX = 4.0  # in percentage
 MIN_MARKET_CAP = 7000
@@ -506,7 +506,7 @@ async def scan_coins():
             dex_data = get_dex_data(mint)
             if not dex_data:
                 continue
-            if dex_data.get("volume_24h", 0) < MIN_VOLUME:
+            if dex_data.get("volume_1h", 0) < MIN_VOLUME_1H:
                 continue
 
             new_coins.append((coin, holders_info, dex_data))
