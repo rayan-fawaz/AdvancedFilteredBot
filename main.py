@@ -389,27 +389,15 @@ def format_holders_message(holders_info):
 def get_trench_data(mint_address):
     """Fetch bundle data from Trench API."""
     try:
-        response = requests.get(f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}", timeout=30)
-        response.raise_for_status()
+        response = requests.get(f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}", timeout=10)
         data = response.json()
-        
-        if isinstance(data, dict) and 'stats' in data:
-            stats = data['stats']
-            return {
-                'bonded': data.get('bonded', False),
-                'total_bundles': stats.get('total_bundles', 0),
-                'total_holding_percentage': stats.get('total_holding_percentage', 0)
-            }
-        logging.warning(f"Invalid Trench data format for {mint_address}")
-        return None
-    except requests.exceptions.Timeout:
-        logging.error(f"Timeout fetching Trench data for {mint_address}")
-        return None
-    except requests.exceptions.RequestException as e:
-        logging.error(f"Network error fetching Trench data: {e}")
-        return None
+        return {
+            'bonded': data.get('bonded', False),
+            'total_bundles': data.get('total_bundles', 0),
+            'total_holding_percentage': data.get('total_holding_percentage', 0)
+        }
     except Exception as e:
-        logging.error(f"Unexpected error fetching Trench data: {e}")
+        logging.error(f"Error fetching Trench data: {e}")
         return None
 
 def format_coin_message(coin, holders_info, dex_data):
@@ -417,17 +405,18 @@ def format_coin_message(coin, holders_info, dex_data):
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
-
+    
     # Get Trench data and filter out bonded coins
     trench_data = get_trench_data(mint_address)
-    if not trench_data:
-        trench_info = "└─ No bundle data available\n\n"
-    elif trench_data.get('bonded', False):
+    if trench_data and trench_data.get('bonded', False):
         return None
-    else:
+        
+    trench_info = ""
+    if trench_data:
         trench_info = (
-            f"Total Bundles: {trench_data['total_bundles']}\n"
-            f"└─ Holding %: {trench_data['total_holding_percentage']:.2f}%\n\n"
+            f"📚 <b>Bundle Info</b>\n"
+            f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
+            f"└─ <b>Held Bundles:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
         )
 
     # Get reply count from the coin data
