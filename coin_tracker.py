@@ -67,7 +67,7 @@ class CoinTracker:
         elif holders_info['trade_1h'] > 1000: score += 1
         
         # Bundle analysis
-        if trench_data['total_bundles'] < 50: score += 1
+        if trench_data and trench_data.get('total_bundles', 0) < 50: score += 1
         
         prediction = {
             'score': score,
