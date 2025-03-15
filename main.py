@@ -386,11 +386,37 @@ def format_holders_message(holders_info):
         f"{makers_24h}\n")
 
 
+def get_trench_data(mint_address):
+    """Fetch bundle data from Trench API."""
+    try:
+        response = requests.get(f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}", timeout=10)
+        data = response.json()
+        return {
+            'bonded': data.get('bonded', False),
+            'total_bundles': data.get('total_bundles', 0),
+            'total_holding_percentage': data.get('total_holding_percentage', 0)
+        }
+    except Exception as e:
+        logging.error(f"Error fetching Trench data: {e}")
+        return None
+
 def format_coin_message(coin, holders_info, dex_data):
     """Format coin information into a readable Telegram message."""
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
+    
+    # Get Trench data
+    trench_data = get_trench_data(mint_address)
+    trench_info = ""
+    if trench_data:
+        bonded = "✅" if trench_data['bonded'] else "❌"
+        trench_info = (
+            f"🔒 <b>Bundle Info</b>\n"
+            f"├─ <b>Bonded:</b> {bonded}\n"
+            f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
+            f"└─ <b>Holding %:</b> {trench_data['total_holding_percentage']}%\n\n"
+        )
 
     # Get reply count from the coin data
     reply_count = coin.get("reply_count", 0)
@@ -469,6 +495,7 @@ def format_coin_message(coin, holders_info, dex_data):
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
+        f"{trench_info}"
         f"{price_text}"
         f"{volume_text}"
         f"{ath_text}"
