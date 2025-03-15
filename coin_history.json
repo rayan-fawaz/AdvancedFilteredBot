@@ -421,33 +421,33 @@
     "mint": "CswRGmHHTT3jp4rBea8BvpYGryR6YbVop7MtXPTkpump",
     "name": "cwoak pwease",
     "symbol": "cwoak",
-    "market_cap": 22534.35053472174,
+    "market_cap": 18177.93648238386,
     "total_bundles": 14,
-    "holding_percentage": 8.8582768643588,
+    "holding_percentage": 9.1478067210844,
     "price_changes": {
-      "5m": -9.04,
-      "1h": 245.0,
-      "6h": 449.0,
-      "24h": 449.0
+      "5m": -16.84,
+      "1h": 214.0,
+      "6h": 354.0,
+      "24h": 354.0
     },
     "volumes": {
-      "5m": 4383.18,
-      "1h": 50287.53,
-      "6h": 54395.92,
-      "24h": 54395.92
+      "5m": 4565.45,
+      "1h": 52856.14,
+      "6h": 60495.9,
+      "24h": 60495.9
     },
     "ath": null,
-    "total_holders": 164,
+    "total_holders": 167,
     "trades_1h": {
-      "total": 2966,
-      "buys": 1581,
-      "sells": 1385
+      "total": 2893,
+      "buys": 1547,
+      "sells": 1346
     },
-    "makers_1h": 341,
-    "makers_24h": 354,
-    "timestamp": 1742070327.835012,
+    "makers_1h": 340,
+    "makers_24h": 368,
+    "timestamp": 1742070644.692181,
     "initial_price": 0,
-    "initial_market_cap": 22534.35053472174,
+    "initial_market_cap": 18177.93648238386,
     "prediction_score": 9,
     "prediction_confidence": 90.0,
     "prediction_result": "Likely Profitable",
@@ -459,35 +459,35 @@
     "mint": "3yacBTs9UfuwrPyYyyQyfeTKsRnRNrwLSHaGYY8bpump",
     "name": "MeinKraft",
     "symbol": "MEIN",
-    "market_cap": 13364.176917648181,
+    "market_cap": 12308.352461035951,
     "total_bundles": 4,
     "holding_percentage": 11.7157344116288,
     "price_changes": {
-      "5m": -25.86,
-      "1h": 173.0,
-      "6h": 214.0,
-      "24h": 214.0
+      "5m": 32.51,
+      "1h": 38.68,
+      "6h": 232.0,
+      "24h": 232.0
     },
     "volumes": {
-      "5m": 1896.59,
-      "1h": 44350.95,
-      "6h": 46845.3,
-      "24h": 46845.3
+      "5m": 2094.31,
+      "1h": 40701.38,
+      "6h": 52283.42,
+      "24h": 52283.42
     },
     "ath": null,
-    "total_holders": 81,
+    "total_holders": 85,
     "trades_1h": {
-      "total": 1174,
-      "buys": 637,
-      "sells": 537
+      "total": 1128,
+      "buys": 611,
+      "sells": 517
     },
-    "makers_1h": 201,
-    "makers_24h": 216,
-    "timestamp": 1742070331.51779,
+    "makers_1h": 208,
+    "makers_24h": 238,
+    "timestamp": 1742070890.306258,
     "initial_price": 0,
-    "initial_market_cap": 13364.176917648181,
-    "prediction_score": 5,
-    "prediction_confidence": 50.0,
+    "initial_market_cap": 12308.352461035951,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
     "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
@@ -526,6 +526,120 @@
     "initial_market_cap": 7235.78554652616,
     "prediction_score": 2,
     "prediction_confidence": 20.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "m8t4FtXU6pRoxNPEJTaonfm56LL72jAYNSTKyMNpump": {
+    "mint": "m8t4FtXU6pRoxNPEJTaonfm56LL72jAYNSTKyMNpump",
+    "name": "PWEASE CRAFT",
+    "symbol": "PCRAFT",
+    "market_cap": 9071.71772874015,
+    "total_bundles": 2,
+    "holding_percentage": 3.2070467179306,
+    "price_changes": {
+      "5m": 69.83,
+      "1h": 125.0,
+      "6h": 125.0,
+      "24h": 125.0
+    },
+    "volumes": {
+      "5m": 5743.59,
+      "1h": 6893.09,
+      "6h": 6893.09,
+      "24h": 6893.09
+    },
+    "ath": null,
+    "total_holders": 39,
+    "trades_1h": {
+      "total": 394,
+      "buys": 215,
+      "sells": 179
+    },
+    "makers_1h": 71,
+    "makers_24h": 71,
+    "timestamp": 1742070841.219892,
+    "initial_price": 0,
+    "initial_market_cap": 9071.71772874015,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Gs8DsDw43TvUMv5nkKhMcuHPA148vhDjkgPivG4wpump": {
+    "mint": "Gs8DsDw43TvUMv5nkKhMcuHPA148vhDjkgPivG4wpump",
+    "name": "Chill minecraft guy",
+    "symbol": "CMG",
+    "market_cap": 7518.20632502687,
+    "total_bundles": 2,
+    "holding_percentage": 1.6253142742511,
+    "price_changes": {
+      "5m": 31.39,
+      "1h": 83.71,
+      "6h": 83.71,
+      "24h": 83.71
+    },
+    "volumes": {
+      "5m": 1962.76,
+      "1h": 28252.87,
+      "6h": 28252.87,
+      "24h": 28252.87
+    },
+    "ath": null,
+    "total_holders": 30,
+    "trades_1h": {
+      "total": 2501,
+      "buys": 1284,
+      "sells": 1217
+    },
+    "makers_1h": 115,
+    "makers_24h": 115,
+    "timestamp": 1742070882.45307,
+    "initial_price": 0,
+    "initial_market_cap": 7518.20632502687,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Gekb6JAUMxtc3fpfCBcNf8ZGRnEdkQU6hkWeJpAHpump": {
+    "mint": "Gekb6JAUMxtc3fpfCBcNf8ZGRnEdkQU6hkWeJpAHpump",
+    "name": "RugitBack",
+    "symbol": "RIB",
+    "market_cap": 9062.55297098019,
+    "total_bundles": 28,
+    "holding_percentage": 14.5745664858962,
+    "price_changes": {
+      "5m": 17.18,
+      "1h": 121.0,
+      "6h": 121.0,
+      "24h": 121.0
+    },
+    "volumes": {
+      "5m": 6256.84,
+      "1h": 67177.26,
+      "6h": 67177.26,
+      "24h": 67177.26
+    },
+    "ath": null,
+    "total_holders": 97,
+    "trades_1h": {
+      "total": 969,
+      "buys": 517,
+      "sells": 452
+    },
+    "makers_1h": 365,
+    "makers_24h": 365,
+    "timestamp": 1742070973.742199,
+    "initial_price": 0,
+    "initial_market_cap": 9062.55297098019,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
     "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
