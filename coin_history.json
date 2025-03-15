@@ -73,33 +73,36 @@
     "mint": "2ec417fgA87ABtiK4XeskzinqbjXbRi6AYmuDqpEpump",
     "name": "GROK CRASHOUT VICTIM",
     "symbol": "HEESEUNG",
-    "market_cap": 13699.38117992883,
-    "total_bundles": 101,
-    "holding_percentage": 20.3852121440295,
+    "market_cap": 8832.1751617836,
+    "total_bundles": 103,
+    "holding_percentage": 26.2389334647252,
     "price_changes": {
-      "5m": 6.41,
-      "1h": 213.0,
-      "6h": 213.0,
-      "24h": 213.0
+      "5m": -33.45,
+      "1h": 130.0,
+      "6h": 130.0,
+      "24h": 130.0
     },
     "volumes": {
-      "5m": 10774.49,
-      "1h": 157507.15,
-      "6h": 157507.15,
-      "24h": 157507.15
+      "5m": 6057.25,
+      "1h": 162201.38,
+      "6h": 162201.38,
+      "24h": 162201.38
     },
     "ath": null,
-    "total_holders": 146,
+    "total_holders": 122,
     "trades_1h": {
-      "total": 2815,
-      "buys": 1510,
-      "sells": 1305
+      "total": 2910,
+      "buys": 1549,
+      "sells": 1361
     },
-    "makers_1h": 761,
-    "makers_24h": 761,
-    "timestamp": 1742020399.117986,
+    "makers_1h": 769,
+    "makers_24h": 769,
+    "timestamp": 1742020653.143655,
     "initial_price": 0,
-    "initial_market_cap": 13699.38117992883,
+    "initial_market_cap": 8832.1751617836,
+    "prediction_score": 6,
+    "prediction_confidence": 60.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
