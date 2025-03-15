@@ -107,29 +107,33 @@ async def handle_telegram_updates():
                                 # Parse training data in format "TICKER [Xx]"
                                 lines = message[6:].strip().split('\n')
                                 training_data = {}
-                                
+
                                 for line in lines:
                                     line = line.strip()
                                     logging.info(f"Processing line: {line}")
-                                    
+
                                     if not line:  # Skip empty lines
                                         continue
-                                        
-                                    if '[' not in line or ']' not in line:
+
+                                    if '[' not in line or 'x]' not in line:
                                         continue
-                                        
+
                                     try:
-                                        ticker = line.split('[')[0].strip()
-                                        multiplier_str = line.split('[')[1].split('x]')[0].strip()
+                                        # Split at '[' and get the ticker part
+                                        parts = line.split('[')
+                                        ticker = parts[0].strip()
+
+                                        # Get multiplier part and clean it
+                                        multiplier_str = parts[1].split('x]')[0].strip()
                                         multiplier = float(multiplier_str)
-                                        
-                                        if multiplier >= 2.5:  # Successful trade threshold
-                                            training_data[ticker] = multiplier
-                                            logging.info(f"Added trade: {ticker} = {multiplier}x")
+
+                                        # Add all trades for analysis
+                                        training_data[ticker] = multiplier
+                                        logging.info(f"Added trade: {ticker} = {multiplier}x")
                                     except (IndexError, ValueError) as e:
                                         logging.error(f"Error parsing line '{line}': {str(e)}")
                                         continue
-                                
+
                                 if training_data:
                                     # Train the model
                                     tracker = CoinTracker()
@@ -141,7 +145,7 @@ async def handle_telegram_updates():
                             except Exception as e:
                                 logging.error(f"Training error: {str(e)}")
                                 await send_telegram_message(f"❌ Error training model: {str(e)}\n\nPlease make sure to use the format:\n/train\nTICKER [Xx]", chat_id)
-                                
+
         except Exception as e:
             logging.error(f"Error handling Telegram updates: {e}")
         await asyncio.sleep(1)
@@ -492,12 +496,12 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
-    
+
     # Get Trench data and filter out bonded coins
     trench_data = await get_trench_data(mint_address)
     if trench_data and trench_data.get('bonded', False):
         return None
-        
+
     trench_info = ""
     if trench_data:
         trench_info = (
@@ -675,7 +679,7 @@ async def scan_coins():
 
             # Get Trench data before tracking
             trench_data = await get_trench_data(mint)
-            
+
             # Track the coin in our AI system
             coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
             new_coins.append((coin, holders_info, dex_data))
@@ -692,7 +696,7 @@ async def scan_coins():
         total_replies = sum(coin[0].get("reply_count", 0)
                             for coin in new_coins) if new_coins else 0
         total_makers = sum(
-            fetch_unique_reply_makers(coin[0]["mint"])
+            fetch_unique_reply_makers(coin[0["mint"])
             for coin in new_coins) if new_coins else 0
         logging.info(
             f"Checked: {len(new_coins)} new coins meeting criteria. Total replies: {total_replies}, Total reply makers: {total_makers}"
@@ -712,28 +716,28 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
         response = {'status': 'running', 'message': 'Crypto scanner is active'}
         self.wfile.write(json.dumps(response).encode())
-        
+
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
-        
+
         if self.path == '/train':
             try:
                 # Parse training data in format: {"TICKER": X.X} where X.X is return multiplier
                 training_data = json.loads(post_data)
-                
+
                 if not isinstance(training_data, dict):
                     raise ValueError("Training data must be a dictionary")
-                    
+
                 # Validate data format
                 for ticker, multiplier in training_data.items():
                     if not isinstance(multiplier, (int, float)):
                         raise ValueError(f"Invalid multiplier for {ticker}: {multiplier}")
-                
+
                 # Train model
                 tracker = CoinTracker()
                 tracker.train_model_with_returns(training_data)
-                
+
                 # Send success response
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
@@ -744,20 +748,20 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     'trades': training_data
                 }
                 self.wfile.write(json.dumps(response).encode())
-                
+
                 # Also send confirmation to Telegram
                 asyncio.run(send_telegram_message(
                     f"✅ Model trained successfully with {len(training_data)} trades:\n" +
                     "\n".join(f"- {k}: {v}x" for k, v in training_data.items())
                 ))
-                
+
             except Exception as e:
                 self.send_response(400)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 response = {'status': 'error', 'message': str(e)}
                 self.wfile.write(json.dumps(response).encode())
-            
+
         elif self.path == '/returns':
             current_prices = json.loads(post_data)
             tracker = CoinTracker()
