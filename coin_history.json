@@ -535,33 +535,33 @@
     "mint": "m8t4FtXU6pRoxNPEJTaonfm56LL72jAYNSTKyMNpump",
     "name": "PWEASE CRAFT",
     "symbol": "PCRAFT",
-    "market_cap": 12899.719176241519,
+    "market_cap": 11133.988509017361,
     "total_bundles": 6,
-    "holding_percentage": 1.7127787351966,
+    "holding_percentage": 2.2168039262775,
     "price_changes": {
-      "5m": -13.32,
-      "1h": 216.0,
-      "6h": 216.0,
-      "24h": 216.0
+      "5m": -19.85,
+      "1h": 168.0,
+      "6h": 168.0,
+      "24h": 168.0
     },
     "volumes": {
-      "5m": 3993.78,
-      "1h": 32607.05,
-      "6h": 32607.05,
-      "24h": 32607.05
+      "5m": 2463.59,
+      "1h": 34833.11,
+      "6h": 34833.11,
+      "24h": 34833.11
     },
     "ath": null,
-    "total_holders": 90,
+    "total_holders": 75,
     "trades_1h": {
-      "total": 1933,
-      "buys": 1017,
-      "sells": 916
+      "total": 2079,
+      "buys": 1088,
+      "sells": 991
     },
-    "makers_1h": 210,
-    "makers_24h": 210,
-    "timestamp": 1742072866.545245,
+    "makers_1h": 216,
+    "makers_24h": 216,
+    "timestamp": 1742073117.701202,
     "initial_price": 0,
-    "initial_market_cap": 12899.719176241519,
+    "initial_market_cap": 11133.988509017361,
     "prediction_score": 6,
     "prediction_confidence": 60.0,
     "prediction_result": "Likely Profitable",
@@ -907,6 +907,44 @@
     "prediction_score": 6,
     "prediction_confidence": 60.0,
     "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "ZUSWYieRM24yjfDQTCid527SLwUrXEdZeRmjEJ8pump": {
+    "mint": "ZUSWYieRM24yjfDQTCid527SLwUrXEdZeRmjEJ8pump",
+    "name": "Department Of Pepe Everywhere",
+    "symbol": "DOPE",
+    "market_cap": 12413.955461191199,
+    "total_bundles": 10,
+    "holding_percentage": 6.412207240814401,
+    "price_changes": {
+      "5m": 77.01,
+      "1h": 200.0,
+      "6h": 200.0,
+      "24h": 200.0
+    },
+    "volumes": {
+      "5m": 7583.57,
+      "1h": 20879.82,
+      "6h": 20879.82,
+      "24h": 20879.82
+    },
+    "ath": null,
+    "total_holders": 106,
+    "trades_1h": {
+      "total": 537,
+      "buys": 315,
+      "sells": 222
+    },
+    "makers_1h": 219,
+    "makers_24h": 219,
+    "timestamp": 1742073122.009692,
+    "initial_price": 0,
+    "initial_market_cap": 12413.955461191199,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
