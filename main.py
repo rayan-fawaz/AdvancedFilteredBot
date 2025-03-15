@@ -487,6 +487,22 @@ def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             timeout=5)
         dex_data_orders = dex_response.json()
         dex_paid = dex_data_orders.get(
+
+def get_score_reasons(coin_data):
+    reasons = []
+    if coin_data.get('volumes', {}).get('1h', 0) > 50000:
+        reasons.append('high volume')
+    if coin_data.get('price_changes', {}).get('1h', 0) > 100:
+        reasons.append('strong momentum')
+    if coin_data.get('total_holders', 0) > 100:
+        reasons.append('good holder count')
+    if coin_data.get('trades_1h', {}).get('total', 0) > 1000:
+        reasons.append('active trading')
+    if coin_data.get('total_bundles', 0) < 50:
+        reasons.append('low bundle count')
+    return reasons or ['market metrics']
+
+
             "status") == "approved" if dex_data_orders else False
     except Exception:
         dex_paid = False
@@ -506,7 +522,8 @@ def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
         f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
 
-         f"🤖 <b>AI Prediction:</b>  {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n\n"
+         f"🤖 <b>AI Prediction:</b>  {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
+         f"📊 <b>Why:</b> Score based on {', '.join(get_score_reasons(coin_tracker.tracked_coins[mint_address]))}\n\n"
         f"🆔 Mint: <code>{mint_address}</code>\n"
         f"——————————————————————————————\n")
 
