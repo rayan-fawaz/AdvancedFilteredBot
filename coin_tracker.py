@@ -36,7 +36,27 @@ class CoinTracker:
         # Use Replit's persistent storage directory if available
         storage_dir = os.getenv('REPL_HOME', '.')
         self.db_file = os.path.join(storage_dir, "coin_history.json")
+        self.meta_file = os.path.join(storage_dir, "meta_scores.json")
         self.tracked_coins = self.load_history()
+        self.meta_scores = self.load_meta_scores()
+
+    def load_meta_scores(self):
+        """Load current meta scores from file."""
+        try:
+            with open(self.meta_file, 'r') as f:
+                return json.load(f)
+        except:
+            return {}
+
+    def save_meta_scores(self):
+        """Save current meta scores to file."""
+        with open(self.meta_file, 'w') as f:
+            json.dump(self.meta_scores, f, indent=2)
+
+    def update_meta_scores(self, new_scores):
+        """Update meta scores with new data."""
+        self.meta_scores = new_scores
+        self.save_meta_scores()
         
     def load_history(self) -> Dict:
         try:
@@ -49,10 +69,18 @@ class CoinTracker:
         with open(self.db_file, 'w') as f:
             json.dump(self.tracked_coins, f, indent=2)
             
-    def predict_profitability(self, holders_info, dex_data, trench_data):
-        """Predict if a coin will be profitable based on initial metrics"""
+    def predict_profitability(self, coin, holders_info, dex_data, trench_data):
+        """Predict if a coin will be profitable based on initial metrics and meta scores"""
         score = 0
         reasons = []
+        
+        # Check if coin name/symbol contains meta words
+        coin_text = f"{coin['name']} {coin['symbol']}".lower()
+        for meta_word, meta_score in self.meta_scores.items():
+            if meta_word in coin_text:
+                meta_boost = meta_score * 2  # Convert meta score to points
+                score += meta_boost
+                reasons.append(f"Contains meta '{meta_word}' (+{meta_boost:.1f})")
         
         # Volume analysis
         if dex_data['volume_1h'] > 50000:

@@ -823,32 +823,46 @@ async def handle_learned_command():
 
 
 async def fetch_meta_words():
-    """Fetch and print meta words with their scores."""
+    """Fetch meta words and update coin tracker with current meta scores."""
     try:
         response = requests.get("https://frontend-api-v3.pump.fun/metas/current")
         response.raise_for_status()
         data = response.json()
         
-        print("\nFetching meta words...")  # Debug print
-        
-        if isinstance(data, list):  # API returns a list
-            # Format words with scores
-            word_scores = [f"{item['word']} ({item['score']:.3f})" for item in data if 'word' in item and 'score' in item]
+        if isinstance(data, list):
+            # Create dictionary of word:score pairs
+            meta_scores = {item['word'].lower(): float(item['score']) 
+                         for item in data if 'word' in item and 'score' in item}
+            
+            # Update CoinTracker with new meta scores
+            coin_tracker = CoinTracker()
+            coin_tracker.update_meta_scores(meta_scores)
+            
+            # Format for display
+            word_scores = [f"{word} ({score:.3f})" for word, score in meta_scores.items()]
             words_str = ', '.join(word_scores)
             
-            # Print to console
-            print("\nCurrent Meta Words with Scores:")
-            print(words_str)
-            
-            # Send to Telegram
-            message = f"📊 Current Meta Words with Scores:\n{words_str}"
+            # Send update to Telegram
+            message = (
+                "🔄 Meta Update\n\n"
+                f"📊 Current Meta Words (score):\n{words_str}\n\n"
+                "Higher scores indicate stronger market potential."
+            )
             await send_telegram_message(message)
+            
+            # Schedule next update
+            asyncio.create_task(schedule_meta_update())
+            
         else:
-            print("Invalid API response format")
-            print("Response:", data)
+            logging.error("Invalid meta API response format")
             
     except Exception as e:
         logging.error(f"Error fetching meta words: {e}")
+
+async def schedule_meta_update():
+    """Schedule periodic meta updates."""
+    await asyncio.sleep(300)  # Update every 5 minutes
+    await fetch_meta_words()
 
 if __name__ == "__main__":
     logging.info("Starting HTTP server on port 8080")
