@@ -155,36 +155,36 @@
     "mint": "5ASvEe7pxUuW25BAKBqAbXDmt5QQFwFQkfsZtjQxpump",
     "name": "Unstoppable Stone Ass",
     "symbol": "USA",
-    "market_cap": 12004.124502708,
+    "market_cap": 7183.566831716639,
     "total_bundles": 3,
     "holding_percentage": 0.0,
     "price_changes": {
-      "5m": -2.47,
-      "1h": 206.0,
-      "6h": 206.0,
-      "24h": 206.0
+      "5m": -44.87,
+      "1h": 83.04,
+      "6h": 83.04,
+      "24h": 83.04
     },
     "volumes": {
-      "5m": 4400.89,
-      "1h": 53802.58,
-      "6h": 53802.58,
-      "24h": 53802.58
+      "5m": 5540.69,
+      "1h": 57661.15,
+      "6h": 57661.15,
+      "24h": 57661.15
     },
     "ath": null,
-    "total_holders": 107,
+    "total_holders": 80,
     "trades_1h": {
-      "total": 2160,
-      "buys": 1200,
-      "sells": 960
+      "total": 2276,
+      "buys": 1246,
+      "sells": 1030
     },
-    "makers_1h": 322,
-    "makers_24h": 322,
-    "timestamp": 1742022749.488879,
+    "makers_1h": 327,
+    "makers_24h": 327,
+    "timestamp": 1742022871.926323,
     "initial_price": 0,
-    "initial_market_cap": 12004.124502708,
-    "prediction_score": 8,
-    "prediction_confidence": 80.0,
-    "prediction_result": "Likely Profitable",
+    "initial_market_cap": 7183.566831716639,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -193,35 +193,35 @@
     "mint": "9ThfQgi22s9v8suLiExbfSCY9JxQUGq5tpCFgZvupump",
     "name": "Viral Twerking Chicken",
     "symbol": "Thicken",
-    "market_cap": 19283.026131937437,
+    "market_cap": 17960.285335980956,
     "total_bundles": 31,
-    "holding_percentage": 5.3076098997845005,
+    "holding_percentage": 5.7168998404631,
     "price_changes": {
-      "5m": 18.28,
-      "1h": 218.0,
-      "6h": 366.0,
-      "24h": 366.0
+      "5m": 38.2,
+      "1h": 142.0,
+      "6h": 382.0,
+      "24h": 382.0
     },
     "volumes": {
-      "5m": 2894.14,
-      "1h": 116549.16,
-      "6h": 124350.25,
-      "24h": 124350.25
+      "5m": 5002.36,
+      "1h": 110896.84,
+      "6h": 127547.96,
+      "24h": 127547.96
     },
     "ath": null,
-    "total_holders": 158,
+    "total_holders": 159,
     "trades_1h": {
-      "total": 1930,
-      "buys": 1112,
-      "sells": 818
+      "total": 1959,
+      "buys": 1129,
+      "sells": 830
     },
-    "makers_1h": 576,
-    "makers_24h": 607,
-    "timestamp": 1742022712.363616,
+    "makers_1h": 536,
+    "makers_24h": 613,
+    "timestamp": 1742022870.213862,
     "initial_price": 0,
-    "initial_market_cap": 19283.026131937437,
-    "prediction_score": 7,
-    "prediction_confidence": 70.0,
+    "initial_market_cap": 17960.285335980956,
+    "prediction_score": 6,
+    "prediction_confidence": 60.0,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
@@ -269,33 +269,33 @@
     "mint": "GSBhvYX4SP1CccdtNFtryM68wyALyNNS99ankDugpump",
     "name": "Unstoppable Super Dildo",
     "symbol": "USD",
-    "market_cap": 12343.6923218784,
+    "market_cap": 13236.234202506239,
     "total_bundles": 6,
     "holding_percentage": 15.786043260227899,
     "price_changes": {
-      "5m": 8.71,
+      "5m": 7.06,
       "1h": 229.0,
       "6h": 229.0,
       "24h": 229.0
     },
     "volumes": {
-      "5m": 670.65,
-      "1h": 11808.06,
-      "6h": 11808.06,
-      "24h": 11808.06
+      "5m": 583.9,
+      "1h": 11959.94,
+      "6h": 11959.94,
+      "24h": 11959.94
     },
     "ath": null,
-    "total_holders": 44,
+    "total_holders": 43,
     "trades_1h": {
-      "total": 456,
-      "buys": 125,
-      "sells": 331
+      "total": 538,
+      "buys": 165,
+      "sells": 373
     },
     "makers_1h": 72,
     "makers_24h": 72,
-    "timestamp": 1742022755.835901,
+    "timestamp": 1742022875.308989,
     "initial_price": 0,
-    "initial_market_cap": 12343.6923218784,
+    "initial_market_cap": 13236.234202506239,
     "prediction_score": 3,
     "prediction_confidence": 30.0,
     "prediction_result": "High Risk",
@@ -337,6 +337,44 @@
     "prediction_score": 5,
     "prediction_confidence": 50.0,
     "prediction_result": "Potentially Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7KbMqx53C3sGMTuBTw5XkM2e55iinuHFq2cSVV1Tpump": {
+    "mint": "7KbMqx53C3sGMTuBTw5XkM2e55iinuHFq2cSVV1Tpump",
+    "name": "DOGEBOOK",
+    "symbol": "DOGEBOOK",
+    "market_cap": 8404.433823371039,
+    "total_bundles": 89,
+    "holding_percentage": 5.6332759912634,
+    "price_changes": {
+      "5m": -3.82,
+      "1h": 97.94,
+      "6h": 97.94,
+      "24h": 97.94
+    },
+    "volumes": {
+      "5m": 5749.77,
+      "1h": 131714.2,
+      "6h": 131714.2,
+      "24h": 131714.2
+    },
+    "ath": null,
+    "total_holders": 84,
+    "trades_1h": {
+      "total": 2044,
+      "buys": 1068,
+      "sells": 976
+    },
+    "makers_1h": 575,
+    "makers_24h": 575,
+    "timestamp": 1742022923.338076,
+    "initial_price": 0,
+    "initial_market_cap": 8404.433823371039,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
