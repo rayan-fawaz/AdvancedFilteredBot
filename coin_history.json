@@ -3,124 +3,175 @@
     "mint": "5aJqSauZiFCgtQ8Qgbq8HsfG9E8Lc4uDc4WMw5JEpump",
     "name": "Stone Cold Underpants Man",
     "symbol": "SCUM",
-    "market_cap": 15337.61585923851,
-    "total_bundles": 7,
-    "holding_percentage": 11.7672526810293,
+    "market_cap": 13946.080418275951,
+    "total_bundles": 8,
+    "holding_percentage": 11.8786152150854,
     "price_changes": {
-      "5m": 7.39,
-      "1h": 270.0,
-      "6h": 270.0,
-      "24h": 270.0
+      "5m": -16.54,
+      "1h": 249.0,
+      "6h": 249.0,
+      "24h": 249.0
     },
     "volumes": {
-      "5m": 5561.78,
-      "1h": 25995.06,
-      "6h": 25995.06,
-      "24h": 25995.06
+      "5m": 4841.33,
+      "1h": 29056.4,
+      "6h": 29056.4,
+      "24h": 29056.4
     },
     "ath": null,
-    "total_holders": 116,
+    "total_holders": 112,
     "trades_1h": {
-      "total": 1003,
-      "buys": 561,
-      "sells": 442
+      "total": 1126,
+      "buys": 623,
+      "sells": 503
     },
-    "makers_1h": 239,
-    "makers_24h": 239,
-    "timestamp": 1742020214.406625,
-    "initial_price": 0
+    "makers_1h": 250,
+    "makers_24h": 250,
+    "timestamp": 1742020390.30149,
+    "initial_price": 0,
+    "initial_market_cap": 13946.080418275951,
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   },
   "8KbFBTTCWfu1jodSLjHecBNtsK7hAZc25zbbLwSkpump": {
     "mint": "8KbFBTTCWfu1jodSLjHecBNtsK7hAZc25zbbLwSkpump",
     "name": "Giga Side Profile",
     "symbol": "GIGASIDE",
-    "market_cap": 12168.59232969717,
+    "market_cap": 16228.78634307945,
     "total_bundles": 16,
     "holding_percentage": 0.0,
     "price_changes": {
-      "5m": 29.5,
-      "1h": 197.0,
-      "6h": 185.0,
-      "24h": 185.0
+      "5m": 36.98,
+      "1h": 297.0,
+      "6h": 281.0,
+      "24h": 281.0
     },
     "volumes": {
-      "5m": 4590.96,
-      "1h": 15040.3,
-      "6h": 70277.88,
-      "24h": 70277.88
+      "5m": 3301.5,
+      "1h": 18574.11,
+      "6h": 73811.69,
+      "24h": 73811.69
     },
     "ath": null,
-    "total_holders": 77,
+    "total_holders": 101,
     "trades_1h": {
-      "total": 2358,
-      "buys": 1209,
-      "sells": 1149
+      "total": 2641,
+      "buys": 1360,
+      "sells": 1281
     },
-    "makers_1h": 89,
-    "makers_24h": 326,
-    "timestamp": 1742020102.550335,
-    "initial_price": 0
+    "makers_1h": 120,
+    "makers_24h": 355,
+    "timestamp": 1742020397.82669,
+    "initial_price": 0,
+    "initial_market_cap": 16228.78634307945,
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   },
   "2ec417fgA87ABtiK4XeskzinqbjXbRi6AYmuDqpEpump": {
     "mint": "2ec417fgA87ABtiK4XeskzinqbjXbRi6AYmuDqpEpump",
     "name": "GROK CRASHOUT VICTIM",
     "symbol": "HEESEUNG",
-    "market_cap": 14401.291536953458,
-    "total_bundles": 100,
-    "holding_percentage": 18.3104890976055,
+    "market_cap": 13699.38117992883,
+    "total_bundles": 101,
+    "holding_percentage": 20.3852121440295,
     "price_changes": {
-      "5m": 32.45,
-      "1h": 245.0,
-      "6h": 245.0,
-      "24h": 245.0
+      "5m": 6.41,
+      "1h": 213.0,
+      "6h": 213.0,
+      "24h": 213.0
     },
     "volumes": {
-      "5m": 7412.08,
-      "1h": 148565.92,
-      "6h": 148565.92,
-      "24h": 148565.92
+      "5m": 10774.49,
+      "1h": 157507.15,
+      "6h": 157507.15,
+      "24h": 157507.15
     },
     "ath": null,
-    "total_holders": 149,
+    "total_holders": 146,
     "trades_1h": {
-      "total": 2665,
-      "buys": 1427,
-      "sells": 1238
+      "total": 2815,
+      "buys": 1510,
+      "sells": 1305
     },
-    "makers_1h": 739,
-    "makers_24h": 739,
-    "timestamp": 1742020174.745302,
-    "initial_price": 0
+    "makers_1h": 761,
+    "makers_24h": 761,
+    "timestamp": 1742020399.117986,
+    "initial_price": 0,
+    "initial_market_cap": 13699.38117992883,
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   },
   "7mWw77hT24hN2UkGGq9bnrAmFxbEA1CTpnuedQ4Vpump": {
     "mint": "7mWw77hT24hN2UkGGq9bnrAmFxbEA1CTpnuedQ4Vpump",
     "name": "Grok Real Talk",
     "symbol": "EATPUSSY",
-    "market_cap": 12992.587905260281,
-    "total_bundles": 157,
-    "holding_percentage": 32.3370004728477,
+    "market_cap": 10850.94468496287,
+    "total_bundles": 158,
+    "holding_percentage": 13.6432854249649,
     "price_changes": {
-      "5m": 10.05,
-      "1h": 205.0,
-      "6h": 205.0,
-      "24h": 205.0
+      "5m": -20.67,
+      "1h": 148.0,
+      "6h": 148.0,
+      "24h": 148.0
     },
     "volumes": {
-      "5m": 6591.79,
-      "1h": 240864.83,
-      "6h": 240864.83,
-      "24h": 240864.83
+      "5m": 5680.08,
+      "1h": 245173.37,
+      "6h": 245173.37,
+      "24h": 245173.37
     },
     "ath": null,
-    "total_holders": 167,
+    "total_holders": 160,
     "trades_1h": {
-      "total": 3439,
-      "buys": 1847,
-      "sells": 1592
+      "total": 3597,
+      "buys": 1930,
+      "sells": 1667
     },
-    "makers_1h": 952,
-    "makers_24h": 952,
-    "timestamp": 1742020185.210826,
-    "initial_price": 0
+    "makers_1h": 959,
+    "makers_24h": 959,
+    "timestamp": 1742020391.676692,
+    "initial_price": 0,
+    "initial_market_cap": 10850.94468496287,
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "5ASvEe7pxUuW25BAKBqAbXDmt5QQFwFQkfsZtjQxpump": {
+    "mint": "5ASvEe7pxUuW25BAKBqAbXDmt5QQFwFQkfsZtjQxpump",
+    "name": "Unstoppable Stone Ass",
+    "symbol": "USA",
+    "market_cap": 8365.0705298172,
+    "total_bundles": 2,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 38.56,
+      "1h": 127.0,
+      "6h": 127.0,
+      "24h": 127.0
+    },
+    "volumes": {
+      "5m": 8213.91,
+      "1h": 12728.78,
+      "6h": 12728.78,
+      "24h": 12728.78
+    },
+    "ath": null,
+    "total_holders": 46,
+    "trades_1h": {
+      "total": 388,
+      "buys": 220,
+      "sells": 168
+    },
+    "makers_1h": 100,
+    "makers_24h": 100,
+    "timestamp": 1742020386.613085,
+    "initial_price": 0,
+    "initial_market_cap": 8365.0705298172,
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
