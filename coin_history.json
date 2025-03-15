@@ -1599,36 +1599,36 @@
     "mint": "E1kbrgML7DnegkJEDTPHss1xjjDwV8Q4TqidNCuApump",
     "name": "Mha Hart, Mah Sol",
     "symbol": "MahSOL",
-    "market_cap": 9282.858150284781,
-    "total_bundles": 4,
-    "holding_percentage": 5.5489964327151,
+    "market_cap": 18191.587248402753,
+    "total_bundles": 8,
+    "holding_percentage": 8.2895530709184,
     "price_changes": {
-      "5m": 42.48,
-      "1h": 120.0,
-      "6h": 120.0,
-      "24h": 120.0
+      "5m": 16.81,
+      "1h": 211.0,
+      "6h": 349.0,
+      "24h": 349.0
     },
     "volumes": {
-      "5m": 3215.54,
-      "1h": 6874.98,
-      "6h": 6874.98,
-      "24h": 6874.98
+      "5m": 1246.18,
+      "1h": 48505.9,
+      "6h": 51960.0,
+      "24h": 51960.0
     },
     "ath": null,
-    "total_holders": 38,
+    "total_holders": 134,
     "trades_1h": {
-      "total": 463,
-      "buys": 251,
-      "sells": 212
+      "total": 1646,
+      "buys": 909,
+      "sells": 737
     },
-    "makers_1h": 63,
-    "makers_24h": 63,
-    "timestamp": 1742077349.694483,
+    "makers_1h": 343,
+    "makers_24h": 359,
+    "timestamp": 1742080612.552645,
     "initial_price": 0,
-    "initial_market_cap": 9282.858150284781,
-    "prediction_score": 3,
-    "prediction_confidence": 30.0,
-    "prediction_result": "High Risk",
+    "initial_market_cap": 18191.587248402753,
+    "prediction_score": 7,
+    "prediction_confidence": 70.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -1979,33 +1979,147 @@
     "mint": "2JGD4TXGam8wmHcRCC1aqpZyRrrgYWaL6yDJ81XZpump",
     "name": "WHAPPY BWIRTHDAY",
     "symbol": "SOLBIRTH",
-    "market_cap": 7388.2250267791605,
+    "market_cap": 12744.427497771101,
     "total_bundles": 4,
     "holding_percentage": 0.2100775061233,
     "price_changes": {
-      "5m": 16.24,
-      "1h": 83.21,
-      "6h": 83.21,
-      "24h": 83.21
+      "5m": 36.61,
+      "1h": 215.0,
+      "6h": 215.0,
+      "24h": 215.0
     },
     "volumes": {
-      "5m": 695.0,
-      "1h": 13694.98,
-      "6h": 13694.98,
-      "24h": 13694.98
+      "5m": 3437.34,
+      "1h": 19676.01,
+      "6h": 19676.01,
+      "24h": 19676.01
     },
     "ath": null,
-    "total_holders": 27,
+    "total_holders": 69,
     "trades_1h": {
-      "total": 975,
-      "buys": 504,
-      "sells": 471
+      "total": 1642,
+      "buys": 866,
+      "sells": 776
     },
-    "makers_1h": 52,
-    "makers_24h": 52,
-    "timestamp": 1742079666.765529,
+    "makers_1h": 104,
+    "makers_24h": 104,
+    "timestamp": 1742080591.273175,
     "initial_price": 0,
-    "initial_market_cap": 7388.2250267791605,
+    "initial_market_cap": 12744.427497771101,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7i7GhF3SUvZRPC8c9ss8ugDzKJ3LsiQfBNsj8RD1ZKf2": {
+    "mint": "7i7GhF3SUvZRPC8c9ss8ugDzKJ3LsiQfBNsj8RD1ZKf2",
+    "name": "ronald",
+    "symbol": "ronald",
+    "market_cap": 9004.1590671396,
+    "total_bundles": 4,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": -9.3,
+      "1h": 109.0,
+      "6h": 109.0,
+      "24h": 109.0
+    },
+    "volumes": {
+      "5m": 2721.79,
+      "1h": 15522.35,
+      "6h": 15522.35,
+      "24h": 15522.35
+    },
+    "ath": null,
+    "total_holders": 36,
+    "trades_1h": {
+      "total": 561,
+      "buys": 304,
+      "sells": 257
+    },
+    "makers_1h": 98,
+    "makers_24h": 98,
+    "timestamp": 1742080634.107458,
+    "initial_price": 0,
+    "initial_market_cap": 9004.1590671396,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HUdqJZZG5adhwcg947zfZPk4SxUBNpcBp2DsBkaWpump": {
+    "mint": "HUdqJZZG5adhwcg947zfZPk4SxUBNpcBp2DsBkaWpump",
+    "name": "PEPZI",
+    "symbol": "PEPZI",
+    "market_cap": 9390.013716345451,
+    "total_bundles": 6,
+    "holding_percentage": 4.4604381060818,
+    "price_changes": {
+      "5m": -13.2,
+      "1h": 130.0,
+      "6h": 130.0,
+      "24h": 130.0
+    },
+    "volumes": {
+      "5m": 2352.48,
+      "1h": 16222.72,
+      "6h": 16222.72,
+      "24h": 16222.72
+    },
+    "ath": null,
+    "total_holders": 50,
+    "trades_1h": {
+      "total": 1265,
+      "buys": 656,
+      "sells": 609
+    },
+    "makers_1h": 101,
+    "makers_24h": 101,
+    "timestamp": 1742080610.782008,
+    "initial_price": 0,
+    "initial_market_cap": 9390.013716345451,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3s9p3UmYda7FZbt9ob4frqLW1faSLa4qsqwKucWDpump": {
+    "mint": "3s9p3UmYda7FZbt9ob4frqLW1faSLa4qsqwKucWDpump",
+    "name": "Business Hours",
+    "symbol": "Lethargic",
+    "market_cap": 7074.0288949651,
+    "total_bundles": 3,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 5.84,
+      "1h": 86.37,
+      "6h": 84.94,
+      "24h": 84.94
+    },
+    "volumes": {
+      "5m": 156.69,
+      "1h": 14458.42,
+      "6h": 14790.57,
+      "24h": 14790.57
+    },
+    "ath": null,
+    "total_holders": 28,
+    "trades_1h": {
+      "total": 147,
+      "buys": 86,
+      "sells": 61
+    },
+    "makers_1h": 75,
+    "makers_24h": 80,
+    "timestamp": 1742080625.097875,
+    "initial_price": 0,
+    "initial_market_cap": 7074.0288949651,
     "prediction_score": 2,
     "prediction_confidence": 20.0,
     "prediction_result": "High Risk",
