@@ -397,8 +397,7 @@ def get_trench_data(mint_address):
             return {
                 'bonded': data.get('bonded', False),
                 'total_bundles': stats.get('total_bundles', 0),
-                'total_holding_percentage': stats.get('total_holding_percentage', 0),
-                'total_snipers': stats.get('total_snipers', 0)
+                'total_holding_percentage': stats.get('total_holding_percentage', 0)
             }
         return None
     except Exception as e:
@@ -421,8 +420,7 @@ def format_coin_message(coin, holders_info, dex_data):
         trench_info = (
             f"🔒 <b>Bundle Info</b>\n"
             f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
-            f"├─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.2f}%\n"
-            f"└─ <b>Total Snipers:</b> {trench_data['total_snipers']}\n\n"
+            f"└─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
         )
 
     # Get reply count from the coin data
