@@ -400,7 +400,7 @@ def get_trench_data(mint_address):
         logging.error(f"Error fetching Trench data: {e}")
         return None
 
-def format_coin_message(coin, holders_info, dex_data):
+def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     """Format coin information into a readable Telegram message."""
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
@@ -594,7 +594,7 @@ async def scan_coins():
 
         if new_coins:
             message = "🚀 <b>NEW CREATION ALERT!</b> 🚀\n\n" + "\n".join(
-                format_coin_message(coin, holders_info, dex_data)
+                format_coin_message(coin, holders_info, dex_data, coin_tracker)
                 for coin, holders_info, dex_data in new_coins)
             await send_telegram_message(message)
         total_replies = sum(coin[0].get("reply_count", 0)
