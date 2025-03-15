@@ -47,49 +47,59 @@ class CoinTracker:
             json.dump(self.tracked_coins, f, indent=2)
             
     def predict_profitability(self, holders_info, dex_data, trench_data):
-        """Predict if a coin will be profitable based on initial metrics"""
+        """Predict if a coin will be profitable based on historical data analysis"""
         score = 0
         reasons = []
         
-        # Volume analysis
-        if dex_data['volume_1h'] > 50000:
+        # Volume analysis - raised thresholds based on profitable coins
+        if dex_data['volume_1h'] > 30000:
             score += 2
             reasons.append("Strong hourly volume")
-        elif dex_data['volume_1h'] > 20000:
+        elif dex_data['volume_1h'] > 15000:
             score += 1
             reasons.append("Decent hourly volume")
         else:
             reasons.append("Low volume")
-        
-        # Price momentum
-        if dex_data['price_change_1h'] > 200:
+            
+        # Price momentum - adjusted for more balanced assessment
+        if dex_data['price_change_1h'] > 150:
             score += 2
             reasons.append("Excellent price momentum")
-        elif dex_data['price_change_1h'] > 100:
+        elif dex_data['price_change_1h'] > 80:
             score += 1
             reasons.append("Good price momentum")
         else:
             reasons.append("Weak momentum")
-        
-        # Holder metrics
-        if holders_info['total_holders'] > 200:
+            
+        # Holder metrics - adjusted based on successful coins
+        if holders_info['total_holders'] > 70:
             score += 2
             reasons.append("Strong holder base")
-        elif holders_info['total_holders'] > 100:
+        elif holders_info['total_holders'] > 45:
             score += 1
             reasons.append("Growing holder base")
         else:
             reasons.append("Few holders")
-        
-        # Trade activity
-        if holders_info['trade_1h'] > 2000:
+            
+        # Trade activity - thresholds from profitable examples
+        if holders_info['trade_1h'] > 500:
             score += 2
             reasons.append("Very active trading")
-        elif holders_info['trade_1h'] > 1000:
-            score += 1
+        elif holders_info['trade_1h'] > 300:
+            score += 1  
             reasons.append("Good trading activity")
         else:
             reasons.append("Low trading activity")
+            
+        # Maker activity - new metric based on data
+        if holders_info['unique_wallet_1h'] > 200:
+            score += 2
+            reasons.append("High maker engagement")
+        elif holders_info['unique_wallet_1h'] > 100:
+            score += 1
+            reasons.append("Good maker activity")
+        else:
+            reasons.append("Low maker activity")
         
         # Bundle analysis - low bundle count is good
         if trench_data and trench_data.get('total_bundles', 0) < 50:
