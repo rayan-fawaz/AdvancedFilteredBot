@@ -823,17 +823,16 @@ async def handle_learned_command():
 
 
 async def fetch_meta_words():
-    """Fetch and print current meta words from the Pump.Fun API."""
+    """Fetch and print just the words from meta words API."""
     try:
         response = requests.get("https://frontend-api-v3.pump.fun/metas/current")
         response.raise_for_status()
         data = response.json()
         
         if 'words' in data:
-            print("\nCurrent Meta Words:")
-            for word in data['words']:
-                if 'word' in word:
-                    print(f"- {word['word']}")
+            print("\nMeta Words:")
+            words = [item['word'] for item in data['words'] if 'word' in item]
+            print(', '.join(words))
         else:
             print("No meta words found in response")
             
