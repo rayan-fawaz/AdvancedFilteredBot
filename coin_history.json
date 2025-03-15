@@ -915,33 +915,33 @@
     "mint": "ZUSWYieRM24yjfDQTCid527SLwUrXEdZeRmjEJ8pump",
     "name": "Department Of Pepe Everywhere",
     "symbol": "DOPE",
-    "market_cap": 9576.111212821801,
-    "total_bundles": 37,
-    "holding_percentage": 8.120129746258,
+    "market_cap": 11227.51123406198,
+    "total_bundles": 39,
+    "holding_percentage": 5.4788889686462,
     "price_changes": {
-      "5m": -13.68,
-      "1h": 133.0,
-      "6h": 133.0,
-      "24h": 133.0
+      "5m": 11.81,
+      "1h": 164.0,
+      "6h": 164.0,
+      "24h": 164.0
     },
     "volumes": {
-      "5m": 7951.28,
-      "1h": 115898.23,
-      "6h": 115898.23,
-      "24h": 115898.23
+      "5m": 4501.4,
+      "1h": 127852.79,
+      "6h": 127852.79,
+      "24h": 127852.79
     },
     "ath": null,
-    "total_holders": 132,
+    "total_holders": 126,
     "trades_1h": {
-      "total": 2595,
-      "buys": 1376,
-      "sells": 1219
+      "total": 3110,
+      "buys": 1640,
+      "sells": 1470
     },
-    "makers_1h": 620,
-    "makers_24h": 620,
-    "timestamp": 1742075006.648326,
+    "makers_1h": 658,
+    "makers_24h": 658,
+    "timestamp": 1742075968.960252,
     "initial_price": 0,
-    "initial_market_cap": 9576.111212821801,
+    "initial_market_cap": 11227.51123406198,
     "prediction_score": 8,
     "prediction_confidence": 80.0,
     "prediction_result": "Likely Profitable",
@@ -1029,33 +1029,33 @@
     "mint": "Eoq5HNJ46np9HpvBMDDRcjQd9kqkCbecwaV7wu4Apump",
     "name": "GROK THINKING",
     "symbol": "GROKTHINK",
-    "market_cap": 11945.39379544786,
+    "market_cap": 12014.410733079481,
     "total_bundles": 10,
     "holding_percentage": 4.5398293805734,
     "price_changes": {
-      "5m": -1.6,
-      "1h": 168.0,
-      "6h": 168.0,
-      "24h": 168.0
+      "5m": 1.8,
+      "1h": 161.0,
+      "6h": 161.0,
+      "24h": 161.0
     },
     "volumes": {
-      "5m": 8522.74,
-      "1h": 34193.26,
-      "6h": 34193.26,
-      "24h": 34193.26
+      "5m": 7492.4,
+      "1h": 34670.99,
+      "6h": 34670.99,
+      "24h": 34670.99
     },
     "ath": null,
-    "total_holders": 66,
+    "total_holders": 63,
     "trades_1h": {
-      "total": 420,
-      "buys": 253,
-      "sells": 167
+      "total": 428,
+      "buys": 256,
+      "sells": 172
     },
-    "makers_1h": 180,
-    "makers_24h": 180,
-    "timestamp": 1742075490.449558,
+    "makers_1h": 182,
+    "makers_24h": 182,
+    "timestamp": 1742075612.4055,
     "initial_price": 0,
-    "initial_market_cap": 11945.39379544786,
+    "initial_market_cap": 12014.410733079481,
     "prediction_score": 4,
     "prediction_confidence": 40.0,
     "prediction_result": "High Risk",
@@ -1105,35 +1105,35 @@
     "mint": "7geRoQV5W3931J2v856PFa8h3i27DctEXBKhczLHpump",
     "name": "Department Of Pwease Everywhere",
     "symbol": "DOPE",
-    "market_cap": 18731.20913546806,
-    "total_bundles": 18,
-    "holding_percentage": 7.1880243750915,
+    "market_cap": 13707.983652471901,
+    "total_bundles": 25,
+    "holding_percentage": 13.346357568092301,
     "price_changes": {
-      "5m": 5.08,
-      "1h": 326.0,
-      "6h": 326.0,
-      "24h": 326.0
+      "5m": -2.83,
+      "1h": 217.0,
+      "6h": 217.0,
+      "24h": 217.0
     },
     "volumes": {
-      "5m": 8332.42,
-      "1h": 54273.09,
-      "6h": 54273.09,
-      "24h": 54273.09
+      "5m": 7319.21,
+      "1h": 66915.4,
+      "6h": 66915.4,
+      "24h": 66915.4
     },
     "ath": null,
-    "total_holders": 145,
+    "total_holders": 119,
     "trades_1h": {
-      "total": 1924,
-      "buys": 1035,
-      "sells": 889
+      "total": 2404,
+      "buys": 1267,
+      "sells": 1137
     },
-    "makers_1h": 349,
-    "makers_24h": 349,
-    "timestamp": 1742075485.397591,
+    "makers_1h": 393,
+    "makers_24h": 393,
+    "timestamp": 1742075998.41066,
     "initial_price": 0,
-    "initial_market_cap": 18731.20913546806,
-    "prediction_score": 8,
-    "prediction_confidence": 80.0,
+    "initial_market_cap": 13707.983652471901,
+    "prediction_score": 9,
+    "prediction_confidence": 90.0,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
@@ -1287,6 +1287,120 @@
     "prediction_score": 3,
     "prediction_confidence": 30.0,
     "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "DpC18pH7YVWAw99ia3MSFKnhdRe14yxoExgZG7W2pump": {
+    "mint": "DpC18pH7YVWAw99ia3MSFKnhdRe14yxoExgZG7W2pump",
+    "name": "BabyDog",
+    "symbol": "BABYDOG",
+    "market_cap": 7236.5376,
+    "total_bundles": 133,
+    "holding_percentage": 18.2400626343694,
+    "price_changes": {
+      "5m": 41.65,
+      "1h": -67.75,
+      "6h": -67.75,
+      "24h": -67.75
+    },
+    "volumes": {
+      "5m": 15752.18,
+      "1h": 299123.9,
+      "6h": 299123.9,
+      "24h": 299123.9
+    },
+    "ath": null,
+    "total_holders": 311,
+    "trades_1h": {
+      "total": 6582,
+      "buys": 3248,
+      "sells": 3334
+    },
+    "makers_1h": 1916,
+    "makers_24h": 1916,
+    "timestamp": 1742075791.559591,
+    "initial_price": 0,
+    "initial_market_cap": 7236.5376,
+    "prediction_score": 6,
+    "prediction_confidence": 60.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3R18kUEjP5UHFY83NAJsVidAQ6FG8jbeyoatJk8hpump": {
+    "mint": "3R18kUEjP5UHFY83NAJsVidAQ6FG8jbeyoatJk8hpump",
+    "name": "@DOPE",
+    "symbol": "@DOPE",
+    "market_cap": 24208.24467126648,
+    "total_bundles": 159,
+    "holding_percentage": 30.6551607879891,
+    "price_changes": {
+      "5m": -25.65,
+      "1h": 368.0,
+      "6h": 368.0,
+      "24h": 368.0
+    },
+    "volumes": {
+      "5m": 3392.06,
+      "1h": 263738.57,
+      "6h": 263738.57,
+      "24h": 263738.57
+    },
+    "ath": null,
+    "total_holders": 219,
+    "trades_1h": {
+      "total": 3460,
+      "buys": 1863,
+      "sells": 1597
+    },
+    "makers_1h": 1160,
+    "makers_24h": 1160,
+    "timestamp": 1742075867.554952,
+    "initial_price": 0,
+    "initial_market_cap": 24208.24467126648,
+    "prediction_score": 8,
+    "prediction_confidence": 80.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "DAs5X2nDynVMYskeWEsQ6vMxZUp8D6fU7TFQAU3npump": {
+    "mint": "DAs5X2nDynVMYskeWEsQ6vMxZUp8D6fU7TFQAU3npump",
+    "name": "Bonnie Blue",
+    "symbol": "SLUT",
+    "market_cap": 16559.488,
+    "total_bundles": 3,
+    "holding_percentage": 2.1210004937016,
+    "price_changes": {
+      "5m": 41.1,
+      "1h": -78.39,
+      "6h": -78.39,
+      "24h": -78.39
+    },
+    "volumes": {
+      "5m": 13846.49,
+      "1h": 302683.16,
+      "6h": 302683.16,
+      "24h": 302683.16
+    },
+    "ath": null,
+    "total_holders": 230,
+    "trades_1h": {
+      "total": 1875,
+      "buys": 970,
+      "sells": 905
+    },
+    "makers_1h": 694,
+    "makers_24h": 694,
+    "timestamp": 1742075909.637378,
+    "initial_price": 0,
+    "initial_market_cap": 16559.488,
+    "prediction_score": 7,
+    "prediction_confidence": 70.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
