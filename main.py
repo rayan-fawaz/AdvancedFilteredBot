@@ -495,7 +495,7 @@ def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
-        f"🤖 <b>AI Prediction:</b> 
+        f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n\n"
         f"{trench_info}"
         f"{price_text}"
