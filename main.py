@@ -696,7 +696,7 @@ async def scan_coins():
         total_replies = sum(coin[0].get("reply_count", 0)
                             for coin in new_coins) if new_coins else 0
         total_makers = sum(
-            fetch_unique_reply_makers(coin[0["mint"])
+            fetch_unique_reply_makers(coin[0].get("mint"))
             for coin in new_coins) if new_coins else 0
         logging.info(
             f"Checked: {len(new_coins)} new coins meeting criteria. Total replies: {total_replies}, Total reply makers: {total_makers}"
