@@ -23,6 +23,9 @@ class CoinData:
     timestamp: float
     initial_price: float
     initial_market_cap: float
+    prediction_score: float
+    prediction_confidence: float
+    prediction_result: str
     ath_24h: Optional[float] = None
     ath_market_cap_24h: Optional[float] = None
     ath_timestamp_24h: Optional[float] = None
@@ -43,7 +46,40 @@ class CoinTracker:
         with open(self.db_file, 'w') as f:
             json.dump(self.tracked_coins, f, indent=2)
             
+    def predict_profitability(self, holders_info, dex_data, trench_data):
+        """Predict if a coin will be profitable based on initial metrics"""
+        score = 0
+        
+        # Volume analysis
+        if dex_data['volume_1h'] > 50000: score += 2
+        elif dex_data['volume_1h'] > 20000: score += 1
+        
+        # Price momentum
+        if dex_data['price_change_1h'] > 200: score += 2
+        elif dex_data['price_change_1h'] > 100: score += 1
+        
+        # Holder metrics
+        if holders_info['total_holders'] > 200: score += 2
+        elif holders_info['total_holders'] > 100: score += 1
+        
+        # Trade activity
+        if holders_info['trade_1h'] > 2000: score += 2
+        elif holders_info['trade_1h'] > 1000: score += 1
+        
+        # Bundle analysis
+        if trench_data['total_bundles'] < 50: score += 1
+        
+        prediction = {
+            'score': score,
+            'confidence': (score / 10) * 100,  # Convert to percentage
+            'prediction': 'Likely Profitable' if score >= 6 
+                        else 'Potentially Profitable' if score >= 4 
+                        else 'High Risk'
+        }
+        return prediction
+
     def track_coin(self, coin, holders_info, dex_data, trench_data):
+        prediction = self.predict_profitability(holders_info, dex_data, trench_data)
         coin_data = CoinData(
             mint=coin["mint"],
             name=coin["name"],
@@ -75,6 +111,9 @@ class CoinTracker:
             timestamp=datetime.now().timestamp(),
             initial_price=dex_data.get("price_usd", 0),
             initial_market_cap=coin["usd_market_cap"],
+            prediction_score=prediction['score'],
+            prediction_confidence=prediction['confidence'],
+            prediction_result=prediction['prediction'],
             ath_24h=None,
             ath_market_cap_24h=None,
             ath_timestamp_24h=None
