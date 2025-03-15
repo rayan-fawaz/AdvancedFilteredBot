@@ -91,10 +91,10 @@ class CoinTracker:
         else:
             reasons.append("Low trading activity")
         
-        # Bundle analysis
+        # Bundle analysis - low bundle count is good
         if trench_data and trench_data.get('total_bundles', 0) < 50:
-            score += 1
-            reasons.append("Low bundle count")
+            score += 2
+            reasons.append("Favorable low bundle count")
         
         result = "Likely Profitable" if score >= 6 else "High Risk"
         explanation = ""
