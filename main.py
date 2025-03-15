@@ -823,7 +823,7 @@ async def handle_learned_command():
 
 
 async def fetch_meta_words():
-    """Fetch and print just the words from meta words API."""
+    """Fetch and print meta words with their scores."""
     try:
         response = requests.get("https://frontend-api-v3.pump.fun/metas/current")
         response.raise_for_status()
@@ -832,15 +832,16 @@ async def fetch_meta_words():
         print("\nFetching meta words...")  # Debug print
         
         if isinstance(data, list):  # API returns a list
-            words = [item['word'] for item in data if 'word' in item]
-            words_str = ', '.join(words)
+            # Format words with scores
+            word_scores = [f"{item['word']} ({item['score']:.3f})" for item in data if 'word' in item and 'score' in item]
+            words_str = ', '.join(word_scores)
             
             # Print to console
-            print("\nCurrent Meta Words:")
+            print("\nCurrent Meta Words with Scores:")
             print(words_str)
             
             # Send to Telegram
-            message = f"📊 Current Meta Words:\n{words_str}"
+            message = f"📊 Current Meta Words with Scores:\n{words_str}"
             await send_telegram_message(message)
         else:
             print("Invalid API response format")
