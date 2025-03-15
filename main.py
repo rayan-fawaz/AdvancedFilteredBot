@@ -84,71 +84,64 @@ async def send_telegram_message(message, chat_id=GROUP_ID):
     except requests.exceptions.RequestException as e:
         logging.error(f"Failed to send message: {e}")
 
-async def handle_telegram_updates():
-    """Handle incoming Telegram messages."""
-    offset = 0
-    while True:
-        try:
-            url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
-            params = {"offset": offset, "timeout": 30}
-            response = requests.get(url, params=params)
-            updates = response.json()
+class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
 
-            if "result" in updates:
-                for update in updates["result"]:
-                    offset = update["update_id"] + 1
-                    if "message" in update and "text" in update["message"]:
-                        message = update["message"]["text"]
-                        chat_id = update["message"]["chat"]["id"]
+        if self.path == '/train':
+            try:
+                # Parse training data in format: [{"ticker": "NAME", "multiplier": X.X}, ...]
+                data = json.loads(post_data)
+                training_data = {}
 
-                        if message.startswith("/train"):
-                            try:
-                                logging.info(f"Received training command: {message}")
-                                # Parse training data in format "TICKER [Xx]"
-                                lines = message[6:].strip().split('\n')
-                                training_data = {}
+                if isinstance(data, list):
+                    for entry in data:
+                        if isinstance(entry, dict) and 'ticker' in entry and 'multiplier' in entry:
+                            ticker = entry['ticker'].strip()
+                            multiplier = float(entry['multiplier'])
+                            training_data[ticker] = multiplier
+                            logging.info(f"Added trade: {ticker} = {multiplier}x")
 
-                                for line in lines:
-                                    line = line.strip()
-                                    logging.info(f"Processing line: {line}")
+                if training_data:
+                    # Train the model
+                    tracker = CoinTracker()
+                    tracker.train_model_with_returns(training_data)
+                    
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json')
+                    self.end_headers()
+                    response = {
+                        'status': 'success',
+                        'message': f'Model trained with {len(training_data)} trades',
+                        'trades': training_data
+                    }
+                else:
+                    self.send_response(400)
+                    self.send_header('Content-type', 'application/json')
+                    self.end_headers()
+                    response = {
+                        'status': 'error',
+                        'message': 'No valid training data found'
+                    }
+                
+                self.wfile.write(json.dumps(response).encode())
 
-                                    if not line:  # Skip empty lines
-                                        continue
+            except Exception as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                response = {'status': 'error', 'message': str(e)}
+                self.wfile.write(json.dumps(response).encode())
 
-                                    if '[' not in line or 'x]' not in line:
-                                        continue
-
-                                    try:
-                                        # Split at '[' and get the ticker part
-                                        parts = line.split('[')
-                                        ticker = parts[0].strip()
-
-                                        # Get multiplier part and clean it
-                                        multiplier_str = parts[1].split('x]')[0].strip()
-                                        multiplier = float(multiplier_str)
-
-                                        # Add all trades for analysis
-                                        training_data[ticker] = multiplier
-                                        logging.info(f"Added trade: {ticker} = {multiplier}x")
-                                    except (IndexError, ValueError) as e:
-                                        logging.error(f"Error parsing line '{line}': {str(e)}")
-                                        continue
-
-                                if training_data:
-                                    # Train the model
-                                    tracker = CoinTracker()
-                                    tracker.train_model_with_returns(training_data)
-                                    await send_telegram_message(f"✅ Model trained successfully with {len(training_data)} trades!\n\nTrades used: " + 
-                                        "\n".join(f"- {k}: {v}x" for k, v in training_data.items()), chat_id)
-                                else:
-                                    await send_telegram_message("❌ No valid training data found. Please use format:\n\n/train\nTICKER [Xx]\nTICKER [Xx]", chat_id)
-                            except Exception as e:
-                                logging.error(f"Training error: {str(e)}")
-                                await send_telegram_message(f"❌ Error training model: {str(e)}\n\nPlease make sure to use the format:\n/train\nTICKER [Xx]", chat_id)
-
-        except Exception as e:
-            logging.error(f"Error handling Telegram updates: {e}")
-        await asyncio.sleep(1)
+        elif self.path == '/returns':
+            current_prices = json.loads(post_data)
+            tracker = CoinTracker()
+            analysis = tracker.analyze_returns(current_prices)
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(analysis).encode())
 
 
 def get_dex_data(token_mint):
@@ -779,15 +772,13 @@ def run_http_server():
 
 
 if __name__ == "__main__":
-    # Start HTTP server in a separate thread
-    server_thread = threading.Thread(target=run_http_server, daemon=True)
+    logging.info("Starting HTTP server on port 8080")
+    server = HTTPServer(('0.0.0.0', 8080), EnhancedHTTPRequestHandler)
+    server_thread = threading.Thread(target=server.serve_forever, daemon=True)
     server_thread.start()
 
-    # Run both the scanner and Telegram handler
+    # Run the coin scanner
     async def main():
-        await asyncio.gather(
-            scan_coins(),
-            handle_telegram_updates()
-        )
+        await scan_coins()
 
     asyncio.run(main())
