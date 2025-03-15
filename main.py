@@ -389,7 +389,8 @@ def format_holders_message(holders_info):
 def get_trench_data(mint_address):
     """Fetch bundle data from Trench API."""
     try:
-        response = requests.get(f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}", timeout=10)
+        response = requests.get(f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}", timeout=30)
+        response.raise_for_status()
         data = response.json()
         
         if isinstance(data, dict) and 'stats' in data:
@@ -399,9 +400,16 @@ def get_trench_data(mint_address):
                 'total_bundles': stats.get('total_bundles', 0),
                 'total_holding_percentage': stats.get('total_holding_percentage', 0)
             }
+        logging.warning(f"Invalid Trench data format for {mint_address}")
+        return None
+    except requests.exceptions.Timeout:
+        logging.error(f"Timeout fetching Trench data for {mint_address}")
+        return None
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Network error fetching Trench data: {e}")
         return None
     except Exception as e:
-        logging.error(f"Error fetching Trench data: {e}")
+        logging.error(f"Unexpected error fetching Trench data: {e}")
         return None
 
 def format_coin_message(coin, holders_info, dex_data):
