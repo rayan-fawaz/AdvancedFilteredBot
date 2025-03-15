@@ -583,6 +583,9 @@ async def scan_coins():
             if not all([price_momentum_check, volume_check, trades_check, holders_check]):
                 continue
 
+            # Get Trench data before tracking
+            trench_data = get_trench_data(mint)
+            
             # Track the coin in our AI system
             coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
             new_coins.append((coin, holders_info, dex_data))
