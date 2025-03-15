@@ -103,17 +103,23 @@ async def handle_telegram_updates():
 
                         if message.startswith("/train"):
                             try:
-                                # Extract JSON data after /train command
-                                json_str = message[6:].strip()
-                                training_data = json.loads(json_str)
+                                # Parse training data in format "TICKER [Xx]"
+                                lines = message[6:].strip().split('\n')
+                                training_data = {}
+                                for line in lines:
+                                    if '[' in line and ']' in line:
+                                        ticker = line.split('[')[0].strip()
+                                        multiplier = float(line.split('[')[1].split('x]')[0])
+                                        if multiplier >= 2.5:  # Successful trade threshold
+                                            training_data[ticker] = multiplier
                                 
-                                # Train the model
-                                tracker = CoinTracker()
-                                tracker.train_model_with_returns(training_data)
-                                
-                                await send_telegram_message("Model trained successfully!", chat_id)
-                            except json.JSONDecodeError:
-                                await send_telegram_message("Invalid JSON format. Please send data in format: /train {\"coin_address\": return_value}", chat_id)
+                                if training_data:
+                                    # Train the model
+                                    tracker = CoinTracker()
+                                    tracker.train_model_with_returns(training_data)
+                                    await send_telegram_message(f"Model trained successfully with {len(training_data)} trades!", chat_id)
+                                else:
+                                    await send_telegram_message("No valid training data found. Format should be: TICKER [Xx]", chat_id)
                             except Exception as e:
                                 await send_telegram_message(f"Error training model: {str(e)}", chat_id)
                                 
