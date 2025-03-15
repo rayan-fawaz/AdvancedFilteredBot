@@ -718,15 +718,45 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length)
         
         if self.path == '/train':
-            # Handle training data submission
-            training_data = json.loads(post_data)
-            tracker = CoinTracker()
-            tracker.train_model_with_returns(training_data)
-            self.send_response(200)
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            response = {'status': 'success', 'message': 'Model trained with new data'}
-            self.wfile.write(json.dumps(response).encode())
+            try:
+                # Parse training data in format: {"TICKER": X.X} where X.X is return multiplier
+                training_data = json.loads(post_data)
+                
+                if not isinstance(training_data, dict):
+                    raise ValueError("Training data must be a dictionary")
+                    
+                # Validate data format
+                for ticker, multiplier in training_data.items():
+                    if not isinstance(multiplier, (int, float)):
+                        raise ValueError(f"Invalid multiplier for {ticker}: {multiplier}")
+                
+                # Train model
+                tracker = CoinTracker()
+                tracker.train_model_with_returns(training_data)
+                
+                # Send success response
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                response = {
+                    'status': 'success',
+                    'message': f'Model trained with {len(training_data)} trades',
+                    'trades': training_data
+                }
+                self.wfile.write(json.dumps(response).encode())
+                
+                # Also send confirmation to Telegram
+                asyncio.run(send_telegram_message(
+                    f"✅ Model trained successfully with {len(training_data)} trades:\n" +
+                    "\n".join(f"- {k}: {v}x" for k, v in training_data.items())
+                ))
+                
+            except Exception as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                response = {'status': 'error', 'message': str(e)}
+                self.wfile.write(json.dumps(response).encode())
             
         elif self.path == '/returns':
             current_prices = json.loads(post_data)
