@@ -1,0 +1,64 @@
+{
+  "5aJqSauZiFCgtQ8Qgbq8HsfG9E8Lc4uDc4WMw5JEpump": {
+    "mint": "5aJqSauZiFCgtQ8Qgbq8HsfG9E8Lc4uDc4WMw5JEpump",
+    "name": "Stone Cold Underpants Man",
+    "symbol": "SCUM",
+    "market_cap": 16514.3098415145,
+    "total_bundles": 6,
+    "holding_percentage": 12.435852377591,
+    "price_changes": {
+      "5m": 35.42,
+      "1h": 322.0,
+      "6h": 322.0,
+      "24h": 322.0
+    },
+    "volumes": {
+      "5m": 4488.65,
+      "1h": 24262.87,
+      "6h": 24262.87,
+      "24h": 24262.87
+    },
+    "ath": null,
+    "total_holders": 128,
+    "trades_1h": {
+      "total": 912,
+      "buys": 520,
+      "sells": 392
+    },
+    "makers_1h": 230,
+    "makers_24h": 230,
+    "timestamp": 1742020096.090572,
+    "initial_price": 0
+  },
+  "8KbFBTTCWfu1jodSLjHecBNtsK7hAZc25zbbLwSkpump": {
+    "mint": "8KbFBTTCWfu1jodSLjHecBNtsK7hAZc25zbbLwSkpump",
+    "name": "Giga Side Profile",
+    "symbol": "GIGASIDE",
+    "market_cap": 12168.59232969717,
+    "total_bundles": 16,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 29.5,
+      "1h": 197.0,
+      "6h": 185.0,
+      "24h": 185.0
+    },
+    "volumes": {
+      "5m": 4590.96,
+      "1h": 15040.3,
+      "6h": 70277.88,
+      "24h": 70277.88
+    },
+    "ath": null,
+    "total_holders": 77,
+    "trades_1h": {
+      "total": 2358,
+      "buys": 1209,
+      "sells": 1149
+    },
+    "makers_1h": 89,
+    "makers_24h": 326,
+    "timestamp": 1742020102.550335,
+    "initial_price": 0
+  }
+}
