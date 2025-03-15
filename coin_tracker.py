@@ -49,30 +49,65 @@ class CoinTracker:
     def predict_profitability(self, holders_info, dex_data, trench_data):
         """Predict if a coin will be profitable based on initial metrics"""
         score = 0
+        reasons = []
         
         # Volume analysis
-        if dex_data['volume_1h'] > 50000: score += 2
-        elif dex_data['volume_1h'] > 20000: score += 1
+        if dex_data['volume_1h'] > 50000:
+            score += 2
+            reasons.append("Strong hourly volume")
+        elif dex_data['volume_1h'] > 20000:
+            score += 1
+            reasons.append("Decent hourly volume")
+        else:
+            reasons.append("Low volume")
         
         # Price momentum
-        if dex_data['price_change_1h'] > 200: score += 2
-        elif dex_data['price_change_1h'] > 100: score += 1
+        if dex_data['price_change_1h'] > 200:
+            score += 2
+            reasons.append("Excellent price momentum")
+        elif dex_data['price_change_1h'] > 100:
+            score += 1
+            reasons.append("Good price momentum")
+        else:
+            reasons.append("Weak momentum")
         
         # Holder metrics
-        if holders_info['total_holders'] > 200: score += 2
-        elif holders_info['total_holders'] > 100: score += 1
+        if holders_info['total_holders'] > 200:
+            score += 2
+            reasons.append("Strong holder base")
+        elif holders_info['total_holders'] > 100:
+            score += 1
+            reasons.append("Growing holder base")
+        else:
+            reasons.append("Few holders")
         
         # Trade activity
-        if holders_info['trade_1h'] > 2000: score += 2
-        elif holders_info['trade_1h'] > 1000: score += 1
+        if holders_info['trade_1h'] > 2000:
+            score += 2
+            reasons.append("Very active trading")
+        elif holders_info['trade_1h'] > 1000:
+            score += 1
+            reasons.append("Good trading activity")
+        else:
+            reasons.append("Low trading activity")
         
         # Bundle analysis
-        if trench_data and trench_data.get('total_bundles', 0) < 50: score += 1
+        if trench_data and trench_data.get('total_bundles', 0) < 50:
+            score += 1
+            reasons.append("Low bundle count")
+        
+        result = "Likely Profitable" if score >= 6 else "High Risk"
+        explanation = ""
+        if score >= 6:
+            explanation = "Strong fundamentals: " + ", ".join(r for r in reasons if not r.startswith("Low") and not r.startswith("Weak") and not r.startswith("Few"))
+        else:
+            explanation = "Concerning factors: " + ", ".join(r for r in reasons if r.startswith("Low") or r.startswith("Weak") or r.startswith("Few"))
         
         prediction = {
             'score': score,
             'confidence': (score / 10) * 100,  # Convert to percentage
-            'prediction': 'Likely Profitable' if score >= 6 
+            'prediction': result,
+            'explanation': explanation 
                         else 'Potentially Profitable' if score >= 4 
                         else 'High Risk'
         }
