@@ -394,7 +394,8 @@ def get_trench_data(mint_address):
         return {
             'bonded': data.get('bonded', False),
             'total_bundles': data.get('total_bundles', 0),
-            'total_holding_percentage': data.get('total_holding_percentage', 0)
+            'total_holding_percentage': data.get('total_holding_percentage', 0),
+            'sniper': data.get('sniper', [])
         }
     except Exception as e:
         logging.error(f"Error fetching Trench data: {e}")
@@ -405,19 +406,21 @@ def format_coin_message(coin, holders_info, dex_data):
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
-    
+
     # Get Trench data and filter out bonded coins
     trench_data = get_trench_data(mint_address)
     if trench_data and trench_data.get('bonded', False):
         return None
-        
-    trench_info = ""
-    if trench_data:
-        trench_info = (
-            f"📚 <b>Bundle Info</b>\n"
-            f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
-            f"└─ <b>Held Bundles:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
-        )
+
+    snipers = trench_data.get('sniper', [])
+    total_snipers = len(snipers) if isinstance(snipers, list) else 0
+
+    trench_info = (
+        f"🔒 <b>Bundle Info</b>\n"
+        f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
+        f"├─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.2f}%\n"
+        f"└─ <b>Snipers:</b> {total_snipers}\n\n"
+    )
 
     # Get reply count from the coin data
     reply_count = coin.get("reply_count", 0)
