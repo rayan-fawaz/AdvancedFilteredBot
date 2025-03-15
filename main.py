@@ -381,10 +381,6 @@ def fetch_token_holders(token_mint):
 
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
-    top_5 = " | ".join(f"{percent:.2f}"
-
-    def format_holders_message(holders_info):
-    """Format holders information into a readable message."""
     top_5 = " | ".join(f"{percent:.2f}" for percent in holders_info["top_5_percentages"])
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
