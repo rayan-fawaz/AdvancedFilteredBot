@@ -463,7 +463,7 @@ def format_holders_message(holders_info):
         f"{makers_24h}\n")
 
 
-def get_trench_data(mint_address, max_retries=3):
+async def get_trench_data(mint_address, max_retries=3):
     """Fetch bundle data from Trench API with retries."""
     for attempt in range(max_retries):
         try:
@@ -484,7 +484,7 @@ def get_trench_data(mint_address, max_retries=3):
                 logging.error(f"Error fetching Trench data after {max_retries} attempts: {e}")
             else:
                 logging.warning(f"Retrying Trench API call ({attempt + 1}/{max_retries})")
-                asyncio.sleep(1)
+                await asyncio.sleep(1)
     return None
 
 def format_coin_message(coin, holders_info, dex_data, coin_tracker):
@@ -674,7 +674,7 @@ async def scan_coins():
                 continue
 
             # Get Trench data before tracking
-            trench_data = get_trench_data(mint)
+            trench_data = await get_trench_data(mint)
             
             # Track the coin in our AI system
             coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
