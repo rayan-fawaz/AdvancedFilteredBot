@@ -412,14 +412,26 @@ def format_coin_message(coin, holders_info, dex_data):
     if trench_data and trench_data.get('bonded', False):
         return None
 
-    snipers = trench_data.get('sniper', [])
-    total_snipers = len(snipers) if isinstance(snipers, list) else 0
+    all_snipers = []
+    def collect_snipers(data):
+        if isinstance(data, dict):
+            for key, value in data.items():
+                if key == 'sniper' and isinstance(value, list):
+                    all_snipers.extend(value)
+                elif isinstance(value, (dict, list)):
+                    collect_snipers(value)
+        elif isinstance(data, list):
+            for item in data:
+                collect_snipers(item)
+
+    collect_snipers(trench_data)
+    total_snipers = len(all_snipers)
 
     trench_info = (
         f"🔒 <b>Bundle Info</b>\n"
         f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
         f"├─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.2f}%\n"
-        f"└─ <b>Snipers:</b> {total_snipers}\n\n"
+        f"└─ <b>Total Snipers:</b> {total_snipers}\n\n"
     )
 
     # Get reply count from the coin data
