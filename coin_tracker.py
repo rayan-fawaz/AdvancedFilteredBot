@@ -143,9 +143,11 @@ class CoinTracker:
         else:
             explanation = "Concerning factors: " + ", ".join(r for r in reasons if r.startswith("Low") or r.startswith("Weak") or r.startswith("Few"))
         
+        # Cap confidence at 100%
+        confidence = min((score / 10) * 100, 100.0)
         return {
             'score': score,
-            'confidence': (score / 10) * 100,  # Convert to percentage
+            'confidence': confidence,
             'prediction': result,
             'explanation': explanation
         }
