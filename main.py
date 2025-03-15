@@ -69,11 +69,11 @@ async def fetch_active_coins():
         return []
 
 
-async def send_telegram_message(message):
-    """Send a message to the Telegram group."""
+async def send_telegram_message(message, chat_id=GROUP_ID):
+    """Send a message to the Telegram group or specific chat."""
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
-        "chat_id": GROUP_ID,
+        "chat_id": chat_id,
         "text": message,
         "parse_mode": "HTML",
         "disable_web_page_preview": True
@@ -83,6 +83,43 @@ async def send_telegram_message(message):
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         logging.error(f"Failed to send message: {e}")
+
+async def handle_telegram_updates():
+    """Handle incoming Telegram messages."""
+    offset = 0
+    while True:
+        try:
+            url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
+            params = {"offset": offset, "timeout": 30}
+            response = requests.get(url, params=params)
+            updates = response.json()
+
+            if "result" in updates:
+                for update in updates["result"]:
+                    offset = update["update_id"] + 1
+                    if "message" in update and "text" in update["message"]:
+                        message = update["message"]["text"]
+                        chat_id = update["message"]["chat"]["id"]
+
+                        if message.startswith("/train"):
+                            try:
+                                # Extract JSON data after /train command
+                                json_str = message[6:].strip()
+                                training_data = json.loads(json_str)
+                                
+                                # Train the model
+                                tracker = CoinTracker()
+                                tracker.train_model_with_returns(training_data)
+                                
+                                await send_telegram_message("Model trained successfully!", chat_id)
+                            except json.JSONDecodeError:
+                                await send_telegram_message("Invalid JSON format. Please send data in format: /train {\"coin_address\": return_value}", chat_id)
+                            except Exception as e:
+                                await send_telegram_message(f"Error training model: {str(e)}", chat_id)
+                                
+        except Exception as e:
+            logging.error(f"Error handling Telegram updates: {e}")
+        await asyncio.sleep(1)
 
 
 def get_dex_data(token_mint):
@@ -684,5 +721,11 @@ if __name__ == "__main__":
     server_thread = threading.Thread(target=run_http_server, daemon=True)
     server_thread.start()
 
-    # Run the main scanner
-    asyncio.run(scan_coins())
+    # Run both the scanner and Telegram handler
+    async def main():
+        await asyncio.gather(
+            scan_coins(),
+            handle_telegram_updates()
+        )
+
+    asyncio.run(main())
