@@ -829,10 +829,18 @@ async def fetch_meta_words():
         response.raise_for_status()
         data = response.json()
         
-        if 'words' in data:
-            print("\nMeta Words:")
-            words = [item['word'] for item in data['words'] if 'word' in item]
-            print(', '.join(words))
+        if data:  # Check if we have data
+            words = [item['word'] for item in data if 'word' in item]
+            words_str = ', '.join(words)
+            
+            # Print to console
+            print("\nCurrent Meta Words:")
+            print(words_str)
+            
+            # Send to Telegram
+            message = f"📊 Current Meta Words:\n{words_str}"
+            await send_telegram_message(message)
+            
         else:
             print("No meta words found in response")
             
