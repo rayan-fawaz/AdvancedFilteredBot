@@ -508,9 +508,12 @@ def format_coin_message(coin, holders_info, dex_data):
         f"——————————————————————————————\n")
 
 
+from coin_tracker import CoinTracker
+
 async def scan_coins():
     """Continuously scan the featured coins API for new coins meeting filter criteria."""
     seen_mints = {}
+    coin_tracker = CoinTracker()
     while True:
         coins = await fetch_active_coins()
         new_coins = []
@@ -580,6 +583,8 @@ async def scan_coins():
             if not all([price_momentum_check, volume_check, trades_check, holders_check]):
                 continue
 
+            # Track the coin in our AI system
+            coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
             new_coins.append((coin, holders_info, dex_data))
             seen_mints[mint] = market_cap
 

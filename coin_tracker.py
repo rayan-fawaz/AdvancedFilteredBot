@@ -1,0 +1,103 @@
+
+import json
+from datetime import datetime
+import logging
+from dataclasses import dataclass, asdict
+from typing import Dict, Optional
+
+@dataclass
+class CoinData:
+    mint: str
+    name: str
+    symbol: str
+    market_cap: float
+    total_bundles: int
+    holding_percentage: float
+    price_changes: Dict[str, float]
+    volumes: Dict[str, float]
+    ath: float
+    total_holders: int
+    trades_1h: Dict[str, int]
+    makers_1h: int
+    makers_24h: int
+    timestamp: float
+    initial_price: float
+
+class CoinTracker:
+    def __init__(self):
+        self.db_file = "coin_history.json"
+        self.tracked_coins = self.load_history()
+        
+    def load_history(self) -> Dict:
+        try:
+            with open(self.db_file, 'r') as f:
+                return json.load(f)
+        except:
+            return {}
+            
+    def save_history(self):
+        with open(self.db_file, 'w') as f:
+            json.dump(self.tracked_coins, f, indent=2)
+            
+    def track_coin(self, coin, holders_info, dex_data, trench_data):
+        coin_data = CoinData(
+            mint=coin["mint"],
+            name=coin["name"],
+            symbol=coin["symbol"],
+            market_cap=coin["usd_market_cap"],
+            total_bundles=trench_data.get("total_bundles", 0),
+            holding_percentage=trench_data.get("total_holding_percentage", 0),
+            price_changes={
+                "5m": dex_data["price_change_5m"],
+                "1h": dex_data["price_change_1h"],
+                "6h": dex_data["price_change_6h"],
+                "24h": dex_data["price_change_24h"]
+            },
+            volumes={
+                "5m": dex_data["volume_5m"],
+                "1h": dex_data["volume_1h"],
+                "6h": dex_data["volume_6h"],
+                "24h": dex_data["volume_24h"]
+            },
+            ath=dex_data.get("ath_price", coin["usd_market_cap"]),
+            total_holders=holders_info["total_holders"],
+            trades_1h={
+                "total": holders_info["trade_1h"],
+                "buys": holders_info["buy_1h"],
+                "sells": holders_info["sell_1h"]
+            },
+            makers_1h=holders_info["unique_wallet_1h"],
+            makers_24h=holders_info["unique_wallet_24h"],
+            timestamp=datetime.now().timestamp(),
+            initial_price=dex_data.get("price_usd", 0)
+        )
+        
+        self.tracked_coins[coin["mint"]] = asdict(coin_data)
+        self.save_history()
+        
+    def analyze_returns(self, current_prices: Dict[str, float]) -> Dict:
+        results = {}
+        for mint, data in self.tracked_coins.items():
+            if mint in current_prices:
+                initial_price = data["initial_price"]
+                current_price = current_prices[mint]
+                roi = ((current_price - initial_price) / initial_price) * 100
+                results[mint] = {
+                    "name": data["name"],
+                    "symbol": data["symbol"],
+                    "roi": roi,
+                    "initial_price": initial_price,
+                    "current_price": current_price,
+                    "market_cap": data["market_cap"],
+                    "total_bundles": data["total_bundles"],
+                    "holding_percentage": data["holding_percentage"],
+                    "price_changes": data["price_changes"],
+                    "volumes": data["volumes"],
+                    "total_holders": data["total_holders"],
+                    "trades_1h": data["trades_1h"],
+                    "makers": {
+                        "1h": data["makers_1h"],
+                        "24h": data["makers_24h"]
+                    }
+                }
+        return results
