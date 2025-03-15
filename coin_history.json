@@ -3,33 +3,36 @@
     "mint": "5aJqSauZiFCgtQ8Qgbq8HsfG9E8Lc4uDc4WMw5JEpump",
     "name": "Stone Cold Underpants Man",
     "symbol": "SCUM",
-    "market_cap": 13946.080418275951,
+    "market_cap": 9843.60745381887,
     "total_bundles": 8,
-    "holding_percentage": 11.8786152150854,
+    "holding_percentage": 6.0305683263287,
     "price_changes": {
-      "5m": -16.54,
-      "1h": 249.0,
-      "6h": 249.0,
-      "24h": 249.0
+      "5m": -28.93,
+      "1h": 167.0,
+      "6h": 167.0,
+      "24h": 167.0
     },
     "volumes": {
-      "5m": 4841.33,
-      "1h": 29056.4,
-      "6h": 29056.4,
-      "24h": 29056.4
+      "5m": 4590.13,
+      "1h": 34354.64,
+      "6h": 34354.64,
+      "24h": 34354.64
     },
     "ath": null,
-    "total_holders": 112,
+    "total_holders": 79,
     "trades_1h": {
-      "total": 1126,
-      "buys": 623,
-      "sells": 503
+      "total": 1350,
+      "buys": 722,
+      "sells": 628
     },
-    "makers_1h": 250,
-    "makers_24h": 250,
-    "timestamp": 1742020390.30149,
+    "makers_1h": 262,
+    "makers_24h": 262,
+    "timestamp": 1742020768.385868,
     "initial_price": 0,
-    "initial_market_cap": 13946.080418275951,
+    "initial_market_cap": 9843.60745381887,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
+    "prediction_result": "Potentially Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -38,33 +41,36 @@
     "mint": "8KbFBTTCWfu1jodSLjHecBNtsK7hAZc25zbbLwSkpump",
     "name": "Giga Side Profile",
     "symbol": "GIGASIDE",
-    "market_cap": 16228.78634307945,
+    "market_cap": 15792.24259132512,
     "total_bundles": 16,
     "holding_percentage": 0.0,
     "price_changes": {
-      "5m": 36.98,
-      "1h": 297.0,
-      "6h": 281.0,
-      "24h": 281.0
+      "5m": 4.07,
+      "1h": 176.0,
+      "6h": 285.0,
+      "24h": 285.0
     },
     "volumes": {
-      "5m": 3301.5,
-      "1h": 18574.11,
-      "6h": 73811.69,
-      "24h": 73811.69
+      "5m": 4152.08,
+      "1h": 21489.72,
+      "6h": 78695.05,
+      "24h": 78695.05
     },
     "ath": null,
-    "total_holders": 101,
+    "total_holders": 130,
     "trades_1h": {
-      "total": 2641,
-      "buys": 1360,
-      "sells": 1281
+      "total": 3073,
+      "buys": 1592,
+      "sells": 1481
     },
-    "makers_1h": 120,
-    "makers_24h": 355,
-    "timestamp": 1742020397.82669,
+    "makers_1h": 158,
+    "makers_24h": 393,
+    "timestamp": 1742020769.420993,
     "initial_price": 0,
-    "initial_market_cap": 16228.78634307945,
+    "initial_market_cap": 15792.24259132512,
+    "prediction_score": 6,
+    "prediction_confidence": 60.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -73,36 +79,36 @@
     "mint": "2ec417fgA87ABtiK4XeskzinqbjXbRi6AYmuDqpEpump",
     "name": "GROK CRASHOUT VICTIM",
     "symbol": "HEESEUNG",
-    "market_cap": 8832.1751617836,
-    "total_bundles": 103,
-    "holding_percentage": 26.2389334647252,
+    "market_cap": 7943.174862997921,
+    "total_bundles": 104,
+    "holding_percentage": 16.4762887130298,
     "price_changes": {
-      "5m": -33.45,
-      "1h": 130.0,
-      "6h": 130.0,
-      "24h": 130.0
+      "5m": -23.35,
+      "1h": 99.67,
+      "6h": 99.67,
+      "24h": 99.67
     },
     "volumes": {
-      "5m": 6057.25,
-      "1h": 162201.38,
-      "6h": 162201.38,
-      "24h": 162201.38
+      "5m": 4177.9,
+      "1h": 163270.39,
+      "6h": 163270.39,
+      "24h": 163270.39
     },
     "ath": null,
-    "total_holders": 122,
+    "total_holders": 108,
     "trades_1h": {
-      "total": 2910,
-      "buys": 1549,
-      "sells": 1361
+      "total": 2940,
+      "buys": 1557,
+      "sells": 1383
     },
-    "makers_1h": 769,
-    "makers_24h": 769,
-    "timestamp": 1742020653.143655,
+    "makers_1h": 772,
+    "makers_24h": 772,
+    "timestamp": 1742020776.316045,
     "initial_price": 0,
-    "initial_market_cap": 8832.1751617836,
-    "prediction_score": 6,
-    "prediction_confidence": 60.0,
-    "prediction_result": "Likely Profitable",
+    "initial_market_cap": 7943.174862997921,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "Potentially Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
