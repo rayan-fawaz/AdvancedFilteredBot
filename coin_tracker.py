@@ -32,7 +32,10 @@ class CoinData:
 
 class CoinTracker:
     def __init__(self):
-        self.db_file = "coin_history.json"
+        import os
+        # Use Replit's persistent storage directory if available
+        storage_dir = os.getenv('REPL_HOME', '.')
+        self.db_file = os.path.join(storage_dir, "coin_history.json")
         self.tracked_coins = self.load_history()
         
     def load_history(self) -> Dict:
