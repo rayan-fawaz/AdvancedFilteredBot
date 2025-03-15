@@ -103,25 +103,44 @@ async def handle_telegram_updates():
 
                         if message.startswith("/train"):
                             try:
+                                logging.info(f"Received training command: {message}")
                                 # Parse training data in format "TICKER [Xx]"
                                 lines = message[6:].strip().split('\n')
                                 training_data = {}
+                                
                                 for line in lines:
-                                    if '[' in line and ']' in line:
+                                    line = line.strip()
+                                    logging.info(f"Processing line: {line}")
+                                    
+                                    if not line:  # Skip empty lines
+                                        continue
+                                        
+                                    if '[' not in line or ']' not in line:
+                                        continue
+                                        
+                                    try:
                                         ticker = line.split('[')[0].strip()
-                                        multiplier = float(line.split('[')[1].split('x]')[0])
+                                        multiplier_str = line.split('[')[1].split('x]')[0].strip()
+                                        multiplier = float(multiplier_str)
+                                        
                                         if multiplier >= 2.5:  # Successful trade threshold
                                             training_data[ticker] = multiplier
+                                            logging.info(f"Added trade: {ticker} = {multiplier}x")
+                                    except (IndexError, ValueError) as e:
+                                        logging.error(f"Error parsing line '{line}': {str(e)}")
+                                        continue
                                 
                                 if training_data:
                                     # Train the model
                                     tracker = CoinTracker()
                                     tracker.train_model_with_returns(training_data)
-                                    await send_telegram_message(f"Model trained successfully with {len(training_data)} trades!", chat_id)
+                                    await send_telegram_message(f"✅ Model trained successfully with {len(training_data)} trades!\n\nTrades used: " + 
+                                        "\n".join(f"- {k}: {v}x" for k, v in training_data.items()), chat_id)
                                 else:
-                                    await send_telegram_message("No valid training data found. Format should be: TICKER [Xx]", chat_id)
+                                    await send_telegram_message("❌ No valid training data found. Please use format:\n\n/train\nTICKER [Xx]\nTICKER [Xx]", chat_id)
                             except Exception as e:
-                                await send_telegram_message(f"Error training model: {str(e)}", chat_id)
+                                logging.error(f"Training error: {str(e)}")
+                                await send_telegram_message(f"❌ Error training model: {str(e)}\n\nPlease make sure to use the format:\n/train\nTICKER [Xx]", chat_id)
                                 
         except Exception as e:
             logging.error(f"Error handling Telegram updates: {e}")
