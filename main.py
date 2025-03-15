@@ -531,8 +531,8 @@ def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
         f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
 
-         f"🤖 <b>AI Prediction:</b>  {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
-         f"📊 <b>Analysis:</b> {coin_tracker.tracked_coins[mint_address]['explanation']}\n\n"
+         f"🤖 <b>AI Prediction:</b>  {coin_tracker.predict_profitability(holders_info, dex_data, trench_data)['prediction']} ({coin_tracker.predict_profitability(holders_info, dex_data, trench_data)['confidence']:.1f}% confidence)\n"
+         f"📊 <b>Analysis:</b> {coin_tracker.predict_profitability(holders_info, dex_data, trench_data)['explanation']}\n\n"
         f"🆔 Mint: <code>{mint_address}</code>\n"
         f"——————————————————————————————\n")
 

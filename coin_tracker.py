@@ -103,13 +103,12 @@ class CoinTracker:
         else:
             explanation = "Concerning factors: " + ", ".join(r for r in reasons if r.startswith("Low") or r.startswith("Weak") or r.startswith("Few"))
         
-        prediction = {
+        return {
             'score': score,
             'confidence': (score / 10) * 100,  # Convert to percentage
             'prediction': result,
             'explanation': explanation
         }
-        return prediction
 
     def track_coin(self, coin, holders_info, dex_data, trench_data):
         prediction = self.predict_profitability(holders_info, dex_data, trench_data)
