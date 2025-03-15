@@ -468,7 +468,10 @@ async def get_trench_data(mint_address, max_retries=3):
             response = requests.get(
                 f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}",
                 timeout=30,
-                headers={'User-Agent': 'Mozilla/5.0'}
+                headers={
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'Accept': 'application/json'
+                }
             )
             if response.status_code == 200:
                 data = response.json()
@@ -477,13 +480,24 @@ async def get_trench_data(mint_address, max_retries=3):
                     'total_bundles': data.get('total_bundles', 0),
                     'total_holding_percentage': data.get('total_holding_percentage', 0)
                 }
+            elif response.status_code == 429:  # Rate limit
+                await asyncio.sleep(2 ** attempt)  # Exponential backoff
+                continue
+            elif response.status_code >= 500:  # Server error
+                await asyncio.sleep(1)
+                continue
+            else:
+                return {'bonded': False, 'total_bundles': 0, 'total_holding_percentage': 0}
+        except requests.exceptions.Timeout:
+            await asyncio.sleep(1)
+            continue
         except Exception as e:
             if attempt == max_retries - 1:
                 logging.error(f"Error fetching Trench data after {max_retries} attempts: {e}")
             else:
                 logging.warning(f"Retrying Trench API call ({attempt + 1}/{max_retries})")
                 await asyncio.sleep(1)
-    return None
+    return {'bonded': False, 'total_bundles': 0, 'total_holding_percentage': 0}
 
 async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     """Format coin information into a readable Telegram message."""
