@@ -428,7 +428,7 @@ def format_coin_message(coin, holders_info, dex_data):
     if trench_data and trench_data.get('bonded', False):
         return None
 
-    trench_info = "🔒 <b>Bundle Info</b>\n└─ No bundle data available\n\n" if not trench_data else (
+    trench_info = (
         f"🔒 <b>Bundle Info</b>\n"
         f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
         f"├─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.2f}%\n"
