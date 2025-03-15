@@ -1029,33 +1029,33 @@
     "mint": "Eoq5HNJ46np9HpvBMDDRcjQd9kqkCbecwaV7wu4Apump",
     "name": "GROK THINKING",
     "symbol": "GROKTHINK",
-    "market_cap": 11113.621158301201,
+    "market_cap": 11945.39379544786,
     "total_bundles": 10,
-    "holding_percentage": 4.4291357197988,
+    "holding_percentage": 4.5398293805734,
     "price_changes": {
-      "5m": 20.33,
-      "1h": 152.0,
-      "6h": 152.0,
-      "24h": 152.0
+      "5m": -1.6,
+      "1h": 168.0,
+      "6h": 168.0,
+      "24h": 168.0
     },
     "volumes": {
-      "5m": 1367.79,
-      "1h": 22960.78,
-      "6h": 22960.78,
-      "24h": 22960.78
+      "5m": 8522.74,
+      "1h": 34193.26,
+      "6h": 34193.26,
+      "24h": 34193.26
     },
     "ath": null,
-    "total_holders": 51,
+    "total_holders": 66,
     "trades_1h": {
-      "total": 328,
-      "buys": 199,
-      "sells": 129
+      "total": 420,
+      "buys": 253,
+      "sells": 167
     },
-    "makers_1h": 144,
-    "makers_24h": 144,
-    "timestamp": 1742074890.615569,
+    "makers_1h": 180,
+    "makers_24h": 180,
+    "timestamp": 1742075490.449558,
     "initial_price": 0,
-    "initial_market_cap": 11113.621158301201,
+    "initial_market_cap": 11945.39379544786,
     "prediction_score": 4,
     "prediction_confidence": 40.0,
     "prediction_result": "High Risk",
@@ -1105,35 +1105,35 @@
     "mint": "7geRoQV5W3931J2v856PFa8h3i27DctEXBKhczLHpump",
     "name": "Department Of Pwease Everywhere",
     "symbol": "DOPE",
-    "market_cap": 12456.4133988207,
-    "total_bundles": 17,
-    "holding_percentage": 7.9012549714936,
+    "market_cap": 18731.20913546806,
+    "total_bundles": 18,
+    "holding_percentage": 7.1880243750915,
     "price_changes": {
-      "5m": 0.75,
-      "1h": 193.0,
-      "6h": 193.0,
-      "24h": 193.0
+      "5m": 5.08,
+      "1h": 326.0,
+      "6h": 326.0,
+      "24h": 326.0
     },
     "volumes": {
-      "5m": 10273.11,
-      "1h": 40561.75,
-      "6h": 40561.75,
-      "24h": 40561.75
+      "5m": 8332.42,
+      "1h": 54273.09,
+      "6h": 54273.09,
+      "24h": 54273.09
     },
     "ath": null,
-    "total_holders": 102,
+    "total_holders": 145,
     "trades_1h": {
-      "total": 1348,
-      "buys": 722,
-      "sells": 626
+      "total": 1924,
+      "buys": 1035,
+      "sells": 889
     },
-    "makers_1h": 264,
-    "makers_24h": 264,
-    "timestamp": 1742074895.949184,
+    "makers_1h": 349,
+    "makers_24h": 349,
+    "timestamp": 1742075485.397591,
     "initial_price": 0,
-    "initial_market_cap": 12456.4133988207,
-    "prediction_score": 6,
-    "prediction_confidence": 60.0,
+    "initial_market_cap": 18731.20913546806,
+    "prediction_score": 8,
+    "prediction_confidence": 80.0,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
@@ -1249,6 +1249,44 @@
     "prediction_score": 7,
     "prediction_confidence": 70.0,
     "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "LTQXG13jz6Pr8whyPa8uco4HEVv6HHHXx4A18ispump": {
+    "mint": "LTQXG13jz6Pr8whyPa8uco4HEVv6HHHXx4A18ispump",
+    "name": "LOLR",
+    "symbol": "LOLR",
+    "market_cap": 10872.75799346066,
+    "total_bundles": 4,
+    "holding_percentage": 4.9649209429279,
+    "price_changes": {
+      "5m": 161.0,
+      "1h": 161.0,
+      "6h": 161.0,
+      "24h": 161.0
+    },
+    "volumes": {
+      "5m": 8809.33,
+      "1h": 8809.33,
+      "6h": 8809.33,
+      "24h": 8809.33
+    },
+    "ath": null,
+    "total_holders": 34,
+    "trades_1h": {
+      "total": 132,
+      "buys": 70,
+      "sells": 62
+    },
+    "makers_1h": 67,
+    "makers_24h": 67,
+    "timestamp": 1742075552.844299,
+    "initial_price": 0,
+    "initial_market_cap": 10872.75799346066,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
