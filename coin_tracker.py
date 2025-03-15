@@ -154,6 +154,28 @@ class CoinTracker:
         self.tracked_coins[coin["mint"]] = asdict(coin_data)
         self.save_history()
         
+    def train_model_with_returns(self, returns_data: Dict[str, float]):
+        """Train model with actual return data from tracked coins"""
+        for mint, actual_return in returns_data.items():
+            if mint in self.tracked_coins:
+                # Update coin data with actual return
+                self.tracked_coins[mint]['actual_return'] = actual_return
+                self.tracked_coins[mint]['verified'] = True
+                
+                # Adjust prediction weights based on accuracy
+                prediction = self.tracked_coins[mint]['prediction_result']
+                if (prediction == "Likely Profitable" and actual_return > 0) or \
+                   (prediction == "High Risk" and actual_return < 0):
+                    # Correct prediction - strengthen the weights
+                    self.volume_weight *= 1.1
+                    self.momentum_weight *= 1.1
+                else:
+                    # Wrong prediction - reduce the weights
+                    self.volume_weight *= 0.9
+                    self.momentum_weight *= 0.9
+                
+        self.save_history()
+        
     def analyze_returns(self, current_prices: Dict[str, float]) -> Dict:
         current_time = datetime.now().timestamp()
         results = {}

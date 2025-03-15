@@ -382,6 +382,25 @@ def fetch_token_holders(token_mint):
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
     top_5 = " | ".join(f"{percent:.2f}"
+
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
+        
+        if self.path == '/train':
+            # Handle training data submission
+            training_data = json.loads(post_data)
+            tracker = CoinTracker()
+            tracker.train_model_with_returns(training_data)
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            response = {'status': 'success', 'message': 'Model trained with new data'}
+            self.wfile.write(json.dumps(response).encode())
+            
+        elif self.path == '/returns':
+            # Existing returns endpoint logic
+
                        for percent in holders_info["top_5_percentages"])
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
