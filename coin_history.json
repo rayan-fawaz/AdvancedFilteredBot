@@ -146,33 +146,36 @@
     "mint": "5ASvEe7pxUuW25BAKBqAbXDmt5QQFwFQkfsZtjQxpump",
     "name": "Unstoppable Stone Ass",
     "symbol": "USA",
-    "market_cap": 8365.0705298172,
+    "market_cap": 7668.2892306658205,
     "total_bundles": 2,
     "holding_percentage": 0.0,
     "price_changes": {
-      "5m": 38.56,
-      "1h": 127.0,
-      "6h": 127.0,
-      "24h": 127.0
+      "5m": -18.61,
+      "1h": 84.71,
+      "6h": 84.71,
+      "24h": 84.71
     },
     "volumes": {
-      "5m": 8213.91,
-      "1h": 12728.78,
-      "6h": 12728.78,
-      "24h": 12728.78
+      "5m": 7579.95,
+      "1h": 20305.53,
+      "6h": 20305.53,
+      "24h": 20305.53
     },
     "ath": null,
-    "total_holders": 46,
+    "total_holders": 43,
     "trades_1h": {
-      "total": 388,
-      "buys": 220,
-      "sells": 168
+      "total": 718,
+      "buys": 386,
+      "sells": 332
     },
-    "makers_1h": 100,
-    "makers_24h": 100,
-    "timestamp": 1742020386.613085,
+    "makers_1h": 120,
+    "makers_24h": 120,
+    "timestamp": 1742020686.047657,
     "initial_price": 0,
-    "initial_market_cap": 8365.0705298172,
+    "initial_market_cap": 7668.2892306658205,
+    "prediction_score": 2,
+    "prediction_confidence": 20.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
