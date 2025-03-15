@@ -421,14 +421,13 @@ def format_coin_message(coin, holders_info, dex_data):
     # Get Trench data and filter out bonded coins
     trench_data = get_trench_data(mint_address)
     if not trench_data:
-        trench_info = "🔒 <b>Bundle Info</b>\n└─ No bundle data available\n\n"
+        trench_info = "└─ No bundle data available\n\n"
     elif trench_data.get('bonded', False):
         return None
     else:
         trench_info = (
-            f"🔒 <b>Bundle Info</b>\n"
-            f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
-            f"└─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
+            f"Total Bundles: {trench_data['total_bundles']}\n"
+            f"└─ Holding %: {trench_data['total_holding_percentage']:.2f}%\n\n"
         )
 
     # Get reply count from the coin data
