@@ -406,14 +406,15 @@ def format_coin_message(coin, holders_info, dex_data):
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
     
-    # Get Trench data
+    # Get Trench data and filter out bonded coins
     trench_data = get_trench_data(mint_address)
+    if trench_data and trench_data.get('bonded', False):
+        return None
+        
     trench_info = ""
     if trench_data:
-        bonded = "✅" if trench_data['bonded'] else "❌"
         trench_info = (
             f"🔒 <b>Bundle Info</b>\n"
-            f"├─ <b>Bonded:</b> {bonded}\n"
             f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
             f"└─ <b>Holding %:</b> {trench_data['total_holding_percentage']}%\n\n"
         )
