@@ -2,6 +2,7 @@ import requests
 import asyncio
 import logging
 from datetime import datetime, timezone, timedelta
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 # Telegram API (still used for sending messages)
 import os
