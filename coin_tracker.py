@@ -85,8 +85,8 @@ class CoinTracker:
             name=coin["name"],
             symbol=coin["symbol"],
             market_cap=coin["usd_market_cap"],
-            total_bundles=trench_data.get("total_bundles", 0),
-            holding_percentage=trench_data.get("total_holding_percentage", 0),
+            total_bundles=trench_data.get("total_bundles", 0) if trench_data else 0,
+            holding_percentage=trench_data.get("total_holding_percentage", 0) if trench_data else 0,
             price_changes={
                 "5m": dex_data["price_change_5m"],
                 "1h": dex_data["price_change_1h"],
