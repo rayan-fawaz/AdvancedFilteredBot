@@ -22,6 +22,10 @@ class CoinData:
     makers_24h: int
     timestamp: float
     initial_price: float
+    initial_market_cap: float
+    ath_24h: Optional[float] = None
+    ath_market_cap_24h: Optional[float] = None
+    ath_timestamp_24h: Optional[float] = None
 
 class CoinTracker:
     def __init__(self):
@@ -69,25 +73,47 @@ class CoinTracker:
             makers_1h=holders_info["unique_wallet_1h"],
             makers_24h=holders_info["unique_wallet_24h"],
             timestamp=datetime.now().timestamp(),
-            initial_price=dex_data.get("price_usd", 0)
+            initial_price=dex_data.get("price_usd", 0),
+            initial_market_cap=coin["usd_market_cap"],
+            ath_24h=None,
+            ath_market_cap_24h=None,
+            ath_timestamp_24h=None
         )
         
         self.tracked_coins[coin["mint"]] = asdict(coin_data)
         self.save_history()
         
     def analyze_returns(self, current_prices: Dict[str, float]) -> Dict:
+        current_time = datetime.now().timestamp()
         results = {}
         for mint, data in self.tracked_coins.items():
             if mint in current_prices:
                 initial_price = data["initial_price"]
                 current_price = current_prices[mint]
+                time_since_tracking = current_time - data["timestamp"]
+                
+                # Update 24h ATH if within first 24 hours
+                if time_since_tracking <= 86400:  # 24 hours in seconds
+                    current_market_cap = current_price * (data["initial_market_cap"] / data["initial_price"])
+                    if not data["ath_24h"] or current_price > data["ath_24h"]:
+                        self.tracked_coins[mint]["ath_24h"] = current_price
+                        self.tracked_coins[mint]["ath_market_cap_24h"] = current_market_cap
+                        self.tracked_coins[mint]["ath_timestamp_24h"] = current_time
+                        self.save_history()
+                
                 roi = ((current_price - initial_price) / initial_price) * 100
+                market_cap_roi = ((current_market_cap - data["initial_market_cap"]) / data["initial_market_cap"] * 100) if "initial_market_cap" in data else 0
                 results[mint] = {
                     "name": data["name"],
                     "symbol": data["symbol"],
                     "roi": roi,
+                    "market_cap_roi": market_cap_roi,
                     "initial_price": initial_price,
                     "current_price": current_price,
+                    "initial_market_cap": data["initial_market_cap"],
+                    "current_market_cap": current_market_cap,
+                    "ath_24h": data["ath_24h"],
+                    "ath_market_cap_24h": data["ath_market_cap_24h"],
                     "market_cap": data["market_cap"],
                     "total_bundles": data["total_bundles"],
                     "holding_percentage": data["holding_percentage"],
