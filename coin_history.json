@@ -535,33 +535,33 @@
     "mint": "m8t4FtXU6pRoxNPEJTaonfm56LL72jAYNSTKyMNpump",
     "name": "PWEASE CRAFT",
     "symbol": "PCRAFT",
-    "market_cap": 11133.988509017361,
+    "market_cap": 8903.367514019359,
     "total_bundles": 6,
-    "holding_percentage": 2.2168039262775,
+    "holding_percentage": 0.1049700365546,
     "price_changes": {
-      "5m": -19.85,
-      "1h": 168.0,
-      "6h": 168.0,
-      "24h": 168.0
+      "5m": -17.21,
+      "1h": 121.0,
+      "6h": 121.0,
+      "24h": 121.0
     },
     "volumes": {
-      "5m": 2463.59,
-      "1h": 34833.11,
-      "6h": 34833.11,
-      "24h": 34833.11
+      "5m": 2738.59,
+      "1h": 42481.66,
+      "6h": 42481.66,
+      "24h": 42481.66
     },
     "ath": null,
-    "total_holders": 75,
+    "total_holders": 64,
     "trades_1h": {
-      "total": 2079,
-      "buys": 1088,
-      "sells": 991
+      "total": 2273,
+      "buys": 1187,
+      "sells": 1086
     },
-    "makers_1h": 216,
-    "makers_24h": 216,
-    "timestamp": 1742073117.701202,
+    "makers_1h": 235,
+    "makers_24h": 235,
+    "timestamp": 1742073907.386552,
     "initial_price": 0,
-    "initial_market_cap": 11133.988509017361,
+    "initial_market_cap": 8903.367514019359,
     "prediction_score": 6,
     "prediction_confidence": 60.0,
     "prediction_result": "Likely Profitable",
@@ -942,6 +942,158 @@
     "timestamp": 1742073122.009692,
     "initial_price": 0,
     "initial_market_cap": 12413.955461191199,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "uQJAG7sE23z7LNpK7KdQCxhRdoTcd5t5z7SQJPdpump": {
+    "mint": "uQJAG7sE23z7LNpK7KdQCxhRdoTcd5t5z7SQJPdpump",
+    "name": "Propaganda Of The United States",
+    "symbol": "POTUS",
+    "market_cap": 7583.330817050321,
+    "total_bundles": 6,
+    "holding_percentage": 12.1113740631432,
+    "price_changes": {
+      "5m": 31.31,
+      "1h": 98.46,
+      "6h": 98.46,
+      "24h": 98.46
+    },
+    "volumes": {
+      "5m": 3577.76,
+      "1h": 7524.25,
+      "6h": 7524.25,
+      "24h": 7524.25
+    },
+    "ath": null,
+    "total_holders": 35,
+    "trades_1h": {
+      "total": 447,
+      "buys": 232,
+      "sells": 215
+    },
+    "makers_1h": 74,
+    "makers_24h": 74,
+    "timestamp": 1742073901.363725,
+    "initial_price": 0,
+    "initial_market_cap": 7583.330817050321,
+    "prediction_score": 2,
+    "prediction_confidence": 20.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "DjT2Nza7nEcBYzqwNhpYk3rPtb3QHbaoMNn1rL3Dpump": {
+    "mint": "DjT2Nza7nEcBYzqwNhpYk3rPtb3QHbaoMNn1rL3Dpump",
+    "name": "I'm still standing",
+    "symbol": "STANDING",
+    "market_cap": 13832.06504124008,
+    "total_bundles": 27,
+    "holding_percentage": 28.6345448090323,
+    "price_changes": {
+      "5m": -29.53,
+      "1h": 248.0,
+      "6h": 248.0,
+      "24h": 248.0
+    },
+    "volumes": {
+      "5m": 17081.25,
+      "1h": 70073.09,
+      "6h": 70073.09,
+      "24h": 70073.09
+    },
+    "ath": null,
+    "total_holders": 124,
+    "trades_1h": {
+      "total": 1574,
+      "buys": 833,
+      "sells": 741
+    },
+    "makers_1h": 417,
+    "makers_24h": 417,
+    "timestamp": 1742073817.657573,
+    "initial_price": 0,
+    "initial_market_cap": 13832.06504124008,
+    "prediction_score": 8,
+    "prediction_confidence": 80.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Eoq5HNJ46np9HpvBMDDRcjQd9kqkCbecwaV7wu4Apump": {
+    "mint": "Eoq5HNJ46np9HpvBMDDRcjQd9kqkCbecwaV7wu4Apump",
+    "name": "GROK THINKING",
+    "symbol": "GROKTHINK",
+    "market_cap": 7865.90226507344,
+    "total_bundles": 9,
+    "holding_percentage": 6.627405241379999,
+    "price_changes": {
+      "5m": 33.85,
+      "1h": 55.44,
+      "6h": 55.44,
+      "24h": 55.44
+    },
+    "volumes": {
+      "5m": 1643.36,
+      "1h": 13180.26,
+      "6h": 13180.26,
+      "24h": 13180.26
+    },
+    "ath": null,
+    "total_holders": 33,
+    "trades_1h": {
+      "total": 180,
+      "buys": 110,
+      "sells": 70
+    },
+    "makers_1h": 88,
+    "makers_24h": 88,
+    "timestamp": 1742073875.815984,
+    "initial_price": 0,
+    "initial_market_cap": 7865.90226507344,
+    "prediction_score": 2,
+    "prediction_confidence": 20.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "JDzjYnkw8dR5x4T5JpMoVaq6DTa1Qmm7j2Fio29opump": {
+    "mint": "JDzjYnkw8dR5x4T5JpMoVaq6DTa1Qmm7j2Fio29opump",
+    "name": "FIRST WOOLLY MOUSE",
+    "symbol": "CHIP",
+    "market_cap": 8835.8373935856,
+    "total_bundles": 13,
+    "holding_percentage": 16.4297403324072,
+    "price_changes": {
+      "5m": 176.0,
+      "1h": 218.0,
+      "6h": 218.0,
+      "24h": 218.0
+    },
+    "volumes": {
+      "5m": 7248.85,
+      "1h": 20590.0,
+      "6h": 20590.0,
+      "24h": 20590.0
+    },
+    "ath": null,
+    "total_holders": 57,
+    "trades_1h": {
+      "total": 275,
+      "buys": 158,
+      "sells": 117
+    },
+    "makers_1h": 118,
+    "makers_24h": 118,
+    "timestamp": 1742074082.230643,
+    "initial_price": 0,
+    "initial_market_cap": 8835.8373935856,
     "prediction_score": 5,
     "prediction_confidence": 50.0,
     "prediction_result": "High Risk",
