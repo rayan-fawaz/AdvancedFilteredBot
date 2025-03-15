@@ -487,14 +487,14 @@ async def get_trench_data(mint_address, max_retries=3):
                 await asyncio.sleep(1)
     return None
 
-def format_coin_message(coin, holders_info, dex_data, coin_tracker):
+async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     """Format coin information into a readable Telegram message."""
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
     
     # Get Trench data and filter out bonded coins
-    trench_data = get_trench_data(mint_address)
+    trench_data = await get_trench_data(mint_address)
     if trench_data and trench_data.get('bonded', False):
         return None
         
@@ -682,9 +682,12 @@ async def scan_coins():
             seen_mints[mint] = market_cap
 
         if new_coins:
-            message = "🚀 <b>NEW CREATION ALERT!</b> 🚀\n\n" + "\n".join(
-                format_coin_message(coin, holders_info, dex_data, coin_tracker)
-                for coin, holders_info, dex_data in new_coins)
+            formatted_messages = []
+            for coin, holders_info, dex_data in new_coins:
+                msg = await format_coin_message(coin, holders_info, dex_data, coin_tracker)
+                if msg:
+                    formatted_messages.append(msg)
+            message = "🚀 <b>NEW CREATION ALERT!</b> 🚀\n\n" + "\n".join(formatted_messages)
             await send_telegram_message(message)
         total_replies = sum(coin[0].get("reply_count", 0)
                             for coin in new_coins) if new_coins else 0
