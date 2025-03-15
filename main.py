@@ -822,8 +822,28 @@ async def handle_learned_command():
     await send_telegram_message(message)
 
 
+async def fetch_meta_words():
+    """Fetch and print current meta words from the Pump.Fun API."""
+    try:
+        response = requests.get("https://frontend-api-v3.pump.fun/metas/current")
+        response.raise_for_status()
+        data = response.json()
+        
+        if 'words' in data:
+            print("\nCurrent Meta Words:")
+            for word in data['words']:
+                if 'word' in word:
+                    print(f"- {word['word']}")
+        else:
+            print("No meta words found in response")
+            
+    except Exception as e:
+        logging.error(f"Error fetching meta words: {e}")
+
 if __name__ == "__main__":
     logging.info("Starting HTTP server on port 8080")
+    # Fetch meta words on startup
+    asyncio.run(fetch_meta_words())
     server = HTTPServer(('0.0.0.0', 8080), EnhancedHTTPRequestHandler)
     server_thread = threading.Thread(target=server.serve_forever, daemon=True)
     server_thread.start()
