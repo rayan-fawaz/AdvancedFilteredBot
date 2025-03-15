@@ -107,9 +107,7 @@ class CoinTracker:
             'score': score,
             'confidence': (score / 10) * 100,  # Convert to percentage
             'prediction': result,
-            'explanation': explanation 
-                        else 'Potentially Profitable' if score >= 4 
-                        else 'High Risk'
+            'explanation': explanation
         }
         return prediction
 
