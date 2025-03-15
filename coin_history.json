@@ -459,33 +459,33 @@
     "mint": "3yacBTs9UfuwrPyYyyQyfeTKsRnRNrwLSHaGYY8bpump",
     "name": "MeinKraft",
     "symbol": "MEIN",
-    "market_cap": 14415.82802411368,
+    "market_cap": 15952.44269773658,
     "total_bundles": 6,
     "holding_percentage": 14.047876471411799,
     "price_changes": {
-      "5m": 8.44,
-      "1h": 106.0,
-      "6h": 314.0,
-      "24h": 314.0
+      "5m": 25.08,
+      "1h": 88.01,
+      "6h": 315.0,
+      "24h": 315.0
     },
     "volumes": {
-      "5m": 3447.88,
-      "1h": 31051.27,
-      "6h": 64858.03,
-      "24h": 64858.03
+      "5m": 1786.48,
+      "1h": 30843.96,
+      "6h": 64927.3,
+      "24h": 64927.3
     },
     "ath": null,
-    "total_holders": 100,
+    "total_holders": 101,
     "trades_1h": {
-      "total": 464,
-      "buys": 274,
-      "sells": 190
+      "total": 469,
+      "buys": 277,
+      "sells": 192
     },
-    "makers_1h": 174,
-    "makers_24h": 285,
-    "timestamp": 1742072524.236503,
+    "makers_1h": 175,
+    "makers_24h": 286,
+    "timestamp": 1742072619.086928,
     "initial_price": 0,
-    "initial_market_cap": 14415.82802411368,
+    "initial_market_cap": 15952.44269773658,
     "prediction_score": 4,
     "prediction_confidence": 40.0,
     "prediction_result": "High Risk",
@@ -535,33 +535,33 @@
     "mint": "m8t4FtXU6pRoxNPEJTaonfm56LL72jAYNSTKyMNpump",
     "name": "PWEASE CRAFT",
     "symbol": "PCRAFT",
-    "market_cap": 15713.230008378241,
-    "total_bundles": 5,
-    "holding_percentage": 5.0916696312963,
+    "market_cap": 12587.86371757852,
+    "total_bundles": 6,
+    "holding_percentage": 3.0287933273711003,
     "price_changes": {
-      "5m": 3.3,
-      "1h": 310.0,
-      "6h": 310.0,
-      "24h": 310.0
+      "5m": -19.97,
+      "1h": 233.0,
+      "6h": 233.0,
+      "24h": 233.0
     },
     "volumes": {
-      "5m": 4872.09,
-      "1h": 27047.9,
-      "6h": 27047.9,
-      "24h": 27047.9
+      "5m": 5683.26,
+      "1h": 29929.63,
+      "6h": 29929.63,
+      "24h": 29929.63
     },
     "ath": null,
-    "total_holders": 99,
+    "total_holders": 89,
     "trades_1h": {
-      "total": 1670,
-      "buys": 887,
-      "sells": 783
+      "total": 1765,
+      "buys": 929,
+      "sells": 836
     },
-    "makers_1h": 195,
-    "makers_24h": 195,
-    "timestamp": 1742072462.559896,
+    "makers_1h": 199,
+    "makers_24h": 199,
+    "timestamp": 1742072587.588116,
     "initial_price": 0,
-    "initial_market_cap": 15713.230008378241,
+    "initial_market_cap": 12587.86371757852,
     "prediction_score": 6,
     "prediction_confidence": 60.0,
     "prediction_result": "Likely Profitable",
