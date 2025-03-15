@@ -416,5 +416,119 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "CswRGmHHTT3jp4rBea8BvpYGryR6YbVop7MtXPTkpump": {
+    "mint": "CswRGmHHTT3jp4rBea8BvpYGryR6YbVop7MtXPTkpump",
+    "name": "cwoak pwease",
+    "symbol": "cwoak",
+    "market_cap": 22534.35053472174,
+    "total_bundles": 14,
+    "holding_percentage": 8.8582768643588,
+    "price_changes": {
+      "5m": -9.04,
+      "1h": 245.0,
+      "6h": 449.0,
+      "24h": 449.0
+    },
+    "volumes": {
+      "5m": 4383.18,
+      "1h": 50287.53,
+      "6h": 54395.92,
+      "24h": 54395.92
+    },
+    "ath": null,
+    "total_holders": 164,
+    "trades_1h": {
+      "total": 2966,
+      "buys": 1581,
+      "sells": 1385
+    },
+    "makers_1h": 341,
+    "makers_24h": 354,
+    "timestamp": 1742070327.835012,
+    "initial_price": 0,
+    "initial_market_cap": 22534.35053472174,
+    "prediction_score": 9,
+    "prediction_confidence": 90.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3yacBTs9UfuwrPyYyyQyfeTKsRnRNrwLSHaGYY8bpump": {
+    "mint": "3yacBTs9UfuwrPyYyyQyfeTKsRnRNrwLSHaGYY8bpump",
+    "name": "MeinKraft",
+    "symbol": "MEIN",
+    "market_cap": 13364.176917648181,
+    "total_bundles": 4,
+    "holding_percentage": 11.7157344116288,
+    "price_changes": {
+      "5m": -25.86,
+      "1h": 173.0,
+      "6h": 214.0,
+      "24h": 214.0
+    },
+    "volumes": {
+      "5m": 1896.59,
+      "1h": 44350.95,
+      "6h": 46845.3,
+      "24h": 46845.3
+    },
+    "ath": null,
+    "total_holders": 81,
+    "trades_1h": {
+      "total": 1174,
+      "buys": 637,
+      "sells": 537
+    },
+    "makers_1h": 201,
+    "makers_24h": 216,
+    "timestamp": 1742070331.51779,
+    "initial_price": 0,
+    "initial_market_cap": 13364.176917648181,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "AT1LQFdRV21jfH34LCoTEKWRAb5oBJsePPwrvQQApump": {
+    "mint": "AT1LQFdRV21jfH34LCoTEKWRAb5oBJsePPwrvQQApump",
+    "name": "STEVESTEVESTEVESTEVESTEVE",
+    "symbol": "STEVESTEVE",
+    "market_cap": 7235.78554652616,
+    "total_bundles": 3,
+    "holding_percentage": 3.8002697796785,
+    "price_changes": {
+      "5m": 13.22,
+      "1h": 96.38,
+      "6h": 96.38,
+      "24h": 96.38
+    },
+    "volumes": {
+      "5m": 4240.67,
+      "1h": 9944.78,
+      "6h": 9944.78,
+      "24h": 9944.78
+    },
+    "ath": null,
+    "total_holders": 33,
+    "trades_1h": {
+      "total": 515,
+      "buys": 277,
+      "sells": 238
+    },
+    "makers_1h": 70,
+    "makers_24h": 70,
+    "timestamp": 1742070487.254509,
+    "initial_price": 0,
+    "initial_market_cap": 7235.78554652616,
+    "prediction_score": 2,
+    "prediction_confidence": 20.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
