@@ -21,7 +21,7 @@ HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 MIN_HOLDERS = 25
 MIN_TRADES_1H = 80
 MAX_VOLUME_5M = 20000
-BIGGEST_WALLET_MAX = 30  # Maximum percentage for the biggest wallet
+BIGGEST_WALLET_MAX = 5  # Maximum percentage for the biggest wallet
 MIN_BUYS = 40  # Minimum buy transactions in 1h
 MIN_SELLS = 40  # Minimum sell transactions in 1h
 
@@ -31,12 +31,12 @@ MIN_PRICE_1H = 80
 HIGH_PRICE_1H = 95
 
 # Volume Filters
-MIN_VOLUME_5M = 2000
-MIN_VOLUME_1H = 7000
+MIN_VOLUME_5M = 3000
+MIN_VOLUME_1H = 10000
 
 # Market Cap Limits
 MIN_MARKET_CAP = 7000
-MAX_MARKET_CAP = 20000
+MAX_MARKET_CAP = 25000
 
 # Logging Configuration
 logging.basicConfig(level=logging.INFO)
@@ -540,9 +540,7 @@ async def scan_coins():
             # 2. Volume Liquidity Check
             volume_check = (
                 (volume_5m >= MIN_VOLUME_5M) or
-                (volume_1h >= MIN_VOLUME_1H) or
-                (volume_1h >= (2.5 * volume_5m))
-            )
+                (volume_1h >= MIN_VOLUME_1H)            )
 
             # 3. Trades Check
             trades_check = trades_1h >= MIN_TRADES_1H
