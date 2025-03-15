@@ -416,7 +416,7 @@ def format_coin_message(coin, holders_info, dex_data):
         trench_info = (
             f"🔒 <b>Bundle Info</b>\n"
             f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
-            f"└─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.1f}%\n\n"
+            f"└─ <b>Holding %:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
         )
 
     # Get reply count from the coin data
