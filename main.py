@@ -620,6 +620,20 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
         response = {'status': 'running', 'message': 'Crypto scanner is active'}
         self.wfile.write(json.dumps(response).encode())
+        
+    def do_POST(self):
+        if self.path == '/returns':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            current_prices = json.loads(post_data)
+            
+            tracker = CoinTracker()
+            analysis = tracker.analyze_returns(current_prices)
+            
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(analysis).encode())
 
 
 def run_http_server():
