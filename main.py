@@ -107,17 +107,11 @@ async def handle_telegram_updates():
                                 lines = message[6:].strip().split('\n')
                                 training_data = {}
                                 for line in lines:
-                                    if '[' in line and ']' in line and 'x]' in line:
-                                        parts = line.replace('$', '').strip().split('[')
-                                        if len(parts) == 2:
-                                            ticker = parts[0].strip()
-                                            multiplier = float(parts[1].split('x]')[0].strip())
-                                            # Consider trades >= 2.5x as successful
-                                            training_data[ticker] = 1.0 if multiplier >= 2.5 else 0.0
-                                
-                                if training_data:
-                                    logging.info(f"Training data parsed: {training_data}")
-                                    await send_telegram_message("Parsed training data. Training model...", chat_id)
+                                    if '[' in line and ']' in line:
+                                        ticker = line.split('[')[0].strip()
+                                        multiplier = float(line.split('[')[1].split('x]')[0])
+                                        if multiplier >= 2.5:  # Successful trade threshold
+                                            training_data[ticker] = multiplier
                                 
                                 if training_data:
                                     # Train the model
