@@ -915,36 +915,36 @@
     "mint": "ZUSWYieRM24yjfDQTCid527SLwUrXEdZeRmjEJ8pump",
     "name": "Department Of Pepe Everywhere",
     "symbol": "DOPE",
-    "market_cap": 12413.955461191199,
-    "total_bundles": 10,
-    "holding_percentage": 6.412207240814401,
+    "market_cap": 22923.588660534,
+    "total_bundles": 34,
+    "holding_percentage": 12.4838134143874,
     "price_changes": {
-      "5m": 77.01,
-      "1h": 200.0,
-      "6h": 200.0,
-      "24h": 200.0
+      "5m": -6.59,
+      "1h": 431.0,
+      "6h": 431.0,
+      "24h": 431.0
     },
     "volumes": {
-      "5m": 7583.57,
-      "1h": 20879.82,
-      "6h": 20879.82,
-      "24h": 20879.82
+      "5m": 11249.63,
+      "1h": 89302.23,
+      "6h": 89302.23,
+      "24h": 89302.23
     },
     "ath": null,
-    "total_holders": 106,
+    "total_holders": 201,
     "trades_1h": {
-      "total": 537,
-      "buys": 315,
-      "sells": 222
+      "total": 2149,
+      "buys": 1170,
+      "sells": 979
     },
-    "makers_1h": 219,
-    "makers_24h": 219,
-    "timestamp": 1742073122.009692,
+    "makers_1h": 577,
+    "makers_24h": 577,
+    "timestamp": 1742074325.542343,
     "initial_price": 0,
-    "initial_market_cap": 12413.955461191199,
-    "prediction_score": 5,
-    "prediction_confidence": 50.0,
-    "prediction_result": "High Risk",
+    "initial_market_cap": 22923.588660534,
+    "prediction_score": 10,
+    "prediction_confidence": 100.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -1096,6 +1096,44 @@
     "initial_market_cap": 8835.8373935856,
     "prediction_score": 5,
     "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7geRoQV5W3931J2v856PFa8h3i27DctEXBKhczLHpump": {
+    "mint": "7geRoQV5W3931J2v856PFa8h3i27DctEXBKhczLHpump",
+    "name": "Department Of Pwease Everywhere",
+    "symbol": "DOPE",
+    "market_cap": 7724.02465221224,
+    "total_bundles": 2,
+    "holding_percentage": 5.0216986282196,
+    "price_changes": {
+      "5m": 57.17,
+      "1h": 57.17,
+      "6h": 57.17,
+      "24h": 57.17
+    },
+    "volumes": {
+      "5m": 10644.97,
+      "1h": 10644.97,
+      "6h": 10644.97,
+      "24h": 10644.97
+    },
+    "ath": null,
+    "total_holders": 43,
+    "trades_1h": {
+      "total": 259,
+      "buys": 150,
+      "sells": 109
+    },
+    "makers_1h": 99,
+    "makers_24h": 99,
+    "timestamp": 1742074169.350024,
+    "initial_price": 0,
+    "initial_market_cap": 7724.02465221224,
+    "prediction_score": 2,
+    "prediction_confidence": 20.0,
     "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
