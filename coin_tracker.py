@@ -220,3 +220,81 @@ class CoinTracker:
                     }
                 }
         return results
+
+
+
+    def analyze_coin_patterns(self):
+        """Analyze patterns between profitable and unprofitable coins"""
+        profitable_coins = []
+        unprofitable_coins = []
+        
+        for mint, data in self.tracked_coins.items():
+            if 'actual_return' in data:
+                coin_metrics = {
+                    'name': data['name'],
+                    'initial_market_cap': data['initial_market_cap'],
+                    'volume_1h': data['volumes']['1h'],
+                    'price_change_1h': data['price_changes']['1h'],
+                    'total_holders': data['total_holders'],
+                    'total_bundles': data['total_bundles'],
+                    'trades_1h': data['trades_1h']['total'],
+                    'makers_1h': data['makers_1h'],
+                    'return': data['actual_return']
+                }
+                
+                if data['actual_return'] > 0:
+                    profitable_coins.append(coin_metrics)
+                else:
+                    unprofitable_coins.append(coin_metrics)
+        
+        if not profitable_coins or not unprofitable_coins:
+            return "Not enough data for analysis"
+            
+        analysis = {
+            'profitable_averages': self._calculate_averages(profitable_coins),
+            'unprofitable_averages': self._calculate_averages(unprofitable_coins),
+            'key_differences': {}
+        }
+        
+        # Calculate differences
+        for metric in analysis['profitable_averages'].keys():
+            if metric != 'count':
+                diff = analysis['profitable_averages'][metric] - analysis['unprofitable_averages'][metric]
+                analysis['key_differences'][metric] = {
+                    'difference': diff,
+                    'percentage': (diff / analysis['unprofitable_averages'][metric]) * 100 if analysis['unprofitable_averages'][metric] != 0 else 0
+                }
+        
+        return analysis
+
+    def _calculate_averages(self, coins):
+        """Calculate average metrics for a group of coins"""
+        if not coins:
+            return {}
+            
+        totals = {
+            'initial_market_cap': 0,
+            'volume_1h': 0,
+            'price_change_1h': 0,
+            'total_holders': 0,
+            'total_bundles': 0,
+            'trades_1h': 0,
+            'makers_1h': 0,
+            'return': 0
+        }
+        
+        for coin in coins:
+            for key in totals:
+                totals[key] += coin[key]
+        
+        return {
+            'count': len(coins),
+            'initial_market_cap': totals['initial_market_cap'] / len(coins),
+            'volume_1h': totals['volume_1h'] / len(coins),
+            'price_change_1h': totals['price_change_1h'] / len(coins),
+            'total_holders': totals['total_holders'] / len(coins),
+            'total_bundles': totals['total_bundles'] / len(coins),
+            'trades_1h': totals['trades_1h'] / len(coins),
+            'makers_1h': totals['makers_1h'] / len(coins),
+            'avg_return': totals['return'] / len(coins)
+        }
