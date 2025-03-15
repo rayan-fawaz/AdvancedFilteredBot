@@ -804,8 +804,22 @@ def run_http_server():
 
 async def handle_learned_command():
     tracker = CoinTracker()
-    learned_info = tracker.get_learned_information()
-    await send_telegram_message(learned_info)
+    learned_info = tracker.get_learning_insights()
+    
+    # Format the message
+    if learned_info["status"] == "No verified training data yet":
+        message = "🤖 No verified training data available yet."
+    else:
+        message = (
+            "🤖 Learning Analysis\n\n"
+            f"Total verified coins: {learned_info['total_verified']}\n"
+            f"Profitable: {learned_info['profitable_count']}\n"
+            f"Unprofitable: {learned_info['unprofitable_count']}\n\n"
+            "📊 Insights:\n" + 
+            "\n".join(f"• {insight}" for insight in learned_info['insights'])
+        )
+    
+    await send_telegram_message(message)
 
 
 if __name__ == "__main__":
