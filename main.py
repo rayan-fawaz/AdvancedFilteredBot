@@ -392,27 +392,15 @@ def get_trench_data(mint_address):
         response = requests.get(f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}", timeout=10)
         data = response.json()
         
-        def count_snipers(obj):
-            if not isinstance(obj, dict):
-                return 0
-            total = len(obj.get('sniper', []))
-            for value in obj.values():
-                if isinstance(value, dict):
-                    total += count_snipers(value)
-                elif isinstance(value, list):
-                    for item in value:
-                        if isinstance(item, dict):
-                            total += count_snipers(item)
-            return total
-
-        total_snipers = count_snipers(data)
-        
-        return {
-            'bonded': data.get('bonded', False),
-            'total_bundles': data.get('total_bundles', 0),
-            'total_holding_percentage': data.get('total_holding_percentage', 0),
-            'total_snipers': total_snipers
-        }
+        if isinstance(data, dict) and 'stats' in data:
+            stats = data['stats']
+            return {
+                'bonded': data.get('bonded', False),
+                'total_bundles': stats.get('total_bundles', 0),
+                'total_holding_percentage': stats.get('total_holding_percentage', 0),
+                'total_snipers': stats.get('total_snipers', 0)
+            }
+        return None
     except Exception as e:
         logging.error(f"Error fetching Trench data: {e}")
         return None
