@@ -36,6 +36,22 @@ MIN_VOLUME_1H = 10000
 
 # Market Cap Limits
 MIN_MARKET_CAP = 7000
+
+def get_score_reasons(coin_data):
+    reasons = []
+    if coin_data.get('volumes', {}).get('1h', 0) > 50000:
+        reasons.append('high volume')
+    if coin_data.get('price_changes', {}).get('1h', 0) > 100:
+        reasons.append('strong momentum')
+    if coin_data.get('total_holders', 0) > 100:
+        reasons.append('good holder count')
+    if coin_data.get('trades_1h', {}).get('total', 0) > 1000:
+        reasons.append('active trading')
+    if coin_data.get('total_bundles', 0) < 50:
+        reasons.append('low bundle count')
+    return reasons or ['market metrics']
+
+
 MAX_MARKET_CAP = 25000
 
 # Logging Configuration
@@ -486,24 +502,7 @@ def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             f"https://api.dexscreener.com/orders/v1/solana/{mint_address}",
             timeout=5)
         dex_data_orders = dex_response.json()
-        dex_paid = dex_data_orders.get(
-
-def get_score_reasons(coin_data):
-    reasons = []
-    if coin_data.get('volumes', {}).get('1h', 0) > 50000:
-        reasons.append('high volume')
-    if coin_data.get('price_changes', {}).get('1h', 0) > 100:
-        reasons.append('strong momentum')
-    if coin_data.get('total_holders', 0) > 100:
-        reasons.append('good holder count')
-    if coin_data.get('trades_1h', {}).get('total', 0) > 1000:
-        reasons.append('active trading')
-    if coin_data.get('total_bundles', 0) < 50:
-        reasons.append('low bundle count')
-    return reasons or ['market metrics']
-
-
-            "status") == "approved" if dex_data_orders else False
+        dex_paid = dex_data_orders.get("status") == "approved" if dex_data_orders else False
     except Exception:
         dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
