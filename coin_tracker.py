@@ -176,6 +176,55 @@ class CoinTracker:
                 
         self.save_history()
         
+    def get_learning_insights(self) -> Dict:
+        """Analyze what the model has learned from training data"""
+        # Analyze verified coins (ones we have actual returns for)
+        verified_coins = {k: v for k, v in self.tracked_coins.items() if v.get('verified', False)}
+        
+        if not verified_coins:
+            return {
+                "status": "No verified training data yet",
+                "insights": []
+            }
+
+        # Get profitable vs unprofitable counts
+        profitable = [c for c in verified_coins.values() if c.get('actual_return', 0) > 0]
+        unprofitable = [c for c in verified_coins.values() if c.get('actual_return', 0) <= 0]
+        
+        insights = []
+        
+        # Compare metrics between profitable and unprofitable coins
+        if profitable and unprofitable:
+            prof_avg_holders = sum(c['total_holders'] for c in profitable) / len(profitable)
+            unprof_avg_holders = sum(c['total_holders'] for c in unprofitable) / len(unprofitable)
+            
+            prof_avg_bundles = sum(c['total_bundles'] for c in profitable) / len(profitable)
+            unprof_avg_bundles = sum(c['total_bundles'] for c in unprofitable) / len(unprofitable)
+            
+            prof_avg_trades = sum(c['trades_1h']['total'] for c in profitable) / len(profitable)
+            unprof_avg_trades = sum(c['trades_1h']['total'] for c in unprofitable) / len(unprofitable)
+            
+            insights.extend([
+                f"Profitable coins avg {prof_avg_holders:.0f} holders vs {unprof_avg_holders:.0f} for unprofitable",
+                f"Profitable coins avg {prof_avg_bundles:.1f} bundles vs {unprof_avg_bundles:.1f} for unprofitable",
+                f"Profitable coins avg {prof_avg_trades:.0f} trades/hr vs {unprof_avg_trades:.0f} for unprofitable"
+            ])
+            
+            # Add insights about prediction accuracy
+            correct_predictions = sum(1 for c in verified_coins.values() 
+                                   if (c['prediction_result'] == "Likely Profitable" and c.get('actual_return', 0) > 0) or
+                                   (c['prediction_result'] == "High Risk" and c.get('actual_return', 0) <= 0))
+            accuracy = (correct_predictions / len(verified_coins)) * 100
+            insights.append(f"Model prediction accuracy: {accuracy:.1f}%")
+
+        return {
+            "status": "Learning from verified coins",
+            "total_verified": len(verified_coins),
+            "profitable_count": len(profitable),
+            "unprofitable_count": len(unprofitable),
+            "insights": insights
+        }
+
     def analyze_returns(self, current_prices: Dict[str, float]) -> Dict:
         current_time = datetime.now().timestamp()
         results = {}

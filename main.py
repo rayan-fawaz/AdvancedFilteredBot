@@ -90,6 +90,14 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
 
+        if self.path == '/command' and b'/learned' in post_data:
+            asyncio.run(handle_learned_command())
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({"status": "success"}).encode())
+            return
+
         if self.path == '/train':
             try:
                 # Parse training data in format: [{"ticker": "NAME", "multiplier": X.X}, ...]
@@ -108,7 +116,7 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
                     # Train the model
                     tracker = CoinTracker()
                     tracker.train_model_with_returns(training_data)
-                    
+
                     self.send_response(200)
                     self.send_header('Content-type', 'application/json')
                     self.end_headers()
@@ -125,7 +133,7 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
                         'status': 'error',
                         'message': 'No valid training data found'
                     }
-                
+
                 self.wfile.write(json.dumps(response).encode())
 
             except Exception as e:
@@ -729,6 +737,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
 
+        if self.path == '/command' and b'/learned' in post_data:
+            asyncio.run(handle_learned_command())
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({"status": "success"}).encode())
+            return
+
         if self.path == '/train':
             try:
                 # Parse training data in format: {"TICKER": X.X} where X.X is return multiplier
@@ -784,6 +800,12 @@ def run_http_server():
     server = HTTPServer(('0.0.0.0', 8080), SimpleHTTPRequestHandler)
     logging.info("Server started on port 8080")
     server.serve_forever()
+
+
+async def handle_learned_command():
+    tracker = CoinTracker()
+    learned_info = tracker.get_learned_information()
+    await send_telegram_message(learned_info)
 
 
 if __name__ == "__main__":
