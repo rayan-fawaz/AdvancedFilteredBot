@@ -6116,5 +6116,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "8n7A2KjqCZbtRiza9UEHzzkPTVYb3Z9MuZQwGLMZpump": {
+    "mint": "8n7A2KjqCZbtRiza9UEHzzkPTVYb3Z9MuZQwGLMZpump",
+    "name": "Boobs in Book",
+    "symbol": "Boobs",
+    "market_cap": 10338.93032086635,
+    "total_bundles": 4,
+    "holding_percentage": 0.1529145395951,
+    "price_changes": {
+      "5m": 52.2,
+      "1h": 150.0,
+      "6h": 150.0,
+      "24h": 150.0
+    },
+    "volumes": {
+      "5m": 3819.03,
+      "1h": 16514.74,
+      "6h": 16514.74,
+      "24h": 16514.74
+    },
+    "ath": null,
+    "total_holders": 72,
+    "trades_1h": {
+      "total": 312,
+      "buys": 192,
+      "sells": 120
+    },
+    "makers_1h": 152,
+    "makers_24h": 152,
+    "timestamp": 1742123853.39922,
+    "initial_price": 0,
+    "initial_market_cap": 10338.93032086635,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "GJm6JiEURxjwAuLbugsB36ZBdDf9yZrRs4DRwaUcpump": {
+    "mint": "GJm6JiEURxjwAuLbugsB36ZBdDf9yZrRs4DRwaUcpump",
+    "name": "9/11 flash tragedy",
+    "symbol": "9/11ft",
+    "market_cap": 24972.819263345402,
+    "total_bundles": 2,
+    "holding_percentage": 2.6944494793555,
+    "price_changes": {
+      "5m": 52.27,
+      "1h": 77.14,
+      "6h": 566.0,
+      "24h": 566.0
+    },
+    "volumes": {
+      "5m": 4954.68,
+      "1h": 48055.59,
+      "6h": 60516.03,
+      "24h": 60516.03
+    },
+    "ath": null,
+    "total_holders": 131,
+    "trades_1h": {
+      "total": 3297,
+      "buys": 1721,
+      "sells": 1576
+    },
+    "makers_1h": 166,
+    "makers_24h": 206,
+    "timestamp": 1742123965.356563,
+    "initial_price": 0,
+    "initial_market_cap": 24972.819263345402,
+    "prediction_score": 7.51048,
+    "prediction_confidence": 75.10480000000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
