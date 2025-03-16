@@ -5095,36 +5095,36 @@
     "mint": "8x5smuNgnDsR1sXqybAev98cBU2z5J1YdPtCCX3sEYh7",
     "name": "peaceful violence",
     "symbol": "PEACEFUL",
-    "market_cap": 9220.140665265279,
-    "total_bundles": 10,
-    "holding_percentage": 1.0162020452063,
+    "market_cap": 20397.704606182288,
+    "total_bundles": 13,
+    "holding_percentage": 5.781766434541,
     "price_changes": {
-      "5m": 111.0,
-      "1h": 106.0,
-      "6h": 106.0,
-      "24h": 106.0
+      "5m": 42.98,
+      "1h": 347.0,
+      "6h": 347.0,
+      "24h": 347.0
     },
     "volumes": {
-      "5m": 8379.33,
-      "1h": 18927.74,
-      "6h": 18927.74,
-      "24h": 18927.74
+      "5m": 3742.29,
+      "1h": 44083.35,
+      "6h": 44083.35,
+      "24h": 44083.35
     },
     "ath": null,
-    "total_holders": 65,
+    "total_holders": 172,
     "trades_1h": {
-      "total": 260,
-      "buys": 174,
-      "sells": 86
+      "total": 1106,
+      "buys": 640,
+      "sells": 466
     },
-    "makers_1h": 134,
-    "makers_24h": 134,
-    "timestamp": 1742104653.678122,
+    "makers_1h": 332,
+    "makers_24h": 332,
+    "timestamp": 1742106098.905547,
     "initial_price": 0,
-    "initial_market_cap": 9220.140665265279,
-    "prediction_score": 3,
-    "prediction_confidence": 30.0,
-    "prediction_result": "High Risk",
+    "initial_market_cap": 20397.704606182288,
+    "prediction_score": 7,
+    "prediction_confidence": 70.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -5163,6 +5163,196 @@
     "prediction_score": 6.34626,
     "prediction_confidence": 63.4626,
     "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "8s6NtNuASn8j11W8anTYDr4WLujT1tVpEsmcWfV3pump": {
+    "mint": "8s6NtNuASn8j11W8anTYDr4WLujT1tVpEsmcWfV3pump",
+    "name": "Flash Flow",
+    "symbol": "FLASHFLOW",
+    "market_cap": 20744.26404612341,
+    "total_bundles": 2,
+    "holding_percentage": 0.1420381179062,
+    "price_changes": {
+      "5m": 16.71,
+      "1h": 435.0,
+      "6h": 435.0,
+      "24h": 435.0
+    },
+    "volumes": {
+      "5m": 3591.31,
+      "1h": 22628.05,
+      "6h": 22628.05,
+      "24h": 22628.05
+    },
+    "ath": null,
+    "total_holders": 129,
+    "trades_1h": {
+      "total": 1819,
+      "buys": 1008,
+      "sells": 811
+    },
+    "makers_1h": 188,
+    "makers_24h": 188,
+    "timestamp": 1742105742.98348,
+    "initial_price": 0,
+    "initial_market_cap": 20744.26404612341,
+    "prediction_score": 8.08442,
+    "prediction_confidence": 80.8442,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "C8YEZqxGtqB5iYMamGnTTJtTUPhxnJ9huEajfKmtpump": {
+    "mint": "C8YEZqxGtqB5iYMamGnTTJtTUPhxnJ9huEajfKmtpump",
+    "name": "Ron's Brother Kaliman",
+    "symbol": "KALI",
+    "market_cap": 10454.70138955658,
+    "total_bundles": 11,
+    "holding_percentage": 26.8915269813231,
+    "price_changes": {
+      "5m": 47.43,
+      "1h": 116.0,
+      "6h": 116.0,
+      "24h": 116.0
+    },
+    "volumes": {
+      "5m": 4321.32,
+      "1h": 16845.47,
+      "6h": 16845.47,
+      "24h": 16845.47
+    },
+    "ath": null,
+    "total_holders": 48,
+    "trades_1h": {
+      "total": 349,
+      "buys": 203,
+      "sells": 146
+    },
+    "makers_1h": 126,
+    "makers_24h": 126,
+    "timestamp": 1742105750.833772,
+    "initial_price": 0,
+    "initial_market_cap": 10454.70138955658,
+    "prediction_score": 3.2087399999999997,
+    "prediction_confidence": 32.0874,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "AZwgeypfuD6jNLmFKH5ZV7ftGkjSrMsB81N5B2Wjpump": {
+    "mint": "AZwgeypfuD6jNLmFKH5ZV7ftGkjSrMsB81N5B2Wjpump",
+    "name": "the inverted cat",
+    "symbol": "nor",
+    "market_cap": 8531.110956648188,
+    "total_bundles": 4,
+    "holding_percentage": 2.0708575198545,
+    "price_changes": {
+      "5m": 68.94,
+      "1h": 124.0,
+      "6h": 124.0,
+      "24h": 124.0
+    },
+    "volumes": {
+      "5m": 3394.51,
+      "1h": 9761.35,
+      "6h": 9761.35,
+      "24h": 9761.35
+    },
+    "ath": null,
+    "total_holders": 41,
+    "trades_1h": {
+      "total": 151,
+      "buys": 99,
+      "sells": 52
+    },
+    "makers_1h": 76,
+    "makers_24h": 76,
+    "timestamp": 1742106168.310289,
+    "initial_price": 0,
+    "initial_market_cap": 8531.110956648188,
+    "prediction_score": 4.53274,
+    "prediction_confidence": 45.327400000000004,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "4TwDBssW3miModmynxGhPQrPm1WrPZdtNeoL9CiFpump": {
+    "mint": "4TwDBssW3miModmynxGhPQrPm1WrPZdtNeoL9CiFpump",
+    "name": "a hand crocheted crane",
+    "symbol": "crane",
+    "market_cap": 15697.813303339499,
+    "total_bundles": 13,
+    "holding_percentage": 70.3146572293494,
+    "price_changes": {
+      "5m": 258.0,
+      "1h": 307.0,
+      "6h": 307.0,
+      "24h": 307.0
+    },
+    "volumes": {
+      "5m": 4173.34,
+      "1h": 12272.01,
+      "6h": 12272.01,
+      "24h": 12272.01
+    },
+    "ath": null,
+    "total_holders": 55,
+    "trades_1h": {
+      "total": 309,
+      "buys": 219,
+      "sells": 90
+    },
+    "makers_1h": 85,
+    "makers_24h": 85,
+    "timestamp": 1742106171.654385,
+    "initial_price": 0,
+    "initial_market_cap": 15697.813303339499,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "D5az134pEGtWJgmUCSJTuYGv5FMzMWdpN1tEN83Zpump": {
+    "mint": "D5az134pEGtWJgmUCSJTuYGv5FMzMWdpN1tEN83Zpump",
+    "name": "FWASH",
+    "symbol": "FWASH",
+    "market_cap": 9435.003318145858,
+    "total_bundles": 4,
+    "holding_percentage": 6.1562492207441,
+    "price_changes": {
+      "5m": 68.0,
+      "1h": 145.0,
+      "6h": 145.0,
+      "24h": 145.0
+    },
+    "volumes": {
+      "5m": 7205.92,
+      "1h": 9725.56,
+      "6h": 9725.56,
+      "24h": 9725.56
+    },
+    "ath": null,
+    "total_holders": 54,
+    "trades_1h": {
+      "total": 188,
+      "buys": 113,
+      "sells": 75
+    },
+    "makers_1h": 97,
+    "makers_24h": 97,
+    "timestamp": 1742106212.112422,
+    "initial_price": 0,
+    "initial_market_cap": 9435.003318145858,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
