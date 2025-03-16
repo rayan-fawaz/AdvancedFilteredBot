@@ -469,6 +469,24 @@ def format_holders_message(holders_info):
         f"{makers_24h}\n")
 
 
+async def get_insider_data(mint_address):
+    """Fetch and analyze insider data from RugCheck API."""
+    try:
+        response = requests.get(
+            f"https://api.rugcheck.xyz/v1/tokens/{mint_address}/insiders/graph",
+            headers={'accept': 'application/json'},
+            timeout=10
+        )
+        if response.status_code == 200:
+            data = response.json()
+            insider_count = sum(1 for node in data.get('nodes', []) 
+                              if node.get('participant', False))
+            return insider_count
+        return 0
+    except Exception as e:
+        logging.error(f"Error fetching insider data: {e}")
+        return 0
+
 async def get_trench_data(mint_address, max_retries=3):
     """Fetch bundle data from Trench API with retries."""
     for attempt in range(max_retries):
@@ -631,7 +649,8 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
-        f"🎯 <b>DEX Paid:</b> {dex_status}\n\n"
+        f"🎯 <b>DEX Paid:</b> {dex_status}\n"
+        f"👥 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
         f"{trench_info}"
         f"{price_text}"
         f"{volume_text}"
