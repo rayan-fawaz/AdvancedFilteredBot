@@ -4,6 +4,15 @@ import json
 
 # Training data format - add your coin data here
 training_data = [
+    {"symbol": "RON", "multiplier": 56.1},
+    {"symbol": "CHIP", "multiplier": 53.3},
+    {"symbol": "MANUS", "multiplier": 48.1},
+    {"symbol": "SS", "multiplier": 37.1},
+    {"symbol": "CROAKCAT", "multiplier": 30.4},
+    {"symbol": "PEPEPEPEPE", "multiplier": 16.4},
+    {"symbol": "GOKU", "multiplier": 16.1},
+    {"symbol": "FA", "multiplier": 14.7},
+    {"symbol": "DOPE", "multiplier": 12.7},
     {"symbol": "PEPE", "multiplier": 16.4},
     {"symbol": "RUNNER", "multiplier": 4.9},
     {"symbol": "MASK", "multiplier": 4.5},
