@@ -192,7 +192,7 @@ def get_dex_data(token_mint):
             }
             moralis_response = requests.get(moralis_url, headers=moralis_headers, timeout=10)
             if moralis_response.ok:
-            pair_data = moralis_response.json()
+                pair_data = moralis_response.json()
             logging.info(f"Moralis API response: {pair_data}")
             if isinstance(pair_data, dict) and "pairs" in pair_data:
                 pairs = pair_data["pairs"]
