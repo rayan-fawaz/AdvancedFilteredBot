@@ -166,7 +166,7 @@ def get_dex_data(token_mint):
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
             "Accept": "application/json",
-            "X-API-Key": "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"  # Replace with your Moralis API key
         }
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
@@ -186,7 +186,7 @@ def get_dex_data(token_mint):
         ohlcv_headers = {
             "Accept": "application/json",
             "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"  # Replace with your Moralis API key
         }
         ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
         ohlcv_data = ohlcv_response.json()
