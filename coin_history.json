@@ -5931,36 +5931,36 @@
     "mint": "52Sid25GFAg5f2HnehzhXsdoWA4G6btHPR1atc4Bpump",
     "name": "just a flash guy",
     "symbol": "FLASHGUY",
-    "market_cap": 12316.029528207207,
+    "market_cap": 7236.397799312849,
     "total_bundles": 1,
-    "holding_percentage": 0.0,
+    "holding_percentage": 0.4757940236798,
     "price_changes": {
-      "5m": 35.61,
-      "1h": 235.0,
-      "6h": 235.0,
-      "24h": 235.0
+      "5m": 46.85,
+      "1h": 70.6,
+      "6h": 70.6,
+      "24h": 70.6
     },
     "volumes": {
-      "5m": 4534.87,
-      "1h": 20693.85,
-      "6h": 20693.85,
-      "24h": 20693.85
+      "5m": 3403.3,
+      "1h": 4657.27,
+      "6h": 4657.27,
+      "24h": 4657.27
     },
     "ath": null,
-    "total_holders": 89,
+    "total_holders": 31,
     "trades_1h": {
-      "total": 2271,
-      "buys": 1182,
-      "sells": 1089
+      "total": 292,
+      "buys": 159,
+      "sells": 133
     },
-    "makers_1h": 152,
-    "makers_24h": 152,
-    "timestamp": 1742119030.540567,
+    "makers_1h": 44,
+    "makers_24h": 44,
+    "timestamp": 1742117306.163647,
     "initial_price": 0,
-    "initial_market_cap": 12316.029528207207,
-    "prediction_score": 8.54264,
-    "prediction_confidence": 85.4264,
-    "prediction_result": "Likely Profitable",
+    "initial_market_cap": 7236.397799312849,
+    "prediction_score": 3.50396,
+    "prediction_confidence": 35.03960000000001,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -6045,36 +6045,36 @@
     "mint": "DB3U6JniCCxgvJRZ2nLWs5FBbUZnb6KZvJ6bdDcQpump",
     "name": "Chad Dog",
     "symbol": "Chog",
-    "market_cap": 17573.723969549796,
-    "total_bundles": 18,
-    "holding_percentage": 15.5830772563008,
+    "market_cap": 7481.98242070112,
+    "total_bundles": 2,
+    "holding_percentage": 2.361684228739,
     "price_changes": {
-      "5m": 30.8,
-      "1h": 367.0,
-      "6h": 367.0,
-      "24h": 367.0
+      "5m": 126.0,
+      "1h": 160.0,
+      "6h": 160.0,
+      "24h": 160.0
     },
     "volumes": {
-      "5m": 6515.31,
-      "1h": 50520.84,
-      "6h": 50520.84,
-      "24h": 50520.84
+      "5m": 6481.61,
+      "1h": 7657.97,
+      "6h": 7657.97,
+      "24h": 7657.97
     },
     "ath": null,
-    "total_holders": 171,
+    "total_holders": 34,
     "trades_1h": {
-      "total": 850,
-      "buys": 513,
-      "sells": 337
+      "total": 130,
+      "buys": 84,
+      "sells": 46
     },
-    "makers_1h": 360,
-    "makers_24h": 360,
-    "timestamp": 1742119006.541443,
+    "makers_1h": 76,
+    "makers_24h": 70,
+    "timestamp": 1742117793.331549,
     "initial_price": 0,
-    "initial_market_cap": 17573.723969549796,
-    "prediction_score": 8.008040000000001,
-    "prediction_confidence": 80.08040000000001,
-    "prediction_result": "Likely Profitable",
+    "initial_market_cap": 7481.98242070112,
+    "prediction_score": 3.91546,
+    "prediction_confidence": 39.1546,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -6113,120 +6113,6 @@
     "prediction_score": 3.50396,
     "prediction_confidence": 35.03960000000001,
     "prediction_result": "High Risk",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "Gb5hYA79c4fhNw8674yxz5GXy936p9hmKaBwuG77pump": {
-    "mint": "Gb5hYA79c4fhNw8674yxz5GXy936p9hmKaBwuG77pump",
-    "name": "werm",
-    "symbol": "werm",
-    "market_cap": 12101.63455663565,
-    "total_bundles": 3,
-    "holding_percentage": 3.0463392758331,
-    "price_changes": {
-      "5m": 43.89,
-      "1h": 201.0,
-      "6h": 201.0,
-      "24h": 201.0
-    },
-    "volumes": {
-      "5m": 3725.51,
-      "1h": 14642.05,
-      "6h": 14642.05,
-      "24h": 14642.05
-    },
-    "ath": null,
-    "total_holders": 70,
-    "trades_1h": {
-      "total": 1405,
-      "buys": 738,
-      "sells": 667
-    },
-    "makers_1h": 121,
-    "makers_24h": 121,
-    "timestamp": 1742118937.794501,
-    "initial_price": 0,
-    "initial_market_cap": 12101.63455663565,
-    "prediction_score": 5,
-    "prediction_confidence": 50.0,
-    "prediction_result": "High Risk",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "DiDTCS9wFssrroBsYLmbZ6Gq6aa98Kt6G6dfKD8tpump": {
-    "mint": "DiDTCS9wFssrroBsYLmbZ6Gq6aa98Kt6G6dfKD8tpump",
-    "name": "Pickle Panda",
-    "symbol": "PP",
-    "market_cap": 17460.288731812678,
-    "total_bundles": 1,
-    "holding_percentage": 5.279881214168499,
-    "price_changes": {
-      "5m": 119.0,
-      "1h": 337.0,
-      "6h": 337.0,
-      "24h": 337.0
-    },
-    "volumes": {
-      "5m": 8132.71,
-      "1h": 12983.99,
-      "6h": 12983.99,
-      "24h": 12983.99
-    },
-    "ath": null,
-    "total_holders": 86,
-    "trades_1h": {
-      "total": 628,
-      "buys": 346,
-      "sells": 282
-    },
-    "makers_1h": 120,
-    "makers_24h": 120,
-    "timestamp": 1742119054.763247,
-    "initial_price": 0,
-    "initial_market_cap": 17460.288731812678,
-    "prediction_score": 4,
-    "prediction_confidence": 40.0,
-    "prediction_result": "High Risk",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "FDHYkNAwMfeimLnHNvWwkxBZrcuQgedesEuXHnWCpump": {
-    "mint": "FDHYkNAwMfeimLnHNvWwkxBZrcuQgedesEuXHnWCpump",
-    "name": "vibing goose",
-    "symbol": "goose",
-    "market_cap": 21998.443848624458,
-    "total_bundles": 24,
-    "holding_percentage": 25.508237661553302,
-    "price_changes": {
-      "5m": 63.82,
-      "1h": 312.0,
-      "6h": 312.0,
-      "24h": 312.0
-    },
-    "volumes": {
-      "5m": 19255.41,
-      "1h": 55587.61,
-      "6h": 55587.61,
-      "24h": 55587.61
-    },
-    "ath": null,
-    "total_holders": 151,
-    "trades_1h": {
-      "total": 725,
-      "buys": 430,
-      "sells": 295
-    },
-    "makers_1h": 314,
-    "makers_24h": 314,
-    "timestamp": 1742120845.649972,
-    "initial_price": 0,
-    "initial_market_cap": 21998.443848624458,
-    "prediction_score": 7,
-    "prediction_confidence": 70.0,
-    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null

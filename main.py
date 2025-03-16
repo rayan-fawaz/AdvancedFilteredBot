@@ -601,40 +601,18 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
-        # ATH (all-time high) price from Moralis API
+        # ATH (all-time high) price estimation
         market_cap = float(coin.get('usd_market_cap', 0))
-        current_price = dex_data.get('price_usd', 0) if dex_data else 0
-        ath_price = current_price
-        
+        ath_price = market_cap
         if dex_data and isinstance(dex_data, dict):
-            pair_address = dex_data.get('pair_address')
-            if pair_address:
-                # Get historical OHLCV data from Moralis
-                current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-                one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
-                moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
-                moralis_headers = {
-                    "Accept": "application/json",
-                    "X-API-Key": "YOUR_MORALIS_API_KEY"
-                }
-                params = {
-                    "timeframe": "1D",
-                    "fromDate": one_month_ago,
-                    "toDate": current_date
-                }
+            ath_from_dex = dex_data.get('ath_price')
+            if ath_from_dex is not None:
                 try:
-                    moralis_response = requests.get(moralis_url, headers=moralis_headers, params=params)
-                    if moralis_response.ok:
-                        data = moralis_response.json()
-                        if isinstance(data, dict) and 'result' in data:
-                            # Find highest price from historical data
-                            highest_price = max((day.get('high', 0) for day in data['result']), default=0)
-                            if highest_price > 0:
-                                ath_price = max(ath_price, highest_price)
-                except Exception as e:
-                    logging.error(f"Error fetching Moralis data: {e}")
-                    
-        ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+                    ath_from_dex = float(ath_from_dex)
+                    ath_price = max(ath_from_dex, market_cap)
+                except (ValueError, TypeError):
+                    pass
+        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
 
     # Check DEX paid status
     try:
