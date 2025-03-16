@@ -6154,5 +6154,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "GJm6JiEURxjwAuLbugsB36ZBdDf9yZrRs4DRwaUcpump": {
+    "mint": "GJm6JiEURxjwAuLbugsB36ZBdDf9yZrRs4DRwaUcpump",
+    "name": "9/11 flash tragedy",
+    "symbol": "9/11ft",
+    "market_cap": 21613.151022325197,
+    "total_bundles": 2,
+    "holding_percentage": 2.2014409908325,
+    "price_changes": {
+      "5m": 48.34,
+      "1h": 448.0,
+      "6h": 448.0,
+      "24h": 448.0
+    },
+    "volumes": {
+      "5m": 3248.31,
+      "1h": 34277.76,
+      "6h": 34277.76,
+      "24h": 34277.76
+    },
+    "ath": null,
+    "total_holders": 105,
+    "trades_1h": {
+      "total": 2630,
+      "buys": 1388,
+      "sells": 1242
+    },
+    "makers_1h": 163,
+    "makers_24h": 163,
+    "timestamp": 1742122210.805465,
+    "initial_price": 0,
+    "initial_market_cap": 21613.151022325197,
+    "prediction_score": 9.489419999999999,
+    "prediction_confidence": 94.8942,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "6GUQFcPwr8Ee6HpH5A9sywmiB9HAEksq6aNYrHwSpump": {
+    "mint": "6GUQFcPwr8Ee6HpH5A9sywmiB9HAEksq6aNYrHwSpump",
+    "name": "Big Cracka",
+    "symbol": "BIG",
+    "market_cap": 9340.3008544284,
+    "total_bundles": 2,
+    "holding_percentage": 2.0902812764088,
+    "price_changes": {
+      "5m": 34.86,
+      "1h": 149.0,
+      "6h": 149.0,
+      "24h": 149.0
+    },
+    "volumes": {
+      "5m": 1877.15,
+      "1h": 18782.69,
+      "6h": 18782.69,
+      "24h": 18782.69
+    },
+    "ath": null,
+    "total_holders": 52,
+    "trades_1h": {
+      "total": 1101,
+      "buys": 583,
+      "sells": 518
+    },
+    "makers_1h": 108,
+    "makers_24h": 108,
+    "timestamp": 1742122290.350991,
+    "initial_price": 0,
+    "initial_market_cap": 9340.3008544284,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
