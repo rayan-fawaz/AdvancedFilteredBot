@@ -36,7 +36,7 @@ MIN_VOLUME_5M = 3000
 MIN_VOLUME_1H = 10000
 
 # Market Cap Limits
-MIN_MARKET_CAP = 9000
+MIN_MARKET_CAP = 7000
 
 def get_score_reasons(coin_data):
     reasons = []
