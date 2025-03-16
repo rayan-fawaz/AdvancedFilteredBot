@@ -540,12 +540,10 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     if trench_data:
         sniper_text = ""
         if trench_data.get('snipers'):
-            sniper_lines = []
-            for sniper in trench_data['snipers']:
-                sniper_lines.append(
-                    f"├─ Sniper in Bundle {sniper['bundle_id']}: {sniper['tokens']/1e9:.2f}K tokens (${sniper['sol']:.2f})"
-                )
-            sniper_text = "\n".join(sniper_lines) + "\n"
+            total_snipers = len(trench_data['snipers'])
+            total_tokens = sum(sniper['tokens'] for sniper in trench_data['snipers'])/1e9
+            total_sol = sum(sniper['sol'] for sniper in trench_data['snipers'])
+            sniper_text = f"├─ Total Snipers: {total_snipers}\n├─ Total Tokens: {total_tokens:.2f}K\n└─ Total Value: ${total_sol:.2f}\n"
 
         trench_info = (
             f"📚 <b>Bundle Info</b>\n"
