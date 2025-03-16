@@ -607,11 +607,11 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"🎯 <b>Sniper Analysis</b>\n"
         + "".join([
             f"├─ Bundle {bundle_id}:\n" + 
-            "".join([f"│  └─ {wallet}: {info['tokens']/1e12:.2f}K tokens (${info['sol']:.2f})\n" 
+            "".join([f"│  └─ {wallet}: {(info['tokens']/1e9):.2f}K tokens ({info['sol']:.2f} SOL)\n" 
                     for wallet, info in bundle_data['wallet_info'].items() 
-                    if bundle_data['wallet_categories'].get(wallet) == "sniper"])
+                    if bundle_data.get('wallet_categories', {}).get(wallet) == "sniper"])
             for bundle_id, bundle_data in trench_data.get('bundles', {}).items()
-            if any(cat == "sniper" for cat in bundle_data['wallet_categories'].values())
+            if any(cat == "sniper" for cat in bundle_data.get('wallet_categories', {}).values())
         ]) + "\n"
         f"{price_text}"
         f"{volume_text}"
