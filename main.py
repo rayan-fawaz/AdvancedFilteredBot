@@ -162,12 +162,11 @@ def get_dex_data(token_mint):
             timeout=10)
         dex_response.raise_for_status()
 
-        # Moralis pair data for additional details (optional)
+        # Get pair address from Moralis
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
             "Accept": "application/json",
-            "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+            "X-API-Key": "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
         }
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
@@ -175,11 +174,9 @@ def get_dex_data(token_mint):
         pair_address = None
         if moralis_response.ok:
             pair_data = moralis_response.json()
-            if isinstance(pair_data, dict) and "pairs" in pair_data:
-                pairs = pair_data["pairs"]
-                if pairs and isinstance(pairs, list) and len(pairs) > 0:
-                    pair_address = pairs[0].get("pairAddress")
-                    logging.info(f"Found pair address: {pair_address}")
+            if isinstance(pair_data, list) and len(pair_data) > 0:
+                pair_address = pair_data[0].get("pairAddress")
+                logging.info(f"Found pair address: {pair_address}")
 
         # OHLCV data from Moralis (ATH estimation)
         current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
@@ -685,8 +682,7 @@ async def scan_coins():
             # Get holders dataand apply filters
             holders_info = fetch_token_holders(mint)
             if not holders_info:
-                continue
-            if holders_info.get("total_holders", 0) < MIN_HOLDERS:
+                continue            if holders_info.get("total_holders", 0) < MIN_HOLDERS:
                 continue
             if holders_info.get("buy_1h", 0) < MIN_BUYS or holders_info.get(
                     "sell_1h", 0) < MIN_SELLS:
