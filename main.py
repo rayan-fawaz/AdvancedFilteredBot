@@ -36,7 +36,7 @@ MIN_VOLUME_5M = 3000
 MIN_VOLUME_1H = 10000
 
 # Market Cap Limits
-MIN_MARKET_CAP = 7000
+MIN_MARKET_CAP = 9000
 
 def get_score_reasons(coin_data):
     reasons = []
@@ -550,8 +550,8 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         trench_info = (
             f"📚 <b>Bundle Info</b>\n"
             f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
-            f"├─ <b>Held Bundles:</b> {trench_data['total_holding_percentage']:.2f}%\n"
-            f"└─ <b>Snipers:</b>\n{sniper_text}\n"
+            f"├─ <b>Held Bundles:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
+            f"🔫 <b>Snipers:</b>\n{sniper_text}\n"
         )
 
     # Get reply count from the coin data
