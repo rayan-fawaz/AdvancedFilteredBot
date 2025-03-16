@@ -40,8 +40,7 @@ config = {
     "holder_weight": 0.25,
     "price_momentum_weight": 0.25,
     "activity_weight": 0.15,
-    "confidence_threshold": 65.0,  # Maximum confidence is 100%
-    "max_confidence": 100.0
+    "confidence_threshold": 65.0
 }
     {"symbol": "GOKU", "multiplier": 22.4},   # Anime theme performance
     {"symbol": "FA", "multiplier": 20.3},     # Balanced metrics

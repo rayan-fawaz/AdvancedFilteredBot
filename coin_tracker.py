@@ -1,3 +1,4 @@
+
 import json
 from datetime import datetime
 import logging
@@ -56,47 +57,47 @@ class CoinTracker:
         """Update meta scores with new data."""
         self.meta_scores = new_scores
         self.save_meta_scores()
-
+        
     def load_history(self) -> Dict:
         try:
             with open(self.db_file, 'r') as f:
                 return json.load(f)
         except:
             return {}
-
+            
     def save_history(self):
         with open(self.db_file, 'w') as f:
             json.dump(self.tracked_coins, f, indent=2)
-
+            
     def predict_profitability(self, coin, holders_info, dex_data, trench_data):
         """Enhanced prediction system with weighted metrics and historical patterns"""
         score = 0
         confidence = 0
         reasons = []
-
+        
         # Volume analysis with progressive thresholds
         volume_score = min(100, (dex_data['volume_1h'] / 50000) * 100)
         score += volume_score * 0.35
-
+        
         # Holder metrics with scaling factor
         holder_score = min(100, (holders_info['total_holders'] / 200) * 100)
         score += holder_score * 0.25
-
+        
         # Price momentum analysis
         momentum_score = min(100, (dex_data['price_change_1h'] / 100) * 100)
         score += momentum_score * 0.25
-
+        
         # Trading activity score
         activity_score = min(100, (holders_info['trade_1h'] / 1000) * 100)
         score += activity_score * 0.15
-
+        
         # Meta score boost
         meta_boost = 0
         coin_text = f"{coin['name']} {coin['symbol']}".lower()
         for meta_word, meta_score in self.meta_scores.items():
             if meta_word in coin_text:
                 meta_boost += meta_score * 2
-
+        
         # Check if coin name/symbol contains meta words
         coin_text = f"{coin['name']} {coin['symbol']}".lower()
         for meta_word, meta_score in self.meta_scores.items():
@@ -104,7 +105,7 @@ class CoinTracker:
                 meta_boost = meta_score * 2  # Convert meta score to points
                 score += meta_boost
                 reasons.append(f"Contains meta '{meta_word}' (+{meta_boost:.1f})")
-
+        
         # Volume analysis
         if dex_data['volume_1h'] > 50000:
             score += 2
@@ -114,7 +115,7 @@ class CoinTracker:
             reasons.append("Decent hourly volume")
         else:
             reasons.append("Low volume")
-
+        
         # Price momentum
         if dex_data['price_change_1h'] > 200:
             score += 2
@@ -124,7 +125,7 @@ class CoinTracker:
             reasons.append("Good price momentum")
         else:
             reasons.append("Weak momentum")
-
+        
         # Holder metrics
         if holders_info['total_holders'] > 200:
             score += 2
@@ -134,7 +135,7 @@ class CoinTracker:
             reasons.append("Growing holder base")
         else:
             reasons.append("Few holders")
-
+        
         # Trade activity
         if holders_info['trade_1h'] > 2000:
             score += 2
@@ -144,22 +145,22 @@ class CoinTracker:
             reasons.append("Good trading activity")
         else:
             reasons.append("Low trading activity")
-
+        
         # Bundle analysis - low bundle count is good
         if trench_data and trench_data.get('total_bundles', 0) < 50:
             score += 2
             reasons.append("Favorable low bundle count")
-
+        
         result = "Likely Profitable" if score >= 6 else "High Risk"
         explanation = ""
         if score >= 6:
             explanation = "Strong fundamentals: " + ", ".join(r for r in reasons if not r.startswith("Low") and not r.startswith("Weak") and not r.startswith("Few"))
         else:
             explanation = "Concerning factors: " + ", ".join(r for r in reasons if r.startswith("Low") or r.startswith("Weak") or r.startswith("Few"))
-
+        
         return {
             'score': score,
-            'confidence': min(100, (score / 10) * 100),  # Convert to percentage, capped at 100%
+            'confidence': (score / 10) * 100,  # Convert to percentage
             'prediction': result,
             'explanation': explanation
         }
@@ -204,10 +205,10 @@ class CoinTracker:
             ath_market_cap_24h=None,
             ath_timestamp_24h=None
         )
-
+        
         self.tracked_coins[coin["mint"]] = asdict(coin_data)
         self.save_history()
-
+        
     def train_model_with_returns(self, returns_data: Dict[str, float]):
         """Train model with actual return data from tracked coins"""
         for mint, actual_return in returns_data.items():
@@ -215,7 +216,7 @@ class CoinTracker:
                 # Update coin data with actual return
                 self.tracked_coins[mint]['actual_return'] = actual_return
                 self.tracked_coins[mint]['verified'] = True
-
+                
                 # Adjust prediction weights based on accuracy
                 prediction = self.tracked_coins[mint]['prediction_result']
                 if (prediction == "Likely Profitable" and actual_return > 0) or \
@@ -227,9 +228,9 @@ class CoinTracker:
                     # Wrong prediction - reduce the weights
                     self.volume_weight *= 0.9
                     self.momentum_weight *= 0.9
-
+                
         self.save_history()
-
+        
     def get_learning_insights(self) -> Dict:
         """Analyze what the model has learned from training data"""
         # Analyze all tracked coins
@@ -242,26 +243,26 @@ class CoinTracker:
         # Analyze prediction patterns
         profitable_predictions = [c for c in self.tracked_coins.values() if c['prediction_result'] == "Likely Profitable"]
         high_risk_predictions = [c for c in self.tracked_coins.values() if c['prediction_result'] == "High Risk"]
-
+        
         insights = []
-
+        
         # Compare metrics between prediction categories
         if profitable_predictions and high_risk_predictions:
             prof_avg_holders = sum(c['total_holders'] for c in profitable_predictions) / len(profitable_predictions)
             risk_avg_holders = sum(c['total_holders'] for c in high_risk_predictions) / len(high_risk_predictions)
-
+            
             prof_avg_bundles = sum(c['total_bundles'] for c in profitable_predictions) / len(profitable_predictions)
             risk_avg_bundles = sum(c['total_bundles'] for c in high_risk_predictions) / len(high_risk_predictions)
-
+            
             prof_avg_trades = sum(c['trades_1h']['total'] for c in profitable_predictions) / len(profitable_predictions)
             risk_avg_trades = sum(c['trades_1h']['total'] for c in high_risk_predictions) / len(high_risk_predictions)
-
+            
             insights.extend([
                 f"Predicted profitable coins avg {prof_avg_holders:.0f} holders vs {risk_avg_holders:.0f} for high risk",
                 f"Predicted profitable coins avg {prof_avg_bundles:.1f} bundles vs {risk_avg_bundles:.1f} for high risk",
                 f"Predicted profitable coins avg {prof_avg_trades:.0f} trades/hr vs {risk_avg_trades:.0f} for high risk"
             ])
-
+            
             # Add distribution stats
             total_predictions = len(profitable_predictions) + len(high_risk_predictions)
             profitable_ratio = (len(profitable_predictions) / total_predictions) * 100
@@ -283,7 +284,7 @@ class CoinTracker:
                 initial_price = data["initial_price"]
                 current_price = current_prices[mint]
                 time_since_tracking = current_time - data["timestamp"]
-
+                
                 # Update 24h ATH if within first 24 hours
                 if time_since_tracking <= 86400:  # 24 hours in seconds
                     current_market_cap = current_price * (data["initial_market_cap"] / data["initial_price"])
@@ -292,7 +293,7 @@ class CoinTracker:
                         self.tracked_coins[mint]["ath_market_cap_24h"] = current_market_cap
                         self.tracked_coins[mint]["ath_timestamp_24h"] = current_time
                         self.save_history()
-
+                
                 roi = ((current_price - initial_price) / initial_price) * 100
                 market_cap_roi = ((current_market_cap - data["initial_market_cap"]) / data["initial_market_cap"] * 100) if "initial_market_cap" in data else 0
                 results[mint] = {
@@ -326,7 +327,7 @@ class CoinTracker:
         """Analyze patterns between profitable and unprofitable coins"""
         profitable_coins = []
         unprofitable_coins = []
-
+        
         for mint, data in self.tracked_coins.items():
             if 'actual_return' in data:
                 coin_metrics = {
@@ -340,21 +341,21 @@ class CoinTracker:
                     'makers_1h': data['makers_1h'],
                     'return': data['actual_return']
                 }
-
+                
                 if data['actual_return'] > 0:
                     profitable_coins.append(coin_metrics)
                 else:
                     unprofitable_coins.append(coin_metrics)
-
+        
         if not profitable_coins or not unprofitable_coins:
             return "Not enough data for analysis"
-
+            
         analysis = {
             'profitable_averages': self._calculate_averages(profitable_coins),
             'unprofitable_averages': self._calculate_averages(unprofitable_coins),
             'key_differences': {}
         }
-
+        
         # Calculate differences
         for metric in analysis['profitable_averages'].keys():
             if metric != 'count':
@@ -363,14 +364,14 @@ class CoinTracker:
                     'difference': diff,
                     'percentage': (diff / analysis['unprofitable_averages'][metric]) * 100 if analysis['unprofitable_averages'][metric] != 0 else 0
                 }
-
+        
         return analysis
 
     def _calculate_averages(self, coins):
         """Calculate average metrics for a group of coins"""
         if not coins:
             return {}
-
+            
         totals = {
             'initial_market_cap': 0,
             'volume_1h': 0,
@@ -381,11 +382,11 @@ class CoinTracker:
             'makers_1h': 0,
             'return': 0
         }
-
+        
         for coin in coins:
             for key in totals:
                 totals[key] += coin[key]
-
+        
         return {
             'count': len(coins),
             'initial_market_cap': totals['initial_market_cap'] / len(coins),
