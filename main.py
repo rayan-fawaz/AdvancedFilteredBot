@@ -311,41 +311,21 @@ def fetch_unique_reply_makers(mint_address):
             if "user" in reply:
                 logging.info(f"User field in reply: {reply['user']}")
 
-            # First try - standard user structure
+            # If we have a user field, extract the user ID
             if "user" in reply and reply["user"]:
-                user = reply["user"]
-                if isinstance(user, dict):
-                    user_id = None
-                    # Try all possible ID fields
-                    for id_field in [
-                            "walletAddress", "id", "username", "address",
-                            "publicKey", "wallet"
-                    ]:
-                        if id_field in user and user[id_field]:
-                            user_id = user[id_field]
-                            logging.info(
-                                f"Found user ID in field {id_field}: {user_id}"
-                            )
-                            break
+                user_id = str(reply["user"])
+                unique_users.add(user_id)
+                logging.info(f"Found user: {user_id}")
 
-                    if user_id:
-                        unique_users.add(user_id)
-                    else:
-                        # If we couldn't find an ID field, use the whole user object as a string
-                        unique_users.add(str(user))
-
-            # Try alternative field names
-            for field in [
-                    "owner", "author", "creator", "walletAddress", "publicKey"
-            ]:
-                if field in reply and reply[field]:
-                    unique_users.add(str(reply[field]))
-                    logging.info(
-                        f"Found user in {field} field: {reply[field]}")
+            # Try alternative field names only if no user field found
+            if "user" not in reply:
+                for field in ["owner", "author", "creator", "walletAddress", "publicKey"]:
+                    if field in reply and reply[field]:
+                        unique_users.add(str(reply[field]))
+                        logging.info(f"Found user in {field} field: {reply[field]}")
 
         maker_count = len(unique_users)
-        logging.info(
-            f"Found {maker_count} unique reply makers for {mint_address}")
+        logging.info(f"Found {maker_count} unique reply makers for {mint_address}")
         logging.info(f"Unique users: {unique_users}")
         return maker_count
     except Exception as e:
@@ -694,7 +674,7 @@ async def scan_coins():
                 continue
 
             # Skip coin if it's already been seen
-            if mint in seen_mints:
+            if mint in seenmints:
                 continue
 
             # Market cap filter
