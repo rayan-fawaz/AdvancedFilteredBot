@@ -6192,5 +6192,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "5ZZRE9u659nZce5ikNH3uXY3JGVQxU79kRnngsDfpump": {
+    "mint": "5ZZRE9u659nZce5ikNH3uXY3JGVQxU79kRnngsDfpump",
+    "name": "SMOL FLASH",
+    "symbol": "SMOLFLASH",
+    "market_cap": 9981.125624485201,
+    "total_bundles": 1,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 34.39,
+      "1h": 170.0,
+      "6h": 170.0,
+      "24h": 170.0
+    },
+    "volumes": {
+      "5m": 2703.17,
+      "1h": 10248.4,
+      "6h": 10248.4,
+      "24h": 10248.4
+    },
+    "ath": null,
+    "total_holders": 46,
+    "trades_1h": {
+      "total": 545,
+      "buys": 306,
+      "sells": 239
+    },
+    "makers_1h": 80,
+    "makers_24h": 80,
+    "timestamp": 1742124556.185668,
+    "initial_price": 0,
+    "initial_market_cap": 9981.125624485201,
+    "prediction_score": 4.50348,
+    "prediction_confidence": 45.0348,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
