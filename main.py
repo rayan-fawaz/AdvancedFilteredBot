@@ -483,10 +483,28 @@ async def get_trench_data(mint_address, max_retries=3):
             )
             if response.status_code == 200:
                 data = response.json()
+                bundles = data.get('bundles', {})
+                sniper_info = []
+                
+                for bundle_id, bundle_data in bundles.items():
+                    wallet_categories = bundle_data.get('wallet_categories', {})
+                    wallet_info = bundle_data.get('wallet_info', {})
+                    
+                    for wallet, category in wallet_categories.items():
+                        if category == "sniper" and wallet in wallet_info:
+                            info = wallet_info[wallet]
+                            sniper_info.append({
+                                'bundle_id': bundle_id,
+                                'wallet': wallet,
+                                'tokens': info.get('tokens', 0),
+                                'sol': info.get('sol', 0)
+                            })
+                
                 return {
                     'bonded': data.get('bonded', False),
                     'total_bundles': data.get('total_bundles', 0),
-                    'total_holding_percentage': data.get('total_holding_percentage', 0)
+                    'total_holding_percentage': data.get('total_holding_percentage', 0),
+                    'snipers': sniper_info
                 }
             elif response.status_code == 429:  # Rate limit
                 await asyncio.sleep(2 ** attempt)  # Exponential backoff
@@ -520,10 +538,21 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
     trench_info = ""
     if trench_data:
+        sniper_text = ""
+        if trench_data.get('snipers'):
+            sniper_lines = []
+            for sniper in trench_data['snipers']:
+                sniper_lines.append(
+                    f"├─ Bundle {sniper['bundle_id']}:\n"
+                    f"│  └─ {sniper['wallet']}: {sniper['tokens']/1e9:.2f}K tokens (${sniper['sol']:.2f})"
+                )
+            sniper_text = "\n".join(sniper_lines) + "\n"
+            
         trench_info = (
             f"📚 <b>Bundle Info</b>\n"
             f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
-            f"└─ <b>Held Bundles:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
+            f"├─ <b>Held Bundles:</b> {trench_data['total_holding_percentage']:.2f}%\n"
+            f"└─ <b>Snipers:</b>\n{sniper_text}\n"
         )
 
     # Get reply count from the coin data
