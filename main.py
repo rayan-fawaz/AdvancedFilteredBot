@@ -153,6 +153,26 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(analysis).encode())
 
 
+def get_pair_address(token_mint):
+    """Get pair address from Moralis API."""
+    try:
+        moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
+        moralis_headers = {
+            "Accept": "application/json",
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
+        }
+        moralis_response = requests.get(moralis_url, headers=moralis_headers, timeout=10)
+        if moralis_response.ok:
+            pair_data = moralis_response.json()
+            if isinstance(pair_data, dict) and "pairs" in pair_data:
+                pairs = pair_data["pairs"]
+                if pairs and isinstance(pairs, list) and len(pairs) > 0:
+                    return pairs[0]["pairAddress"]
+        return None
+    except Exception as e:
+        logging.error(f"Error getting pair address for {token_mint}: {e}")
+        return None
+
 def get_dex_data(token_mint):
     """Get volume and price change data from DexScreener and Moralis APIs."""
     try:
@@ -162,23 +182,20 @@ def get_dex_data(token_mint):
             timeout=10)
         dex_response.raise_for_status()
 
-        # Moralis pair data for additional details (optional)
-        moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
-        moralis_headers = {
-            "Accept": "application/json",
-            "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
-        }
+        # Get pair address
+        pair_address = get_pair_address(token_mint)
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
                                         timeout=10)
         pair_address = None
         if moralis_response.ok:
             pair_data = moralis_response.json()
+            logging.info(f"Moralis API response: {pair_data}")
             if isinstance(pair_data, dict) and "pairs" in pair_data:
                 pairs = pair_data["pairs"]
                 if pairs and isinstance(pairs, list) and len(pairs) > 0:
-                    pair_address = pairs[0].get("pairAddress")
+                    pair_address = pairs[0]["pairAddress"]
+                    logging.info(f"Found pair address: {pair_address}")
 
         # OHLCV data from Moralis (ATH estimation)
         current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
@@ -188,7 +205,7 @@ def get_dex_data(token_mint):
         ohlcv_headers = {
             "Accept": "application/json",
             "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"  # Replace with your Moralis API key
         }
         ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
         ohlcv_data = ohlcv_response.json()
