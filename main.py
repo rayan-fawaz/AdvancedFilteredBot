@@ -679,10 +679,11 @@ async def scan_coins():
             if market_cap < MIN_MARKET_CAP or market_cap > MAX_MARKET_CAP:
                 continue
 
-            # Get holders dataand apply filters
+            # Get holders data and apply filters
             holders_info = fetch_token_holders(mint)
             if not holders_info:
-                continue            if holders_info.get("total_holders", 0) < MIN_HOLDERS:
+                continue
+            if holders_info.get("total_holders", 0) < MIN_HOLDERS:
                 continue
             if holders_info.get("buy_1h", 0) < MIN_BUYS or holders_info.get(
                     "sell_1h", 0) < MIN_SELLS:
