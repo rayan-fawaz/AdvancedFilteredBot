@@ -5931,36 +5931,36 @@
     "mint": "52Sid25GFAg5f2HnehzhXsdoWA4G6btHPR1atc4Bpump",
     "name": "just a flash guy",
     "symbol": "FLASHGUY",
-    "market_cap": 23161.245217552798,
-    "total_bundles": 8,
-    "holding_percentage": 2.9865171369647,
+    "market_cap": 7236.397799312849,
+    "total_bundles": 1,
+    "holding_percentage": 0.4757940236798,
     "price_changes": {
-      "5m": 30.08,
-      "1h": 65.74,
-      "6h": 466.0,
-      "24h": 466.0
+      "5m": 46.85,
+      "1h": 70.6,
+      "6h": 70.6,
+      "24h": 70.6
     },
     "volumes": {
-      "5m": 3485.46,
-      "1h": 50984.7,
-      "6h": 73012.65,
-      "24h": 73012.65
+      "5m": 3403.3,
+      "1h": 4657.27,
+      "6h": 4657.27,
+      "24h": 4657.27
     },
-    "ath": 21904,
-    "total_holders": 191,
+    "ath": null,
+    "total_holders": 31,
     "trades_1h": {
-      "total": 3598,
-      "buys": 1877,
-      "sells": 1721
+      "total": 292,
+      "buys": 159,
+      "sells": 133
     },
-    "makers_1h": 315,
-    "makers_24h": 391,
-    "timestamp": 1742122720.259527,
+    "makers_1h": 44,
+    "makers_24h": 44,
+    "timestamp": 1742117306.163647,
     "initial_price": 0,
-    "initial_market_cap": 23161.245217552798,
-    "prediction_score": 8.489419999999999,
-    "prediction_confidence": 84.89419999999998,
-    "prediction_result": "Likely Profitable",
+    "initial_market_cap": 7236.397799312849,
+    "prediction_score": 3.50396,
+    "prediction_confidence": 35.03960000000001,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -6045,36 +6045,36 @@
     "mint": "DB3U6JniCCxgvJRZ2nLWs5FBbUZnb6KZvJ6bdDcQpump",
     "name": "Chad Dog",
     "symbol": "Chog",
-    "market_cap": 16813.96116526585,
-    "total_bundles": 34,
-    "holding_percentage": 12.0103845876669,
+    "market_cap": 7481.98242070112,
+    "total_bundles": 2,
+    "holding_percentage": 2.361684228739,
     "price_changes": {
-      "5m": 52.32,
-      "1h": -0.81,
-      "6h": 326.0,
-      "24h": 326.0
+      "5m": 126.0,
+      "1h": 160.0,
+      "6h": 160.0,
+      "24h": 160.0
     },
     "volumes": {
-      "5m": 7101.22,
-      "1h": 105137.73,
-      "6h": 123880.03,
-      "24h": 123880.03
+      "5m": 6481.61,
+      "1h": 7657.97,
+      "6h": 7657.97,
+      "24h": 7657.97
     },
     "ath": null,
-    "total_holders": 187,
+    "total_holders": 34,
     "trades_1h": {
-      "total": 1887,
-      "buys": 1053,
-      "sells": 834
+      "total": 130,
+      "buys": 84,
+      "sells": 46
     },
-    "makers_1h": 598,
-    "makers_24h": 660,
-    "timestamp": 1742121582.997331,
+    "makers_1h": 76,
+    "makers_24h": 70,
+    "timestamp": 1742117793.331549,
     "initial_price": 0,
-    "initial_market_cap": 16813.96116526585,
-    "prediction_score": 7.2167200000000005,
-    "prediction_confidence": 72.16720000000001,
-    "prediction_result": "Likely Profitable",
+    "initial_market_cap": 7481.98242070112,
+    "prediction_score": 3.91546,
+    "prediction_confidence": 39.1546,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -6112,234 +6112,6 @@
     "initial_market_cap": 7804.80566385754,
     "prediction_score": 3.50396,
     "prediction_confidence": 35.03960000000001,
-    "prediction_result": "High Risk",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "3o4BxV43D316tYuhfS4VE1MqxVY48gu8TW6V2s2vpump": {
-    "mint": "3o4BxV43D316tYuhfS4VE1MqxVY48gu8TW6V2s2vpump",
-    "name": "Infinite Mommy Glitch",
-    "symbol": "IMG",
-    "market_cap": 17238.5485031592,
-    "total_bundles": 15,
-    "holding_percentage": 7.6261011561409004,
-    "price_changes": {
-      "5m": 60.84,
-      "1h": 327.0,
-      "6h": 327.0,
-      "24h": 327.0
-    },
-    "volumes": {
-      "5m": 5601.1,
-      "1h": 43852.59,
-      "6h": 43852.59,
-      "24h": 43852.59
-    },
-    "ath": null,
-    "total_holders": 104,
-    "trades_1h": {
-      "total": 1084,
-      "buys": 581,
-      "sells": 503
-    },
-    "makers_1h": 291,
-    "makers_24h": 291,
-    "timestamp": 1742122055.480361,
-    "initial_price": 0,
-    "initial_market_cap": 17238.5485031592,
-    "prediction_score": 7,
-    "prediction_confidence": 70.0,
-    "prediction_result": "Likely Profitable",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "GJm6JiEURxjwAuLbugsB36ZBdDf9yZrRs4DRwaUcpump": {
-    "mint": "GJm6JiEURxjwAuLbugsB36ZBdDf9yZrRs4DRwaUcpump",
-    "name": "9/11 flash tragedy",
-    "symbol": "9/11ft",
-    "market_cap": 20431.5238110132,
-    "total_bundles": 2,
-    "holding_percentage": 2.9822058920042998,
-    "price_changes": {
-      "5m": 32.34,
-      "1h": 216.0,
-      "6h": 406.0,
-      "24h": 406.0
-    },
-    "volumes": {
-      "5m": 3570.97,
-      "1h": 38107.06,
-      "6h": 41441.2,
-      "24h": 41441.2
-    },
-    "ath": 23001,
-    "total_holders": 115,
-    "trades_1h": {
-      "total": 2932,
-      "buys": 1535,
-      "sells": 1397
-    },
-    "makers_1h": 157,
-    "makers_24h": 172,
-    "timestamp": 1742122886.555216,
-    "initial_price": 0,
-    "initial_market_cap": 20431.5238110132,
-    "prediction_score": 9.489419999999999,
-    "prediction_confidence": 94.8942,
-    "prediction_result": "Likely Profitable",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "6GUQFcPwr8Ee6HpH5A9sywmiB9HAEksq6aNYrHwSpump": {
-    "mint": "6GUQFcPwr8Ee6HpH5A9sywmiB9HAEksq6aNYrHwSpump",
-    "name": "Big Cracka",
-    "symbol": "BIG",
-    "market_cap": 9340.3008544284,
-    "total_bundles": 2,
-    "holding_percentage": 2.0902812764088,
-    "price_changes": {
-      "5m": 34.86,
-      "1h": 149.0,
-      "6h": 149.0,
-      "24h": 149.0
-    },
-    "volumes": {
-      "5m": 1877.15,
-      "1h": 18782.69,
-      "6h": 18782.69,
-      "24h": 18782.69
-    },
-    "ath": null,
-    "total_holders": 52,
-    "trades_1h": {
-      "total": 1101,
-      "buys": 583,
-      "sells": 518
-    },
-    "makers_1h": 108,
-    "makers_24h": 108,
-    "timestamp": 1742122290.350991,
-    "initial_price": 0,
-    "initial_market_cap": 9340.3008544284,
-    "prediction_score": 4,
-    "prediction_confidence": 40.0,
-    "prediction_result": "High Risk",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "6LS2zRsef4L8N4iidrDCbfC98nudoAViUY4n8wBRpump": {
-    "mint": "6LS2zRsef4L8N4iidrDCbfC98nudoAViUY4n8wBRpump",
-    "name": "flying snail",
-    "symbol": "snail",
-    "market_cap": 15270.977615853599,
-    "total_bundles": 47,
-    "holding_percentage": 12.7544769685324,
-    "price_changes": {
-      "5m": 32.39,
-      "1h": 261.0,
-      "6h": 261.0,
-      "24h": 261.0
-    },
-    "volumes": {
-      "5m": 5341.25,
-      "1h": 91823.8,
-      "6h": 91823.8,
-      "24h": 91823.8
-    },
-    "ath": null,
-    "total_holders": 153,
-    "trades_1h": {
-      "total": 2265,
-      "buys": 1216,
-      "sells": 1049
-    },
-    "makers_1h": 531,
-    "makers_24h": 531,
-    "timestamp": 1742122389.471046,
-    "initial_price": 0,
-    "initial_market_cap": 15270.977615853599,
-    "prediction_score": 9.44964,
-    "prediction_confidence": 94.49640000000001,
-    "prediction_result": "Likely Profitable",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "7JNwWQF39AshQEb3SFuPNz4Qe4Camm3zpXg1b6ZYpump": {
-    "mint": "7JNwWQF39AshQEb3SFuPNz4Qe4Camm3zpXg1b6ZYpump",
-    "name": "wizzo",
-    "symbol": "wizzo",
-    "market_cap": 10676.840984420398,
-    "total_bundles": 32,
-    "holding_percentage": 27.5557076279352,
-    "price_changes": {
-      "5m": 79.95,
-      "1h": 277.0,
-      "6h": 277.0,
-      "24h": 277.0
-    },
-    "volumes": {
-      "5m": 19261.74,
-      "1h": 42710.52,
-      "6h": 42710.52,
-      "24h": 42710.52
-    },
-    "ath": 13915,
-    "total_holders": 106,
-    "trades_1h": {
-      "total": 800,
-      "buys": 452,
-      "sells": 348
-    },
-    "makers_1h": 300,
-    "makers_24h": 300,
-    "timestamp": 1742122466.679118,
-    "initial_price": 0,
-    "initial_market_cap": 10676.840984420398,
-    "prediction_score": 6,
-    "prediction_confidence": 60.0,
-    "prediction_result": "Likely Profitable",
-    "ath_24h": null,
-    "ath_market_cap_24h": null,
-    "ath_timestamp_24h": null
-  },
-  "HG5Syfaq5wfTBojq9tcA3wwnSe3S79fqG2RhL3fgpump": {
-    "mint": "HG5Syfaq5wfTBojq9tcA3wwnSe3S79fqG2RhL3fgpump",
-    "name": "Eye Dog",
-    "symbol": "\ud83d\udc41\ufe0f",
-    "market_cap": 9606.479251146959,
-    "total_bundles": 4,
-    "holding_percentage": 7.1487705259715995,
-    "price_changes": {
-      "5m": 101.0,
-      "1h": 101.0,
-      "6h": 101.0,
-      "24h": 101.0
-    },
-    "volumes": {
-      "5m": 9241.57,
-      "1h": 9241.57,
-      "6h": 9241.57,
-      "24h": 9241.57
-    },
-    "ath": 8481,
-    "total_holders": 55,
-    "trades_1h": {
-      "total": 188,
-      "buys": 117,
-      "sells": 71
-    },
-    "makers_1h": 96,
-    "makers_24h": 96,
-    "timestamp": 1742122547.173752,
-    "initial_price": 0,
-    "initial_market_cap": 9606.479251146959,
-    "prediction_score": 4.29016,
-    "prediction_confidence": 42.9016,
     "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
