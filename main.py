@@ -634,14 +634,19 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                     pass
         ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
 
-    # Check DEX paid status (optional additional info)
+    # Check DEX paid status
     try:
         dex_response = requests.get(
             f"https://api.dexscreener.com/orders/v1/solana/{mint_address}",
+            headers={'accept': 'application/json'},
             timeout=5)
-        dex_data_orders = dex_response.json()
-        dex_paid = dex_data_orders.get("status") == "approved" if dex_data_orders else False
-    except Exception:
+        if dex_response.status_code == 200:
+            dex_data_orders = dex_response.json()
+            dex_paid = dex_data_orders.get("status") == "approved"
+        else:
+            dex_paid = False
+    except Exception as e:
+        logging.error(f"Error checking DEX status: {e}")
         dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
