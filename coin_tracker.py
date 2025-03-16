@@ -245,10 +245,10 @@ class CoinTracker:
             insights.append(f"Current predictions: {profitable_ratio:.1f}% likely profitable, {100-profitable_ratio:.1f}% high risk")
 
         return {
-            "status": "Learning from verified coins",
-            "total_verified": len(verified_coins),
-            "profitable_count": len(profitable),
-            "unprofitable_count": len(unprofitable),
+            "status": "Learning from predictions",
+            "total_coins": len(self.tracked_coins),
+            "profitable_predictions": len(profitable_predictions),
+            "high_risk_predictions": len(high_risk_predictions),
             "insights": insights
         }
 
