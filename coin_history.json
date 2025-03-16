@@ -6230,5 +6230,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "6LS2zRsef4L8N4iidrDCbfC98nudoAViUY4n8wBRpump": {
+    "mint": "6LS2zRsef4L8N4iidrDCbfC98nudoAViUY4n8wBRpump",
+    "name": "flying snail",
+    "symbol": "snail",
+    "market_cap": 15270.977615853599,
+    "total_bundles": 47,
+    "holding_percentage": 12.7544769685324,
+    "price_changes": {
+      "5m": 32.39,
+      "1h": 261.0,
+      "6h": 261.0,
+      "24h": 261.0
+    },
+    "volumes": {
+      "5m": 5341.25,
+      "1h": 91823.8,
+      "6h": 91823.8,
+      "24h": 91823.8
+    },
+    "ath": null,
+    "total_holders": 153,
+    "trades_1h": {
+      "total": 2265,
+      "buys": 1216,
+      "sells": 1049
+    },
+    "makers_1h": 531,
+    "makers_24h": 531,
+    "timestamp": 1742122389.471046,
+    "initial_price": 0,
+    "initial_market_cap": 15270.977615853599,
+    "prediction_score": 9.44964,
+    "prediction_confidence": 94.49640000000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
