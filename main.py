@@ -174,9 +174,12 @@ def get_dex_data(token_mint):
         pair_address = None
         if moralis_response.ok:
             pair_data = moralis_response.json()
+            logging.info(f"Moralis API response: {pair_data}")
             if isinstance(pair_data, list) and len(pair_data) > 0:
                 pair_address = pair_data[0].get("pairAddress")
-                logging.info(f"Found pair address: {pair_address}")
+                logging.info(f"Found pair address for {token_mint}: {pair_address}")
+            else:
+                logging.info(f"No pair address found for {token_mint}")
 
         # OHLCV data from Moralis (ATH estimation)
         current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
