@@ -29,6 +29,8 @@ class CoinData:
     ath_market_cap_24h: Optional[float] = None
     ath_timestamp_24h: Optional[float] = None
 
+from test_train import config
+
 class CoinTracker:
     def __init__(self):
         import os
