@@ -142,7 +142,7 @@ class CoinTracker:
         }
 
     def track_coin(self, coin, holders_info, dex_data, trench_data):
-        prediction = self.predict_profitability(holders_info, dex_data, trench_data)
+        prediction = self.predict_profitability(coin, holders_info, dex_data, trench_data)
         coin_data = CoinData(
             mint=coin["mint"],
             name=coin["name"],
