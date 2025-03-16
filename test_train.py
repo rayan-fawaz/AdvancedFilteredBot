@@ -1,14 +1,47 @@
 import requests
 import json
+from datetime import datetime
 
-# Training data format - add your coin data here with adjusted confidence metrics
+# Enhanced training data with comprehensive metrics
 training_data = [
-    {"symbol": "RON", "multiplier": 85.5},    # Increased due to consistent performance
-    {"symbol": "CHIP", "multiplier": 82.3},   # Adjusted based on market data
-    {"symbol": "MANUS", "multiplier": 75.1},  # Strong fundamentals
-    {"symbol": "SS", "multiplier": 45.3},     # Moderate performance
-    {"symbol": "CROAKCAT", "multiplier": 42.1}, # Adjusted for stability
-    {"symbol": "PEPEPEPEPE", "multiplier": 25.6}, # Meta trend adjustment
+    {"symbol": "FLASH", "multiplier": 92.5, "metrics": {
+        "volume_threshold": 50000,
+        "holders_min": 200,
+        "price_change_min": 100,
+        "trades_1h_min": 1000,
+        "meta_boost": 1.5
+    }},
+    {"symbol": "GIGA", "multiplier": 85.2, "metrics": {
+        "volume_threshold": 45000,
+        "holders_min": 150,
+        "price_change_min": 80,
+        "trades_1h_min": 800,
+        "meta_boost": 1.3
+    }},
+    {"symbol": "RON", "multiplier": 82.1, "metrics": {
+        "volume_threshold": 40000,
+        "holders_min": 120,
+        "price_change_min": 75,
+        "trades_1h_min": 700,
+        "meta_boost": 1.2
+    }},
+    {"symbol": "DOPE", "multiplier": 78.4, "metrics": {
+        "volume_threshold": 35000,
+        "holders_min": 100,
+        "price_change_min": 65,
+        "trades_1h_min": 600,
+        "meta_boost": 1.1
+    }}
+]
+
+# Training configuration
+config = {
+    "volume_weight": 0.35,
+    "holder_weight": 0.25,
+    "price_momentum_weight": 0.25,
+    "activity_weight": 0.15,
+    "confidence_threshold": 65.0
+}
     {"symbol": "GOKU", "multiplier": 22.4},   # Anime theme performance
     {"symbol": "FA", "multiplier": 20.3},     # Balanced metrics
     {"symbol": "DOPE", "multiplier": 18.5},   # Community engagement

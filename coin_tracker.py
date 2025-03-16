@@ -70,9 +70,33 @@ class CoinTracker:
             json.dump(self.tracked_coins, f, indent=2)
             
     def predict_profitability(self, coin, holders_info, dex_data, trench_data):
-        """Predict if a coin will be profitable based on initial metrics and meta scores"""
+        """Enhanced prediction system with weighted metrics and historical patterns"""
         score = 0
+        confidence = 0
         reasons = []
+        
+        # Volume analysis with progressive thresholds
+        volume_score = min(100, (dex_data['volume_1h'] / 50000) * 100)
+        score += volume_score * 0.35
+        
+        # Holder metrics with scaling factor
+        holder_score = min(100, (holders_info['total_holders'] / 200) * 100)
+        score += holder_score * 0.25
+        
+        # Price momentum analysis
+        momentum_score = min(100, (dex_data['price_change_1h'] / 100) * 100)
+        score += momentum_score * 0.25
+        
+        # Trading activity score
+        activity_score = min(100, (holders_info['trade_1h'] / 1000) * 100)
+        score += activity_score * 0.15
+        
+        # Meta score boost
+        meta_boost = 0
+        coin_text = f"{coin['name']} {coin['symbol']}".lower()
+        for meta_word, meta_score in self.meta_scores.items():
+            if meta_word in coin_text:
+                meta_boost += meta_score * 2
         
         # Check if coin name/symbol contains meta words
         coin_text = f"{coin['name']} {coin['symbol']}".lower()
