@@ -5931,36 +5931,36 @@
     "mint": "52Sid25GFAg5f2HnehzhXsdoWA4G6btHPR1atc4Bpump",
     "name": "just a flash guy",
     "symbol": "FLASHGUY",
-    "market_cap": 7236.397799312849,
-    "total_bundles": 1,
-    "holding_percentage": 0.4757940236798,
+    "market_cap": 12043.167956920941,
+    "total_bundles": 8,
+    "holding_percentage": 3.399059210925,
     "price_changes": {
-      "5m": 46.85,
-      "1h": 70.6,
-      "6h": 70.6,
-      "24h": 70.6
+      "5m": 33.49,
+      "1h": 70.19,
+      "6h": 202.0,
+      "24h": 202.0
     },
     "volumes": {
-      "5m": 3403.3,
-      "1h": 4657.27,
-      "6h": 4657.27,
-      "24h": 4657.27
+      "5m": 6024.35,
+      "1h": 52707.05,
+      "6h": 59632.47,
+      "24h": 59632.47
     },
     "ath": null,
-    "total_holders": 31,
+    "total_holders": 128,
     "trades_1h": {
-      "total": 292,
-      "buys": 159,
-      "sells": 133
+      "total": 3748,
+      "buys": 1940,
+      "sells": 1808
     },
-    "makers_1h": 44,
-    "makers_24h": 44,
-    "timestamp": 1742117306.163647,
+    "makers_1h": 280,
+    "makers_24h": 305,
+    "timestamp": 1742121124.225424,
     "initial_price": 0,
-    "initial_market_cap": 7236.397799312849,
-    "prediction_score": 3.50396,
-    "prediction_confidence": 35.03960000000001,
-    "prediction_result": "High Risk",
+    "initial_market_cap": 12043.167956920941,
+    "prediction_score": 8.50734,
+    "prediction_confidence": 85.07339999999999,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -6113,6 +6113,44 @@
     "prediction_score": 3.50396,
     "prediction_confidence": 35.03960000000001,
     "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3o4BxV43D316tYuhfS4VE1MqxVY48gu8TW6V2s2vpump": {
+    "mint": "3o4BxV43D316tYuhfS4VE1MqxVY48gu8TW6V2s2vpump",
+    "name": "Infinite Mommy Glitch",
+    "symbol": "IMG",
+    "market_cap": 23227.743508754622,
+    "total_bundles": 9,
+    "holding_percentage": 13.529991117791099,
+    "price_changes": {
+      "5m": 30.04,
+      "1h": 457.0,
+      "6h": 457.0,
+      "24h": 457.0
+    },
+    "volumes": {
+      "5m": 7817.16,
+      "1h": 23707.84,
+      "6h": 23707.84,
+      "24h": 23707.84
+    },
+    "ath": null,
+    "total_holders": 132,
+    "trades_1h": {
+      "total": 399,
+      "buys": 252,
+      "sells": 147
+    },
+    "makers_1h": 209,
+    "makers_24h": 209,
+    "timestamp": 1742121097.857438,
+    "initial_price": 0,
+    "initial_market_cap": 23227.743508754622,
+    "prediction_score": 6,
+    "prediction_confidence": 60.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
