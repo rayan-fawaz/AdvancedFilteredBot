@@ -36,16 +36,12 @@ training_data = [
 
 # Training configuration
 config = {
-    "volume_weight": 0.25,          # Reduced weight for high volume
-    "holder_weight": 0.30,          # Increased weight for holder count
-    "price_momentum_weight": 0.20,  # Reduced momentum importance
-    "activity_weight": 0.25,        # Increased activity weight
-    "confidence_threshold": 80.0,   # Higher threshold for confidence
-    "max_confidence": 90.0,         # Lower max confidence cap
-    "min_confidence": 0.0,          # Minimum confidence floor
-    "volume_min": 10000,           # Minimum volume threshold
-    "holders_min": 50,             # Minimum holders threshold
-    "trades_min": 100             # Minimum trades threshold
+    "volume_weight": 0.35,
+    "holder_weight": 0.25,
+    "price_momentum_weight": 0.25,
+    "activity_weight": 0.15,
+    "confidence_threshold": 65.0,  # Maximum confidence is 100%
+    "max_confidence": 100.0
 }
     {"symbol": "GOKU", "multiplier": 22.4},   # Anime theme performance
     {"symbol": "FA", "multiplier": 20.3},     # Balanced metrics

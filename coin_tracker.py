@@ -157,26 +157,9 @@ class CoinTracker:
         else:
             explanation = "Concerning factors: " + ", ".join(r for r in reasons if r.startswith("Low") or r.startswith("Weak") or r.startswith("Few"))
 
-        # Normalize score to ensure it's between 0-100
-        normalized_score = max(0, min(100, (score / 12) * 100))
-        
-        # Calculate confidence based on all metrics meeting minimum thresholds
-        confidence = normalized_score
-        
-        # Apply penalties for not meeting minimum thresholds
-        if dex_data['volume_1h'] < config['volume_min']:
-            confidence *= 0.7
-        if holders_info['total_holders'] < config['holders_min']:
-            confidence *= 0.7
-        if holders_info['trade_1h'] < config['trades_min']:
-            confidence *= 0.7
-            
-        # Ensure final confidence is between 0-100
-        final_confidence = max(0, min(90, confidence))
-        
         return {
             'score': score,
-            'confidence': final_confidence,
+            'confidence': min(100, (score / 10) * 100),  # Convert to percentage, capped at 100%
             'prediction': result,
             'explanation': explanation
         }
