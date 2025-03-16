@@ -2017,36 +2017,36 @@
     "mint": "7i7GhF3SUvZRPC8c9ss8ugDzKJ3LsiQfBNsj8RD1ZKf2",
     "name": "ronald",
     "symbol": "ronald",
-    "market_cap": 17334.7771553342,
-    "total_bundles": 7,
-    "holding_percentage": 5.4531232937088,
+    "market_cap": 13444.288280271172,
+    "total_bundles": 13,
+    "holding_percentage": 10.3224145784684,
     "price_changes": {
-      "5m": 20.34,
-      "1h": 304.0,
-      "6h": 304.0,
-      "24h": 304.0
+      "5m": 75.48,
+      "1h": 37.08,
+      "6h": 270.0,
+      "24h": 270.0
     },
     "volumes": {
-      "5m": 7318.97,
-      "1h": 36743.05,
-      "6h": 36743.05,
-      "24h": 36743.05
+      "5m": 6098.34,
+      "1h": 33072.65,
+      "6h": 105030.38,
+      "24h": 105030.38
     },
     "ath": null,
-    "total_holders": 91,
+    "total_holders": 116,
     "trades_1h": {
-      "total": 1673,
-      "buys": 898,
-      "sells": 775
+      "total": 1533,
+      "buys": 799,
+      "sells": 734
     },
-    "makers_1h": 188,
-    "makers_24h": 188,
-    "timestamp": 1742082724.287109,
+    "makers_1h": 177,
+    "makers_24h": 423,
+    "timestamp": 1742088678.311358,
     "initial_price": 0,
-    "initial_market_cap": 17334.7771553342,
-    "prediction_score": 6,
-    "prediction_confidence": 60.0,
-    "prediction_result": "Likely Profitable",
+    "initial_market_cap": 13444.288280271172,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
@@ -2427,6 +2427,386 @@
     "prediction_score": 6,
     "prediction_confidence": 60.0,
     "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "GBMohdLzwnr1i767kz1zfb1v5L6BrTiCShqeFrf7pump": {
+    "mint": "GBMohdLzwnr1i767kz1zfb1v5L6BrTiCShqeFrf7pump",
+    "name": "This Will Bwond",
+    "symbol": "BWOND",
+    "market_cap": 8972.19522899056,
+    "total_bundles": 4,
+    "holding_percentage": 8.5221266620687,
+    "price_changes": {
+      "5m": -1.48,
+      "1h": 121.0,
+      "6h": 121.0,
+      "24h": 121.0
+    },
+    "volumes": {
+      "5m": 1030.48,
+      "1h": 10606.89,
+      "6h": 10606.89,
+      "24h": 10606.89
+    },
+    "ath": null,
+    "total_holders": 54,
+    "trades_1h": {
+      "total": 818,
+      "buys": 442,
+      "sells": 376
+    },
+    "makers_1h": 106,
+    "makers_24h": 106,
+    "timestamp": 1742088265.537361,
+    "initial_price": 0,
+    "initial_market_cap": 8972.19522899056,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "EQMc9EUb8QYBoNZ9se2R2vuf4gUFHH3EwPc9dx5mpump": {
+    "mint": "EQMc9EUb8QYBoNZ9se2R2vuf4gUFHH3EwPc9dx5mpump",
+    "name": "No",
+    "symbol": "No",
+    "market_cap": 8717.0798884253,
+    "total_bundles": 3,
+    "holding_percentage": 7.975779441735301,
+    "price_changes": {
+      "5m": 30.77,
+      "1h": 115.0,
+      "6h": 115.0,
+      "24h": 115.0
+    },
+    "volumes": {
+      "5m": 8204.25,
+      "1h": 11933.37,
+      "6h": 11933.37,
+      "24h": 11933.37
+    },
+    "ath": null,
+    "total_holders": 37,
+    "trades_1h": {
+      "total": 202,
+      "buys": 118,
+      "sells": 84
+    },
+    "makers_1h": 78,
+    "makers_24h": 78,
+    "timestamp": 1742088283.166653,
+    "initial_price": 0,
+    "initial_market_cap": 8717.0798884253,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "4f7bw1X2URPZY4qkWL2XwHZG7SbqsVFfqzDLEbsepump": {
+    "mint": "4f7bw1X2URPZY4qkWL2XwHZG7SbqsVFfqzDLEbsepump",
+    "name": "Pepesito",
+    "symbol": "Pepesito",
+    "market_cap": 11565.28444658636,
+    "total_bundles": 4,
+    "holding_percentage": 2.5390772960385,
+    "price_changes": {
+      "5m": 6.36,
+      "1h": 185.0,
+      "6h": 185.0,
+      "24h": 185.0
+    },
+    "volumes": {
+      "5m": 1641.28,
+      "1h": 24232.92,
+      "6h": 24232.92,
+      "24h": 24232.92
+    },
+    "ath": null,
+    "total_holders": 93,
+    "trades_1h": {
+      "total": 1292,
+      "buys": 695,
+      "sells": 597
+    },
+    "makers_1h": 186,
+    "makers_24h": 186,
+    "timestamp": 1742088289.727232,
+    "initial_price": 0,
+    "initial_market_cap": 11565.28444658636,
+    "prediction_score": 5,
+    "prediction_confidence": 50.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "A8kQzKqCTNDH464WiViYxGqzUXJfwBfugTdAnPczpump": {
+    "mint": "A8kQzKqCTNDH464WiViYxGqzUXJfwBfugTdAnPczpump",
+    "name": "CoinMarketCanine",
+    "symbol": "\u02da\ud83d\udc3e\u02d6\u00b0",
+    "market_cap": 8163.631019318041,
+    "total_bundles": 2,
+    "holding_percentage": 2.5039423059952,
+    "price_changes": {
+      "5m": 107.0,
+      "1h": 107.0,
+      "6h": 107.0,
+      "24h": 107.0
+    },
+    "volumes": {
+      "5m": 12734.97,
+      "1h": 12734.97,
+      "6h": 12734.97,
+      "24h": 12734.97
+    },
+    "ath": null,
+    "total_holders": 32,
+    "trades_1h": {
+      "total": 180,
+      "buys": 107,
+      "sells": 73
+    },
+    "makers_1h": 70,
+    "makers_24h": 70,
+    "timestamp": 1742088296.84292,
+    "initial_price": 0,
+    "initial_market_cap": 8163.631019318041,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "4dJjVnUf7p4HpytqAAcse2JdRKatrUi4Xdizu1hwpump": {
+    "mint": "4dJjVnUf7p4HpytqAAcse2JdRKatrUi4Xdizu1hwpump",
+    "name": "Charlie Griffon",
+    "symbol": "GRIFFON",
+    "market_cap": 17440.51428169918,
+    "total_bundles": 3,
+    "holding_percentage": 4.0756129788833,
+    "price_changes": {
+      "5m": 14.39,
+      "1h": 343.0,
+      "6h": 343.0,
+      "24h": 343.0
+    },
+    "volumes": {
+      "5m": 775.04,
+      "1h": 10674.13,
+      "6h": 10674.13,
+      "24h": 10674.13
+    },
+    "ath": null,
+    "total_holders": 47,
+    "trades_1h": {
+      "total": 183,
+      "buys": 116,
+      "sells": 67
+    },
+    "makers_1h": 104,
+    "makers_24h": 104,
+    "timestamp": 1742088303.409056,
+    "initial_price": 0,
+    "initial_market_cap": 17440.51428169918,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7RSWnkKkWzmcHbQo7bxMqHhNYNhjAFMbLScw7fUopump": {
+    "mint": "7RSWnkKkWzmcHbQo7bxMqHhNYNhjAFMbLScw7fUopump",
+    "name": "WHY",
+    "symbol": "WHY",
+    "market_cap": 15574.892022463371,
+    "total_bundles": 40,
+    "holding_percentage": 12.8978343364487,
+    "price_changes": {
+      "5m": -2.37,
+      "1h": 240.0,
+      "6h": 240.0,
+      "24h": 240.0
+    },
+    "volumes": {
+      "5m": 10304.83,
+      "1h": 127740.18,
+      "6h": 127740.18,
+      "24h": 127740.18
+    },
+    "ath": null,
+    "total_holders": 245,
+    "trades_1h": {
+      "total": 2310,
+      "buys": 1316,
+      "sells": 994
+    },
+    "makers_1h": 756,
+    "makers_24h": 756,
+    "timestamp": 1742088371.685848,
+    "initial_price": 0,
+    "initial_market_cap": 15574.892022463371,
+    "prediction_score": 10,
+    "prediction_confidence": 100.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "A5CKZ4R3SMNVYNASfFLfX7wq8hcpBabTHvd5DNTkpump": {
+    "mint": "A5CKZ4R3SMNVYNASfFLfX7wq8hcpBabTHvd5DNTkpump",
+    "name": "LIL YZY",
+    "symbol": "LILYZY",
+    "market_cap": 18347.17970304534,
+    "total_bundles": 15,
+    "holding_percentage": 11.848931697886101,
+    "price_changes": {
+      "5m": -32.65,
+      "1h": 359.0,
+      "6h": 359.0,
+      "24h": 359.0
+    },
+    "volumes": {
+      "5m": 5896.26,
+      "1h": 47194.82,
+      "6h": 47194.82,
+      "24h": 47194.82
+    },
+    "ath": null,
+    "total_holders": 175,
+    "trades_1h": {
+      "total": 972,
+      "buys": 572,
+      "sells": 400
+    },
+    "makers_1h": 371,
+    "makers_24h": 371,
+    "timestamp": 1742088412.569185,
+    "initial_price": 0,
+    "initial_market_cap": 18347.17970304534,
+    "prediction_score": 6,
+    "prediction_confidence": 60.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "GjtQ4DEXUx1WVSn7YzWt8em7vZrSwYk7ZM5TUjdVpump": {
+    "mint": "GjtQ4DEXUx1WVSn7YzWt8em7vZrSwYk7ZM5TUjdVpump",
+    "name": "ALLGOOD",
+    "symbol": "ALLGOOD",
+    "market_cap": 9949.501942528701,
+    "total_bundles": 0,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 18.05,
+      "1h": 134.0,
+      "6h": 134.0,
+      "24h": 134.0
+    },
+    "volumes": {
+      "5m": 3121.85,
+      "1h": 9389.14,
+      "6h": 9389.14,
+      "24h": 9389.14
+    },
+    "ath": null,
+    "total_holders": 62,
+    "trades_1h": {
+      "total": 450,
+      "buys": 256,
+      "sells": 194
+    },
+    "makers_1h": 98,
+    "makers_24h": 98,
+    "timestamp": 1742088816.35602,
+    "initial_price": 0,
+    "initial_market_cap": 9949.501942528701,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "9X7b66DhRTfnwYrtH6oh7dp1vP9B4FfbSkMf8cXPpump": {
+    "mint": "9X7b66DhRTfnwYrtH6oh7dp1vP9B4FfbSkMf8cXPpump",
+    "name": "pwease shitoshi stop farm us",
+    "symbol": "switoswi",
+    "market_cap": 7005.7715246324005,
+    "total_bundles": 4,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 40.24,
+      "1h": 70.13,
+      "6h": 70.13,
+      "24h": 70.13
+    },
+    "volumes": {
+      "5m": 1992.15,
+      "1h": 11996.84,
+      "6h": 11996.84,
+      "24h": 11996.84
+    },
+    "ath": null,
+    "total_holders": 38,
+    "trades_1h": {
+      "total": 1292,
+      "buys": 673,
+      "sells": 619
+    },
+    "makers_1h": 80,
+    "makers_24h": 80,
+    "timestamp": 1742088817.627459,
+    "initial_price": 0,
+    "initial_market_cap": 7005.7715246324005,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "CQsDYjzBByetFB1zp2s3K1xHWr8ikhA3Z29RGL46pump": {
+    "mint": "CQsDYjzBByetFB1zp2s3K1xHWr8ikhA3Z29RGL46pump",
+    "name": "wow",
+    "symbol": "wow",
+    "market_cap": 8577.617739380401,
+    "total_bundles": 3,
+    "holding_percentage": 4.3102117166061005,
+    "price_changes": {
+      "5m": 79.39,
+      "1h": 113.0,
+      "6h": 113.0,
+      "24h": 113.0
+    },
+    "volumes": {
+      "5m": 5999.74,
+      "1h": 6884.78,
+      "6h": 6884.78,
+      "24h": 6884.78
+    },
+    "ath": null,
+    "total_holders": 36,
+    "trades_1h": {
+      "total": 191,
+      "buys": 112,
+      "sells": 79
+    },
+    "makers_1h": 73,
+    "makers_24h": 73,
+    "timestamp": 1742088819.569903,
+    "initial_price": 0,
+    "initial_market_cap": 8577.617739380401,
+    "prediction_score": 3,
+    "prediction_confidence": 30.0,
+    "prediction_result": "High Risk",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
