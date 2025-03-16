@@ -543,7 +543,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             active_snipers = [s for s in trench_data['snipers'] if s['tokens'] > 0]
             total_snipers = len(active_snipers)
             total_tokens = sum(sniper['tokens'] for sniper in active_snipers)
-            total_supply = 1_000_000_000  # 1 billion total supply
+            total_supply = 10_000_000_000_000_000  # 10 quadrillion total supply
             percentage = (total_tokens / total_supply) * 100
             total_sol = sum(sniper['sol'] for sniper in active_snipers)
             sniper_text = f"├─ Active Snipers: {total_snipers}\n├─ Supply Sniped: {percentage:.2f}%\n└─ Total Value: ${total_sol:.2f}\n"
