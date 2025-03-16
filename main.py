@@ -179,6 +179,7 @@ def get_dex_data(token_mint):
                 pairs = pair_data["pairs"]
                 if pairs and isinstance(pairs, list) and len(pairs) > 0:
                     pair_address = pairs[0].get("pairAddress")
+                    logging.info(f"Found pair address: {pair_address}")
 
         # OHLCV data from Moralis (ATH estimation)
         current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
@@ -681,7 +682,7 @@ async def scan_coins():
             if market_cap < MIN_MARKET_CAP or market_cap > MAX_MARKET_CAP:
                 continue
 
-            # Get holders data and apply filters
+            # Get holders dataand apply filters
             holders_info = fetch_token_holders(mint)
             if not holders_info:
                 continue
