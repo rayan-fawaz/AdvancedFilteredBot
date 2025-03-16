@@ -5703,36 +5703,150 @@
     "mint": "5HqG4SF8B1D6TW64Hi7SjW3cb86qwJ6qbLkEzUPgpump",
     "name": "FLASH COIN",
     "symbol": "FLASHCOIN",
-    "market_cap": 8990.827715568332,
+    "market_cap": 10457.781284315928,
+    "total_bundles": 13,
+    "holding_percentage": 6.5362790591527995,
+    "price_changes": {
+      "5m": 38.21,
+      "1h": 163.0,
+      "6h": 163.0,
+      "24h": 163.0
+    },
+    "volumes": {
+      "5m": 2807.96,
+      "1h": 34156.17,
+      "6h": 34156.17,
+      "24h": 34156.17
+    },
+    "ath": null,
+    "total_holders": 75,
+    "trades_1h": {
+      "total": 2326,
+      "buys": 1201,
+      "sells": 1125
+    },
+    "makers_1h": 195,
+    "makers_24h": 195,
+    "timestamp": 1742114712.391497,
+    "initial_price": 0,
+    "initial_market_cap": 10457.781284315928,
+    "prediction_score": 7.3639399999999995,
+    "prediction_confidence": 73.6394,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3NL92NQfmU5xU5bfSXAY71Lw2hHYJuEBeS8L8opGpump": {
+    "mint": "3NL92NQfmU5xU5bfSXAY71Lw2hHYJuEBeS8L8opGpump",
+    "name": "Flwight Two Pweace",
+    "symbol": "FTP",
+    "market_cap": 10068.71532156303,
     "total_bundles": 1,
     "holding_percentage": 0.0,
     "price_changes": {
-      "5m": 91.45,
-      "1h": 104.0,
-      "6h": 104.0,
-      "24h": 104.0
+      "5m": 36.37,
+      "1h": 162.0,
+      "6h": 162.0,
+      "24h": 162.0
     },
     "volumes": {
-      "5m": 3544.4,
-      "1h": 4619.3,
-      "6h": 4619.3,
-      "24h": 4619.3
+      "5m": 2371.48,
+      "1h": 13037.53,
+      "6h": 13037.53,
+      "24h": 13037.53
     },
     "ath": null,
-    "total_holders": 28,
+    "total_holders": 37,
     "trades_1h": {
-      "total": 264,
-      "buys": 146,
-      "sells": 118
+      "total": 1437,
+      "buys": 751,
+      "sells": 686
     },
-    "makers_1h": 36,
-    "makers_24h": 36,
-    "timestamp": 1742113169.686572,
+    "makers_1h": 72,
+    "makers_24h": 72,
+    "timestamp": 1742113416.058443,
     "initial_price": 0,
-    "initial_market_cap": 8990.827715568332,
-    "prediction_score": 4.50646,
-    "prediction_confidence": 45.0646,
+    "initial_market_cap": 10068.71532156303,
+    "prediction_score": 4,
+    "prediction_confidence": 40.0,
     "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "69PQMrLth34ASrJN2CZEJXJdSX4odm9km48et2THpump": {
+    "mint": "69PQMrLth34ASrJN2CZEJXJdSX4odm9km48et2THpump",
+    "name": "Elon Gang Signs",
+    "symbol": "ELONGANG",
+    "market_cap": 10359.1405726185,
+    "total_bundles": 4,
+    "holding_percentage": 3.7425925575809003,
+    "price_changes": {
+      "5m": 52.35,
+      "1h": 177.0,
+      "6h": 177.0,
+      "24h": 177.0
+    },
+    "volumes": {
+      "5m": 1596.74,
+      "1h": 12534.44,
+      "6h": 12534.44,
+      "24h": 12534.44
+    },
+    "ath": null,
+    "total_holders": 52,
+    "trades_1h": {
+      "total": 755,
+      "buys": 402,
+      "sells": 353
+    },
+    "makers_1h": 115,
+    "makers_24h": 115,
+    "timestamp": 1742113764.053485,
+    "initial_price": 0,
+    "initial_market_cap": 10359.1405726185,
+    "prediction_score": 3.4284600000000003,
+    "prediction_confidence": 34.284600000000005,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "BMDrqqSWvJWFzjEYBPboq2KwVFH4KaTrVRQ7F7Kppump": {
+    "mint": "BMDrqqSWvJWFzjEYBPboq2KwVFH4KaTrVRQ7F7Kppump",
+    "name": "First Solana Tx",
+    "symbol": "BLOCK0",
+    "market_cap": 14937.56837899893,
+    "total_bundles": 20,
+    "holding_percentage": 1.3460508275449,
+    "price_changes": {
+      "5m": 40.54,
+      "1h": 277.0,
+      "6h": 277.0,
+      "24h": 277.0
+    },
+    "volumes": {
+      "5m": 9424.83,
+      "1h": 48661.21,
+      "6h": 48661.21,
+      "24h": 48661.21
+    },
+    "ath": null,
+    "total_holders": 148,
+    "trades_1h": {
+      "total": 858,
+      "buys": 529,
+      "sells": 329
+    },
+    "makers_1h": 333,
+    "makers_24h": 333,
+    "timestamp": 1742115704.935887,
+    "initial_price": 0,
+    "initial_market_cap": 14937.56837899893,
+    "prediction_score": 6,
+    "prediction_confidence": 60.0,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
