@@ -6192,5 +6192,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "FDHYkNAwMfeimLnHNvWwkxBZrcuQgedesEuXHnWCpump": {
+    "mint": "FDHYkNAwMfeimLnHNvWwkxBZrcuQgedesEuXHnWCpump",
+    "name": "vibing goose",
+    "symbol": "goose",
+    "market_cap": 21998.443848624458,
+    "total_bundles": 24,
+    "holding_percentage": 25.508237661553302,
+    "price_changes": {
+      "5m": 63.82,
+      "1h": 312.0,
+      "6h": 312.0,
+      "24h": 312.0
+    },
+    "volumes": {
+      "5m": 19255.41,
+      "1h": 55587.61,
+      "6h": 55587.61,
+      "24h": 55587.61
+    },
+    "ath": null,
+    "total_holders": 151,
+    "trades_1h": {
+      "total": 725,
+      "buys": 430,
+      "sells": 295
+    },
+    "makers_1h": 314,
+    "makers_24h": 314,
+    "timestamp": 1742120845.649972,
+    "initial_price": 0,
+    "initial_market_cap": 21998.443848624458,
+    "prediction_score": 7,
+    "prediction_confidence": 70.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
