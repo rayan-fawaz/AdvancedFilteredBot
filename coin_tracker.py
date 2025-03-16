@@ -164,11 +164,11 @@ class CoinTracker:
         confidence = normalized_score
         
         # Apply penalties for not meeting minimum thresholds
-        if dex_data['volume_1h'] < 10000:  # Minimum volume threshold
+        if dex_data['volume_1h'] < config['volume_min']:
             confidence *= 0.7
-        if holders_info['total_holders'] < 25:  # Minimum holders threshold
+        if holders_info['total_holders'] < config['holders_min']:
             confidence *= 0.7
-        if holders_info['trade_1h'] < 80:  # Minimum trades threshold
+        if holders_info['trade_1h'] < config['trades_min']:
             confidence *= 0.7
             
         # Ensure final confidence is between 0-100
