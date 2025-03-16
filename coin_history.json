@@ -4601,35 +4601,35 @@
     "mint": "8ANDUvr68a3YJ8krzoXgemQAY3y8NR6XVAL1XcrWpump",
     "name": "Pookie",
     "symbol": "DogWifGun",
-    "market_cap": 16791.7905344288,
+    "market_cap": 18045.33144585782,
     "total_bundles": 20,
-    "holding_percentage": 12.7284841097642,
+    "holding_percentage": 9.4282506299818,
     "price_changes": {
-      "5m": 37.15,
-      "1h": -35.29,
-      "6h": 290.0,
-      "24h": 290.0
+      "5m": 38.37,
+      "1h": -20.88,
+      "6h": 347.0,
+      "24h": 347.0
     },
     "volumes": {
-      "5m": 3402.45,
-      "1h": 49506.4,
-      "6h": 75911.52,
-      "24h": 75911.52
+      "5m": 2045.46,
+      "1h": 42097.94,
+      "6h": 86248.64,
+      "24h": 86248.64
     },
     "ath": null,
-    "total_holders": 149,
+    "total_holders": 158,
     "trades_1h": {
-      "total": 3399,
-      "buys": 1566,
-      "sells": 1833
+      "total": 3462,
+      "buys": 1476,
+      "sells": 1986
     },
-    "makers_1h": 318,
-    "makers_24h": 398,
-    "timestamp": 1742104649.006709,
+    "makers_1h": 280,
+    "makers_24h": 430,
+    "timestamp": 1742105607.736785,
     "initial_price": 0,
-    "initial_market_cap": 16791.7905344288,
-    "prediction_score": 6.759,
-    "prediction_confidence": 67.59,
+    "initial_market_cap": 18045.33144585782,
+    "prediction_score": 6.8358799999999995,
+    "prediction_confidence": 68.3588,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
@@ -4943,33 +4943,33 @@
     "mint": "Sg7oxJTtTvUnLkAZW43rX8E4MgP994Vm6fiDxh7pump",
     "name": "Thewolfcaresnotforthesheep",
     "symbol": "thewolf",
-    "market_cap": 14863.38615970611,
-    "total_bundles": 37,
-    "holding_percentage": 15.270247244632202,
+    "market_cap": 15949.66790806103,
+    "total_bundles": 38,
+    "holding_percentage": 18.6140400216046,
     "price_changes": {
-      "5m": 15.28,
-      "1h": 293.0,
-      "6h": 293.0,
-      "24h": 293.0
+      "5m": 25.96,
+      "1h": 307.0,
+      "6h": 307.0,
+      "24h": 307.0
     },
     "volumes": {
-      "5m": 3675.68,
-      "1h": 67579.79,
-      "6h": 67579.79,
-      "24h": 67579.79
+      "5m": 3963.95,
+      "1h": 70766.22,
+      "6h": 70766.22,
+      "24h": 70766.22
     },
     "ath": null,
-    "total_holders": 129,
+    "total_holders": 145,
     "trades_1h": {
-      "total": 1056,
-      "buys": 573,
-      "sells": 483
+      "total": 1117,
+      "buys": 611,
+      "sells": 506
     },
-    "makers_1h": 403,
-    "makers_24h": 403,
-    "timestamp": 1742105276.217584,
+    "makers_1h": 428,
+    "makers_24h": 428,
+    "timestamp": 1742105557.690912,
     "initial_price": 0,
-    "initial_market_cap": 14863.38615970611,
+    "initial_market_cap": 15949.66790806103,
     "prediction_score": 8,
     "prediction_confidence": 80.0,
     "prediction_result": "Likely Profitable",
@@ -5125,6 +5125,44 @@
     "prediction_score": 3,
     "prediction_confidence": 30.0,
     "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "vAaWraHprV9o2jHgfDn1PnbYZZtXTqMFPMRZS9Kpump": {
+    "mint": "vAaWraHprV9o2jHgfDn1PnbYZZtXTqMFPMRZS9Kpump",
+    "name": "connect kanyewest.exe",
+    "symbol": "yzyai",
+    "market_cap": 20139.28166932981,
+    "total_bundles": 14,
+    "holding_percentage": 21.4157655133629,
+    "price_changes": {
+      "5m": 5.67,
+      "1h": 401.0,
+      "6h": 401.0,
+      "24h": 401.0
+    },
+    "volumes": {
+      "5m": 2034.42,
+      "1h": 38835.45,
+      "6h": 38835.45,
+      "24h": 38835.45
+    },
+    "ath": null,
+    "total_holders": 107,
+    "trades_1h": {
+      "total": 501,
+      "buys": 285,
+      "sells": 216
+    },
+    "makers_1h": 207,
+    "makers_24h": 207,
+    "timestamp": 1742105616.991324,
+    "initial_price": 0,
+    "initial_market_cap": 20139.28166932981,
+    "prediction_score": 6.34626,
+    "prediction_confidence": 63.4626,
+    "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
