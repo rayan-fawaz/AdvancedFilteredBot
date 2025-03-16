@@ -36,12 +36,12 @@ training_data = [
 
 # Training configuration
 config = {
-    "volume_weight": 0.35,
+    "volume_weight": 0.30,
     "holder_weight": 0.25,
     "price_momentum_weight": 0.25,
-    "activity_weight": 0.15,
-    "confidence_threshold": 65.0,  # Maximum confidence is 100%
-    "max_confidence": 100.0
+    "activity_weight": 0.20,
+    "confidence_threshold": 75.0,  # Higher threshold for confidence
+    "max_confidence": 95.0  # Cap maximum confidence
 }
     {"symbol": "GOKU", "multiplier": 22.4},   # Anime theme performance
     {"symbol": "FA", "multiplier": 20.3},     # Balanced metrics

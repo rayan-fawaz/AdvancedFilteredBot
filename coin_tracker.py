@@ -159,7 +159,7 @@ class CoinTracker:
 
         return {
             'score': score,
-            'confidence': min(100, (score / 10) * 100),  # Convert to percentage, capped at 100%
+            'confidence': min(95, (score / 12) * 100),  # More conservative confidence calculation, capped at 95%
             'prediction': result,
             'explanation': explanation
         }
