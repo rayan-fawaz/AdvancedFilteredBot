@@ -6230,5 +6230,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "3yXH9GTvrJMZMU3UvghT53aw7BZBJY4tUVfpZwjXpump": {
+    "mint": "3yXH9GTvrJMZMU3UvghT53aw7BZBJY4tUVfpZwjXpump",
+    "name": "Flash Elon",
+    "symbol": "FLASHELON",
+    "market_cap": 8826.97538730417,
+    "total_bundles": 6,
+    "holding_percentage": 3.9135848333167003,
+    "price_changes": {
+      "5m": 68.03,
+      "1h": 135.0,
+      "6h": 135.0,
+      "24h": 135.0
+    },
+    "volumes": {
+      "5m": 3873.24,
+      "1h": 15403.92,
+      "6h": 15403.92,
+      "24h": 15403.92
+    },
+    "ath": null,
+    "total_holders": 41,
+    "trades_1h": {
+      "total": 944,
+      "buys": 496,
+      "sells": 448
+    },
+    "makers_1h": 107,
+    "makers_24h": 107,
+    "timestamp": 1742124775.34458,
+    "initial_price": 0,
+    "initial_market_cap": 8826.97538730417,
+    "prediction_score": 60.050304000000004,
+    "prediction_confidence": 600.50304,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
