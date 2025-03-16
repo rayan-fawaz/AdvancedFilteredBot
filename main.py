@@ -603,29 +603,16 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
         # ATH (all-time high) price estimation
         market_cap = float(coin.get('usd_market_cap', 0))
-        current_price = dex_data.get('price_usd', 0) if dex_data else 0
-        ath_price = current_price
-        
+        ath_price = market_cap
         if dex_data and isinstance(dex_data, dict):
-            price_changes = [
-                dex_data.get('price_change_24h', 0),
-                dex_data.get('price_change_6h', 0),
-                dex_data.get('price_change_1h', 0),
-                dex_data.get('price_change_5m', 0)
-            ]
-            max_change = max(price_changes)
-            if max_change > 0:
-                ath_price = current_price * (1 + max_change/100)
-            
             ath_from_dex = dex_data.get('ath_price')
             if ath_from_dex is not None:
                 try:
                     ath_from_dex = float(ath_from_dex)
-                    ath_price = max(ath_from_dex, ath_price)
+                    ath_price = max(ath_from_dex, market_cap)
                 except (ValueError, TypeError):
                     pass
-                    
-        ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
 
     # Check DEX paid status
     try:
