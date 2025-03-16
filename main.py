@@ -485,11 +485,11 @@ async def get_trench_data(mint_address, max_retries=3):
                 data = response.json()
                 bundles = data.get('bundles', {})
                 sniper_info = []
-                
+
                 for bundle_id, bundle_data in bundles.items():
                     wallet_categories = bundle_data.get('wallet_categories', {})
                     wallet_info = bundle_data.get('wallet_info', {})
-                    
+
                     for wallet, category in wallet_categories.items():
                         if category == "sniper" and wallet in wallet_info:
                             info = wallet_info[wallet]
@@ -499,7 +499,7 @@ async def get_trench_data(mint_address, max_retries=3):
                                 'tokens': info.get('tokens', 0),
                                 'sol': info.get('sol', 0)
                             })
-                
+
                 return {
                     'bonded': data.get('bonded', False),
                     'total_bundles': data.get('total_bundles', 0),
@@ -543,11 +543,12 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             sniper_lines = []
             for sniper in trench_data['snipers']:
                 sniper_lines.append(
-                    f"├─ Bundle {sniper['bundle_id']}:\n"
-                    f"│  └─ {sniper['wallet']}: {sniper['tokens']/1e9:.2f}K tokens (${sniper['sol']:.2f})"
+                    f"├─ Bundle {sniper['bundle_id']}: {sniper['wallet']}: {sniper['tokens']/1e9:.2f}K tokens (${sniper['sol']:.2f})"
                 )
             sniper_text = "\n".join(sniper_lines) + "\n"
-            
+        else:
+            sniper_text = "└─ No snipers detected\n"
+
         trench_info = (
             f"📚 <b>Bundle Info</b>\n"
             f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
@@ -837,7 +838,7 @@ def run_http_server():
 async def handle_learned_command():
     tracker = CoinTracker()
     learned_info = tracker.get_learning_insights()
-    
+
     # Format the message
     if learned_info["status"] == "No verified training data yet":
         message = "🤖 No verified training data available yet."
@@ -850,7 +851,7 @@ async def handle_learned_command():
             "📊 Insights:\n" + 
             "\n".join(f"• {insight}" for insight in learned_info['insights'])
         )
-    
+
     await send_telegram_message(message)
 
 
@@ -860,20 +861,20 @@ async def fetch_meta_words():
         response = requests.get("https://frontend-api-v3.pump.fun/metas/current")
         response.raise_for_status()
         data = response.json()
-        
+
         if isinstance(data, list):
             # Create dictionary of word:score pairs
             meta_scores = {item['word'].lower(): float(item['score']) 
                          for item in data if 'word' in item and 'score' in item}
-            
+
             # Update CoinTracker with new meta scores
             coin_tracker = CoinTracker()
             coin_tracker.update_meta_scores(meta_scores)
-            
+
             # Format for display
             word_scores = [f"{word} ({score:.3f})" for word, score in meta_scores.items()]
             words_str = ', '.join(word_scores)
-            
+
             # Send update to Telegram
             message = (
                 "🔄 Meta Update\n\n"
@@ -881,13 +882,13 @@ async def fetch_meta_words():
                 "Higher scores indicate stronger market potential."
             )
             await send_telegram_message(message)
-            
+
             # Schedule next update
             asyncio.create_task(schedule_meta_update())
-            
+
         else:
             logging.error("Invalid meta API response format")
-            
+
     except Exception as e:
         logging.error(f"Error fetching meta words: {e}")
 
