@@ -5850,5 +5850,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "HAwkriRmUpvAPPXqH8Z548KoACYWpY7zZzfpoeRtpump": {
+    "mint": "HAwkriRmUpvAPPXqH8Z548KoACYWpY7zZzfpoeRtpump",
+    "name": "The Flash Ye",
+    "symbol": "FlashYe",
+    "market_cap": 10024.6236832252,
+    "total_bundles": 3,
+    "holding_percentage": 2.1408741278853003,
+    "price_changes": {
+      "5m": 35.83,
+      "1h": 155.0,
+      "6h": 155.0,
+      "24h": 155.0
+    },
+    "volumes": {
+      "5m": 2433.77,
+      "1h": 12550.25,
+      "6h": 12550.25,
+      "24h": 12550.25
+    },
+    "ath": null,
+    "total_holders": 57,
+    "trades_1h": {
+      "total": 1831,
+      "buys": 946,
+      "sells": 885
+    },
+    "makers_1h": 104,
+    "makers_24h": 104,
+    "timestamp": 1742116072.382793,
+    "initial_price": 0,
+    "initial_market_cap": 10024.6236832252,
+    "prediction_score": 5.46,
+    "prediction_confidence": 54.6,
+    "prediction_result": "High Risk",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }

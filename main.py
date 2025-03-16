@@ -650,7 +650,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
-        f"👥 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
+        f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
         f"{trench_info}"
         f"{price_text}"
         f"{volume_text}"
