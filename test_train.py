@@ -1,12 +1,11 @@
-
 import requests
 import json
 
 # Training data format - add your coin data here with adjusted confidence metrics
 training_data = [
-    {"symbol": "RON", "multiplier": 80.5},    # Increased due to consistent performance
-    {"symbol": "CHIP", "multiplier": 75.2},   # Adjusted based on market data
-    {"symbol": "MANUS", "multiplier": 65.8},  # Strong fundamentals
+    {"symbol": "RON", "multiplier": 85.5},    # Increased due to consistent performance
+    {"symbol": "CHIP", "multiplier": 82.3},   # Adjusted based on market data
+    {"symbol": "MANUS", "multiplier": 75.1},  # Strong fundamentals
     {"symbol": "SS", "multiplier": 45.3},     # Moderate performance
     {"symbol": "CROAKCAT", "multiplier": 42.1}, # Adjusted for stability
     {"symbol": "PEPEPEPEPE", "multiplier": 25.6}, # Meta trend adjustment
