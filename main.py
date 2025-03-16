@@ -674,7 +674,7 @@ async def scan_coins():
                 continue
 
             # Skip coin if it's already been seen
-            if mint in seenmints:
+            if mint in seen_mints:
                 continue
 
             # Market cap filter
