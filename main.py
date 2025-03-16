@@ -601,29 +601,38 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
-        # ATH (all-time high) price estimation
+        # ATH (all-time high) price from Moralis API
         market_cap = float(coin.get('usd_market_cap', 0))
         current_price = dex_data.get('price_usd', 0) if dex_data else 0
         ath_price = current_price
         
         if dex_data and isinstance(dex_data, dict):
-            price_changes = [
-                dex_data.get('price_change_24h', 0),
-                dex_data.get('price_change_6h', 0),
-                dex_data.get('price_change_1h', 0),
-                dex_data.get('price_change_5m', 0)
-            ]
-            max_change = max(price_changes)
-            if max_change > 0:
-                ath_price = current_price * (1 + max_change/100)
-            
-            ath_from_dex = dex_data.get('ath_price')
-            if ath_from_dex is not None:
+            pair_address = dex_data.get('pair_address')
+            if pair_address:
+                # Get historical OHLCV data from Moralis
+                current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+                one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
+                moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
+                moralis_headers = {
+                    "Accept": "application/json",
+                    "X-API-Key": "YOUR_MORALIS_API_KEY"
+                }
+                params = {
+                    "timeframe": "1D",
+                    "fromDate": one_month_ago,
+                    "toDate": current_date
+                }
                 try:
-                    ath_from_dex = float(ath_from_dex)
-                    ath_price = max(ath_from_dex, ath_price)
-                except (ValueError, TypeError):
-                    pass
+                    moralis_response = requests.get(moralis_url, headers=moralis_headers, params=params)
+                    if moralis_response.ok:
+                        data = moralis_response.json()
+                        if isinstance(data, dict) and 'result' in data:
+                            # Find highest price from historical data
+                            highest_price = max((day.get('high', 0) for day in data['result']), default=0)
+                            if highest_price > 0:
+                                ath_price = max(ath_price, highest_price)
+                except Exception as e:
+                    logging.error(f"Error fetching Moralis data: {e}")
                     
         ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
 
