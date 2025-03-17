@@ -114,48 +114,13 @@ config = {
     {"symbol": "DOGEN", "multiplier": 0}      # Zero activity
 ]
 
-async def analyze_and_print_learning():
-    """Print and send learning analysis every 5 minutes"""
-    while True:
-        analysis_text = "\n=== AI Learning Analysis ===\n"
-        for coin in training_data:
-            symbol = coin.get('symbol', 'Unknown')
-            multiplier = coin.get('multiplier', 0)
-            
-            # Build analysis for this coin
-            coin_analysis = (
-                f"🪙 Coin: {symbol}\n"
-                f"📈 Performance Multiplier: {multiplier}x\n"
-                f"📊 Analysis: {get_performance_category(multiplier)}\n"
-                f"{'-' * 30}\n"
-            )
-            
-            # Add to overall analysis text
-            analysis_text += coin_analysis
-            
-            # Print to console
-            print(coin_analysis)
-            
-        analysis_text += "=" * 30
-        print(analysis_text)
-        
-        # Send to Telegram
-        await send_telegram_message(analysis_text)
-        
-        # Wait for 5 minutes
-        await asyncio.sleep(300)
+# Send POST request to the training endpoint
+response = requests.post(
+    'http://0.0.0.0:8080/train',
+    headers={'Content-Type': 'application/json'},
+    data=json.dumps(training_data)
+)
 
-def get_performance_category(multiplier):
-    """Helper function to categorize performance"""
-    if multiplier > 10:
-        return "⭐ Strong performer"
-    elif multiplier > 5:
-        return "✨ Good performer"
-    elif multiplier > 0:
-        return "📊 Moderate performer"
-    else:
-        return "⚠️ Poor performer"
-
-# Start the analysis loop
-if __name__ == "__main__":
-    asyncio.run(analyze_and_print_learning())
+# Print response
+print(response.status_code)
+print(response.json())
