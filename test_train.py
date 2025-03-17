@@ -115,25 +115,46 @@ config = {
 ]
 
 async def analyze_and_print_learning():
-    """Print learning analysis every 5 minutes"""
+    """Print and send learning analysis every 5 minutes"""
     while True:
-        print("\n=== AI Learning Analysis ===")
+        analysis_text = "\n=== AI Learning Analysis ===\n"
         for coin in training_data:
             symbol = coin.get('symbol', 'Unknown')
             multiplier = coin.get('multiplier', 0)
-            print(f"Coin: {symbol}")
-            print(f"Performance Multiplier: {multiplier}x")
-            if multiplier > 10:
-                print("Analysis: Strong performer")
-            elif multiplier > 5:
-                print("Analysis: Good performer")
-            elif multiplier > 0:
-                print("Analysis: Moderate performer")
-            else:
-                print("Analysis: Poor performer")
-            print("-" * 30)
-        print("=" * 30)
-        await asyncio.sleep(300)  # Sleep for 5 minutes
+            
+            # Build analysis for this coin
+            coin_analysis = (
+                f"🪙 Coin: {symbol}\n"
+                f"📈 Performance Multiplier: {multiplier}x\n"
+                f"📊 Analysis: {get_performance_category(multiplier)}\n"
+                f"{'-' * 30}\n"
+            )
+            
+            # Add to overall analysis text
+            analysis_text += coin_analysis
+            
+            # Print to console
+            print(coin_analysis)
+            
+        analysis_text += "=" * 30
+        print(analysis_text)
+        
+        # Send to Telegram
+        await send_telegram_message(analysis_text)
+        
+        # Wait for 5 minutes
+        await asyncio.sleep(300)
+
+def get_performance_category(multiplier):
+    """Helper function to categorize performance"""
+    if multiplier > 10:
+        return "⭐ Strong performer"
+    elif multiplier > 5:
+        return "✨ Good performer"
+    elif multiplier > 0:
+        return "📊 Moderate performer"
+    else:
+        return "⚠️ Poor performer"
 
 # Start the analysis loop
 if __name__ == "__main__":
