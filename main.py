@@ -177,30 +177,6 @@ def get_dex_data(token_mint):
             if isinstance(pair_data, list) and len(pair_data) > 0:
                 pair_address = pair_data[0].get("pairAddress")
 
-        # OHLCV data from Moralis (ATH estimation)
-        current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-        one_month_ago = (datetime.now(timezone.utc) -
-                         timedelta(days=30)).strftime('%Y-%m-%d')
-        ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
-        params = {
-            "timeframe": "1h",
-            "currency": "usd",
-            "fromDate": one_month_ago,
-            "toDate": current_date,
-            "limit": 10
-        }
-        moralis_headers = {
-            "Accept": "application/json",
-            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImNkNjVlMDM4LWE4ODktNDYyNC1iNzIyLWQwODY1ZDdmODFkMyIsIm9yZ0lkIjoiNDMyNTIwIiwidXNlcklkIjoiNDQ0OTExIiwidHlwZUlkIjoiZmU1OTFkNmYtNTYyYi00OTYwLWI0ZjQtYzUxMTZmMTk3ZWNlIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTUzOTUsImV4cCI6NDg5NTc3NTM5NX0.xrYHL35_6-yXMT5qksrqjGIe8Z5YbiuAgdh6FpL_fpQ"
-        }
-        ohlcv_response = requests.get(ohlcv_url, headers=moralis_headers, params=params)
-        ohlcv_data = ohlcv_response.json()
-
-        ath_price = None
-        if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-            high = ohlcv_data['result'][0].get('high')
-            if high:
-                ath_price = round(high * 1000000000)
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
@@ -223,9 +199,7 @@ def get_dex_data(token_mint):
                 'price_change_5m':
                 float(pair.get('priceChange', {}).get('m5', 0)),
                 'pair_address':
-                pair_address,
-                'ath_price':
-                ath_price
+                pair_address
             }
         return None
     except Exception as e:
@@ -604,37 +578,6 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
-        # Get ATH from OHLCV data
-        ath_text = ""
-        if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
-            pair_address = dex_data['pair_address']
-            if pair_address:
-                # Get OHLCV data for pair
-                current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-                one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
-                ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
-                params = {
-                    "timeframe": "1h",
-                    "currency": "usd",
-                    "fromDate": one_month_ago,
-                    "toDate": current_date,
-                    "limit": 10
-                }
-                moralis_headers = {
-                    "Accept": "application/json",
-                    "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImNkNjVlMDM4LWE4ODktNDYyNC1iNzIyLWQwODY1ZDdmODFkMyIsIm9yZ0lkIjoiNDMyNTIwIiwidXNlcklkIjoiNDQ0OTExIiwidHlwZUlkIjoiZmU1OTFkNmYtNTYyYi00OTYwLWI0ZjQtYzUxMTZmMTk3ZWNlIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTUzOTUsImV4cCI6NDg5NTc3NTM5NX0.xrYHL35_6-yXMT5qksrqjGIe8Z5YbiuAgdh6FpL_fpQ"
-                }
-                try:
-                    ohlcv_response = requests.get(ohlcv_url, headers=moralis_headers, params=params)
-                    if ohlcv_response.ok:
-                        ohlcv_data = ohlcv_response.json()
-                        if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-                            # Get highest high value and convert to market cap
-                            highest_high = max(float(bar['high']) for bar in ohlcv_data['result'])
-                            ath_market_cap = highest_high * coin['usd_market_cap'] / dex_data.get('price_usd', 1)
-                            ath_text = f"📈 <b>ATH: ${int(ath_market_cap):,}</b>\n\n"
-                except Exception as e:
-                    logging.error(f"Error fetching OHLCV data: {e}")
 
     # Check DEX paid status
     try:
@@ -651,6 +594,38 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         logging.error(f"Error checking DEX status: {e}")
         dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
+
+    # Initialize ATH text
+    ath_text = ""
+    if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
+        pair_address = dex_data['pair_address']
+        if pair_address:
+            # Get OHLCV data for pair
+            current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+            one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
+            params = {
+                "timeframe": "1h",
+                "currency": "usd",
+                "fromDate": one_month_ago,
+                "toDate": current_date,
+                "limit": 10
+            }
+            moralis_headers = {
+                "Accept": "application/json",
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImNkNjVlMDM4LWE4ODktNDYyNC1iNzIyLWQwODY1ZDdmODFkMyIsIm9yZ0lkIjoiNDMyNTIwIiwidXNlcklkIjoiNDQ0OTExIiwidHlwZUlkIjoiZmU1OTFkNmYtNTYyYi00OTYwLWI0ZjQtYzUxMTZmMTk3ZWNlIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTUzOTUsImV4cCI6NDg5NTc3NTM5NX0.xrYHL35_6-yXMT5qksrqjGIe8Z5YbiuAgdh6FpL_fpQ"
+            }
+            try:
+                ohlcv_response = requests.get(ohlcv_url, headers=moralis_headers, params=params)
+                if ohlcv_response.ok:
+                    ohlcv_data = ohlcv_response.json()
+                    if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+                        # Get highest high value and convert to market cap
+                        highest_high = max(float(bar['high']) for bar in ohlcv_data['result'])
+                        ath_market_cap = highest_high * coin['usd_market_cap'] / dex_data.get('price_usd', 1)
+                        ath_text = f"📈 <b>ATH: ${int(ath_market_cap):,}</b>\n\n"
+            except Exception as e:
+                logging.error(f"Error fetching OHLCV data: {e}")
 
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
