@@ -19,24 +19,24 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_HOLDERS = 25
-MIN_TRADES_1H = 80
-MAX_VOLUME_5M = 20000
-BIGGEST_WALLET_MAX = 5  # Maximum percentage for the biggest wallet
-MIN_BUYS = 40  # Minimum buy transactions in 1h
-MIN_SELLS = 40  # Minimum sell transactions in 1h
+MIN_HOLDERS = 50  # Increased from 25
+MIN_TRADES_1H = 120  # Increased from 80
+MAX_VOLUME_5M = 15000  # Decreased from 20000
+BIGGEST_WALLET_MAX = 4  # Decreased from 5 for better distribution
+MIN_BUYS = 60  # Increased from 40
+MIN_SELLS = 60  # Increased from 40
 
 # Price Momentum Filters
-MIN_PRICE_5M = 30
-MIN_PRICE_1H = 80
-HIGH_PRICE_1H = 95
+MIN_PRICE_5M = 40  # Increased from 30
+MIN_PRICE_1H = 90  # Increased from 80
+HIGH_PRICE_1H = 100  # Increased from 95
 
 # Volume Filters
-MIN_VOLUME_5M = 3000
-MIN_VOLUME_1H = 10000
+MIN_VOLUME_5M = 5000  # Increased from 3000
+MIN_VOLUME_1H = 15000  # Increased from 10000
 
 # Market Cap Limits
-MIN_MARKET_CAP = 7000
+MIN_MARKET_CAP = 10000  # Increased from 7000
 
 def get_score_reasons(coin_data):
     reasons = []
