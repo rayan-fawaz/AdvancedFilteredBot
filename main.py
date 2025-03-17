@@ -2,7 +2,7 @@ import requests
 import asyncio
 import logging
 from datetime import datetime, timezone, timedelta
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 # Telegram API (still used for sending messages)
 import os
@@ -764,7 +764,7 @@ import threading
 import json
 
 
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
@@ -836,7 +836,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 def run_http_server():
-    server = HTTPServer(('0.0.0.0', 8080), SimpleHTTPRequestHandler)
+    server = HTTPServer(('0.0.0.0', 8080), CustomHTTPRequestHandler)
     logging.info("Server started on port 8080")
     server.serve_forever()
 
