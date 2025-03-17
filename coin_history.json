@@ -6420,5 +6420,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "DNNDAJdXZM8HsHcvr4Dfh5vS35dCb9RhwdEDrZWrpump": {
+    "mint": "DNNDAJdXZM8HsHcvr4Dfh5vS35dCb9RhwdEDrZWrpump",
+    "name": "NEW PRESIDENTIAL CANDIDATE",
+    "symbol": "BARRON",
+    "market_cap": 12273.78258027324,
+    "total_bundles": 42,
+    "holding_percentage": 10.8861718347371,
+    "price_changes": {
+      "5m": 50.49,
+      "1h": 192.0,
+      "6h": 192.0,
+      "24h": 192.0
+    },
+    "volumes": {
+      "5m": 2124.1,
+      "1h": 65983.92,
+      "6h": 65983.92,
+      "24h": 65983.92
+    },
+    "ath": null,
+    "total_holders": 88,
+    "trades_1h": {
+      "total": 1566,
+      "buys": 853,
+      "sells": 713
+    },
+    "makers_1h": 423,
+    "makers_24h": 423,
+    "timestamp": 1742190541.9199,
+    "initial_price": 0,
+    "initial_market_cap": 12273.78258027324,
+    "prediction_score": 92.0,
+    "prediction_confidence": 919.9999999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
