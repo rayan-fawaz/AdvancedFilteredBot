@@ -600,36 +600,29 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
         pair_address = dex_data['pair_address']
         if pair_address:
-            # Get OHLCV data for pair
+            # Get OHLCV data from Moralis
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
-            params = {
-                "timeframe": "1h",
-                "currency": "usd",
-                "fromDate": one_month_ago,
-                "toDate": current_date,
-                "limit": 10
-            }
-            moralis_headers = {
+
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+            ohlcv_headers = {
                 "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImNkNjVlMDM4LWE4ODktNDYyNC1iNzIyLWQwODY1ZDdmODFkMyIsIm9yZ0lkIjoiNDMyNTIwIiwidXNlcklkIjoiNDQ0OTExIiwidHlwZUlkIjoiZmU1OTFkNmYtNTYyYi00OTYwLWI0ZjQtYzUxMTZmMTk3ZWNlIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTUzOTUsImV4cCI6NDg5NTc3NTM5NX0.xrYHL35_6-yXMT5qksrqjGIe8Z5YbiuAgdh6FpL_fpQ"
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjA1ZWQ1M2UxLTA4YTUtNGY1Yy1hMmZmLTg0ODhiYzVmNzNhNSIsIm9yZ0lkIjoiNDMzNTI0IiwidXNlcklkIjoiNDQ1OTUxIiwidHlwZUlkIjoiNDEyNWI4NGMtMjM4Ni00OTZhLTgxZWQtYzdhNWVjNjNmYWNhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDA0OTg3MTEsImV4cCI6NDg5NjI1ODcxMX0.X6JXdTuoB4Vx1-dhhl_ya6fGpUwxcY-Urp_s0KFppac"
             }
             try:
-                ohlcv_response = requests.get(ohlcv_url, headers=moralis_headers, params=params)
-                if ohlcv_response.ok:
-                    ohlcv_data = ohlcv_response.json()
-                    if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-                        # Get highest high value and convert to market cap
-                        try:
-                            highest_high = max(float(bar['high']) for bar in ohlcv_data['result'])
-                            current_price = dex_data.get('price_usd', 1)
-                            if current_price > 0:  # Prevent division by zero
-                                ath_market_cap = highest_high * coin['usd_market_cap'] / current_price
-                                ath_text = f"📈 <b>ATH: ${int(ath_market_cap):,}</b>\n\n"
-                        except (ValueError, TypeError) as e:
-                            logging.error(f"Error calculating ATH: {e}")
-                            ath_text = ""
+                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
+                ohlcv_data = ohlcv_response.json()
+                print(f"OHLCV response: {ohlcv_data}")
+
+                ath_price = None
+                if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+                    high = ohlcv_data['result'][0].get('high')
+                    if high:
+                        ath_price = round(high * 1000000000)
+                        print(f"High value: {round(high)}")
+                        print(f"ATH Price (rounded): {ath_price}")
+                        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
+
             except Exception as e:
                 logging.error(f"Error fetching OHLCV data: {e}")
 
