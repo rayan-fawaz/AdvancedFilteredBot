@@ -604,18 +604,16 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
-        # ATH (all-time high) price estimation
-        market_cap = float(coin.get('usd_market_cap', 0))
-        ath_price = market_cap
+        # ATH (all-time high) from Moralis data
+        ath_price = None
         if dex_data and isinstance(dex_data, dict):
             ath_from_dex = dex_data.get('ath_price')
             if ath_from_dex is not None:
                 try:
-                    ath_from_dex = float(ath_from_dex)
-                    ath_price = max(ath_from_dex, market_cap)
+                    ath_price = float(ath_from_dex)
                 except (ValueError, TypeError):
                     pass
-        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
+        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n" if ath_price else ""
 
     # Check DEX paid status
     try:
