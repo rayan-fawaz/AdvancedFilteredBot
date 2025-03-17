@@ -897,7 +897,7 @@ async def fetch_meta_words():
 
 async def schedule_meta_update():
     """Schedule periodic meta updates."""
-    await asyncio.sleep(300)  # Update every 5 minutes
+    await asyncio.sleep(600)  # Update every 5 minutes
     await fetch_meta_words()
 
 if __name__ == "__main__":
