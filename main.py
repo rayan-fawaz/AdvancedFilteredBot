@@ -621,9 +621,15 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                     ohlcv_data = ohlcv_response.json()
                     if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
                         # Get highest high value and convert to market cap
-                        highest_high = max(float(bar['high']) for bar in ohlcv_data['result'])
-                        ath_market_cap = highest_high * coin['usd_market_cap'] / dex_data.get('price_usd', 1)
-                        ath_text = f"📈 <b>ATH: ${int(ath_market_cap):,}</b>\n\n"
+                        try:
+                            highest_high = max(float(bar['high']) for bar in ohlcv_data['result'])
+                            current_price = dex_data.get('price_usd', 1)
+                            if current_price > 0:  # Prevent division by zero
+                                ath_market_cap = highest_high * coin['usd_market_cap'] / current_price
+                                ath_text = f"📈 <b>ATH: ${int(ath_market_cap):,}</b>\n\n"
+                        except (ValueError, TypeError) as e:
+                            logging.error(f"Error calculating ATH: {e}")
+                            ath_text = ""
             except Exception as e:
                 logging.error(f"Error fetching OHLCV data: {e}")
 
