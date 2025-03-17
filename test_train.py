@@ -1,6 +1,7 @@
 import requests
 import json
 from datetime import datetime
+import asyncio
 
 # Enhanced training data with comprehensive metrics and historical performance
 training_data = [
@@ -74,7 +75,34 @@ training_data = [
     {"symbol": "LQP", "multiplier": 1.2},
     {"symbol": "LQI", "multiplier": 0},
     {"symbol": "YESAN", "multiplier": 0},
-    {"symbol": "DOG(b²-4)", "multiplier": 0}
+    {"symbol": "DOG(b²-4)", "multiplier": 0},
+    {"symbol": "GOKU", "multiplier": 22.4},   
+    {"symbol": "FA", "multiplier": 20.3},     
+    {"symbol": "DOPE", "multiplier": 18.5},   
+    {"symbol": "PEPE", "multiplier": 25.6},   
+    {"symbol": "RUNNER", "multiplier": 8.2},  
+    {"symbol": "MASK", "multiplier": 7.5},    
+    {"symbol": "CWOAK", "multiplier": 5.8},   
+    {"symbol": "CROC", "multiplier": 5.2},    
+    {"symbol": "SOAP", "multiplier": 5.2},    
+    {"symbol": "CDOG", "multiplier": 4.6},    
+    {"symbol": "MEIN", "multiplier": 4.1},    
+    {"symbol": "POSTY", "multiplier": 2.8},   
+    {"symbol": "PWS", "multiplier": 2.5},     
+    {"symbol": "RIB", "multiplier": 2.5},     
+    {"symbol": "PCRAFT", "multiplier": 2.3},  
+    {"symbol": "YE", "multiplier": 2.3},      
+    {"symbol": "STEVE", "multiplier": 2.2},   
+    {"symbol": "CMG", "multiplier": 2.0},     
+    {"symbol": "STEVE2", "multiplier": 0},    
+    {"symbol": "BERRY", "multiplier": 0},     
+    {"symbol": "SWAS", "multiplier": 0},      
+    {"symbol": "NWARD", "multiplier": 0},     
+    {"symbol": "REC", "multiplier": 0},       
+    {"symbol": "SERG", "multiplier": 0},      
+    {"symbol": "KIKI", "multiplier": 0},      
+    {"symbol": "DOWN", "multiplier": 0},      
+    {"symbol": "DOGEN", "multiplier": 0}      
 ]
 
 # Training configuration
@@ -85,34 +113,68 @@ config = {
     "activity_weight": 0.15,
     "confidence_threshold": 65.0
 }
-    {"symbol": "GOKU", "multiplier": 22.4},   # Anime theme performance
-    {"symbol": "FA", "multiplier": 20.3},     # Balanced metrics
-    {"symbol": "DOPE", "multiplier": 18.5},   # Community engagement
-    {"symbol": "PEPE", "multiplier": 25.6},   # Meta alignment
-    {"symbol": "RUNNER", "multiplier": 8.2},  # Lower volume adjustment
-    {"symbol": "MASK", "multiplier": 7.5},    # Market sentiment
-    {"symbol": "CWOAK", "multiplier": 5.8},   # Reduced confidence
-    {"symbol": "CROC", "multiplier": 5.2},    # Market dynamics
-    {"symbol": "SOAP", "multiplier": 5.2},    # Similar pattern
-    {"symbol": "CDOG", "multiplier": 4.6},    # Limited momentum
-    {"symbol": "MEIN", "multiplier": 4.1},    # Risk adjustment
-    {"symbol": "POSTY", "multiplier": 2.8},   # Lower confidence
-    {"symbol": "PWS", "multiplier": 2.5},     # Market data based
-    {"symbol": "RIB", "multiplier": 2.5},     # Consistent with PWS
-    {"symbol": "PCRAFT", "multiplier": 2.3},  # Minor adjustment
-    {"symbol": "YE", "multiplier": 2.3},      # Similar pattern
-    {"symbol": "STEVE", "multiplier": 2.2},   # Low momentum
-    {"symbol": "CMG", "multiplier": 2.0},     # Base confidence
-    {"symbol": "STEVE2", "multiplier": 0},    # No confidence
-    {"symbol": "BERRY", "multiplier": 0},     # Insufficient data
-    {"symbol": "SWAS", "multiplier": 0},      # No market activity
-    {"symbol": "NWARD", "multiplier": 0},     # Zero confidence
-    {"symbol": "REC", "multiplier": 0},       # Not active
-    {"symbol": "SERG", "multiplier": 0},      # No trading
-    {"symbol": "KIKI", "multiplier": 0},      # Inactive
-    {"symbol": "DOWN", "multiplier": 0},      # No market
-    {"symbol": "DOGEN", "multiplier": 0}      # Zero activity
-]
+
+async def send_telegram_message(message):
+    # Replace with your actual Telegram bot token and chat ID
+    bot_token = "YOUR_TELEGRAM_BOT_TOKEN"
+    chat_id = "YOUR_TELEGRAM_CHAT_ID"
+    api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    try:
+        response = requests.post(api_url, json={"chat_id": chat_id, "text": message})
+        response.raise_for_status()  # Raise an exception for bad status codes
+    except requests.exceptions.RequestException as e:
+        print(f"Error sending Telegram message: {e}")
+
+
+async def analyze_and_print_learning():
+    """Print and send learning analysis every 5 minutes"""
+    while True:
+        analysis_text = "\n=== AI Learning Analysis ===\n"
+
+        # Group coins by performance tiers
+        elite_performers = [c for c in training_data if c.get('multiplier', 0) > 40]
+        strong_performers = [c for c in training_data if 10 < c.get('multiplier', 0) <= 40]
+        good_performers = [c for c in training_data if 5 < c.get('multiplier', 0) <= 10]
+        moderate_performers = [c for c in training_data if 2 < c.get('multiplier', 0) <= 5]
+        weak_performers = [c for c in training_data if 0 < c.get('multiplier', 0) <= 2]
+        non_performers = [c for c in training_data if c.get('multiplier', 0) == 0]
+
+        # Build comprehensive analysis
+        analysis_text += "🌟 Performance Analysis:\n\n"
+
+        if elite_performers:
+            analysis_text += "🏆 Elite Performers (>40x):\n"
+            for coin in elite_performers:
+                analysis_text += f"   • {coin['symbol']}: {coin['multiplier']}x\n"
+
+        if strong_performers:
+            analysis_text += "\n💪 Strong Performers (10-40x):\n"
+            for coin in strong_performers:
+                analysis_text += f"   • {coin['symbol']}: {coin['multiplier']}x\n"
+
+        if good_performers:
+            analysis_text += "\n✨ Good Performers (5-10x):\n"
+            for coin in good_performers:
+                analysis_text += f"   • {coin['symbol']}: {coin['multiplier']}x\n"
+
+        if moderate_performers:
+            analysis_text += "\n📈 Moderate Performers (2-5x):\n"
+            for coin in moderate_performers:
+                analysis_text += f"   • {coin['symbol']}: {coin['multiplier']}x\n"
+
+        analysis_text += f"\n📊 Statistics:\n"
+        analysis_text += f"   • Total Coins Analyzed: {len(training_data)}\n"
+        analysis_text += f"   • High Performers (>10x): {len(elite_performers) + len(strong_performers)}\n"
+        analysis_text += f"   • Active Performers (>0x): {len(training_data) - len(non_performers)}\n"
+
+        # Print to console
+        print(analysis_text)
+
+        # Send to Telegram
+        await send_telegram_message(analysis_text)
+
+        # Wait for 5 minutes
+        await asyncio.sleep(300)
 
 # Send POST request to the training endpoint
 response = requests.post(
@@ -124,3 +186,9 @@ response = requests.post(
 # Print response
 print(response.status_code)
 print(response.json())
+
+async def main():
+    await analyze_and_print_learning()
+
+if __name__ == "__main__":
+    asyncio.run(main())
