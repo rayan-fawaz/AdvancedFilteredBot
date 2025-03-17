@@ -193,7 +193,7 @@ def get_dex_data(token_mint):
             "Accept": "application/json",
             "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImNkNjVlMDM4LWE4ODktNDYyNC1iNzIyLWQwODY1ZDdmODFkMyIsIm9yZ0lkIjoiNDMyNTIwIiwidXNlcklkIjoiNDQ0OTExIiwidHlwZUlkIjoiZmU1OTFkNmYtNTYyYi00OTYwLWI0ZjQtYzUxMTZmMTk3ZWNlIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTUzOTUsImV4cCI6NDg5NTc3NTM5NX0.xrYHL35_6-yXMT5qksrqjGIe8Z5YbiuAgdh6FpL_fpQ"
         }
-        ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
+        ohlcv_response = requests.get(ohlcv_url, headers=moralis_headers, params=params)
         ohlcv_data = ohlcv_response.json()
 
         ath_price = None
