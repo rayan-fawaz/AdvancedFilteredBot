@@ -114,13 +114,27 @@ config = {
     {"symbol": "DOGEN", "multiplier": 0}      # Zero activity
 ]
 
-# Send POST request to the training endpoint
-response = requests.post(
-    'http://0.0.0.0:8080/train',
-    headers={'Content-Type': 'application/json'},
-    data=json.dumps(training_data)
-)
+async def analyze_and_print_learning():
+    """Print learning analysis every 5 minutes"""
+    while True:
+        print("\n=== AI Learning Analysis ===")
+        for coin in training_data:
+            symbol = coin.get('symbol', 'Unknown')
+            multiplier = coin.get('multiplier', 0)
+            print(f"Coin: {symbol}")
+            print(f"Performance Multiplier: {multiplier}x")
+            if multiplier > 10:
+                print("Analysis: Strong performer")
+            elif multiplier > 5:
+                print("Analysis: Good performer")
+            elif multiplier > 0:
+                print("Analysis: Moderate performer")
+            else:
+                print("Analysis: Poor performer")
+            print("-" * 30)
+        print("=" * 30)
+        await asyncio.sleep(300)  # Sleep for 5 minutes
 
-# Print response
-print(response.status_code)
-print(response.json())
+# Start the analysis loop
+if __name__ == "__main__":
+    asyncio.run(analyze_and_print_learning())
