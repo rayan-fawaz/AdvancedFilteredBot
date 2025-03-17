@@ -6306,5 +6306,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "9o1b8bBsAcDhZr7sKAinxvvDmksowjbJcb7acaEzpump": {
+    "mint": "9o1b8bBsAcDhZr7sKAinxvvDmksowjbJcb7acaEzpump",
+    "name": "Duo Of The United States",
+    "symbol": "DOTUS",
+    "market_cap": 9877.2791414916,
+    "total_bundles": 7,
+    "holding_percentage": 14.5636163627091,
+    "price_changes": {
+      "5m": 45.84,
+      "1h": 135.0,
+      "6h": 135.0,
+      "24h": 135.0
+    },
+    "volumes": {
+      "5m": 10951.37,
+      "1h": 17963.58,
+      "6h": 17963.58,
+      "24h": 17963.58
+    },
+    "ath": null,
+    "total_holders": 72,
+    "trades_1h": {
+      "total": 433,
+      "buys": 247,
+      "sells": 186
+    },
+    "makers_1h": 167,
+    "makers_24h": 167,
+    "timestamp": 1742182955.659171,
+    "initial_price": 0,
+    "initial_market_cap": 9877.2791414916,
+    "prediction_score": 56.069506,
+    "prediction_confidence": 560.6950599999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
