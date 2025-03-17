@@ -21,7 +21,7 @@ HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 # Filter Constants
 MIN_HOLDERS = 50  # Increased from 25
 MIN_TRADES_1H = 120  # Increased from 80
-MAX_VOLUME_5M = 15000  # Decreased from 20000
+MAX_VOLUME_5M = 20000  # Decreased from 20000
 BIGGEST_WALLET_MAX = 4  # Decreased from 5 for better distribution
 MIN_BUYS = 60  # Increased from 40
 MIN_SELLS = 60  # Increased from 40
@@ -29,7 +29,7 @@ MIN_SELLS = 60  # Increased from 40
 # Price Momentum Filters
 MIN_PRICE_5M = 40  # Increased from 30
 MIN_PRICE_1H = 90  # Increased from 80
-HIGH_PRICE_1H = 100  # Increased from 95
+HIGH_PRICE_1H = 1000  # Increased from 95
 
 # Volume Filters
 MIN_VOLUME_5M = 5000  # Increased from 3000
