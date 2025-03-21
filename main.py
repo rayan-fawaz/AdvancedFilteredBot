@@ -183,17 +183,18 @@ def get_dex_data(token_mint):
                     logging.info(f"Found pair address: {pair_address}")
 
         # OHLCV data from Moralis (ATH estimation)
-        current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-        one_month_ago = (datetime.now(timezone.utc) - 
-                        timedelta(days=30)).strftime('%Y-%m-%d')
-        ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=1000"
-        ohlcv_headers = {
-            "Accept": "application/json",
-            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjU0MjM5YTcyLTM1ZTAtNDY0NC05ZWU1LTRhMjVhZGUzODk3ZiIsIm9yZ0lkIjoiMzY1MTI4IiwidXNlcklkIjoiMzc1NTg4IiwidHlwZUlkIjoiYjNhMTZmZTAtN2M4OS00ZmQ4LWE2ZDEtZGEwODhhNjUzNzU3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MDk4MjI0MDAsImV4cCI6NDg2NTU4MjQwMH0.dNz0rE-UqVGvgX0oI5LrXGWRW4PNAv_QbwVNXYLfLXo"
-        }
-
         ath_price = None
-        try:
+        if pair_address:  # Only fetch ATH if we have a valid pair address
+            current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+            one_month_ago = (datetime.now(timezone.utc) - 
+                            timedelta(days=30)).strftime('%Y-%m-%d')
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=1000"
+            ohlcv_headers = {
+                "Accept": "application/json",
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjU0MjM5YTcyLTM1ZTAtNDY0NC05ZWU1LTRhMjVhZGUzODk3ZiIsIm9yZ0lkIjoiMzY1MTI4IiwidXNlcklkIjoiMzc1NTg4IiwidHlwZUlkIjoiYjNhMTZmZTAtN2M4OS00ZmQ4LWE2ZDEtZGEwODhhNjUzNzU3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MDk4MjI0MDAsImV4cCI6NDg2NTU4MjQwMH0.dNz0rE-UqVGvgX0oI5LrXGWRW4PNAv_QbwVNXYLfLXo"
+            }
+
+            try:
             ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
             ohlcv_response.raise_for_status()
             ohlcv_data = ohlcv_response.json()
