@@ -6420,5 +6420,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "BPGkSAy9jrQcjFd8k9QSbkSAPQT8MCQDSQ2x9ARcpump": {
+    "mint": "BPGkSAy9jrQcjFd8k9QSbkSAPQT8MCQDSQ2x9ARcpump",
+    "name": "Justice For Paddington Bear",
+    "symbol": "Deadington",
+    "market_cap": 11158.69338075466,
+    "total_bundles": 10,
+    "holding_percentage": 6.7942667198058,
+    "price_changes": {
+      "5m": 51.17,
+      "1h": 192.0,
+      "6h": 192.0,
+      "24h": 192.0
+    },
+    "volumes": {
+      "5m": 5059.84,
+      "1h": 39464.74,
+      "6h": 39464.74,
+      "24h": 39464.74
+    },
+    "ath": 19443,
+    "total_holders": 87,
+    "trades_1h": {
+      "total": 1541,
+      "buys": 816,
+      "sells": 725
+    },
+    "makers_1h": 266,
+    "makers_24h": 266,
+    "timestamp": 1742551356.93298,
+    "initial_price": 0,
+    "initial_market_cap": 11158.69338075466,
+    "prediction_score": 83.500318,
+    "prediction_confidence": 835.00318,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "96hbagt7xz1PoeJYiwkdfaZtwHwcY7RFPcUk8Kgdpump": {
+    "mint": "96hbagt7xz1PoeJYiwkdfaZtwHwcY7RFPcUk8Kgdpump",
+    "name": "Sir Cat",
+    "symbol": "sircat",
+    "market_cap": 8930.9631053097,
+    "total_bundles": 2,
+    "holding_percentage": 4.7948466509911,
+    "price_changes": {
+      "5m": 108.0,
+      "1h": 164.0,
+      "6h": 164.0,
+      "24h": 164.0
+    },
+    "volumes": {
+      "5m": 6190.91,
+      "1h": 7921.99,
+      "6h": 7921.99,
+      "24h": 7921.99
+    },
+    "ath": 9601,
+    "total_holders": 42,
+    "trades_1h": {
+      "total": 212,
+      "buys": 128,
+      "sells": 84
+    },
+    "makers_1h": 83,
+    "makers_24h": 83,
+    "timestamp": 1742551364.412707,
+    "initial_price": 0,
+    "initial_market_cap": 8930.9631053097,
+    "prediction_score": 43.120993,
+    "prediction_confidence": 431.20993,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
