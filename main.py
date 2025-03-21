@@ -166,8 +166,7 @@ def get_dex_data(token_mint):
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
             "Accept": "application/json",
-            "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
         }
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
@@ -175,12 +174,12 @@ def get_dex_data(token_mint):
         pair_address = None
         if moralis_response.ok:
             pair_data = moralis_response.json()
-            print(f"Moralis API Response: {pair_data}")  # Print full response
+            logging.info(f"Moralis API Response for {mint_address}: {pair_data}")
             if isinstance(pair_data, dict) and "pairs" in pair_data:
                 pairs = pair_data["pairs"]
                 if pairs and isinstance(pairs, list) and len(pairs) > 0:
                     pair_address = pairs[0].get("pairAddress")
-                    print(f"Found pair address: {pair_address}")  # Print pair address
+                    logging.info(f"Found pair address for {mint_address}: {pair_address}")
 
         # OHLCV data from Moralis (ATH estimation)
         current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
@@ -189,8 +188,7 @@ def get_dex_data(token_mint):
         ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
         ohlcv_headers = {
             "Accept": "application/json",
-            "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
         }
         ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
         ohlcv_data = ohlcv_response.json()
