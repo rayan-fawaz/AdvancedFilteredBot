@@ -1,0 +1,55 @@
+ moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
+        moralis_headers = {
+            "Accept":
+            "application/json",
+            "X-API-Key":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjA1ZWQ1M2UxLTA4YTUtNGY1Yy1hMmZmLTg0ODhiYzVmNzNhNSIsIm9yZ0lkIjoiNDMzNTI0IiwidXNlcklkIjoiNDQ1OTUxIiwidHlwZUlkIjoiNDEyNWI4NGMtMjM4Ni00OTZhLTgxZWQtYzdhNWVjNjNmYWNhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDA0OTg3MTEsImV4cCI6NDg5NjI1ODcxMX0.X6JXdTuoB4Vx1-dhhl_ya6fGpUwxcY-Urp_s0KFppac"  # Replace with your Moralis API key
+        }
+        moralis_response = requests.get(moralis_url,
+                                        headers=moralis_headers,
+                                        timeout=10)
+
+        pair_address = None
+        if moralis_response.ok:
+            pair_data = moralis_response.json()
+            logging.info(f"Moralis response: {pair_data}")
+            if isinstance(pair_data, dict) and "pairs" in pair_data:
+                pairs = pair_data["pairs"]
+                if pairs and isinstance(pairs, list) and len(pairs) > 0:
+                    pair_address = pairs[0].get("pairAddress")
+                    if pair_address:
+                        print(f"Found pair address: {pair_address}")
+                        logging.info(
+                            f"Found pair address for {token_mint}: {pair_address}"
+                        )
+                    else:
+                        print("No pair address found in pairs data")
+                else:
+                    print("No pairs found in response")
+            else:
+                print("Invalid response format from Moralis")
+
+        # Get OHLCV data from Moralis
+        # Calculate date range (current date and one month ago)
+        current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+        one_month_ago = (datetime.now(timezone.utc) -
+                         timedelta(days=30)).strftime('%Y-%m-%d')
+
+        ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+        ohlcv_headers = {
+            "Accept":
+            "application/json",
+            "X-API-Key":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
+        }
+        ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
+        ohlcv_data = ohlcv_response.json()
+        print(f"OHLCV response: {ohlcv_data}")
+
+        ath_price = None
+        if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+            high = ohlcv_data['result'][0].get('high')
+            if high:
+                ath_price = round(high * 1000000000)
+                print(f"High value: {round(high)}")
+                print(f"ATH Price (rounded): {ath_price}")

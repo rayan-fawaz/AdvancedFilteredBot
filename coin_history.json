@@ -6724,5 +6724,119 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "3ovhNwUeVPrsaXV8XqxzWAcuSY81QnvJNHakFwddpump": {
+    "mint": "3ovhNwUeVPrsaXV8XqxzWAcuSY81QnvJNHakFwddpump",
+    "name": "Baby B.O.B.",
+    "symbol": "BOB",
+    "market_cap": 11754.95573199111,
+    "total_bundles": 7,
+    "holding_percentage": 20.8469011872145,
+    "price_changes": {
+      "5m": 41.85,
+      "1h": 261.0,
+      "6h": 261.0,
+      "24h": 261.0
+    },
+    "volumes": {
+      "5m": 6917.4,
+      "1h": 15258.31,
+      "6h": 15258.31,
+      "24h": 15258.31
+    },
+    "ath": 11754.95573199111,
+    "total_holders": 92,
+    "trades_1h": {
+      "total": 325,
+      "buys": 196,
+      "sells": 129
+    },
+    "makers_1h": 157,
+    "makers_24h": 157,
+    "timestamp": 1742547452.746817,
+    "initial_price": 0,
+    "initial_market_cap": 11754.95573199111,
+    "prediction_score": 56.055817,
+    "prediction_confidence": 560.55817,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HjvYwm9ZhZtv4Nf5wK3FTxGEaos3gYiEXVZVqRprpump": {
+    "mint": "HjvYwm9ZhZtv4Nf5wK3FTxGEaos3gYiEXVZVqRprpump",
+    "name": "CHINESE USDT",
+    "symbol": "YUANCOIN",
+    "market_cap": 10799.690510091119,
+    "total_bundles": 28,
+    "holding_percentage": 19.2527624711991,
+    "price_changes": {
+      "5m": 85.93,
+      "1h": 225.0,
+      "6h": 225.0,
+      "24h": 225.0
+    },
+    "volumes": {
+      "5m": 4332.45,
+      "1h": 41100.75,
+      "6h": 41100.75,
+      "24h": 41100.75
+    },
+    "ath": 10799.690510091119,
+    "total_holders": 130,
+    "trades_1h": {
+      "total": 1005,
+      "buys": 571,
+      "sells": 434
+    },
+    "makers_1h": 348,
+    "makers_24h": 348,
+    "timestamp": 1742547501.747997,
+    "initial_price": 0,
+    "initial_market_cap": 10799.690510091119,
+    "prediction_score": 92.020525,
+    "prediction_confidence": 920.2052500000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "BLucYMq3Q5DEW7AUaWZfDkVTBr4CurmiuX8Mpy9spump": {
+    "mint": "BLucYMq3Q5DEW7AUaWZfDkVTBr4CurmiuX8Mpy9spump",
+    "name": "Nigga Swap For Wetards",
+    "symbol": "NSFW",
+    "market_cap": 13412.72223736055,
+    "total_bundles": 13,
+    "holding_percentage": 18.232529602827398,
+    "price_changes": {
+      "5m": 31.54,
+      "1h": 43.61,
+      "6h": 250.0,
+      "24h": 250.0
+    },
+    "volumes": {
+      "5m": 2268.78,
+      "1h": 13732.66,
+      "6h": 82040.71,
+      "24h": 82040.71
+    },
+    "ath": 13412.72223736055,
+    "total_holders": 103,
+    "trades_1h": {
+      "total": 4160,
+      "buys": 2108,
+      "sells": 2052
+    },
+    "makers_1h": 105,
+    "makers_24h": 301,
+    "timestamp": 1742547459.656497,
+    "initial_price": 0,
+    "initial_market_cap": 13412.72223736055,
+    "prediction_score": 53.390361999999996,
+    "prediction_confidence": 533.9036199999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
