@@ -561,7 +561,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
 
-    # Initialize ATH text
+    # Get ATH from pair data
     ath_text = ""
     if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
         pair_address = dex_data['pair_address']
@@ -578,7 +578,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             try:
                 ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
                 ohlcv_data = ohlcv_response.json()
-                print(f"OHLCV response: {ohlcv_data}")
+                print(f"OHLCV response for {mint_address}: {ohlcv_data}")
 
                 # Get highest price from the data
                 ath_price = 0
@@ -586,19 +586,18 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                     if 'data' in ohlcv_data:
                         for point in ohlcv_data['data']:
                             if isinstance(point, dict) and 'high' in point:
-                                current_high = float(point['high'])
-                                if current_high > ath_price:
-                                    ath_price = current_high
+                                high = float(point['high'])
+                                if high > ath_price:
+                                    ath_price = high
+                                    print(f"New ATH found: ${ath_price:,.2f}")
                     elif 'result' in ohlcv_data and isinstance(ohlcv_data['result'], list):
                         for point in ohlcv_data['result']:
                             if isinstance(point, dict) and 'high' in point:
-                                current_high = float(point['high'])
-                                if current_high > ath_price:
-                                    ath_price = current_high
+                                high = float(point['high'])
+                                if high > ath_price:
+                                    ath_price = high
+                                    print(f"New ATH found: ${ath_price:,.2f}")
 
-                print(f"Calculated ATH price: ${ath_price:,.2f}")
-
-                # Convert to USD and format
                 if ath_price > 0:
                     ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
                 else:
@@ -606,8 +605,15 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                     ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
 
             except Exception as e:
-                logging.error(f"Error fetching OHLCV data: {e}")
                 print(f"Error calculating ATH: {e}")
+                ath_price = float(coin.get('usd_market_cap', 0))
+                ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+        else:
+            ath_price = float(coin.get('usd_market_cap', 0))
+            ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+    else:
+        ath_price = float(coin.get('usd_market_cap', 0))
+        ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
 
     # Check DEX paid status
     try:
@@ -634,7 +640,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"{ath_text}"
         f"{price_text}"
         f"{volume_text}"
-        f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
+        f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:b {unique_reply_makers}\n\n"
         f"{format_holders_message(holders_info)}"
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
         f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
