@@ -166,7 +166,7 @@ def get_dex_data(token_mint):
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
             "Accept": "application/json",
-            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjU0MjM5YTcyLTM1ZTAtNDY0NC05ZWU1LTRhMjVhZGUzODk3ZiIsIm9yZ0lkIjoiMzY1MTI4IiwidXNlcklkIjoiMzc1NTg4IiwidHlwZUlkIjoiYjNhMTZmZTAtN2M4OS00ZmQ4LWE2ZDEtZGEwODhhNjUzNzU3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MDk4MjI0MDAsImV4cCI6NDg2NTU4MjQwMH0.dNz0rE-UqVGvgX0oI5LrXGWRW4PNAv_QbwVNXYLfLXo"
         }
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
@@ -189,15 +189,15 @@ def get_dex_data(token_mint):
         ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=1000"
         ohlcv_headers = {
             "Accept": "application/json",
-            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjU0MjM5YTcyLTM1ZTAtNDY0NC05ZWU1LTRhMjVhZGUzODk3ZiIsIm9yZ0lkIjoiMzY1MTI4IiwidXNlcklkIjoiMzc1NTg4IiwidHlwZUlkIjoiYjNhMTZmZTAtN2M4OS00ZmQ4LWE2ZDEtZGEwODhhNjUzNzU3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MDk4MjI0MDAsImV4cCI6NDg2NTU4MjQwMH0.dNz0rE-UqVGvgX0oI5LrXGWRW4PNAv_QbwVNXYLfLXo"
         }
-        
+
         ath_price = None
         try:
             ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
             ohlcv_response.raise_for_status()
             ohlcv_data = ohlcv_response.json()
-            
+
             if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
                 all_highs = []
                 for entry in ohlcv_data['result']:
@@ -208,7 +208,7 @@ def get_dex_data(token_mint):
                                 all_highs.append(high)
                         except (ValueError, TypeError):
                             continue
-                
+
                 if all_highs:
                     ath_price = max(all_highs)
                     print(f"Found ATH: ${ath_price:,.9f}")
@@ -650,7 +650,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
-        f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
+        f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n\n"
         f"{trench_info}"
         f"{price_text}"
         f"{volume_text}"
