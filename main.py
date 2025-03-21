@@ -200,7 +200,9 @@ def get_dex_data(token_mint):
             all_highs = [entry['high'] for entry in ohlcv_data['result'] if 'high' in entry]
             if all_highs:
                 ath_price = max(all_highs)
-                print(f"Found ATH price: ${ath_price:,.9f}")
+                print(f"ATH: ${ath_price:,.9f}")
+            else:
+                print("ATH: Error")
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
