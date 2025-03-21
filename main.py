@@ -580,18 +580,19 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                 ohlcv_data = ohlcv_response.json()
                 print(f"OHLCV response: {ohlcv_data}")
 
-                ath_price = None
-                if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-                    high = ohlcv_data['result'][0].get('high')
-                    if high:
-                        ath_price = round(high * 1000000000)
-                        print(f"High value: {round(high)}")
-                        print(f"ATH Price (rounded): {ath_price}")
+                # Get highest price from the data
+                ath_price = 0
+                if 'data' in ohlcv_data:
+                    for point in ohlcv_data['data']:
+                        if 'high' in point and point['high'] > ath_price:
+                            ath_price = point['high']
 
-                if not ath_price:
+                # Convert to USD and format
+                if ath_price > 0:
+                    ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+                else:
                     ath_price = float(coin.get('usd_market_cap', 0))
-
-                ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
+                    ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
 
             except Exception as e:
                 logging.error(f"Error fetching OHLCV data: {e}")
