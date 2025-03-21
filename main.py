@@ -580,26 +580,18 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                 ohlcv_data = ohlcv_response.json()
                 print(f"OHLCV response: {ohlcv_data}")
 
-                # Calculate ATH from multiple sources
-                market_cap = float(coin.get('usd_market_cap', 0))
-                ath_price = market_cap
+                ath_price = None
+                if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+                    high = ohlcv_data['result'][0].get('high')
+                    if high:
+                        ath_price = round(high * 1000000000)
+                        print(f"High value: {round(high)}")
+                        print(f"ATH Price (rounded): {ath_price}")
 
-                # Get DEX data
-                if dex_data and isinstance(dex_data, dict):
-                    # Get current price from DEX data
-                    price_usd = dex_data.get('price_usd', 0)
-                    if price_usd > ath_price:
-                        ath_price = price_usd
-                    
-                    # Get max price from price changes
-                    price_change_1h = dex_data.get('price_change_1h', 0)
-                    if price_change_1h > 0:
-                        potential_ath = price_usd * (1 + price_change_1h/100)
-                        if potential_ath > ath_price:
-                            ath_price = potential_ath
+                if not ath_price:
+                    ath_price = float(coin.get('usd_market_cap', 0))
 
-                print(f"ATH Price calculated: ${ath_price:,.2f}")
-                ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+                ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
 
             except Exception as e:
                 logging.error(f"Error fetching OHLCV data: {e}")
