@@ -6838,5 +6838,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "72YqV9WetEraeC6VGsqV8tTxWn5LzjpvDP6XrgsZpump": {
+    "mint": "72YqV9WetEraeC6VGsqV8tTxWn5LzjpvDP6XrgsZpump",
+    "name": "cawt",
+    "symbol": "cawt",
+    "market_cap": 7952.951312824319,
+    "total_bundles": 6,
+    "holding_percentage": 35.2944460172858,
+    "price_changes": {
+      "5m": 67.16,
+      "1h": 28.0,
+      "6h": 98.02,
+      "24h": 98.02
+    },
+    "volumes": {
+      "5m": 1542.52,
+      "1h": 26858.58,
+      "6h": 37323.65,
+      "24h": 37323.65
+    },
+    "ath": 7952.951312824319,
+    "total_holders": 45,
+    "trades_1h": {
+      "total": 2120,
+      "buys": 1090,
+      "sells": 1030
+    },
+    "makers_1h": 142,
+    "makers_24h": 182,
+    "timestamp": 1742547719.060047,
+    "initial_price": 0,
+    "initial_market_cap": 7952.951312824319,
+    "prediction_score": 51.426006,
+    "prediction_confidence": 514.26006,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "265FMNkDpBi5a9bDJDMFmRLmDztg3jsd8CN7gKCApump": {
+    "mint": "265FMNkDpBi5a9bDJDMFmRLmDztg3jsd8CN7gKCApump",
+    "name": "suso",
+    "symbol": "suso",
+    "market_cap": 8212.425603469119,
+    "total_bundles": 3,
+    "holding_percentage": 7.582054473027499,
+    "price_changes": {
+      "5m": 39.35,
+      "1h": 99.95,
+      "6h": 99.95,
+      "24h": 99.95
+    },
+    "volumes": {
+      "5m": 3344.74,
+      "1h": 8250.72,
+      "6h": 8250.72,
+      "24h": 8250.72
+    },
+    "ath": 8212.425603469119,
+    "total_holders": 36,
+    "trades_1h": {
+      "total": 837,
+      "buys": 440,
+      "sells": 397
+    },
+    "makers_1h": 67,
+    "makers_24h": 67,
+    "timestamp": 1742547803.947801,
+    "initial_price": 0,
+    "initial_market_cap": 8212.425603469119,
+    "prediction_score": 49.818003999999995,
+    "prediction_confidence": 498.1800399999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
