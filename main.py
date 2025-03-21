@@ -634,7 +634,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
-        #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
+        f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
         f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
         f"{trench_info}"
@@ -652,7 +652,6 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
          f"└─ <b>Reason:</b> {coin_tracker.predict_profitability(coin, holders_info, dex_data, trench_data)['explanation']}\n\n"
          f"📊 <b>Meta Matches:</b> {' | '.join(f'{word} ({score:.2f})' for word, score in coin_tracker.meta_scores.items() if word.lower() in (coin['name'] + ' ' + coin['symbol']).lower())}\n\n"
         f"🆔 Mint: <code>{mint_address}</code>\n"
-        f"💱 Pair: <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
         f"——————————————————————————————\n")
 
 
