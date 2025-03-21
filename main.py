@@ -199,8 +199,12 @@ def get_dex_data(token_mint):
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
 
-            if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
-                all_highs = []
+                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
+                    all_highs = []
+            except Exception as e:
+                print(f"Error fetching ATH: {str(e)}")
+                logging.error(f"ATH fetch error: {str(e)}")
+                ohlcv_data = None
                 for entry in ohlcv_data['result']:
                     if isinstance(entry, dict) and 'high' in entry:
                         try:
