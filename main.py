@@ -570,7 +570,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
 
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=24h&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=30"
             ohlcv_headers = {
                 "Accept": "application/json",
                 "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjA1ZWQ1M2UxLTA4YTUtNGY1Yy1hMmZmLTg0ODhiYzVmNzNhNSIsIm9yZ0lkIjoiNDMzNTI0IiwidXNlcklkIjoiNDQ1OTUxIiwidHlwZUlkIjoiNDEyNWI4NGMtMjM4Ni00OTZhLTgxZWQtYzdhNWVjNjNmYWNhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDA0OTg3MTEsImV4cCI6NDg5NjI1ODcxMX0.X6JXdTuoB4Vx1-dhhl_ya6fGpUwxcY-Urp_s0KFppac"
@@ -611,13 +611,12 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
-        #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
         f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
         f"{trench_info}"
+        f"{ath_text}"
         f"{price_text}"
         f"{volume_text}"
-        f"{ath_text}"
         f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
         f"{format_holders_message(holders_info)}"
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
