@@ -336,14 +336,17 @@ def fetch_token_holders(token_mint):
 
         # Skip the first holder (bonding curve) and use the rest
         real_holders = holders[1:]
-        top_5_amounts = [float(holder["amount"]) for holder in real_holders[:5]]
-        top_5_percentages = [(amount / total_supply * 100) for amount in top_5_amounts]
-
-        # Check for minimum and maximum wallet percentage limits
-        if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(top_5_percentages) < 2.0:
-            return None
-
-        top_5 = top_5_percentages
+        top_10_percentage = sum(
+            float(holder["amount"])
+            for holder in real_holders[:10]) / total_supply * 100
+        top_20_percentage = sum(
+            float(holder["amount"])
+            for holder in real_holders[:20]) / total_supply * 100
+        top_5 = [
+            float(holder["amount"]) / total_supply * 100
+            for holder in real_holders[:5]
+        ]
+        top_5_addresses = [holder["address"] for holder in real_holders[:5]]
 
         # Birdeye request for additional holder/trade info
         birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={token_mint}"
@@ -366,31 +369,10 @@ def fetch_token_holders(token_mint):
         if total_holders < MIN_HOLDERS:
             return None
 
-        # Re-fetch holder distribution from Helius (if needed for more precise data)
-        response = requests.post(HELIUS_RPC_URL, json=payload)
-        response.raise_for_status()
-        holders = response.json().get("result", {}).get("value", [])
-        if not holders or len(holders) < 2:
-            return None
-
-        total_supply = sum(float(holder["amount"]) for holder in holders)
-        if total_supply == 0:
-            return None
-        real_holders = holders[1:]
-        top_10_percentage = sum(
-            float(holder["amount"])
-            for holder in real_holders[:10]) / total_supply * 100
-        top_20_percentage = sum(
-            float(holder["amount"])
-            for holder in real_holders[:20]) / total_supply * 100
-        top_5 = [
-            float(holder["amount"]) / total_supply * 100
-            for holder in real_holders[:5]
-        ]
-
         return {
             "total_holders": total_holders,
             "top_5_percentages": top_5,
+            "top_5_addresses": top_5_addresses,
             "top_10_percentage": top_10_percentage,
             "top_20_percentage": top_20_percentage,
             "buy_1h": buy_1h,
