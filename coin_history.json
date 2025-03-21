@@ -6990,5 +6990,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "CwyNioDFS2dnRDuhbnq1DQhg1vYd3gn4JUGUQKWCpump": {
+    "mint": "CwyNioDFS2dnRDuhbnq1DQhg1vYd3gn4JUGUQKWCpump",
+    "name": "Patriot",
+    "symbol": "PATRIOT",
+    "market_cap": 8625.91842992528,
+    "total_bundles": 18,
+    "holding_percentage": 9.8598261921382,
+    "price_changes": {
+      "5m": 90.23,
+      "1h": 107.0,
+      "6h": 107.0,
+      "24h": 107.0
+    },
+    "volumes": {
+      "5m": 5329.77,
+      "1h": 33287.46,
+      "6h": 33287.46,
+      "24h": 33287.46
+    },
+    "ath": 8625.91842992528,
+    "total_holders": 78,
+    "trades_1h": {
+      "total": 775,
+      "buys": 436,
+      "sells": 339
+    },
+    "makers_1h": 256,
+    "makers_24h": 256,
+    "timestamp": 1742548403.071282,
+    "initial_price": 0,
+    "initial_market_cap": 8625.91842992528,
+    "prediction_score": 73.676222,
+    "prediction_confidence": 736.76222,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
