@@ -580,18 +580,23 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                 ohlcv_data = ohlcv_response.json()
                 print(f"OHLCV response: {ohlcv_data}")
 
-                # Calculate ATH from market cap
+                # Calculate ATH from multiple sources
                 market_cap = float(coin.get('usd_market_cap', 0))
                 ath_price = market_cap
 
-                # Get additional price info from DEX data
+                # Get DEX data
                 if dex_data and isinstance(dex_data, dict):
-                    pairs = dex_data.get('pairs', [])
-                    if pairs and len(pairs) > 0:
-                        pair = pairs[0]
-                        price_usd = float(pair.get('priceUsd', 0))
-                        if price_usd > ath_price:
-                            ath_price = price_usd
+                    # Get current price from DEX data
+                    price_usd = dex_data.get('price_usd', 0)
+                    if price_usd > ath_price:
+                        ath_price = price_usd
+                    
+                    # Get max price from price changes
+                    price_change_1h = dex_data.get('price_change_1h', 0)
+                    if price_change_1h > 0:
+                        potential_ath = price_usd * (1 + price_change_1h/100)
+                        if potential_ath > ath_price:
+                            ath_price = potential_ath
 
                 print(f"ATH Price calculated: ${ath_price:,.2f}")
                 ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
