@@ -186,7 +186,7 @@ def get_dex_data(token_mint):
         current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
         one_month_ago = (datetime.now(timezone.utc) -
                          timedelta(days=30)).strftime('%Y-%m-%d')
-        ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+        ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1h&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=1000"
         ohlcv_headers = {
             "Accept": "application/json",
             "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
@@ -195,10 +195,12 @@ def get_dex_data(token_mint):
         ohlcv_data = ohlcv_response.json()
 
         ath_price = None
-        if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-            high = ohlcv_data['result'][0].get('high')
-            if high:
-                ath_price = round(high * 1000000000)
+        if 'result' in ohlcv_data and ohlcv_data['result']:
+            # Find highest price from all hourly data
+            all_highs = [round(entry['high'] * 1000000000) for entry in ohlcv_data['result'] if 'high' in entry]
+            if all_highs:
+                ath_price = max(all_highs)
+                print(f"Found ATH price: ${ath_price:,.2f}")
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
