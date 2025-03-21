@@ -6534,5 +6534,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "9gs2UdY1iBLNJqKE9FeSVzJ41tbSzvcpGbvggixpump": {
+    "mint": "9gs2UdY1iBLNJqKE9FeSVzJ41tbSzvcpGbvggixpump",
+    "name": "SolSecure",
+    "symbol": "SolSecure",
+    "market_cap": 12316.04139095262,
+    "total_bundles": 4,
+    "holding_percentage": 8.2938532191723,
+    "price_changes": {
+      "5m": 52.97,
+      "1h": 1.64,
+      "6h": 208.0,
+      "24h": 208.0
+    },
+    "volumes": {
+      "5m": 2323.34,
+      "1h": 22043.8,
+      "6h": 31339.61,
+      "24h": 31339.61
+    },
+    "ath": null,
+    "total_holders": 74,
+    "trades_1h": {
+      "total": 421,
+      "buys": 239,
+      "sells": 182
+    },
+    "makers_1h": 153,
+    "makers_24h": 190,
+    "timestamp": 1742553274.34149,
+    "initial_price": 0,
+    "initial_market_cap": 12316.04139095262,
+    "prediction_score": 34.40566,
+    "prediction_confidence": 344.05659999999995,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "gwtLvjz1a25n1YjhKAb7ouE6ns9kqcRo9jXEeJLpump": {
+    "mint": "gwtLvjz1a25n1YjhKAb7ouE6ns9kqcRo9jXEeJLpump",
+    "name": "c\u2661t",
+    "symbol": "c\u2661t",
+    "market_cap": 9838.133461630261,
+    "total_bundles": 8,
+    "holding_percentage": 23.1359983389585,
+    "price_changes": {
+      "5m": 35.97,
+      "1h": 173.0,
+      "6h": 173.0,
+      "24h": 173.0
+    },
+    "volumes": {
+      "5m": 4267.94,
+      "1h": 12867.83,
+      "6h": 12867.83,
+      "24h": 12867.83
+    },
+    "ath": null,
+    "total_holders": 66,
+    "trades_1h": {
+      "total": 295,
+      "buys": 183,
+      "sells": 112
+    },
+    "makers_1h": 122,
+    "makers_24h": 122,
+    "timestamp": 1742553438.447474,
+    "initial_price": 0,
+    "initial_market_cap": 9838.133461630261,
+    "prediction_score": 49.682480999999996,
+    "prediction_confidence": 496.82480999999996,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
