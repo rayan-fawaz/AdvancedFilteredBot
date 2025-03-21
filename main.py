@@ -563,19 +563,20 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
     # Get ATH from pair data
     ath_text = ""
-    if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
-        pair_address = dex_data['pair_address']
-        if pair_address:
-            # Get OHLCV data from Moralis
-            current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-            one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
+    try:
+        if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
+            pair_address = dex_data['pair_address']
+            if pair_address:
+                # Get OHLCV data from Moralis
+                current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+                one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
 
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
-            ohlcv_headers = {
-                "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
-            }
-            try:
+                ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+                ohlcv_headers = {
+                    "Accept": "application/json",
+                    "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
+                }
+                
                 ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
                 ohlcv_data = ohlcv_response.json()
                 print(f"OHLCV response for {mint_address}: {ohlcv_data}")
@@ -601,19 +602,14 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                 if ath_price > 0:
                     ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
                 else:
-                    ath_price = float(coin.get('usd_market_cap', 0))
-                    ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
-
-            except Exception as e:
-                print(f"Error calculating ATH: {e}")
-                ath_price = float(coin.get('usd_market_cap', 0))
-                ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+                    ath_text = "📈 <b>ATH: Error</b>\n\n"
+            else:
+                ath_text = "📈 <b>ATH: Error</b>\n\n"
         else:
-            ath_price = float(coin.get('usd_market_cap', 0))
-            ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
-    else:
-        ath_price = float(coin.get('usd_market_cap', 0))
-        ath_text = f"📈 <b>ATH: ${ath_price:,.2f}</b>\n\n"
+            ath_text = "📈 <b>ATH: Error</b>\n\n"
+    except Exception as e:
+        print(f"Error calculating ATH: {e}")
+        ath_text = "📈 <b>ATH: Error</b>\n\n"
 
     # Check DEX paid status
     try:
