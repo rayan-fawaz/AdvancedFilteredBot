@@ -201,13 +201,25 @@ def get_dex_data(token_mint):
 
                 if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
                     all_highs = []
+                    for entry in ohlcv_data['result']:
+                        if isinstance(entry, dict) and 'high' in entry:
+                            try:
+                                high = float(entry['high'])
+                                if high > 0:
+                                    all_highs.append(high)
+                            except (ValueError, TypeError):
+                                continue
+                    if all_highs:
+                        ath_price = max(all_highs)
+                        print(f"Found ATH: ${ath_price:,.9f}")
+                    else:
+                        print("No valid ATH data found")
+                else:
+                    print("Invalid OHLCV response format")
             except Exception as e:
                 print(f"Error fetching ATH: {str(e)}")
                 logging.error(f"ATH fetch error: {str(e)}")
                 ohlcv_data = None
-                for entry in ohlcv_data['result']:
-                    if isinstance(entry, dict) and 'high' in entry:
-                        try:
                             high = float(entry['high'])
                             if high > 0:
                                 all_highs.append(high)
