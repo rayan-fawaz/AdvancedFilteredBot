@@ -6610,5 +6610,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "8iLfvPjB77GbLmfhpbgfc2FAna5AnePjX41ZrQrwpump": {
+    "mint": "8iLfvPjB77GbLmfhpbgfc2FAna5AnePjX41ZrQrwpump",
+    "name": "Wink Cat \u30a6\u30a4\u30f3\u30af\u732b",
+    "symbol": "Emiko",
+    "market_cap": 9281.89831403679,
+    "total_bundles": 5,
+    "holding_percentage": 13.830230720495102,
+    "price_changes": {
+      "5m": 77.61,
+      "1h": 120.0,
+      "6h": 120.0,
+      "24h": 120.0
+    },
+    "volumes": {
+      "5m": 4426.31,
+      "1h": 7738.26,
+      "6h": 7738.26,
+      "24h": 7738.26
+    },
+    "ath": null,
+    "total_holders": 58,
+    "trades_1h": {
+      "total": 156,
+      "buys": 101,
+      "sells": 55
+    },
+    "makers_1h": 90,
+    "makers_24h": 90,
+    "timestamp": 1742554349.779259,
+    "initial_price": 0,
+    "initial_market_cap": 9281.89831403679,
+    "prediction_score": 44.118502,
+    "prediction_confidence": 441.18502,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
