@@ -191,18 +191,34 @@ def get_dex_data(token_mint):
             "Accept": "application/json",
             "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
         }
-        ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
-        ohlcv_data = ohlcv_response.json()
-
+        
         ath_price = None
-        if 'result' in ohlcv_data and ohlcv_data['result']:
-            # Find highest price from all hourly data
-            all_highs = [entry['high'] for entry in ohlcv_data['result'] if 'high' in entry]
-            if all_highs:
-                ath_price = max(all_highs)
-                print(f"ATH: ${ath_price:,.9f}")
+        try:
+            ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
+            ohlcv_response.raise_for_status()
+            ohlcv_data = ohlcv_response.json()
+            
+            if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
+                all_highs = []
+                for entry in ohlcv_data['result']:
+                    if isinstance(entry, dict) and 'high' in entry:
+                        try:
+                            high = float(entry['high'])
+                            if high > 0:
+                                all_highs.append(high)
+                        except (ValueError, TypeError):
+                            continue
+                
+                if all_highs:
+                    ath_price = max(all_highs)
+                    print(f"Found ATH: ${ath_price:,.9f}")
+                else:
+                    print("No valid ATH data found")
             else:
-                print("ATH: Error")
+                print("Invalid OHLCV response format")
+        except Exception as e:
+            print(f"Error fetching ATH: {str(e)}")
+            logging.error(f"ATH fetch error: {str(e)}")
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
