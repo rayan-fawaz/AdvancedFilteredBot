@@ -570,10 +570,10 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
 
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=24h&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=30"
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
             ohlcv_headers = {
                 "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjA1ZWQ1M2UxLTA4YTUtNGY1Yy1hMmZmLTg0ODhiYzVmNzNhNSIsIm9yZ0lkIjoiNDMzNTI0IiwidXNlcklkIjoiNDQ1OTUxIiwidHlwZUlkIjoiNDEyNWI4NGMtMjM4Ni00OTZhLTgxZWQtYzdhNWVjNjNmYWNhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDA0OTg3MTEsImV4cCI6NDg5NjI1ODcxMX0.X6JXdTuoB4Vx1-dhhl_ya6fGpUwxcY-Urp_s0KFppac"
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
             }
             try:
                 ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
@@ -581,15 +581,13 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
                 print(f"OHLCV response: {ohlcv_data}")
 
                 ath_price = None
-                if isinstance(ohlcv_data, dict) and 'data' in ohlcv_data:
-                    ohlcv_list = ohlcv_data['data']
-                    if isinstance(ohlcv_list, list) and ohlcv_list:
-                        # Find highest price across all data points
-                        high_prices = [entry.get('high', 0) for entry in ohlcv_list]
-                        max_price = max(high_prices)
-                        if max_price:
-                            ath_price = max_price
-                            ath_text = f"📈 <b>ATH: ${ath_price:,.8f}</b>\n\n"
+                if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+                    high = ohlcv_data['result'][0].get('high')
+                    if high:
+                        ath_price = round(high * 1000000000)
+                        print(f"High value: {round(high)}")
+                        print(f"ATH Price (rounded): {ath_price}")
+                        ath_text = f"📈 <b>ATH: ${ath_price:,.8f}</b>\n\n"
 
             except Exception as e:
                 logging.error(f"Error fetching OHLCV data: {e}")
