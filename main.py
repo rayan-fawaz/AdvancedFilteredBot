@@ -220,22 +220,16 @@ def get_dex_data(token_mint):
                 print(f"Error fetching ATH: {str(e)}")
                 logging.error(f"ATH fetch error: {str(e)}")
                 ohlcv_data = None
-                            high = float(entry['high'])
-                            if high > 0:
-                                all_highs.append(high)
-                        except (ValueError, TypeError):
-                            continue
+            except (ValueError, TypeError):
+                continue
 
-                if all_highs:
-                    ath_price = max(all_highs)
-                    print(f"Found ATH: ${ath_price:,.9f}")
-                else:
-                    print("No valid ATH data found")
+            if all_highs:
+                ath_price = max(all_highs)
+                print(f"Found ATH: ${ath_price:,.9f}")
             else:
-                print("Invalid OHLCV response format")
-        except Exception as e:
-            print(f"Error fetching ATH: {str(e)}")
-            logging.error(f"ATH fetch error: {str(e)}")
+                print("No valid ATH data found")
+        else:
+            print("Invalid OHLCV response format")
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
