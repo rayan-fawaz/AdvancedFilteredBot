@@ -184,8 +184,8 @@ def get_dex_data(token_mint):
 
         # OHLCV data from Moralis (ATH estimation)
         current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-        one_month_ago = (datetime.now(timezone.utc) -
-                         timedelta(days=30)).strftime('%Y-%m-%d')
+        one_month_ago = (datetime.now(timezone.utc) - 
+                        timedelta(days=30)).strftime('%Y-%m-%d')
         ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1h&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=1000"
         ohlcv_headers = {
             "Accept": "application/json",
