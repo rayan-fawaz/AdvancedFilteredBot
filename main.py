@@ -197,10 +197,10 @@ def get_dex_data(token_mint):
         ath_price = None
         if 'result' in ohlcv_data and ohlcv_data['result']:
             # Find highest price from all hourly data
-            all_highs = [round(entry['high'] * 1000000000) for entry in ohlcv_data['result'] if 'high' in entry]
+            all_highs = [entry['high'] for entry in ohlcv_data['result'] if 'high' in entry]
             if all_highs:
                 ath_price = max(all_highs)
-                print(f"Found ATH price: ${ath_price:,.2f}")
+                print(f"Found ATH price: ${ath_price:,.9f}")
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
