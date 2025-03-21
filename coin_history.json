@@ -6914,5 +6914,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "AhcowfRQuwQdEdNXrT4hVtjrTm73EuqEQhnVXnPQpump": {
+    "mint": "AhcowfRQuwQdEdNXrT4hVtjrTm73EuqEQhnVXnPQpump",
+    "name": "Retard I Like to Fuck",
+    "symbol": "RILF",
+    "market_cap": 13347.72029344254,
+    "total_bundles": 7,
+    "holding_percentage": 2.6437425135084,
+    "price_changes": {
+      "5m": 38.73,
+      "1h": 65.2,
+      "6h": 224.0,
+      "24h": 224.0
+    },
+    "volumes": {
+      "5m": 5491.28,
+      "1h": 28419.5,
+      "6h": 37202.29,
+      "24h": 37202.29
+    },
+    "ath": 13347.72029344254,
+    "total_holders": 98,
+    "trades_1h": {
+      "total": 954,
+      "buys": 533,
+      "sells": 421
+    },
+    "makers_1h": 189,
+    "makers_24h": 258,
+    "timestamp": 1742548029.345151,
+    "initial_price": 0,
+    "initial_market_cap": 13347.72029344254,
+    "prediction_score": 65.75365,
+    "prediction_confidence": 657.5364999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "473hFyZJUYM6nGGzi5cQaGqCgqenw7nv6P9i7QZzpump": {
+    "mint": "473hFyZJUYM6nGGzi5cQaGqCgqenw7nv6P9i7QZzpump",
+    "name": "pown",
+    "symbol": "pown",
+    "market_cap": 10065.3241939401,
+    "total_bundles": 10,
+    "holding_percentage": 6.677443568317,
+    "price_changes": {
+      "5m": 31.9,
+      "1h": 46.12,
+      "6h": 152.0,
+      "24h": 152.0
+    },
+    "volumes": {
+      "5m": 1892.28,
+      "1h": 35123.89,
+      "6h": 39797.56,
+      "24h": 39797.56
+    },
+    "ath": 10065.3241939401,
+    "total_holders": 74,
+    "trades_1h": {
+      "total": 2313,
+      "buys": 1203,
+      "sells": 1110
+    },
+    "makers_1h": 231,
+    "makers_24h": 264,
+    "timestamp": 1742548065.651238,
+    "initial_price": 0,
+    "initial_market_cap": 10065.3241939401,
+    "prediction_score": 65.36672300000001,
+    "prediction_confidence": 653.6672300000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
