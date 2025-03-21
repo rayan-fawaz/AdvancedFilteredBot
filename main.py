@@ -582,10 +582,21 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
                 # Get highest price from the data
                 ath_price = 0
-                if 'data' in ohlcv_data:
-                    for point in ohlcv_data['data']:
-                        if 'high' in point and point['high'] > ath_price:
-                            ath_price = point['high']
+                if isinstance(ohlcv_data, dict):
+                    if 'data' in ohlcv_data:
+                        for point in ohlcv_data['data']:
+                            if isinstance(point, dict) and 'high' in point:
+                                current_high = float(point['high'])
+                                if current_high > ath_price:
+                                    ath_price = current_high
+                    elif 'result' in ohlcv_data and isinstance(ohlcv_data['result'], list):
+                        for point in ohlcv_data['result']:
+                            if isinstance(point, dict) and 'high' in point:
+                                current_high = float(point['high'])
+                                if current_high > ath_price:
+                                    ath_price = current_high
+
+                print(f"Calculated ATH price: ${ath_price:,.2f}")
 
                 # Convert to USD and format
                 if ath_price > 0:
