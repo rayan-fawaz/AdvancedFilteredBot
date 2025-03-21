@@ -195,9 +195,9 @@ def get_dex_data(token_mint):
             }
 
             try:
-            ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
-            ohlcv_response.raise_for_status()
-            ohlcv_data = ohlcv_response.json()
+                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
+                ohlcv_response.raise_for_status()
+                ohlcv_data = ohlcv_response.json()
 
             if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
                 all_highs = []
