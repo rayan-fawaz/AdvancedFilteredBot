@@ -6458,5 +6458,271 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "AhLEyB99ycdv1CTYds6R7Me6rFEykf7cpyTePSKkpump": {
+    "mint": "AhLEyB99ycdv1CTYds6R7Me6rFEykf7cpyTePSKkpump",
+    "name": "Last Play",
+    "symbol": "LP",
+    "market_cap": 24256.220882265,
+    "total_bundles": 7,
+    "holding_percentage": 1.004177741273,
+    "price_changes": {
+      "5m": 44.55,
+      "1h": 494.0,
+      "6h": 494.0,
+      "24h": 494.0
+    },
+    "volumes": {
+      "5m": 7940.09,
+      "1h": 29249.43,
+      "6h": 29249.43,
+      "24h": 29249.43
+    },
+    "ath": 24256.220882265,
+    "total_holders": 165,
+    "trades_1h": {
+      "total": 585,
+      "buys": 368,
+      "sells": 217
+    },
+    "makers_1h": 280,
+    "makers_24h": 280,
+    "timestamp": 1742362915.446548,
+    "initial_price": 0,
+    "initial_market_cap": 24256.220882265,
+    "prediction_score": 80.874601,
+    "prediction_confidence": 808.74601,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "fSJkvQ3eF6LgVfKTtYVeMSCfuhDQufawvQ5gusipump": {
+    "mint": "fSJkvQ3eF6LgVfKTtYVeMSCfuhDQufawvQ5gusipump",
+    "name": "RebootJFK",
+    "symbol": "RebootJFK",
+    "market_cap": 23341.44317309625,
+    "total_bundles": 6,
+    "holding_percentage": 8.708384219727899,
+    "price_changes": {
+      "5m": 40.88,
+      "1h": 546.0,
+      "6h": 546.0,
+      "24h": 546.0
+    },
+    "volumes": {
+      "5m": 4985.86,
+      "1h": 28603.26,
+      "6h": 28603.26,
+      "24h": 28603.26
+    },
+    "ath": 23341.44317309625,
+    "total_holders": 105,
+    "trades_1h": {
+      "total": 402,
+      "buys": 258,
+      "sells": 144
+    },
+    "makers_1h": 203,
+    "makers_24h": 203,
+    "timestamp": 1742362920.361502,
+    "initial_price": 0,
+    "initial_market_cap": 23341.44317309625,
+    "prediction_score": 71.04890199999998,
+    "prediction_confidence": 710.4890199999998,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Nirka79w9wXftmow6LWJkHQrvLE9FYQFLkWhLP9pump": {
+    "mint": "Nirka79w9wXftmow6LWJkHQrvLE9FYQFLkWhLP9pump",
+    "name": "mimi",
+    "symbol": "mimi",
+    "market_cap": 8716.756935879,
+    "total_bundles": 6,
+    "holding_percentage": 16.7950686493296,
+    "price_changes": {
+      "5m": 43.31,
+      "1h": 118.0,
+      "6h": 118.0,
+      "24h": 118.0
+    },
+    "volumes": {
+      "5m": 4990.44,
+      "1h": 14395.63,
+      "6h": 14395.63,
+      "24h": 14395.63
+    },
+    "ath": 8716.756935879,
+    "total_holders": 46,
+    "trades_1h": {
+      "total": 395,
+      "buys": 216,
+      "sells": 179
+    },
+    "makers_1h": 139,
+    "makers_24h": 139,
+    "timestamp": 1742363073.553854,
+    "initial_price": 0,
+    "initial_market_cap": 8716.756935879,
+    "prediction_score": 49.751940999999995,
+    "prediction_confidence": 497.51940999999994,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3HS7HcH8VmeSmcqhhLMm1rNv3txum3cWbUcEMkYMpump": {
+    "mint": "3HS7HcH8VmeSmcqhhLMm1rNv3txum3cWbUcEMkYMpump",
+    "name": "pepi",
+    "symbol": "pepi",
+    "market_cap": 7524.4205028168,
+    "total_bundles": 1,
+    "holding_percentage": 1.5102097062455,
+    "price_changes": {
+      "5m": 55.11,
+      "1h": 100.0,
+      "6h": 100.0,
+      "24h": 100.0
+    },
+    "volumes": {
+      "5m": 3297.64,
+      "1h": 7771.82,
+      "6h": 7771.82,
+      "24h": 7771.82
+    },
+    "ath": 7524.4205028168,
+    "total_holders": 29,
+    "trades_1h": {
+      "total": 502,
+      "buys": 267,
+      "sells": 235
+    },
+    "makers_1h": 60,
+    "makers_24h": 60,
+    "timestamp": 1742363448.956596,
+    "initial_price": 0,
+    "initial_market_cap": 7524.4205028168,
+    "prediction_score": 43.595274,
+    "prediction_confidence": 435.95274,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Ft3S4hrszEgpSnY2D3nRaG1LcoY44f6ErKrdDThCpump": {
+    "mint": "Ft3S4hrszEgpSnY2D3nRaG1LcoY44f6ErKrdDThCpump",
+    "name": "Bring Back Bullying",
+    "symbol": "3B",
+    "market_cap": 7552.93973680809,
+    "total_bundles": 3,
+    "holding_percentage": 2.8863565360139,
+    "price_changes": {
+      "5m": 80.86,
+      "1h": 80.86,
+      "6h": 80.86,
+      "24h": 80.86
+    },
+    "volumes": {
+      "5m": 5473.14,
+      "1h": 5473.14,
+      "6h": 5473.14,
+      "24h": 5473.14
+    },
+    "ath": 7552.93973680809,
+    "total_holders": 35,
+    "trades_1h": {
+      "total": 135,
+      "buys": 86,
+      "sells": 49
+    },
+    "makers_1h": 68,
+    "makers_24h": 68,
+    "timestamp": 1742363542.426761,
+    "initial_price": 0,
+    "initial_market_cap": 7552.93973680809,
+    "prediction_score": 32.839298,
+    "prediction_confidence": 328.39298,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "4JxLXfQCLMKG8geFXETwr49UsJaAdt3LARN3htvzpump": {
+    "mint": "4JxLXfQCLMKG8geFXETwr49UsJaAdt3LARN3htvzpump",
+    "name": "pipi",
+    "symbol": "pipi",
+    "market_cap": 9979.49742742299,
+    "total_bundles": 52,
+    "holding_percentage": 12.6901097132411,
+    "price_changes": {
+      "5m": 31.35,
+      "1h": 166.0,
+      "6h": 166.0,
+      "24h": 166.0
+    },
+    "volumes": {
+      "5m": 4988.1,
+      "1h": 81519.66,
+      "6h": 81519.66,
+      "24h": 81519.66
+    },
+    "ath": 9979.49742742299,
+    "total_holders": 115,
+    "trades_1h": {
+      "total": 1823,
+      "buys": 1024,
+      "sells": 799
+    },
+    "makers_1h": 511,
+    "makers_24h": 511,
+    "timestamp": 1742363839.364914,
+    "initial_price": 0,
+    "initial_market_cap": 9979.49742742299,
+    "prediction_score": 94.375,
+    "prediction_confidence": 943.75,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "98n5VHs5iXedetUwb78kmji5RAJVNL5ydk3PkvYupump": {
+    "mint": "98n5VHs5iXedetUwb78kmji5RAJVNL5ydk3PkvYupump",
+    "name": "Bracketology",
+    "symbol": "BRKT",
+    "market_cap": 23103.61333968096,
+    "total_bundles": 10,
+    "holding_percentage": 8.5398116351715,
+    "price_changes": {
+      "5m": 47.94,
+      "1h": 340.0,
+      "6h": 463.0,
+      "24h": 640.0
+    },
+    "volumes": {
+      "5m": 6003.57,
+      "1h": 12534.79,
+      "6h": 18459.55,
+      "24h": 20838.59
+    },
+    "ath": 23103.61333968096,
+    "total_holders": 135,
+    "trades_1h": {
+      "total": 205,
+      "buys": 153,
+      "sells": 52
+    },
+    "makers_1h": 139,
+    "makers_24h": 217,
+    "timestamp": 1742364022.238636,
+    "initial_price": 0,
+    "initial_market_cap": 23103.61333968096,
+    "prediction_score": 58.724353,
+    "prediction_confidence": 587.2435300000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }

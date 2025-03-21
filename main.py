@@ -19,8 +19,8 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_HOLDERS = 255  # Increased from 25
-MIN_TRADES_1H = 8080  # Increased from 80
+MIN_HOLDERS = 25  # Increased from 25
+MIN_TRADES_1H = 80  # Increased from 80
 MAX_VOLUME_5M = 20000  # Decreased from 20000
 BIGGEST_WALLET_MAX = 55  # Decreased from 5 for better distribution
 MIN_BUYS = 40  # Increased from 40
