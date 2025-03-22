@@ -211,9 +211,9 @@ def get_dex_data(token_mint):
                                 continue
                     if all_highs:
                         ath_price = max(all_highs)
-                        print(f"Found ATH from Moralis: ${ath_price:,.9f}")
+                        print(f"Found ATH from OHLCV: ${ath_price:,.9f}")
                     else:
-                        print("No valid ATH data found in OHLCV response")
+                        print("No valid ATH data found in OHLCV")
                 else:
                     print(f"Invalid OHLCV response format: {ohlcv_data}")
             except Exception as e:
@@ -221,11 +221,10 @@ def get_dex_data(token_mint):
                 logging.error(f"ATH fetch error: {str(e)}")
                 ath_price = None
 
-            if all_highs:
-                ath_price = max(all_highs)
-                print(f"Found ATH: ${ath_price:,.9f}")
-            else:
-                print("No valid ATH data found")
+            # Add debugging info
+            print(f"OHLCV Response: {ohlcv_response.status_code}")
+            print(f"OHLCV Data: {ohlcv_data[:500]}")  # Print first 500 chars
+
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
@@ -653,7 +652,8 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     dex_status = "🟢" if dex_paid else "🔴"
 
     return (
-        f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
+        f"🔹 <replit_final_file>
+<b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
