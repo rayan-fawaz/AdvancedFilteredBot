@@ -199,23 +199,15 @@ def get_dex_data(token_mint):
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
 
-                if isinstance(ohlcv_data, list) and len(ohlcv_data) > 0:
-                    all_highs = []
-                    for entry in ohlcv_data:
-                        if isinstance(entry, dict) and 'high' in entry:
-                            try:
-                                high = float(entry['high'])
-                                if high > 0:
-                                    all_highs.append(high)
-                            except (ValueError, TypeError):
-                                continue
-                    if all_highs:
-                        ath_price = max(all_highs)
-                        print(f"Found ATH from OHLCV: ${ath_price:,.9f}")
+                if 'pairs' in ohlcv_data and len(ohlcv_data['pairs']) > 0:
+                    pair_data = ohlcv_data['pairs'][0]
+                    if 'priceUsd' in pair_data:
+                        ath_price = float(pair_data.get('priceUsd', 0))
+                        print(f"Found ATH: ${ath_price:,.9f}")
                     else:
-                        print("No valid ATH data found in OHLCV")
+                        print("No ATH price found in pair data")
                 else:
-                    print(f"Invalid OHLCV response format: {ohlcv_data}")
+                    print("Invalid pair data response")
             except Exception as e:
                 print(f"Error fetching ATH: {str(e)}")
                 logging.error(f"ATH fetch error: {str(e)}")
