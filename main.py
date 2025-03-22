@@ -645,7 +645,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
     return (
         f"🔹 <b>Coin Info</b>\n"
-<b>{coin['name']}</b> ({coin['symbol']})\n"
+        f"<b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
