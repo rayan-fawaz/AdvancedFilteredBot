@@ -221,14 +221,9 @@ def get_dex_data(token_mint):
                         ath_price = round(high * 1000000000)
                         print(f"High value: {round(high)}")
                         print(f"ATH Price (rounded): {ath_price}")
+            except Exception as e:
                 logging.error(f"ATH fetch error: {str(e)}")
                 ath_price = None
-
-            if all_highs:
-                ath_price = max(all_highs)
-                print(f"Found ATH: ${ath_price:,.9f}")
-            else:
-                print("No valid ATH data found")
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
