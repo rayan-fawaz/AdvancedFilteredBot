@@ -197,42 +197,49 @@ def get_dex_data(token_mint):
             one_month_ago = (datetime.now(timezone.utc) - 
                             timedelta(days=30)).strftime('%Y-%m-%d')
             ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
-            ohlcv_params = {
-                'timeframe': '1M',
-                'currency': 'usd',
-                'fromDate': one_month_ago,
-                'toDate': current_date,
-                'limit': '10'
-            }
+            
             ohlcv_headers = {
                 "Accept": "application/json",
                 "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
             }
 
             try:
-                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, params=ohlcv_params, timeout=10)
+                # First try with default parameters
+                ohlcv_response = requests.get(
+                    ohlcv_url, 
+                    headers=ohlcv_headers,
+                    params={
+                        'timeframe': '1D',
+                        'limit': '30'
+                    },
+                    timeout=10
+                )
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
-
-                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data:
-                    highest_value = float('-inf')
-                    for entry in ohlcv_data['result']:
-                        try:
-                            if 'high' in entry:
-                                high = float(entry['high'])
-                                print(f"High: ${high:,.9f}")  # Print each high value
-                                if high > highest_value:
-                                    highest_value = high
-                        except (ValueError, TypeError):
-                            continue
-
-                    if highest_value != float('-inf'):
-                        ath_price = highest_value
-                        print(f"Found ATH: ${ath_price:,.9f}")
+                
+                highest_value = float('-inf')
+                
+                if isinstance(ohlcv_data, dict):
+                    if 'result' in ohlcv_data and isinstance(ohlcv_data['result'], list):
+                        for entry in ohlcv_data['result']:
+                            try:
+                                if isinstance(entry, dict) and 'high' in entry:
+                                    high = float(entry['high'])
+                                    print(f"Found high value: ${high:,.9f}")
+                                    if high > highest_value:
+                                        highest_value = high
+                            except (ValueError, TypeError) as e:
+                                print(f"Error parsing high value: {e}")
+                                continue
                     else:
-                        print("No valid high values found")
+                        print(f"Unexpected data format: {ohlcv_data}")
+                
+                if highest_value != float('-inf'):
+                    ath_price = highest_value
+                    print(f"Setting ATH to: ${ath_price:,.9f}")
                 else:
-                    print("Invalid OHLCV response format")
+                    print("No valid high values found in response")
+                    ath_price = None
             except Exception as e:
                 print(f"Error fetching ATH: {str(e)}")
                 logging.error(f"ATH fetch error: {str(e)}")
