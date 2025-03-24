@@ -6724,5 +6724,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "dG5JFeDUeaYbTrbEspS1GX1PFTkLt7o6dLPvYHHpump": {
+    "mint": "dG5JFeDUeaYbTrbEspS1GX1PFTkLt7o6dLPvYHHpump",
+    "name": "Relax Dogs Brother",
+    "symbol": "TATO",
+    "market_cap": 8262.22060221096,
+    "total_bundles": 3,
+    "holding_percentage": 0.15307871819570001,
+    "price_changes": {
+      "5m": 136.0,
+      "1h": 136.0,
+      "6h": 136.0,
+      "24h": 136.0
+    },
+    "volumes": {
+      "5m": 8897.1,
+      "1h": 8897.1,
+      "6h": 8897.1,
+      "24h": 8897.1
+    },
+    "ath": null,
+    "total_holders": 37,
+    "trades_1h": {
+      "total": 157,
+      "buys": 98,
+      "sells": 59
+    },
+    "makers_1h": 81,
+    "makers_24h": 81,
+    "timestamp": 1742798694.524719,
+    "initial_price": 0,
+    "initial_market_cap": 8262.22060221096,
+    "prediction_score": 42.507729999999995,
+    "prediction_confidence": 425.0773,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "CM8Qud5nqUQeb12SaPRQ2uCuet1w4e7bvwU3F3W4pump": {
+    "mint": "CM8Qud5nqUQeb12SaPRQ2uCuet1w4e7bvwU3F3W4pump",
+    "name": "HOLK",
+    "symbol": "HOLK",
+    "market_cap": 8662.61052275168,
+    "total_bundles": 4,
+    "holding_percentage": 14.823666627287299,
+    "price_changes": {
+      "5m": 116.0,
+      "1h": 116.0,
+      "6h": 116.0,
+      "24h": 116.0
+    },
+    "volumes": {
+      "5m": 5565.4,
+      "1h": 5565.4,
+      "6h": 5565.4,
+      "24h": 5565.4
+    },
+    "ath": null,
+    "total_holders": 25,
+    "trades_1h": {
+      "total": 107,
+      "buys": 63,
+      "sells": 44
+    },
+    "makers_1h": 56,
+    "makers_24h": 56,
+    "timestamp": 1742798788.243167,
+    "initial_price": 0,
+    "initial_market_cap": 8662.61052275168,
+    "prediction_score": 36.62578,
+    "prediction_confidence": 366.2578,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
