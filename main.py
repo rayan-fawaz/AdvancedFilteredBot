@@ -196,34 +196,39 @@ def get_dex_data(token_mint):
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - 
                             timedelta(days=30)).strftime('%Y-%m-%d')
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
+            ohlcv_params = {
+                'timeframe': '1M',
+                'currency': 'usd',
+                'fromDate': one_month_ago,
+                'toDate': current_date,
+                'limit': '10'
+            }
             ohlcv_headers = {
                 "Accept": "application/json",
                 "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
             }
 
             try:
-                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
+                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, params=ohlcv_params, timeout=10)
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
 
-                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
+                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data:
                     highest_value = float('-inf')
                     for entry in ohlcv_data['result']:
-                        if isinstance(entry, dict):
-                            try:
-                                high = float(entry.get('high', 0))
-                                if high > highest_value:
-                                    highest_value = high
-                            except (ValueError, TypeError):
-                                continue
+                        try:
+                            high = float(entry['high'])
+                            if high > highest_value:
+                                highest_value = high
+                        except (KeyError, ValueError, TypeError):
+                            continue
 
                     if highest_value != float('-inf'):
-                        if not ath_price or highest_value > ath_price:
-                            ath_price = highest_value
+                        ath_price = highest_value
                         print(f"Found ATH: ${ath_price:,.9f}")
                     else:
-                        print("Checking DEX data for ATH")
+                        print("No valid ATH data found")
                 else:
                     print("Invalid OHLCV response format")
             except Exception as e:
