@@ -229,6 +229,7 @@ def get_dex_data(token_mint):
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
             pair = data['pairs'][0]
+            pair_address = pair.get('pairAddress')  # Get pair address directly from DEX response
             return {
                 'volume_24h':
                 float(pair.get('volume', {}).get('h24', 0)),
