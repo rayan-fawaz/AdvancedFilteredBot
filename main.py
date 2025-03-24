@@ -198,17 +198,18 @@ def get_dex_data(token_mint):
                 ohlcv_data = ohlcv_response.json()
 
                 if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
-                    all_highs = []
+                    highest_value = float('-inf')
                     for entry in ohlcv_data['result']:
                         if isinstance(entry, dict) and 'high' in entry:
                             try:
                                 high = float(entry['high'])
-                                if high > 0:
-                                    all_highs.append(high)
+                                if high > highest_value:
+                                    highest_value = high
                             except (ValueError, TypeError):
                                 continue
-                    if all_highs:
-                        ath_price = max(all_highs)
+                    
+                    if highest_value != float('-inf'):
+                        ath_price = highest_value
                         print(f"Found ATH: ${ath_price:,.9f}")
                     else:
                         print("No valid ATH data found")
