@@ -6876,5 +6876,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "HHzhHad6nGmi51rwesSkAMNj1PphxqNijR3hZUgFpump": {
+    "mint": "HHzhHad6nGmi51rwesSkAMNj1PphxqNijR3hZUgFpump",
+    "name": "relax kitten",
+    "symbol": "molly",
+    "market_cap": 7900.657169096251,
+    "total_bundles": 4,
+    "holding_percentage": 8.3778176216256,
+    "price_changes": {
+      "5m": 78.25,
+      "1h": 71.63,
+      "6h": 71.63,
+      "24h": 71.63
+    },
+    "volumes": {
+      "5m": 4731.62,
+      "1h": 13266.65,
+      "6h": 13266.65,
+      "24h": 13266.65
+    },
+    "ath": null,
+    "total_holders": 31,
+    "trades_1h": {
+      "total": 326,
+      "buys": 177,
+      "sells": 149
+    },
+    "makers_1h": 106,
+    "makers_24h": 106,
+    "timestamp": 1742799444.699012,
+    "initial_price": 0,
+    "initial_market_cap": 7900.657169096251,
+    "prediction_score": 38.735254999999995,
+    "prediction_confidence": 387.35254999999995,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
