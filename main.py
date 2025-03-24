@@ -206,41 +206,45 @@ def get_dex_data(token_mint):
             try:
                 # Use historical data to find ATH
                 ohlcv_response = requests.get(
-                    ohlcv_url, 
-                    headers=ohlcv_headers,
+                    f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv",
+                    headers={
+                        'Accept': 'application/json',
+                        'X-API-Key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ'
+                    },
                     params={
-                        'timeframe': '1D',  # Use daily data
-                        'limit': '30',      # Last 30 days
-                        'currency': 'usd'
+                        'timeframe': '1D',
+                        'currency': 'usd',
+                        'fromDate': '2024-01-01',
+                        'toDate': datetime.now().strftime('%Y-%m-%d'),
+                        'limit': '100'
                     },
                     timeout=10
                 )
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
+                print(f"OHLCV Response: {ohlcv_data}")  # Debug print
                 
-                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and isinstance(ohlcv_data['result'], list):
+                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data:
                     highest_value = 0
                     for entry in ohlcv_data['result']:
-                        if isinstance(entry, dict):
-                            try:
-                                high = float(entry.get('high', 0))
-                                if high > highest_value:
-                                    highest_value = high
-                                    print(f"Found new ATH: ${high:,.9f}")
-                            except (ValueError, TypeError):
-                                continue
+                        try:
+                            high = float(entry['high']) if entry.get('high') is not None else 0
+                            if high > highest_value:
+                                highest_value = high
+                                print(f"New high found: ${high:,.9f}")
+                        except (KeyError, ValueError, TypeError) as e:
+                            print(f"Error processing entry: {e}")
+                            continue
                     
                     if highest_value > 0:
                         ath_price = highest_value
-                        print(f"Final ATH: ${ath_price:,.9f}")
+                        print(f"Setting ATH to: ${ath_price:,.9f}")
                     else:
-                        # Fallback to current price
-                        ath_price = float(pair.get('priceUsd', 0))
-                        print(f"Using current price as ATH: ${ath_price:,.9f}")
+                        ath_price = float(pair['priceUsd'])
+                        print(f"No valid highs found, using current price: ${ath_price:,.9f}")
                 else:
-                    # Fallback to current price
-                    ath_price = float(pair.get('priceUsd', 0))
-                    print(f"Using current price as ATH (no OHLCV data): ${ath_price:,.9f}")
+                    ath_price = float(pair['priceUsd'])
+                    print(f"Invalid OHLCV data format, using current price: ${ath_price:,.9f}")
                 
             except Exception as e:
                 print(f"Error fetching ATH: {str(e)}")
