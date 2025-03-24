@@ -175,12 +175,10 @@ def get_dex_data(token_mint):
         if moralis_response.ok:
             pair_data = moralis_response.json()
             logging.info(f"Moralis API Response: {pair_data}")
-            if isinstance(pair_data, dict) and "pairs" in pair_data:
-                pairs = pair_data["pairs"]
-                if pairs and isinstance(pairs, list) and len(pairs) > 0:
-                    pair_address = pairs[0].get("pairAddress")
-                    print(f"Found pair address: {pair_address}")
-                    logging.info(f"Found pair address: {pair_address}")
+            if isinstance(pair_data, list) and len(pair_data) > 0:
+                pair_address = pair_data[0].get("pairAddress")
+                print(f"Found pair address: {pair_address}")
+                logging.info(f"Found pair address: {pair_address}")
 
         # OHLCV data from Moralis (ATH estimation)
         ath_price = None
