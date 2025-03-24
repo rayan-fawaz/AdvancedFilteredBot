@@ -197,29 +197,30 @@ def get_dex_data(token_mint):
             one_month_ago = (datetime.now(timezone.utc) - 
                             timedelta(days=30)).strftime('%Y-%m-%d')
             ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
-            
+
             ohlcv_headers = {
                 "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
             }
-
+            ohlcv_params = {
+                'timeframe': '1D',
+                'currency': 'usd',
+                'fromDate': one_month_ago,
+                'toDate': current_date,
+                'limit': '30'
+            }
             try:
                 # Get OHLCV data from Moralis
-                ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
-                ohlcv_headers = {
-                    "Accept": "application/json",
-                    "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
-                }
-                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
+                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, params=ohlcv_params)
                 ohlcv_data = ohlcv_response.json()
                 print(f"OHLCV response: {ohlcv_data}")
 
                 ath_price = None
-                if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-                    high = ohlcv_data['result'][0].get('high')
-                    if high:
-                        ath_price = round(high * 1000000000)
-                        print(f"High value: {round(high)}")
+                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+                    # Find highest value across all results
+                    highest_price = max(float(entry['high']) for entry in ohlcv_data['result'] if entry.get('high'))
+                    if highest_price:
+                        ath_price = round(highest_price * 1000000000)
                         print(f"ATH Price (rounded): {ath_price}")
             except Exception as e:
                 logging.error(f"ATH fetch error: {str(e)}")
