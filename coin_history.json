@@ -6648,5 +6648,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "Hs7YWMmc9cnha7H3KjhFhVxPk5cbndkp43WN7CAkpump": {
+    "mint": "Hs7YWMmc9cnha7H3KjhFhVxPk5cbndkp43WN7CAkpump",
+    "name": "Live Action RIO Red Bird",
+    "symbol": "getitgirl",
+    "market_cap": 15156.21566503624,
+    "total_bundles": 40,
+    "holding_percentage": 5.478478056527,
+    "price_changes": {
+      "5m": 48.87,
+      "1h": 228.0,
+      "6h": 228.0,
+      "24h": 228.0
+    },
+    "volumes": {
+      "5m": 1685.89,
+      "1h": 103301.95,
+      "6h": 103301.95,
+      "24h": 103301.95
+    },
+    "ath": null,
+    "total_holders": 118,
+    "trades_1h": {
+      "total": 2045,
+      "buys": 1092,
+      "sells": 953
+    },
+    "makers_1h": 532,
+    "makers_24h": 532,
+    "timestamp": 1742798216.881076,
+    "initial_price": 0,
+    "initial_market_cap": 15156.21566503624,
+    "prediction_score": 98.75,
+    "prediction_confidence": 987.5,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
