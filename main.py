@@ -156,13 +156,16 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
 def get_dex_data(token_mint):
     """Get volume and price change data from DexScreener and Moralis APIs."""
     try:
+        # Initialize default dex_data
+        dex_data = None
+
         # DexScreener data
         dex_response = requests.get(
             f"https://api.dexscreener.com/latest/dex/tokens/{token_mint}",
             timeout=10)
         dex_response.raise_for_status()
 
-        # Moralis pair data for additional details (optional)
+        # Moralis data for additional details (optional)
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
             "Accept": "application/json",
@@ -207,7 +210,7 @@ def get_dex_data(token_mint):
                                     highest_value = high
                             except (ValueError, TypeError):
                                 continue
-                    
+
                     if highest_value != float('-inf'):
                         ath_price = highest_value
                         print(f"Found ATH: ${ath_price:,.9f}")
@@ -231,7 +234,7 @@ def get_dex_data(token_mint):
         if 'pairs' in data and len(data['pairs']) > 0:
             pair = data['pairs'][0]
             pair_address = pair.get('pairAddress')  # Get pair address directly from DEX response
-            return {
+            dex_data = {
                 'volume_24h':
                 float(pair.get('volume', {}).get('h24', 0)),
                 'volume_6h':
@@ -253,7 +256,7 @@ def get_dex_data(token_mint):
                 'ath_price':
                 ath_price
             }
-        return None
+        return dex_data
     except Exception as e:
         logging.error(f"Error fetching DEX data for {token_mint}: {e}")
         return None
@@ -650,7 +653,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             dex_paid = False
     except Exception as e:
         logging.error(f"Error checking DEX status: {e}")
-        dex_paid = False
+        dexpaid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
     return (
