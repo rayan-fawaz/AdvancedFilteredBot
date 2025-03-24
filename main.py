@@ -186,12 +186,12 @@ def get_dex_data(token_mint):
         # OHLCV data from Moralis (ATH estimation)
         ath_price = None
         pair_address = None
-        
+
         # Get pair address from DEX response
         if isinstance(dex_data, dict) and 'pairs' in dex_data and len(dex_data['pairs']) > 0:
             pair = dex_data['pairs'][0]
             pair_address = pair.get('pairAddress')
-            
+
         if pair_address:  # Only fetch ATH if we have a valid pair address
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - 
@@ -219,10 +219,11 @@ def get_dex_data(token_mint):
                                 continue
 
                     if highest_value != float('-inf'):
-                        ath_price = highest_value
+                        if not ath_price or highest_value > ath_price:
+                            ath_price = highest_value
                         print(f"Found ATH: ${ath_price:,.9f}")
                     else:
-                        print("No valid ATH data found")
+                        print("Checking DEX data for ATH")
                 else:
                     print("Invalid OHLCV response format")
             except Exception as e:
