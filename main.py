@@ -204,9 +204,9 @@ def get_dex_data(token_mint):
                 if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
                     highest_value = float('-inf')
                     for entry in ohlcv_data['result']:
-                        if isinstance(entry, dict) and 'high' in entry:
+                        if isinstance(entry, dict):
                             try:
-                                high = float(entry['high'])
+                                high = float(entry.get('high', 0))
                                 if high > highest_value:
                                     highest_value = high
                             except (ValueError, TypeError):
