@@ -209,39 +209,38 @@ def get_dex_data(token_mint):
                     ohlcv_url, 
                     headers=ohlcv_headers,
                     params={
-                        'timeframe': '1H',  # Use hourly data
-                        'limit': '168',     # Last 7 days worth of hours
+                        'timeframe': '1D',  # Use daily data
+                        'limit': '30',      # Last 30 days
                         'currency': 'usd'
                     },
                     timeout=10
                 )
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
-                print(f"OHLCV Response: {ohlcv_data}")  # Debug print
                 
-                highest_value = None
-                all_highs = []
-                
-                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data:
+                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and isinstance(ohlcv_data['result'], list):
+                    highest_value = 0
                     for entry in ohlcv_data['result']:
-                        try:
-                            high = float(entry.get('high', 0))
-                            if high > 0:
-                                all_highs.append(high)
-                                if highest_value is None or high > highest_value:
+                        if isinstance(entry, dict):
+                            try:
+                                high = float(entry.get('high', 0))
+                                if high > highest_value:
                                     highest_value = high
-                                    print(f"New highest value found: ${high:,.9f}")
-                        except (ValueError, TypeError) as e:
-                            continue
-                
-                if highest_value is not None:
-                    ath_price = highest_value
-                    print(f"ATH set to: ${ath_price:,.9f}")
+                                    print(f"Found new ATH: ${high:,.9f}")
+                            except (ValueError, TypeError):
+                                continue
+                    
+                    if highest_value > 0:
+                        ath_price = highest_value
+                        print(f"Final ATH: ${ath_price:,.9f}")
+                    else:
+                        # Fallback to current price
+                        ath_price = float(pair.get('priceUsd', 0))
+                        print(f"Using current price as ATH: ${ath_price:,.9f}")
                 else:
-                    print("No valid high values found")
-                    # Try current price as fallback
-                    ath_price = float(dex_response.json()['pairs'][0]['priceUsd'])
-                    print(f"Using current price as ATH: ${ath_price:,.9f}")
+                    # Fallback to current price
+                    ath_price = float(pair.get('priceUsd', 0))
+                    print(f"Using current price as ATH (no OHLCV data): ${ath_price:,.9f}")
                 
             except Exception as e:
                 print(f"Error fetching ATH: {str(e)}")
