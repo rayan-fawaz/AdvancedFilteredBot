@@ -7066,5 +7066,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "EJHYNhvUMYoTv4P8mtwbGgzvCVg4GJaFDEfm59iFpump": {
+    "mint": "EJHYNhvUMYoTv4P8mtwbGgzvCVg4GJaFDEfm59iFpump",
+    "name": "Relax, Enjoy Silent Times",
+    "symbol": "REST",
+    "market_cap": 8605.984340745052,
+    "total_bundles": 8,
+    "holding_percentage": 20.830302724251602,
+    "price_changes": {
+      "5m": 92.05,
+      "1h": 92.05,
+      "6h": 92.05,
+      "24h": 92.05
+    },
+    "volumes": {
+      "5m": 8274.99,
+      "1h": 8274.99,
+      "6h": 8274.99,
+      "24h": 8274.99
+    },
+    "ath": null,
+    "total_holders": 40,
+    "trades_1h": {
+      "total": 157,
+      "buys": 98,
+      "sells": 59
+    },
+    "makers_1h": 85,
+    "makers_24h": 85,
+    "timestamp": 1742802711.943755,
+    "initial_price": 0,
+    "initial_market_cap": 8605.984340745052,
+    "prediction_score": 39.12529299999999,
+    "prediction_confidence": 391.25292999999994,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HqLhSCgoEATNdiM2CqBSBZnr6B6avCrL6p9FoDp5pump": {
+    "mint": "HqLhSCgoEATNdiM2CqBSBZnr6B6avCrL6p9FoDp5pump",
+    "name": "Relax Ape",
+    "symbol": "RAPE",
+    "market_cap": 7414.311593219861,
+    "total_bundles": 5,
+    "holding_percentage": 9.9085369130942,
+    "price_changes": {
+      "5m": 74.06,
+      "1h": 74.06,
+      "6h": 74.06,
+      "24h": 74.06
+    },
+    "volumes": {
+      "5m": 7718.43,
+      "1h": 7718.43,
+      "6h": 7718.43,
+      "24h": 7718.43
+    },
+    "ath": null,
+    "total_holders": 30,
+    "trades_1h": {
+      "total": 193,
+      "buys": 111,
+      "sells": 82
+    },
+    "makers_1h": 73,
+    "makers_24h": 73,
+    "timestamp": 1742802993.687284,
+    "initial_price": 0,
+    "initial_market_cap": 7414.311593219861,
+    "prediction_score": 33.528200999999996,
+    "prediction_confidence": 335.28200999999996,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
