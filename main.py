@@ -218,17 +218,19 @@ def get_dex_data(token_mint):
                     highest_value = float('-inf')
                     for entry in ohlcv_data['result']:
                         try:
-                            high = float(entry['high'])
-                            if high > highest_value:
-                                highest_value = high
-                        except (KeyError, ValueError, TypeError):
+                            if 'high' in entry:
+                                high = float(entry['high'])
+                                print(f"High: ${high:,.9f}")  # Print each high value
+                                if high > highest_value:
+                                    highest_value = high
+                        except (ValueError, TypeError):
                             continue
 
                     if highest_value != float('-inf'):
                         ath_price = highest_value
                         print(f"Found ATH: ${ath_price:,.9f}")
                     else:
-                        print("No valid ATH data found")
+                        print("No valid high values found")
                 else:
                     print("Invalid OHLCV response format")
             except Exception as e:
