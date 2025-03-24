@@ -36,7 +36,7 @@ MIN_VOLUME_5M = 3000  # Increased from 3000
 MIN_VOLUME_1H = 10000  # Increased from 10000
 
 # Market Cap Limits
-MIN_MARKET_CAP = 1  # Increased from 7000
+MIN_MARKET_CAP = 7000  # Increased from 7000
 
 def get_score_reasons(coin_data):
     reasons = []
@@ -53,7 +53,7 @@ def get_score_reasons(coin_data):
     return reasons or ['market metrics']
 
 
-MAX_MARKET_CAP = 100000
+MAX_MARKET_CAP = 25000
 
 # Logging Configuration
 logging.basicConfig(level=logging.INFO)
@@ -199,24 +199,34 @@ def get_dex_data(token_mint):
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
 
-                if 'pairs' in ohlcv_data and len(ohlcv_data['pairs']) > 0:
-                    pair_data = ohlcv_data['pairs'][0]
-                    if 'priceUsd' in pair_data:
-                        ath_price = float(pair_data.get('priceUsd', 0))
+                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and ohlcv_data['result']:
+                    all_highs = []
+                    for entry in ohlcv_data['result']:
+                        if isinstance(entry, dict) and 'high' in entry:
+                            try:
+                                high = float(entry['high'])
+                                if high > 0:
+                                    all_highs.append(high)
+                            except (ValueError, TypeError):
+                                continue
+                    if all_highs:
+                        ath_price = max(all_highs)
                         print(f"Found ATH: ${ath_price:,.9f}")
                     else:
-                        print("No ATH price found in pair data")
+                        print("No valid ATH data found")
                 else:
-                    print("Invalid pair data response")
+                    print("Invalid OHLCV response format")
             except Exception as e:
                 print(f"Error fetching ATH: {str(e)}")
                 logging.error(f"ATH fetch error: {str(e)}")
-                ath_price = None
+                ohlcv_data = None
+                all_highs = []
 
-            # Add debugging info
-            print(f"OHLCV Response: {ohlcv_response.status_code}")
-            print(f"OHLCV Data: {ohlcv_data[:500]}")  # Print first 500 chars
-
+            if all_highs:
+                ath_price = max(all_highs)
+                print(f"Found ATH: ${ath_price:,.9f}")
+            else:
+                print("No valid ATH data found")
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
@@ -644,8 +654,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     dex_status = "🟢" if dex_paid else "🔴"
 
     return (
-        f"🔹 <b>Coin Info</b>\n"
-        f"<b>{coin['name']}</b> ({coin['symbol']})\n"
+        f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
