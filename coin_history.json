@@ -6990,5 +6990,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "Md7P7KEfcd6GKXY9rFShej8FEX9fb3YVC5Pn1Tnpump": {
+    "mint": "Md7P7KEfcd6GKXY9rFShej8FEX9fb3YVC5Pn1Tnpump",
+    "name": "legends never die \u266b",
+    "symbol": "LEGEND",
+    "market_cap": 12323.874946766431,
+    "total_bundles": 3,
+    "holding_percentage": 8.2193409637608,
+    "price_changes": {
+      "5m": 114.0,
+      "1h": 174.0,
+      "6h": 174.0,
+      "24h": 174.0
+    },
+    "volumes": {
+      "5m": 8786.05,
+      "1h": 9533.55,
+      "6h": 9533.55,
+      "24h": 9533.55
+    },
+    "ath": null,
+    "total_holders": 76,
+    "trades_1h": {
+      "total": 250,
+      "buys": 167,
+      "sells": 83
+    },
+    "makers_1h": 126,
+    "makers_24h": 126,
+    "timestamp": 1742800969.022507,
+    "initial_price": 0,
+    "initial_market_cap": 12323.874946766431,
+    "prediction_score": 47.923485,
+    "prediction_confidence": 479.23485,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
