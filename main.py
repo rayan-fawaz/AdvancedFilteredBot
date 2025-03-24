@@ -185,7 +185,13 @@ def get_dex_data(token_mint):
 
         # OHLCV data from Moralis (ATH estimation)
         ath_price = None
-        pair_address = dex_data.get('pair_address') if dex_data else None
+        pair_address = None
+        
+        # Get pair address from DEX response
+        if isinstance(dex_data, dict) and 'pairs' in dex_data and len(dex_data['pairs']) > 0:
+            pair = dex_data['pairs'][0]
+            pair_address = pair.get('pairAddress')
+            
         if pair_address:  # Only fetch ATH if we have a valid pair address
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - 
