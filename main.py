@@ -175,8 +175,8 @@ def get_dex_data(token_mint):
         if moralis_response.ok:
             pair_data = moralis_response.json()
             logging.info(f"Moralis API Response: {pair_data}")
-            if isinstance(pair_data, list) and len(pair_data) > 0:
-                pair_address = pair_data[0].get("pairAddress")
+            if isinstance(pair_data, dict) and 'pairs' in pair_data and len(pair_data['pairs']) > 0:
+                pair_address = pair_data['pairs'][0].get('pairAddress')
                 print(f"Found pair address: {pair_address}")
                 logging.info(f"Found pair address: {pair_address}")
 
