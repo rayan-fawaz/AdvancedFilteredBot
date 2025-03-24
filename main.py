@@ -190,10 +190,10 @@ def get_dex_data(token_mint):
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - 
                             timedelta(days=30)).strftime('%Y-%m-%d')
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=1000"
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
             ohlcv_headers = {
                 "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjU0MjM5YTcyLTM1ZTAtNDY0NC05ZWU1LTRhMjVhZGUzODk3ZiIsIm9yZ0lkIjoiMzY1MTI4IiwidXNlcklkIjoiMzc1NTg4IiwidHlwZUlkIjoiYjNhMTZmZTAtN2M4OS00ZmQ4LWE2ZDEtZGEwODhhNjUzNzU3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MDk4MjI0MDAsImV4cCI6NDg2NTU4MjQwMH0.dNz0rE-UqVGvgX0oI5LrXGWRW4PNAv_QbwVNXYLfLXo"
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdmODRkYjljLWNkOTktNDY3MS05NjAxLTI3NTQ4NzQxOTIzZCIsIm9yZ0lkIjoiNDM3Mzc5IiwidXNlcklkIjoiNDQ5OTYxIiwidHlwZUlkIjoiNGZlY2U1ZjQtMzAyZS00NTMwLTk0NTMtNjIyOWFjNTM3MDc3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI1NTAzODgsImV4cCI6NDg5ODMxMDM4OH0.-rurjPM2Sy3DRmiX7uhciTNVONkHo3fF_K3MCvwh4BQ"
             }
 
             try:
