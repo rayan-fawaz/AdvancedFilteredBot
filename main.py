@@ -202,29 +202,7 @@ def get_dex_data(token_mint):
                 "Accept": "application/json",
                 "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
             }
-            ohlcv_params = {
-                'timeframe': '1D',
-                'currency': 'usd',
-                'fromDate': one_month_ago,
-                'toDate': current_date,
-                'limit': '30'
-            }
-            try:
-                # Get OHLCV data from Moralis
-                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, params=ohlcv_params)
-                ohlcv_data = ohlcv_response.json()
-                print(f"OHLCV response: {ohlcv_data}")
-
-                ath_price = None
-                if isinstance(ohlcv_data, dict) and 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-                    # Find highest value across all results
-                    highest_price = max(float(entry['high']) for entry in ohlcv_data['result'] if entry.get('high'))
-                    if highest_price:
-                        ath_price = round(highest_price * 1000000000)
-                        print(f"ATH Price (rounded): {ath_price}")
-            except Exception as e:
-                logging.error(f"ATH fetch error: {str(e)}")
-                ath_price = None
+            
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
@@ -629,12 +607,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
-        # ATH (all-time high) price estimation
-        ath_price = dex_data.get('ath_price', 0) if dex_data else 0
-        if ath_price:
-            ath_text = f"📈 <b>ATH: ${ath_price:,.9f}</b>\n\n"
-        else:
-            ath_text = "📈 <b>ATH: Not available</b>\n\n"
+        
 
     # Check DEX paid status
     dex_paid = False
@@ -659,7 +632,6 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"{trench_info}"
         f"{price_text}"
         f"{volume_text}"
-        f"{ath_text}"
         f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
         f"{format_holders_message(holders_info)}"
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
