@@ -196,19 +196,20 @@ def get_dex_data(token_mint):
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - 
                             timedelta(days=30)).strftime('%Y-%m-%d')
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1d&currency=usd&fromDate=2023-11-25&toDate=2024-11-26&limit=1000"
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1h&currency=usd&fromDate=2024-11-25&toDate=2025-11-26&limit=10"
 
             ohlcv_headers = {
                 "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImZhNjJlYTkyLWM4ZjQtNDdhNC05MmQyLWU0MDU3NGNjYjFiZSIsIm9yZ0lkIjoiNDM4MDA3IiwidXNlcklkIjoiNDUwNjAxIiwidHlwZUlkIjoiNDFjNjE1MTMtMWM0Mi00Njk1LTliZDctNzIzZDIxZWQyNjFkIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI4ODI5ODAsImV4cCI6NDg5ODY0Mjk4MH0.--ovjeXcZQ-Ez7XlfAqCz7wWDVOJ4wgNWnn8HpBWF4k"
             }
             try:
                 ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
                 if ohlcv_data and isinstance(ohlcv_data, list) and len(ohlcv_data) > 0:
-                    high_prices = [float(item.get('high', 0)) for item in ohlcv_data]
+                    high_prices = [float(item.get('high', 0)) * 1000000000 for item in ohlcv_data]
                     ath_price = max(high_prices) if high_prices else None
+                    logging.info(f"ATH calculation - High prices: {high_prices}, ATH: {ath_price}")
 
             except requests.exceptions.RequestException as e:
                 logging.error(f"Error fetching OHLCV data for {pair_address}: {e}")
