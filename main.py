@@ -196,13 +196,23 @@ def get_dex_data(token_mint):
             current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
             one_month_ago = (datetime.now(timezone.utc) - 
                             timedelta(days=30)).strftime('%Y-%m-%d')
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1d&currency=usd&fromDate=2023-11-25&toDate=2024-11-26&limit=1000"
 
             ohlcv_headers = {
                 "Accept": "application/json",
                 "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImFlY2YxZDIxLWM3MDgtNDQ4OS04NWM4LWNlODNlZGMwYjE2NSIsIm9yZ0lkIjoiNDMyNTE2IiwidXNlcklkIjoiNDQ0OTA3IiwidHlwZUlkIjoiZmVhZGI3MTMtMjg4OC00NDM4LThiNDYtZTUwNzlmNGUxOTg0IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTIxMDIsImV4cCI6NDg5NTc3MjEwMn0.v6355uA7kh8iw-rJ1aGfeucbYUPZRDaRXnUiUXetC44"
             }
-            
+            try:
+                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
+                ohlcv_response.raise_for_status()
+                ohlcv_data = ohlcv_response.json()
+                if ohlcv_data and isinstance(ohlcv_data, list) and len(ohlcv_data) > 0:
+                    high_prices = [float(item.get('high', 0)) for item in ohlcv_data]
+                    ath_price = max(high_prices) if high_prices else None
+
+            except requests.exceptions.RequestException as e:
+                logging.error(f"Error fetching OHLCV data for {pair_address}: {e}")
+                ath_price = None
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
@@ -607,7 +617,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
-        
+
 
     # Check DEX paid status
     dex_paid = False
@@ -627,7 +637,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
-        f"🎯 <b>DEX Paid:</b> {dex_status}\n"
+        f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 'Not found')}\n"
         f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n\n"
         f"{trench_info}"
         f"{price_text}"
