@@ -7180,5 +7180,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "2PkykSomGZiPj4CtpZDBmTmvr3K9MFFKpDNn2bNtpump": {
+    "mint": "2PkykSomGZiPj4CtpZDBmTmvr3K9MFFKpDNn2bNtpump",
+    "name": "Manipulated Time",
+    "symbol": "TIME",
+    "market_cap": 24043.12389724548,
+    "total_bundles": 8,
+    "holding_percentage": 9.7913904052332,
+    "price_changes": {
+      "5m": 32.57,
+      "1h": 497.0,
+      "6h": 497.0,
+      "24h": 497.0
+    },
+    "volumes": {
+      "5m": 2601.34,
+      "1h": 21351.86,
+      "6h": 21351.86,
+      "24h": 21351.86
+    },
+    "ath": null,
+    "total_holders": 103,
+    "trades_1h": {
+      "total": 619,
+      "buys": 344,
+      "sells": 275
+    },
+    "makers_1h": 177,
+    "makers_24h": 177,
+    "timestamp": 1742973236.674162,
+    "initial_price": 0,
+    "initial_market_cap": 24043.12389724548,
+    "prediction_score": 68.106302,
+    "prediction_confidence": 681.06302,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
