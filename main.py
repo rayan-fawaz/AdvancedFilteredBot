@@ -207,9 +207,10 @@ def get_dex_data(token_mint):
                 ohlcv_response.raise_for_status()
                 ohlcv_data = ohlcv_response.json()
                 if ohlcv_data and isinstance(ohlcv_data, list) and len(ohlcv_data) > 0:
-                    high_prices = [float(item.get('high', 0)) * 1000000000 for item in ohlcv_data]
-                    ath_price = max(high_prices) if high_prices else None
-                    logging.info(f"ATH calculation - High prices: {high_prices}, ATH: {ath_price}")
+                    high_prices = [float(item.get('high', 0)) for item in ohlcv_data]
+                    max_high = max(high_prices) if high_prices else 0
+                    ath_price = max_high * 1000000000
+                    logging.info(f"ATH calculation - High: {max_high}, ATH: {ath_price}")
 
             except requests.exceptions.RequestException as e:
                 logging.error(f"Error fetching OHLCV data for {pair_address}: {e}")
