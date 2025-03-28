@@ -19,24 +19,24 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_HOLDERS = 25
-MIN_TRADES_1H = 80
-MAX_VOLUME_5M = 20000
-BIGGEST_WALLET_MAX = 5  # Maximum percentage for the biggest wallet
-MIN_BUYS = 40  # Minimum buy transactions in 1h
-MIN_SELLS = 40  # Minimum sell transactions in 1h
+MIN_HOLDERS = 25  # Increased from 25
+MIN_TRADES_1H = 80  # Increased from 80
+MAX_VOLUME_5M = 20000  # Decreased from 20000
+BIGGEST_WALLET_MAX = 55  # Decreased from 5 for better distribution
+MIN_BUYS = 40  # Increased from 40
+MIN_SELLS = 40  # Increased from 40
 
 # Price Momentum Filters
-MIN_PRICE_5M = 30
-MIN_PRICE_1H = 80
-HIGH_PRICE_1H = 95
+MIN_PRICE_5M = 30  # Increased from 30
+MIN_PRICE_1H = 80  # Increased from 80
+HIGH_PRICE_1H = 1000  # Increased from 95
 
 # Volume Filters
-MIN_VOLUME_5M = 3000
-MIN_VOLUME_1H = 10000
+MIN_VOLUME_5M = 3000  # Increased from 3000
+MIN_VOLUME_1H = 10000  # Increased from 10000
 
 # Market Cap Limits
-MIN_MARKET_CAP = 7000
+MIN_MARKET_CAP = 7500  # Increased from 7000
 
 def get_score_reasons(coin_data):
     reasons = []
@@ -162,12 +162,11 @@ def get_dex_data(token_mint):
             timeout=10)
         dex_response.raise_for_status()
 
-        # Moralis pair data for additional details (optional)
+        # Moralis pair data for additional details
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
             "Accept": "application/json",
-            "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImNkNjVlMDM4LWE4ODktNDYyNC1iNzIyLWQwODY1ZDdmODFkMyIsIm9yZ0lkIjoiNDMyNTIwIiwidXNlcklkIjoiNDQ0OTExIiwidHlwZUlkIjoiZmU1OTFkNmYtNTYyYi00OTYwLWI0ZjQtYzUxMTZmMTk3ZWNlIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTUzOTUsImV4cCI6NDg5NTc3NTM5NX0.xrYHL35_6-yXMT5qksrqjGIe8Z5YbiuAgdh6FpL_fpQ"
         }
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
@@ -175,29 +174,9 @@ def get_dex_data(token_mint):
         pair_address = None
         if moralis_response.ok:
             pair_data = moralis_response.json()
-            if isinstance(pair_data, dict) and "pairs" in pair_data:
-                pairs = pair_data["pairs"]
-                if pairs and isinstance(pairs, list) and len(pairs) > 0:
-                    pair_address = pairs[0].get("pairAddress")
+            if isinstance(pair_data, list) and len(pair_data) > 0:
+                pair_address = pair_data[0].get("pairAddress")
 
-        # OHLCV data from Moralis (ATH estimation)
-        current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-        one_month_ago = (datetime.now(timezone.utc) -
-                         timedelta(days=30)).strftime('%Y-%m-%d')
-        ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
-        ohlcv_headers = {
-            "Accept": "application/json",
-            "X-API-Key":
-            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
-        }
-        ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
-        ohlcv_data = ohlcv_response.json()
-
-        ath_price = None
-        if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-            high = ohlcv_data['result'][0].get('high')
-            if high:
-                ath_price = round(high * 1000000000)
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
@@ -220,9 +199,7 @@ def get_dex_data(token_mint):
                 'price_change_5m':
                 float(pair.get('priceChange', {}).get('m5', 0)),
                 'pair_address':
-                pair_address,
-                'ath_price':
-                ath_price
+                pair_address
             }
         return None
     except Exception as e:
@@ -601,34 +578,53 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
-        # ATH (all-time high) price estimation
-        market_cap = float(coin.get('usd_market_cap', 0))
-        ath_price = market_cap
-        if dex_data and isinstance(dex_data, dict):
-            ath_from_dex = dex_data.get('ath_price')
-            if ath_from_dex is not None:
-                try:
-                    ath_from_dex = float(ath_from_dex)
-                    ath_price = max(ath_from_dex, market_cap)
-                except (ValueError, TypeError):
-                    pass
-        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
 
     # Check DEX paid status
     try:
         dex_response = requests.get(
             f"https://api.dexscreener.com/orders/v1/solana/{mint_address}",
-            headers={'accept': 'application/json'},
             timeout=5)
         if dex_response.status_code == 200:
             dex_data_orders = dex_response.json()
-            dex_paid = dex_data_orders.get("status") == "approved"
+            # Empty response means not paid, any data with approved status means paid
+            dex_paid = bool(dex_data_orders) and dex_data_orders.get("status") == "approved"
         else:
             dex_paid = False
     except Exception as e:
         logging.error(f"Error checking DEX status: {e}")
         dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
+
+    # Initialize ATH text
+    ath_text = ""
+    if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
+        pair_address = dex_data['pair_address']
+        if pair_address:
+            # Get OHLCV data from Moralis
+            current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+            one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
+
+            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+            ohlcv_headers = {
+                "Accept": "application/json",
+                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjA1ZWQ1M2UxLTA4YTUtNGY1Yy1hMmZmLTg0ODhiYzVmNzNhNSIsIm9yZ0lkIjoiNDMzNTI0IiwidXNlcklkIjoiNDQ1OTUxIiwidHlwZUlkIjoiNDEyNWI4NGMtMjM4Ni00OTZhLTgxZWQtYzdhNWVjNjNmYWNhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDA0OTg3MTEsImV4cCI6NDg5NjI1ODcxMX0.X6JXdTuoB4Vx1-dhhl_ya6fGpUwxcY-Urp_s0KFppac"
+            }
+            try:
+                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
+                ohlcv_data = ohlcv_response.json()
+                print(f"OHLCV response: {ohlcv_data}")
+
+                ath_price = None
+                if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+                    high = ohlcv_data['result'][0].get('high')
+                    if high:
+                        ath_price = round(high * 1000000000)
+                        print(f"High value: {round(high)}")
+                        print(f"ATH Price (rounded): {ath_price}")
+                        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
+
+            except Exception as e:
+                logging.error(f"Error fetching OHLCV data: {e}")
 
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
@@ -897,7 +893,7 @@ async def fetch_meta_words():
 
 async def schedule_meta_update():
     """Schedule periodic meta updates."""
-    await asyncio.sleep(300)  # Update every 5 minutes
+    await asyncio.sleep(600)  # Update every 5 minutes
     await fetch_meta_words()
 
 if __name__ == "__main__":
