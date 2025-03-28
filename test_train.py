@@ -1,4 +1,3 @@
-
 import requests
 import json
 from datetime import datetime
@@ -32,7 +31,17 @@ training_data = [
         "price_change_min": 65,
         "trades_1h_min": 600,
         "meta_boost": 1.1
-    }},
+    }}
+]
+
+# Training configuration
+config = {
+    "volume_weight": 0.35,
+    "holder_weight": 0.25,
+    "price_momentum_weight": 0.25,
+    "activity_weight": 0.15,
+    "confidence_threshold": 65.0
+}
     {"symbol": "GOKU", "multiplier": 22.4},   # Anime theme performance
     {"symbol": "FA", "multiplier": 20.3},     # Balanced metrics
     {"symbol": "DOPE", "multiplier": 18.5},   # Community engagement
@@ -62,30 +71,13 @@ training_data = [
     {"symbol": "DOGEN", "multiplier": 0}      # Zero activity
 ]
 
-# Training configuration
-config = {
-    "volume_weight": 0.25,          # Reduced weight for high volume
-    "holder_weight": 0.30,          # Increased weight for holder count
-    "price_momentum_weight": 0.20,  # Reduced momentum importance
-    "activity_weight": 0.25,        # Increased activity weight
-    "confidence_threshold": 80.0,   # Higher threshold for confidence
-    "max_confidence": 90.0,         # Lower max confidence cap
-    "min_confidence": 0.0,          # Minimum confidence floor
-    "volume_min": 10000,           # Minimum volume threshold
-    "holders_min": 50,             # Minimum holders threshold
-    "trades_min": 100             # Minimum trades threshold
-}
+# Send POST request to the training endpoint
+response = requests.post(
+    'http://0.0.0.0:8080/train',
+    headers={'Content-Type': 'application/json'},
+    data=json.dumps(training_data)
+)
 
-def send_training_data():
-    # Send POST request to the training endpoint
-    response = requests.post(
-        'http://0.0.0.0:8080/train',
-        headers={'Content-Type': 'application/json'},
-        data=json.dumps(training_data)
-    )
-    return response.status_code, response.json()
-
-if __name__ == "__main__":
-    status_code, response = send_training_data()
-    print(status_code)
-    print(response)
+# Print response
+print(response.status_code)
+print(response.json())

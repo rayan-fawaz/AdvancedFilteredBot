@@ -19,25 +19,24 @@ HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
-MIN_HOLDERS = 25  # Increased from 25
-MIN_TRADES_1H = 80  # Increased from 80
-MAX_VOLUME_5M = 20000  # Decreased from 20000
-BIGGEST_WALLET_MAX = 4  # Decreased from 5 for better distribution
-MIN_BUYS = 40  # Increased from 40
-MIN_SELLS = 40  # Increased from 40
+MIN_HOLDERS = 25
+MIN_TRADES_1H = 80
+MAX_VOLUME_5M = 20000
+BIGGEST_WALLET_MAX = 5  # Maximum percentage for the biggest wallet
+MIN_BUYS = 40  # Minimum buy transactions in 1h
+MIN_SELLS = 40  # Minimum sell transactions in 1h
 
 # Price Momentum Filters
-MIN_PRICE_5M = 30  # Increased from 30
-MIN_PRICE_1H = 80  # Increased from 80
-HIGH_PRICE_1H = 10000  # Increased from 95
+MIN_PRICE_5M = 30
+MIN_PRICE_1H = 80
+HIGH_PRICE_1H = 95
 
 # Volume Filters
-MIN_VOLUME_5M = 3000  # Increased from 3000
-MIN_VOLUME_1H = 10000  # Increased from 10000
+MIN_VOLUME_5M = 3000
+MIN_VOLUME_1H = 10000
 
 # Market Cap Limits
-MIN_MARKET_CAP = 7000  # Increased from 7000
-
+MIN_MARKET_CAP = 7000
 
 def get_score_reasons(coin_data):
     reasons = []
@@ -86,9 +85,7 @@ async def send_telegram_message(message, chat_id=GROUP_ID):
     except requests.exceptions.RequestException as e:
         logging.error(f"Failed to send message: {e}")
 
-
 class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
-
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
@@ -109,14 +106,11 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
 
                 if isinstance(data, list):
                     for entry in data:
-                        if isinstance(
-                                entry, dict
-                        ) and 'ticker' in entry and 'multiplier' in entry:
+                        if isinstance(entry, dict) and 'ticker' in entry and 'multiplier' in entry:
                             ticker = entry['ticker'].strip()
                             multiplier = float(entry['multiplier'])
                             training_data[ticker] = multiplier
-                            logging.info(
-                                f"Added trade: {ticker} = {multiplier}x")
+                            logging.info(f"Added trade: {ticker} = {multiplier}x")
 
                 if training_data:
                     # Train the model
@@ -128,8 +122,7 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
                     self.end_headers()
                     response = {
                         'status': 'success',
-                        'message':
-                        f'Model trained with {len(training_data)} trades',
+                        'message': f'Model trained with {len(training_data)} trades',
                         'trades': training_data
                     }
                 else:
@@ -163,22 +156,18 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
 def get_dex_data(token_mint):
     """Get volume and price change data from DexScreener and Moralis APIs."""
     try:
-        # Initialize default dex_data
-        dex_data = None
-
         # DexScreener data
         dex_response = requests.get(
             f"https://api.dexscreener.com/latest/dex/tokens/{token_mint}",
             timeout=10)
         dex_response.raise_for_status()
 
-        # Moralis data for additional details (optional)
+        # Moralis pair data for additional details (optional)
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
-            "Accept":
-            "application/json",
+            "Accept": "application/json",
             "X-API-Key":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjU0MjM5YTcyLTM1ZTAtNDY0NC05ZWU1LTRhMjVhZGUzODk3ZiIsIm9yZ0lkIjoiMzY1MTI4IiwidXNlcklkIjoiMzc1NTg4IiwidHlwZUlkIjoiYjNhMTZmZTAtN2M4OS00ZmQ4LWE2ZDEtZGEwODhhNjUzNzU3IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MDk4MjI0MDAsImV4cCI6NDg2NTU4MjQwMH0.dNz0rE-UqVGvgX0oI5LrXGWRW4PNAv_QbwVNXYLfLXo"
+            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
         }
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
@@ -186,33 +175,34 @@ def get_dex_data(token_mint):
         pair_address = None
         if moralis_response.ok:
             pair_data = moralis_response.json()
-            logging.info(f"Moralis API Response: {pair_data}")
-            if isinstance(pair_data, dict) and 'pairs' in pair_data and len(
-                    pair_data['pairs']) > 0:
-                pair_address = pair_data['pairs'][0].get('pairAddress')
-                print(f"Found pair address: {pair_address}")
-                logging.info(f"Found pair address: {pair_address}")
+            if isinstance(pair_data, dict) and "pairs" in pair_data:
+                pairs = pair_data["pairs"]
+                if pairs and isinstance(pairs, list) and len(pairs) > 0:
+                    pair_address = pairs[0].get("pairAddress")
 
         # OHLCV data from Moralis (ATH estimation)
+        current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+        one_month_ago = (datetime.now(timezone.utc) -
+                         timedelta(days=30)).strftime('%Y-%m-%d')
+        ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
+        ohlcv_headers = {
+            "Accept": "application/json",
+            "X-API-Key":
+            "YOUR_MORALIS_API_KEY"  # Replace with your Moralis API key
+        }
+        ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
+        ohlcv_data = ohlcv_response.json()
+
         ath_price = None
-        pair_address = None
-
-        # Get pair address from DEX response
-        if isinstance(dex_data, dict) and 'pairs' in dex_data and len(
-                dex_data['pairs']) > 0:
-            pair = dex_data['pairs'][0]
-            pair_address = pair.get('pairAddress')
-
-        if pair_address:  # Only fetch ATH if we have a valid pair address
-            # ATH tracking removed
-            ath_price = None
+        if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
+            high = ohlcv_data['result'][0].get('high')
+            if high:
+                ath_price = round(high * 1000000000)
 
         data = dex_response.json()
         if 'pairs' in data and len(data['pairs']) > 0:
             pair = data['pairs'][0]
-            pair_address = pair.get(
-                'pairAddress')  # Get pair address directly from DEX response
-            dex_data = {
+            return {
                 'volume_24h':
                 float(pair.get('volume', {}).get('h24', 0)),
                 'volume_6h':
@@ -232,9 +222,9 @@ def get_dex_data(token_mint):
                 'pair_address':
                 pair_address,
                 'ath_price':
-                ath
+                ath_price
             }
-        return dex_data
+        return None
     except Exception as e:
         logging.error(f"Error fetching DEX data for {token_mint}: {e}")
         return None
@@ -329,18 +319,13 @@ def fetch_unique_reply_makers(mint_address):
 
             # Try alternative field names only if no user field found
             if "user" not in reply:
-                for field in [
-                        "owner", "author", "creator", "walletAddress",
-                        "publicKey"
-                ]:
+                for field in ["owner", "author", "creator", "walletAddress", "publicKey"]:
                     if field in reply and reply[field]:
                         unique_users.add(str(reply[field]))
-                        logging.info(
-                            f"Found user in {field} field: {reply[field]}")
+                        logging.info(f"Found user in {field} field: {reply[field]}")
 
         maker_count = len(unique_users)
-        logging.info(
-            f"Found {maker_count} unique reply makers for {mint_address}")
+        logging.info(f"Found {maker_count} unique reply makers for {mint_address}")
         logging.info(f"Unique users: {unique_users}")
         return maker_count
     except Exception as e:
@@ -374,15 +359,11 @@ def fetch_token_holders(token_mint):
 
         # Skip the first holder (bonding curve) and use the rest
         real_holders = holders[1:]
-        top_5_amounts = [
-            float(holder["amount"]) for holder in real_holders[:5]
-        ]
-        top_5_percentages = [(amount / total_supply * 100)
-                             for amount in top_5_amounts]
+        top_5_amounts = [float(holder["amount"]) for holder in real_holders[:5]]
+        top_5_percentages = [(amount / total_supply * 100) for amount in top_5_amounts]
 
         # Check for minimum and maximum wallet percentage limits
-        if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(
-                top_5_percentages) < 2.0:
+        if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(top_5_percentages) < 2.0:
             return None
 
         top_5 = top_5_percentages
@@ -448,8 +429,7 @@ def fetch_token_holders(token_mint):
 
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
-    top_5 = " | ".join(f"{percent:.2f}"
-                       for percent in holders_info["top_5_percentages"])
+    top_5 = " | ".join(f"{percent:.2f}" for percent in holders_info["top_5_percentages"])
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
     makers_24h = (
@@ -475,17 +455,17 @@ async def get_insider_data(mint_address):
         response = requests.get(
             f"https://api.rugcheck.xyz/v1/tokens/{mint_address}/insiders/graph",
             headers={'accept': 'application/json'},
-            timeout=10)
+            timeout=10
+        )
         if response.status_code == 200:
             data = response.json()
-            insider_count = sum(1 for node in data.get('nodes', [])
-                                if node.get('participant', False))
+            insider_count = sum(1 for node in data.get('nodes', []) 
+                              if node.get('participant', False))
             return insider_count
         return 0
     except Exception as e:
         logging.error(f"Error fetching insider data: {e}")
         return 0
-
 
 async def get_trench_data(mint_address, max_retries=3):
     """Fetch bundle data from Trench API with retries."""
@@ -495,18 +475,17 @@ async def get_trench_data(mint_address, max_retries=3):
                 f"https://trench.bot/api/bundle/bundle_advanced/{mint_address}",
                 timeout=30,
                 headers={
-                    'User-Agent':
-                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
                     'Accept': 'application/json'
-                })
+                }
+            )
             if response.status_code == 200:
                 data = response.json()
                 bundles = data.get('bundles', {})
                 sniper_info = []
 
                 for bundle_id, bundle_data in bundles.items():
-                    wallet_categories = bundle_data.get(
-                        'wallet_categories', {})
+                    wallet_categories = bundle_data.get('wallet_categories', {})
                     wallet_info = bundle_data.get('wallet_info', {})
 
                     for wallet, category in wallet_categories.items():
@@ -520,41 +499,29 @@ async def get_trench_data(mint_address, max_retries=3):
                             })
 
                 return {
-                    'bonded':
-                    data.get('bonded', False),
-                    'total_bundles':
-                    data.get('total_bundles', 0),
-                    'total_holding_percentage':
-                    data.get('total_holding_percentage', 0),
-                    'snipers':
-                    sniper_info
+                    'bonded': data.get('bonded', False),
+                    'total_bundles': data.get('total_bundles', 0),
+                    'total_holding_percentage': data.get('total_holding_percentage', 0),
+                    'snipers': sniper_info
                 }
             elif response.status_code == 429:  # Rate limit
-                await asyncio.sleep(2**attempt)  # Exponential backoff
+                await asyncio.sleep(2 ** attempt)  # Exponential backoff
                 continue
             elif response.status_code >= 500:  # Server error
                 await asyncio.sleep(1)
                 continue
             else:
-                return {
-                    'bonded': False,
-                    'total_bundles': 0,
-                    'total_holding_percentage': 0
-                }
+                return {'bonded': False, 'total_bundles': 0, 'total_holding_percentage': 0}
         except requests.exceptions.Timeout:
             await asyncio.sleep(1)
             continue
         except Exception as e:
             if attempt == max_retries - 1:
-                logging.error(
-                    f"Error fetching Trench data after {max_retries} attempts: {e}"
-                )
+                logging.error(f"Error fetching Trench data after {max_retries} attempts: {e}")
             else:
-                logging.warning(
-                    f"Retrying Trench API call ({attempt + 1}/{max_retries})")
+                logging.warning(f"Retrying Trench API call ({attempt + 1}/{max_retries})")
                 await asyncio.sleep(1)
     return {'bonded': False, 'total_bundles': 0, 'total_holding_percentage': 0}
-
 
 async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     """Format coin information into a readable Telegram message."""
@@ -569,9 +536,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
     trench_info = ""
     if trench_data:
-        active_snipers = [
-            s for s in trench_data.get('snipers', []) if s['tokens'] > 0
-        ]
+        active_snipers = [s for s in trench_data.get('snipers', []) if s['tokens'] > 0]
         total_snipers = len(active_snipers)
         if total_snipers > 0:
             total_tokens = sum(sniper['tokens'] for sniper in active_snipers)
@@ -585,7 +550,8 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             f"📚 <b>Bundle Info</b>\n"
             f"├─ <b>Total Bundles:</b> {trench_data['total_bundles']}\n"
             f"├─ <b>Held Bundles:</b> {trench_data['total_holding_percentage']:.2f}%\n\n"
-            f"🔫 <b>Snipers:</b>\n{sniper_text}\n")
+            f"🔫 <b>Snipers:</b>\n{sniper_text}\n"
+        )
 
     # Get reply count from the coin data
     reply_count = coin.get("reply_count", 0)
@@ -635,8 +601,20 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             volume_parts.append(f"{marker} {period}: ${vol:,.2f}")
         volume_text = f"📊 <b>Volume:</b>\n" + "\n".join(volume_parts) + "\n\n"
 
+        # ATH (all-time high) price estimation
+        market_cap = float(coin.get('usd_market_cap', 0))
+        ath_price = market_cap
+        if dex_data and isinstance(dex_data, dict):
+            ath_from_dex = dex_data.get('ath_price')
+            if ath_from_dex is not None:
+                try:
+                    ath_from_dex = float(ath_from_dex)
+                    ath_price = max(ath_from_dex, market_cap)
+                except (ValueError, TypeError):
+                    pass
+        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
+
     # Check DEX paid status
-    dex_paid = False
     try:
         dex_response = requests.get(
             f"https://api.dexscreener.com/orders/v1/solana/{mint_address}",
@@ -645,34 +623,38 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         if dex_response.status_code == 200:
             dex_data_orders = dex_response.json()
             dex_paid = dex_data_orders.get("status") == "approved"
+        else:
+            dex_paid = False
     except Exception as e:
         logging.error(f"Error checking DEX status: {e}")
+        dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
-        f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
-        f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 'Not found'):,.2f}\n"
-        f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n\n"
+        #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
+        f"🎯 <b>DEX Paid:</b> {dex_status}\n"
+        f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
         f"{trench_info}"
         f"{price_text}"
         f"{volume_text}"
+        f"{ath_text}"
         f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
         f"{format_holders_message(holders_info)}"
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
         f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
-        f"🤖 <b>AI Analysis</b>\n"
-        f"├─ <b>Prediction:</b> {coin_tracker.predict_profitability(coin, holders_info, dex_data, trench_data)['prediction']}\n"
-        f"├─ <b>Confidence:</b> {coin_tracker.predict_profitability(coin, holders_info, dex_data, trench_data)['confidence']:.1f}%\n"
-        f"└─ <b>Reason:</b> {coin_tracker.predict_profitability(coin, holders_info, dex_data, trench_data)['explanation']}\n\n"
-        f"📊 <b>Meta Matches:</b> {' | '.join(f'{word} ({score:.2f})' for word, score in coin_tracker.meta_scores.items() if word.lower() in (coin['name'] + ' ' + coin['symbol']).lower())}\n\n"
+
+         f"🤖 <b>AI Analysis</b>\n"
+         f"├─ <b>Prediction:</b> {coin_tracker.predict_profitability(coin, holders_info, dex_data, trench_data)['prediction']}\n"
+         f"├─ <b>Confidence:</b> {coin_tracker.predict_profitability(coin, holders_info, dex_data, trench_data)['confidence']:.1f}%\n"
+         f"└─ <b>Reason:</b> {coin_tracker.predict_profitability(coin, holders_info, dex_data, trench_data)['explanation']}\n\n"
+         f"📊 <b>Meta Matches:</b> {' | '.join(f'{word} ({score:.2f})' for word, score in coin_tracker.meta_scores.items() if word.lower() in (coin['name'] + ' ' + coin['symbol']).lower())}\n\n"
         f"🆔 Mint: <code>{mint_address}</code>\n"
         f"——————————————————————————————\n")
 
 
 from coin_tracker import CoinTracker
-
 
 async def scan_coins():
     """Continuously scan the featured coins API for new coins meeting filter criteria."""
@@ -726,13 +708,16 @@ async def scan_coins():
                 continue
 
             # 1. Price Momentum Check
-            price_momentum_check = ((price_change_5m >= MIN_PRICE_5M)
-                                    or (price_change_1h >= HIGH_PRICE_1H)
-                                    or (price_change_1h >= MIN_PRICE_1H))
+            price_momentum_check = (
+                (price_change_5m >= MIN_PRICE_5M) or 
+                (price_change_1h >= HIGH_PRICE_1H) or 
+                (price_change_1h >= MIN_PRICE_1H)
+            )
 
             # 2. Volume Liquidity Check
-            volume_check = ((volume_5m >= MIN_VOLUME_5M)
-                            or (volume_1h >= MIN_VOLUME_1H))
+            volume_check = (
+                (volume_5m >= MIN_VOLUME_5M) or
+                (volume_1h >= MIN_VOLUME_1H)            )
 
             # 3. Trades Check
             trades_check = trades_1h >= MIN_TRADES_1H
@@ -741,40 +726,8 @@ async def scan_coins():
             holders_check = holders_info.get("total_holders", 0) >= MIN_HOLDERS
 
             # All conditions must be true
-            if not all([
-                    price_momentum_check, volume_check, trades_check,
-                    holders_check
-            ]):
+            if not all([price_momentum_check, volume_check, trades_check, holders_check]):
                 continue
-
-            # Now that the coin has passed all filters, get ATH from Birdeye
-            ath = None
-            try:
-                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
-                birdeye_headers = {
-                    "accept": "application/json",
-                    "x-chain": "solana",
-                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
-                }
-                birdeye_response = requests.get(birdeye_url,
-                                                headers=birdeye_headers,
-                                                timeout=10)
-                if birdeye_response.ok:
-                    birdeye_data = birdeye_response.json()
-                    if isinstance(
-                            birdeye_data, dict
-                    ) and 'data' in birdeye_data and 'items' in birdeye_data[
-                            'data']:
-                        ath = max(
-                            float(item.get('h', 0))
-                            for item in birdeye_data['data']['items'])
-                        ath = ath * 1000000000  # Convert to market cap
-            except Exception as e:
-                logging.error(f"Error fetching Birdeye ATH data: {e}")
-
-            # Update dex_data with ATH
-            if dex_data:
-                dex_data['ath_price'] = ath
 
             # Get Trench data before tracking
             trench_data = await get_trench_data(mint)
@@ -787,12 +740,10 @@ async def scan_coins():
         if new_coins:
             formatted_messages = []
             for coin, holders_info, dex_data in new_coins:
-                msg = await format_coin_message(coin, holders_info, dex_data,
-                                                coin_tracker)
+                msg = await format_coin_message(coin, holders_info, dex_data, coin_tracker)
                 if msg:
                     formatted_messages.append(msg)
-            message = "🚀 <b>NEW CREATION ALERT!</b> 🚀\n\n" + "\n".join(
-                formatted_messages)
+            message = "🚀 <b>NEW CREATION ALERT!</b> 🚀\n\n" + "\n".join(formatted_messages)
             await send_telegram_message(message)
         total_replies = sum(coin[0].get("reply_count", 0)
                             for coin in new_coins) if new_coins else 0
@@ -811,7 +762,6 @@ import json
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
@@ -842,8 +792,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 # Validate data format
                 for ticker, multiplier in training_data.items():
                     if not isinstance(multiplier, (int, float)):
-                        raise ValueError(
-                            f"Invalid multiplier for {ticker}: {multiplier}")
+                        raise ValueError(f"Invalid multiplier for {ticker}: {multiplier}")
 
                 # Train model
                 tracker = CoinTracker()
@@ -855,18 +804,16 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 response = {
                     'status': 'success',
-                    'message':
-                    f'Model trained with {len(training_data)} trades',
+                    'message': f'Model trained with {len(training_data)} trades',
                     'trades': training_data
                 }
                 self.wfile.write(json.dumps(response).encode())
 
                 # Also send confirmation to Telegram
-                asyncio.run(
-                    send_telegram_message(
-                        f"✅ Model trained successfully with {len(training_data)} trades:\n"
-                        + "\n".join(f"- {k}: {v}x"
-                                    for k, v in training_data.items())))
+                asyncio.run(send_telegram_message(
+                    f"✅ Model trained successfully with {len(training_data)} trades:\n" +
+                    "\n".join(f"- {k}: {v}x" for k, v in training_data.items())
+                ))
 
             except Exception as e:
                 self.send_response(400)
@@ -899,13 +846,14 @@ async def handle_learned_command():
     if learned_info["status"] == "No verified training data yet":
         message = "🤖 No verified training data available yet."
     else:
-        message = ("🤖 Learning Analysis\n\n"
-                   f"Total verified coins: {learned_info['total_verified']}\n"
-                   f"Profitable: {learned_info['profitable_count']}\n"
-                   f"Unprofitable: {learned_info['unprofitable_count']}\n\n"
-                   "📊 Insights:\n" +
-                   "\n".join(f"• {insight}"
-                             for insight in learned_info['insights']))
+        message = (
+            "🤖 Learning Analysis\n\n"
+            f"Total verified coins: {learned_info['total_verified']}\n"
+            f"Profitable: {learned_info['profitable_count']}\n"
+            f"Unprofitable: {learned_info['unprofitable_count']}\n\n"
+            "📊 Insights:\n" + 
+            "\n".join(f"• {insight}" for insight in learned_info['insights'])
+        )
 
     await send_telegram_message(message)
 
@@ -913,32 +861,29 @@ async def handle_learned_command():
 async def fetch_meta_words():
     """Fetch meta words and update coin tracker with current meta scores."""
     try:
-        response = requests.get(
-            "https://frontend-api-v3.pump.fun/metas/current")
+        response = requests.get("https://frontend-api-v3.pump.fun/metas/current")
         response.raise_for_status()
         data = response.json()
 
         if isinstance(data, list):
             # Create dictionary of word:score pairs
-            meta_scores = {
-                item['word'].lower(): float(item['score'])
-                for item in data if 'word' in item and 'score' in item
-            }
+            meta_scores = {item['word'].lower(): float(item['score']) 
+                         for item in data if 'word' in item and 'score' in item}
 
             # Update CoinTracker with new meta scores
             coin_tracker = CoinTracker()
             coin_tracker.update_meta_scores(meta_scores)
 
             # Format for display
-            word_scores = [
-                f"{word} ({score:.3f})" for word, score in meta_scores.items()
-            ]
+            word_scores = [f"{word} ({score:.3f})" for word, score in meta_scores.items()]
             words_str = ', '.join(word_scores)
 
             # Send update to Telegram
-            message = ("🔄 Meta Update\n\n"
-                       f"📊 Current Meta Words (score):\n{words_str}\n\n"
-                       "Higher scores indicate stronger market potential.")
+            message = (
+                "🔄 Meta Update\n\n"
+                f"📊 Current Meta Words (score):\n{words_str}\n\n"
+                "Higher scores indicate stronger market potential."
+            )
             await send_telegram_message(message)
 
             # Schedule next update
@@ -950,12 +895,10 @@ async def fetch_meta_words():
     except Exception as e:
         logging.error(f"Error fetching meta words: {e}")
 
-
 async def schedule_meta_update():
     """Schedule periodic meta updates."""
-    await asyncio.sleep(600)  # Update every 5 minutes
+    await asyncio.sleep(300)  # Update every 5 minutes
     await fetch_meta_words()
-
 
 if __name__ == "__main__":
     logging.info("Starting HTTP server on port 8080")
