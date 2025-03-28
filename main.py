@@ -193,27 +193,7 @@ def get_dex_data(token_mint):
             pair_address = pair.get('pairAddress')
 
         if pair_address:  # Only fetch ATH if we have a valid pair address
-            current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-            one_month_ago = (datetime.now(timezone.utc) - 
-                            timedelta(days=30)).strftime('%Y-%m-%d')
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1h&currency=usd&fromDate=2024-11-25&toDate=2025-11-26&limit=10"
-
-            ohlcv_headers = {
-                "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImZhNjJlYTkyLWM4ZjQtNDdhNC05MmQyLWU0MDU3NGNjYjFiZSIsIm9yZ0lkIjoiNDM4MDA3IiwidXNlcklkIjoiNDUwNjAxIiwidHlwZUlkIjoiNDFjNjE1MTMtMWM0Mi00Njk1LTliZDctNzIzZDIxZWQyNjFkIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDI4ODI5ODAsImV4cCI6NDg5ODY0Mjk4MH0.--ovjeXcZQ-Ez7XlfAqCz7wWDVOJ4wgNWnn8HpBWF4k"
-            }
-            try:
-                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers, timeout=10)
-                ohlcv_response.raise_for_status()
-                ohlcv_data = ohlcv_response.json()
-                if ohlcv_data and isinstance(ohlcv_data, list) and len(ohlcv_data) > 0:
-                    high_prices = [float(item.get('high', 0)) for item in ohlcv_data]
-                    max_high = max(high_prices) if high_prices else 0
-                    ath_price = max_high * 1000000000
-                    logging.info(f"ATH calculation - High: {max_high}, ATH: {ath_price}")
-
-            except requests.exceptions.RequestException as e:
-                logging.error(f"Error fetching OHLCV data for {pair_address}: {e}")
+            # ATH tracking removed
                 ath_price = None
 
         data = dex_response.json()
@@ -639,7 +619,6 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
-        f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 'Not found')}\n"
         f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n\n"
         f"{trench_info}"
         f"{price_text}"
