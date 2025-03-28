@@ -166,7 +166,10 @@ def get_dex_data(token_mint):
         try:
             birdeye_response = requests.get(birdeye_url, headers=birdeye_headers)
             birdeye_data = birdeye_response.json()
-            ath_price = float(birdeye_data.get('data', {}).get('h', 0)) * 1000000000
+            if 'data' in birdeye_data and isinstance(birdeye_data['data'], list) and len(birdeye_data['data']) > 0:
+                ath_price = float(birdeye_data['data'][0].get('h', 0)) * 1000000000
+            else:
+                ath_price = 0
         except Exception as e:
             logging.error(f"Error fetching Birdeye ATH data: {e}")
             ath_price = 0
