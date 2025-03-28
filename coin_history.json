@@ -6230,5 +6230,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "H1SwATCTtTxivASnDJbf3WbaMR3u7yWc134fekkzpump": {
+    "mint": "H1SwATCTtTxivASnDJbf3WbaMR3u7yWc134fekkzpump",
+    "name": "StraightCoin",
+    "symbol": "Straight",
+    "market_cap": 16530.8162068632,
+    "total_bundles": 9,
+    "holding_percentage": 68.371349926441,
+    "price_changes": {
+      "5m": 64.75,
+      "1h": 334.0,
+      "6h": 334.0,
+      "24h": 334.0
+    },
+    "volumes": {
+      "5m": 4105.39,
+      "1h": 15799.1,
+      "6h": 15799.1,
+      "24h": 15799.1
+    },
+    "ath": 16530.8162068632,
+    "total_holders": 74,
+    "trades_1h": {
+      "total": 249,
+      "buys": 164,
+      "sells": 85
+    },
+    "makers_1h": 121,
+    "makers_24h": 121,
+    "timestamp": 1743146580.001414,
+    "initial_price": 0,
+    "initial_market_cap": 16530.8162068632,
+    "prediction_score": 53.77409,
+    "prediction_confidence": 537.7409,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
