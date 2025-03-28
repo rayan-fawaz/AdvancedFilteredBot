@@ -595,36 +595,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
-    # Initialize ATH text
-    ath_text = ""
-    if dex_data and isinstance(dex_data, dict) and 'pair_address' in dex_data:
-        pair_address = dex_data['pair_address']
-        if pair_address:
-            # Get OHLCV data from Moralis
-            current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
-            one_month_ago = (datetime.now(timezone.utc) - timedelta(days=30)).strftime('%Y-%m-%d')
-
-            ohlcv_url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv?timeframe=1M&currency=usd&fromDate={one_month_ago}&toDate={current_date}&limit=10"
-            ohlcv_headers = {
-                "Accept": "application/json",
-                "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjA1ZWQ1M2UxLTA4YTUtNGY1Yy1hMmZmLTg0ODhiYzVmNzNhNSIsIm9yZ0lkIjoiNDMzNTI0IiwidXNlcklkIjoiNDQ1OTUxIiwidHlwZUlkIjoiNDEyNWI4NGMtMjM4Ni00OTZhLTgxZWQtYzdhNWVjNjNmYWNhIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDA0OTg3MTEsImV4cCI6NDg5NjI1ODcxMX0.X6JXdTuoB4Vx1-dhhl_ya6fGpUwxcY-Urp_s0KFppac"
-            }
-            try:
-                ohlcv_response = requests.get(ohlcv_url, headers=ohlcv_headers)
-                ohlcv_data = ohlcv_response.json()
-                print(f"OHLCV response: {ohlcv_data}")
-
-                ath_price = None
-                if 'result' in ohlcv_data and len(ohlcv_data['result']) > 0:
-                    high = ohlcv_data['result'][0].get('high')
-                    if high:
-                        ath_price = round(high * 1000000000)
-                        print(f"High value: {round(high)}")
-                        print(f"ATH Price (rounded): {ath_price}")
-                        ath_text = f"📈 <b>ATH: ${int(ath_price):,}</b>\n\n"
-
-            except Exception as e:
-                logging.error(f"Error fetching OHLCV data: {e}")
+    
 
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
@@ -635,7 +606,6 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"{trench_info}"
         f"{price_text}"
         f"{volume_text}"
-        f"{ath_text}"
         f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
         f"{format_holders_message(holders_info)}"
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
