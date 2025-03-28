@@ -169,11 +169,16 @@ def get_dex_data(token_mint):
         try:
             birdeye_response = requests.get(birdeye_url, headers=birdeye_headers, timeout=10)
             if birdeye_response.ok:
-                birdeye_data = birdeye_response.json()
-                if 'data' in birdeye_data and birdeye_data['data']:
-                    ath = max(float(item.get('h', 0)) for item in birdeye_data['data'])
-                    ath = ath * 1000000000  # Convert to market cap
-                else:
+                try:
+                    birdeye_data = birdeye_response.json()
+                    if isinstance(birdeye_data, dict) and 'data' in birdeye_data and isinstance(birdeye_data['data'], list):
+                        ath = max(float(item.get('h', 0)) for item in birdeye_data['data'])
+                        ath = ath * 1000000000  # Convert to market cap
+                    else:
+                        logging.info(f"Unexpected Birdeye response format: {birdeye_data}")
+                        ath = None
+                except (ValueError, TypeError) as e:
+                    logging.error(f"Error parsing Birdeye response: {e}")
                     ath = None
             else:
                 ath = None
