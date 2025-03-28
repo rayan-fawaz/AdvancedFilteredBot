@@ -154,10 +154,32 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
 
 
 def get_dex_data(token_mint):
-    """Get volume and price change data from DexScreener and Moralis APIs."""
+    """Get volume and price change data from DexScreener, Moralis, and Birdeye APIs."""
     try:
         # Initialize default dex_data
         dex_data = None
+
+        # Get ATH from Birdeye
+        birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={token_mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+        birdeye_headers = {
+            "accept": "application/json",
+            "x-chain": "solana",
+            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+        }
+        try:
+            birdeye_response = requests.get(birdeye_url, headers=birdeye_headers, timeout=10)
+            if birdeye_response.ok:
+                birdeye_data = birdeye_response.json()
+                if 'data' in birdeye_data and birdeye_data['data']:
+                    ath = max(float(item.get('h', 0)) for item in birdeye_data['data'])
+                    ath = ath * 1000000000  # Convert to market cap
+                else:
+                    ath = None
+            else:
+                ath = None
+        except Exception as e:
+            logging.error(f"Error fetching Birdeye ATH data: {e}")
+            ath = None
 
         # DexScreener data
         dex_response = requests.get(
@@ -220,7 +242,7 @@ def get_dex_data(token_mint):
                 'pair_address':
                 pair_address,
                 'ath_price':
-                ath_price
+                ath
             }
         return dex_data
     except Exception as e:
@@ -619,6 +641,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"💱 <b>Pair:</b> <code>{dex_data.get('pair_address', 'Not found')}</code>\n"
+        f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 'Not found'):,.2f}\n"
         f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n\n"
         f"{trench_info}"
         f"{price_text}"
