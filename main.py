@@ -154,37 +154,10 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
 
 
 def get_dex_data(token_mint):
-    """Get volume and price change data from DexScreener, Moralis, and Birdeye APIs."""
+    """Get volume and price change data from DexScreener and Moralis APIs."""
     try:
         # Initialize default dex_data
         dex_data = None
-
-        # Get ATH from Birdeye
-        birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={token_mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
-        birdeye_headers = {
-            "accept": "application/json",
-            "x-chain": "solana",
-            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
-        }
-        try:
-            birdeye_response = requests.get(birdeye_url, headers=birdeye_headers, timeout=10)
-            if birdeye_response.ok:
-                try:
-                    birdeye_data = birdeye_response.json()
-                    if isinstance(birdeye_data, dict) and 'data' in birdeye_data and isinstance(birdeye_data['data'], list):
-                        ath = max(float(item.get('h', 0)) for item in birdeye_data['data'])
-                        ath = ath * 1000000000  # Convert to market cap
-                    else:
-                        logging.info(f"Unexpected Birdeye response format: {birdeye_data}")
-                        ath = None
-                except (ValueError, TypeError) as e:
-                    logging.error(f"Error parsing Birdeye response: {e}")
-                    ath = None
-            else:
-                ath = None
-        except Exception as e:
-            logging.error(f"Error fetching Birdeye ATH data: {e}")
-            ath = None
 
         # DexScreener data
         dex_response = requests.get(
@@ -739,6 +712,28 @@ async def scan_coins():
             # All conditions must be true
             if not all([price_momentum_check, volume_check, trades_check, holders_check]):
                 continue
+
+            # Now that the coin has passed all filters, get ATH from Birdeye
+            ath = None
+            try:
+                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+                birdeye_headers = {
+                    "accept": "application/json",
+                    "x-chain": "solana",
+                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                }
+                birdeye_response = requests.get(birdeye_url, headers=birdeye_headers, timeout=10)
+                if birdeye_response.ok:
+                    birdeye_data = birdeye_response.json()
+                    if isinstance(birdeye_data, dict) and 'data' in birdeye_data and 'items' in birdeye_data['data']:
+                        ath = max(float(item.get('h', 0)) for item in birdeye_data['data']['items'])
+                        ath = ath * 1000000000  # Convert to market cap
+            except Exception as e:
+                logging.error(f"Error fetching Birdeye ATH data: {e}")
+
+            # Update dex_data with ATH
+            if dex_data:
+                dex_data['ath_price'] = ath
 
             # Get Trench data before tracking
             trench_data = await get_trench_data(mint)
