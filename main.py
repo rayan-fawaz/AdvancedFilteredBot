@@ -154,8 +154,23 @@ class EnhancedHTTPRequestHandler(SimpleHTTPRequestHandler):
 
 
 def get_dex_data(token_mint):
-    """Get volume and price change data from DexScreener and Moralis APIs."""
+    """Get volume and price change data from DexScreener, Moralis, and Birdeye APIs."""
     try:
+        # Get ATH from Birdeye
+        birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={token_mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+        birdeye_headers = {
+            "accept": "application/json",
+            "x-chain": "solana",
+            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+        }
+        try:
+            birdeye_response = requests.get(birdeye_url, headers=birdeye_headers)
+            birdeye_data = birdeye_response.json()
+            ath_price = float(birdeye_data.get('data', {}).get('h', 0)) * 1000000000
+        except Exception as e:
+            logging.error(f"Error fetching Birdeye ATH data: {e}")
+            ath_price = 0
+
         # DexScreener data
         dex_response = requests.get(
             f"https://api.dexscreener.com/latest/dex/tokens/{token_mint}",
@@ -182,6 +197,7 @@ def get_dex_data(token_mint):
         if 'pairs' in data and len(data['pairs']) > 0:
             pair = data['pairs'][0]
             return {
+                'ath_price': ath_price,
                 'volume_24h':
                 float(pair.get('volume', {}).get('h24', 0)),
                 'volume_6h':
@@ -600,6 +616,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
+        f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 0):,.2f}\n"
         #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
         f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
