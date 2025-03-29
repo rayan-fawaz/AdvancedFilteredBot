@@ -164,7 +164,7 @@ def get_dex_data(token_mint):
             "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
         }
         try:
-            url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint_address}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+            url = f"https://public-api.birdeye.so/defi/ohlcv?address={token_mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
             headers = {
                 "accept": "application/json",
                 "x-chain": "solana",
