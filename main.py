@@ -687,16 +687,49 @@ async def scan_coins():
                     "sell_1h", 0) < MIN_SELLS:
                 continue
 
-            # DEX data
-            dex_data = get_dex_data(mint)
-            if not dex_data:
+            # DEX data (without ATH initially)
+            dex_data = {
+                "volume_5m": 0,
+                "volume_1h": 0,
+                "volume_6h": 0,
+                "volume_24h": 0,
+                "price_change_5m": 0,
+                "price_change_1h": 0,
+                "price_change_6h": 0,
+                "price_change_24h": 0,
+            }
+            
+            # Get base DEX data first
+            try:
+                dex_response = requests.get(
+                    f"https://api.dexscreener.com/latest/dex/tokens/{mint}",
+                    timeout=10)
+                dex_response.raise_for_status()
+                
+                data = dex_response.json()
+                if 'pairs' in data and len(data['pairs']) > 0:
+                    pair = data['pairs'][0]
+                    dex_data.update({
+                        'volume_24h': float(pair.get('volume', {}).get('h24', 0)),
+                        'volume_6h': float(pair.get('volume', {}).get('h6', 0)),
+                        'volume_1h': float(pair.get('volume', {}).get('h1', 0)),
+                        'volume_5m': float(pair.get('volume', {}).get('m5', 0)),
+                        'price_change_24h': float(pair.get('priceChange', {}).get('h24', 0)),
+                        'price_change_6h': float(pair.get('priceChange', {}).get('h6', 0)),
+                        'price_change_1h': float(pair.get('priceChange', {}).get('h1', 0)),
+                        'price_change_5m': float(pair.get('priceChange', {}).get('m5', 0))
+                    })
+                else:
+                    continue
+            except Exception as e:
+                logging.error(f"Error fetching base DEX data for {mint}: {e}")
                 continue
 
             # Get volumes and price changes
-            volume_5m = dex_data.get("volume_5m", 0)
-            volume_1h = dex_data.get("volume_1h", 0)
-            price_change_5m = dex_data.get("price_change_5m", 0)
-            price_change_1h = dex_data.get("price_change1h", 0)
+            volume_5m = dex_data["volume_5m"]
+            volume_1h = dex_data["volume_1h"]
+            price_change_5m = dex_data["price_change_5m"]
+            price_change_1h = dex_data["price_change_1h"]
             trades_1h = holders_info.get("trade_1h", 0)
 
             # Check if 5m volume is too high
@@ -724,6 +757,27 @@ async def scan_coins():
             # All conditions must be true
             if not all([price_momentum_check, volume_check, trades_check, holders_check]):
                 continue
+
+            # Now get Birdeye ATH data since coin passed all filters
+            try:
+                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+                headers = {
+                    "accept": "application/json",
+                    "x-chain": "solana",
+                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                }
+                response = requests.get(birdeye_url, headers=headers)
+                data = response.json()
+                logging.info(f"Birdeye ATH response: {response.text}")
+                
+                if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
+                    ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
+                    dex_data['ath_price'] = ath * 1000000000
+                else:
+                    dex_data['ath_price'] = 0
+            except Exception as e:
+                logging.error(f"Error fetching Birdeye ATH data: {e}")
+                dex_data['ath_price'] = 0
 
             # Get Trench data before tracking
             trench_data = await get_trench_data(mint)
