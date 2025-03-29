@@ -169,8 +169,11 @@ def get_dex_data(token_mint):
             data = birdeye_data.get('data', [])
             ath_price = 0
             if isinstance(data, list) and data:
-                high_value = float(data[0].get('h', 0))
-                ath_price = high_value * 1000000000
+                # Find highest 'h' value across all data points
+                high_values = [float(point.get('h', 0)) for point in data]
+                if high_values:
+                    max_high = max(high_values)
+                    ath_price = max_high * 1000000000
         except Exception as e:
             logging.error(f"Error fetching Birdeye ATH data: {e}")
             ath_price = 0
