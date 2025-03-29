@@ -174,9 +174,9 @@ def get_dex_data(token_mint):
             data = response.json()
             logging.info(f"Birdeye ATH response: {response.text}")
             
-            if 'data' in data and isinstance(data['data'], list) and len(data['data']) > 0:
-                # Get the highest 'h' value
-                ath = float(data['data'][0].get('h', 0))
+            if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
+                # Get the highest 'h' value across all time periods
+                ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
                 ath_price = ath * 1000000000
             else:
                 ath_price = 0
