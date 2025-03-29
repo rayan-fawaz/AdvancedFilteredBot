@@ -164,16 +164,22 @@ def get_dex_data(token_mint):
             "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
         }
         try:
-            birdeye_response = requests.get(birdeye_url, headers=birdeye_headers)
-            birdeye_data = birdeye_response.json()
-            data = birdeye_data.get('data', [])
-            ath_price = 0
-            if isinstance(data, list) and data:
-                # Find highest 'h' value across all data points
-                high_values = [float(point.get('h', 0)) for point in data]
-                if high_values:
-                    max_high = max(high_values)
-                    ath_price = max_high * 1000000000
+            url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint_address}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+            headers = {
+                "accept": "application/json",
+                "x-chain": "solana",
+                "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+            }
+            response = requests.get(url, headers=headers)
+            data = response.json()
+            logging.info(f"Birdeye ATH response: {response.text}")
+            
+            if 'data' in data and isinstance(data['data'], list) and len(data['data']) > 0:
+                # Get the highest 'h' value
+                ath = float(data['data'][0].get('h', 0))
+                ath_price = ath * 1000000000
+            else:
+                ath_price = 0
         except Exception as e:
             logging.error(f"Error fetching Birdeye ATH data: {e}")
             ath_price = 0
