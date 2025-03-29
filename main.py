@@ -611,12 +611,12 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     # Check DEX paid status
     try:
         dex_response = requests.get(
-            f"https://api.dexscreener.com/orders/v1/solana/{mint_address}",
+            f"https://api.dexscreener.com/latest/dex/pairs/solana/{mint_address}",
             headers={'accept': 'application/json'},
             timeout=5)
         if dex_response.status_code == 200:
             dex_data_orders = dex_response.json()
-            dex_paid = dex_data_orders.get("status") == "approved"
+            dex_paid = len(dex_data_orders.get("pairs", [])) > 0
         else:
             dex_paid = False
     except Exception as e:
