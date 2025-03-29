@@ -6496,5 +6496,119 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "3Rxgi7KRHToEvxmKX9JgBHKo1P4yHiHsJEmTmC94pump": {
+    "mint": "3Rxgi7KRHToEvxmKX9JgBHKo1P4yHiHsJEmTmC94pump",
+    "name": "The First Cryptocurrency ",
+    "symbol": "eCash",
+    "market_cap": 13083.3636657456,
+    "total_bundles": 3,
+    "holding_percentage": 4.0025230641024,
+    "price_changes": {
+      "5m": 37.07,
+      "1h": 135.0,
+      "6h": 222.0,
+      "24h": 222.0
+    },
+    "volumes": {
+      "5m": 1068.84,
+      "1h": 10136.02,
+      "6h": 20561.9,
+      "24h": 20561.9
+    },
+    "ath": 0,
+    "total_holders": 50,
+    "trades_1h": {
+      "total": 1449,
+      "buys": 742,
+      "sells": 707
+    },
+    "makers_1h": 53,
+    "makers_24h": 109,
+    "timestamp": 1743234225.237828,
+    "initial_price": 0,
+    "initial_market_cap": 13083.3636657456,
+    "prediction_score": 57.345214,
+    "prediction_confidence": 573.45214,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "2tnv8xYjZ613vDsBZhLTSuNLQ2kpFTZkpMfjLhgbpump": {
+    "mint": "2tnv8xYjZ613vDsBZhLTSuNLQ2kpFTZkpMfjLhgbpump",
+    "name": "Imagine your dream life",
+    "symbol": "life",
+    "market_cap": 14233.95951314376,
+    "total_bundles": 11,
+    "holding_percentage": 0.5594908536967,
+    "price_changes": {
+      "5m": 38.92,
+      "1h": 276.0,
+      "6h": 276.0,
+      "24h": 276.0
+    },
+    "volumes": {
+      "5m": 4360.4,
+      "1h": 51826.77,
+      "6h": 51826.77,
+      "24h": 51826.77
+    },
+    "ath": 0,
+    "total_holders": 122,
+    "trades_1h": {
+      "total": 1509,
+      "buys": 836,
+      "sells": 673
+    },
+    "makers_1h": 295,
+    "makers_24h": 295,
+    "timestamp": 1743234258.877076,
+    "initial_price": 0,
+    "initial_market_cap": 14233.95951314376,
+    "prediction_score": 99.93014,
+    "prediction_confidence": 999.3013999999998,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "AkV9Uf143c1RhXSxehTX42S4PfuUnEAaSxbDo3JKpump": {
+    "mint": "AkV9Uf143c1RhXSxehTX42S4PfuUnEAaSxbDo3JKpump",
+    "name": "Nbafication",
+    "symbol": "Nba",
+    "market_cap": 13730.975183128321,
+    "total_bundles": 5,
+    "holding_percentage": 14.066267294357901,
+    "price_changes": {
+      "5m": 259.0,
+      "1h": 259.0,
+      "6h": 259.0,
+      "24h": 259.0
+    },
+    "volumes": {
+      "5m": 11419.21,
+      "1h": 11419.21,
+      "6h": 11419.21,
+      "24h": 11419.21
+    },
+    "ath": 0,
+    "total_holders": 94,
+    "trades_1h": {
+      "total": 275,
+      "buys": 186,
+      "sells": 89
+    },
+    "makers_1h": 151,
+    "makers_24h": 151,
+    "timestamp": 1743234329.485439,
+    "initial_price": 0,
+    "initial_market_cap": 13730.975183128321,
+    "prediction_score": 53.558867000000006,
+    "prediction_confidence": 535.5886700000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
