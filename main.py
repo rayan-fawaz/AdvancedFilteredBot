@@ -958,6 +958,11 @@ if __name__ == "__main__":
     server_thread = threading.Thread(target=server.serve_forever, daemon=True)
     server_thread.start()
 
+    # Start bond monitoring in separate thread
+    from bond_monitor import monitor_bonds
+    bond_monitor_thread = threading.Thread(target=monitor_bonds, daemon=True)
+    bond_monitor_thread.start()
+
     # Run the coin scanner
     async def main():
         await scan_coins()
