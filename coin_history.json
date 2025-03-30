@@ -7299,35 +7299,35 @@
     "mint": "LuMjQfsMCkEVH5FUAyDR5iUykdKtgEUwLhqEg5Cpump",
     "name": "bif",
     "symbol": "bif",
-    "market_cap": 15220.53227187405,
-    "total_bundles": 4,
-    "holding_percentage": 5.731834387088,
+    "market_cap": 18902.501443846017,
+    "total_bundles": 6,
+    "holding_percentage": 4.6442354368743,
     "price_changes": {
-      "5m": 110.0,
-      "1h": 322.0,
-      "6h": 322.0,
-      "24h": 322.0
+      "5m": -13.03,
+      "1h": 86.24,
+      "6h": 429.0,
+      "24h": 429.0
     },
     "volumes": {
-      "5m": 13883.24,
-      "1h": 17971.96,
-      "6h": 17971.96,
-      "24h": 17971.96
+      "5m": 2766.54,
+      "1h": 36395.03,
+      "6h": 89724.28,
+      "24h": 89724.28
     },
-    "ath": 15841.458035666215,
-    "total_holders": 68,
+    "ath": 21856.374843776062,
+    "total_holders": 181,
     "trades_1h": {
-      "total": 360,
-      "buys": 213,
-      "sells": 147
+      "total": 1848,
+      "buys": 996,
+      "sells": 852
     },
-    "makers_1h": 125,
-    "makers_24h": 125,
-    "timestamp": 1743352831.598347,
+    "makers_1h": 293,
+    "makers_24h": 479,
+    "timestamp": 1743357693.612931,
     "initial_price": 0,
-    "initial_market_cap": 15220.53227187405,
-    "prediction_score": 55.480371999999996,
-    "prediction_confidence": 554.80372,
+    "initial_market_cap": 18902.501443846017,
+    "prediction_score": 89.661521,
+    "prediction_confidence": 896.6152099999998,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
@@ -7442,6 +7442,196 @@
     "initial_market_cap": 7886.849324199189,
     "prediction_score": 46.788717,
     "prediction_confidence": 467.88717,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "zJwsos9XNJRMxyfgiRSR4YvzMqgJnSRiLcttBpMpump": {
+    "mint": "zJwsos9XNJRMxyfgiRSR4YvzMqgJnSRiLcttBpMpump",
+    "name": "Super Pepe",
+    "symbol": "SUPERPEPE",
+    "market_cap": 7837.63998387942,
+    "total_bundles": 3,
+    "holding_percentage": 3.6601871802374,
+    "price_changes": {
+      "5m": 34.6,
+      "1h": 112.0,
+      "6h": 112.0,
+      "24h": 112.0
+    },
+    "volumes": {
+      "5m": 2514.66,
+      "1h": 14517.12,
+      "6h": 14517.12,
+      "24h": 14517.12
+    },
+    "ath": 7810.642768823938,
+    "total_holders": 40,
+    "trades_1h": {
+      "total": 274,
+      "buys": 168,
+      "sells": 106
+    },
+    "makers_1h": 103,
+    "makers_24h": 103,
+    "timestamp": 1743357640.140697,
+    "initial_price": 0,
+    "initial_market_cap": 7837.63998387942,
+    "prediction_score": 47.271984,
+    "prediction_confidence": 472.7198400000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "46RMHUadPmvhwUziwg5ovb2rswRAMz64Kp3omv8Kpump": {
+    "mint": "46RMHUadPmvhwUziwg5ovb2rswRAMz64Kp3omv8Kpump",
+    "name": "SUPERTRUMP",
+    "symbol": "SUPERTRUMP",
+    "market_cap": 13138.617133257329,
+    "total_bundles": 11,
+    "holding_percentage": 9.8487631280349,
+    "price_changes": {
+      "5m": 36.82,
+      "1h": 253.0,
+      "6h": 253.0,
+      "24h": 253.0
+    },
+    "volumes": {
+      "5m": 6006.53,
+      "1h": 53257.75,
+      "6h": 53257.75,
+      "24h": 53257.75
+    },
+    "ath": 17889.23491876632,
+    "total_holders": 87,
+    "trades_1h": {
+      "total": 758,
+      "buys": 446,
+      "sells": 312
+    },
+    "makers_1h": 249,
+    "makers_24h": 249,
+    "timestamp": 1743357645.179385,
+    "initial_price": 0,
+    "initial_market_cap": 13138.617133257329,
+    "prediction_score": 88.94472,
+    "prediction_confidence": 889.4472000000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "BgN4ngVutFkG5LgB5bEBudj52hDqGVuFcELQDm5Mpump": {
+    "mint": "BgN4ngVutFkG5LgB5bEBudj52hDqGVuFcELQDm5Mpump",
+    "name": "fleg",
+    "symbol": "fleg",
+    "market_cap": 9996.53156300799,
+    "total_bundles": 24,
+    "holding_percentage": 23.9611778888175,
+    "price_changes": {
+      "5m": -24.71,
+      "1h": 165.0,
+      "6h": 165.0,
+      "24h": 165.0
+    },
+    "volumes": {
+      "5m": 5261.05,
+      "1h": 38412.74,
+      "6h": 38412.74,
+      "24h": 38412.74
+    },
+    "ath": 18747.255678505153,
+    "total_holders": 100,
+    "trades_1h": {
+      "total": 798,
+      "buys": 445,
+      "sells": 353
+    },
+    "makers_1h": 302,
+    "makers_24h": 302,
+    "timestamp": 1743357646.728353,
+    "initial_price": 0,
+    "initial_market_cap": 9996.53156300799,
+    "prediction_score": 80.35891799999999,
+    "prediction_confidence": 803.5891799999998,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HvLvBEZ7WM4nbVDRRNDoVcktSj8Ugx7WTSUGLBsYpump": {
+    "mint": "HvLvBEZ7WM4nbVDRRNDoVcktSj8Ugx7WTSUGLBsYpump",
+    "name": "SuperPepe",
+    "symbol": "SuperPepe",
+    "market_cap": 9406.95996968013,
+    "total_bundles": 32,
+    "holding_percentage": 24.0212698308397,
+    "price_changes": {
+      "5m": -17.7,
+      "1h": 203.0,
+      "6h": 203.0,
+      "24h": 203.0
+    },
+    "volumes": {
+      "5m": 4944.13,
+      "1h": 65032.57,
+      "6h": 65032.57,
+      "24h": 65032.57
+    },
+    "ath": 17667.461728351704,
+    "total_holders": 120,
+    "trades_1h": {
+      "total": 1121,
+      "buys": 650,
+      "sells": 471
+    },
+    "makers_1h": 391,
+    "makers_24h": 391,
+    "timestamp": 1743357650.939951,
+    "initial_price": 0,
+    "initial_market_cap": 9406.95996968013,
+    "prediction_score": 98.0,
+    "prediction_confidence": 980.0000000000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "CA8oBS2rWGpqzUZsPb9zsm5R7mNRLb2fNm8SXBjwpump": {
+    "mint": "CA8oBS2rWGpqzUZsPb9zsm5R7mNRLb2fNm8SXBjwpump",
+    "name": "SUPERGROK",
+    "symbol": "SUPERGROK",
+    "market_cap": 10390.60791957903,
+    "total_bundles": 63,
+    "holding_percentage": 22.5423401782436,
+    "price_changes": {
+      "5m": -8.69,
+      "1h": 177.0,
+      "6h": 177.0,
+      "24h": 177.0
+    },
+    "volumes": {
+      "5m": 19516.8,
+      "1h": 70456.99,
+      "6h": 70456.99,
+      "24h": 70456.99
+    },
+    "ath": 18362.387947248902,
+    "total_holders": 80,
+    "trades_1h": {
+      "total": 1402,
+      "buys": 748,
+      "sells": 654
+    },
+    "makers_1h": 468,
+    "makers_24h": 468,
+    "timestamp": 1743357656.141378,
+    "initial_price": 0,
+    "initial_market_cap": 10390.60791957903,
+    "prediction_score": 90.33488,
+    "prediction_confidence": 903.3488,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
