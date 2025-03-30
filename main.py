@@ -465,15 +465,26 @@ def fetch_token_holders(token_mint):
 def get_wallet_stats(address):
     """Get wallet profit and win rate from Solana Tracker API."""
     try:
-        response = requests.get(f"https://mainnet.solanatracker.io/pnl/address/{address}")
+        response = requests.get(
+            f"https://mainnet.solanatracker.io/pnl/address/{address}",
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Accept': 'application/json'
+            },
+            timeout=10
+        )
         if response.status_code == 200:
             data = response.json()
-            return {
-                'profit': data['summary']['total'],
-                'win_rate': data['summary']['winPercentage']
-            }
+            if 'summary' in data:
+                return {
+                    'profit': data['summary'].get('total', 0),
+                    'win_rate': data['summary'].get('winPercentage', 0)
+                }
+            logging.error(f"Invalid response structure: {data}")
+        else:
+            logging.error(f"API returned status code: {response.status_code}")
     except Exception as e:
-        logging.error(f"Error fetching wallet stats: {e}")
+        logging.error(f"Error fetching wallet stats for {address}: {e}")
     return {'profit': 0, 'win_rate': 0}
 
 def format_holders_message(holders_info):
