@@ -799,10 +799,10 @@ async def scan_coins():
                 data = response.json()
                     
                     if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
-                        ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
-                        dex_data['ath_price'] = ath * 1000000000
-                except Exception as e:
-                    logging.error(f"Error fetching Birdeye ATH data: {e}")
+                    ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
+                    dex_data['ath_price'] = ath * 1000000000
+            except Exception as e:
+                logging.error(f"Error fetching Birdeye ATH data: {e}")
 
             # Get Trench data before tracking
             trench_data = await get_trench_data(mint)
