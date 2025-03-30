@@ -462,13 +462,33 @@ def fetch_token_holders(token_mint):
         return None
 
 
+def get_wallet_stats(address):
+    """Get wallet profit and win rate from Solana Tracker API."""
+    try:
+        response = requests.get(f"https://mainnet.solanatracker.io/pnl/address/{address}")
+        if response.status_code == 200:
+            data = response.json()
+            return {
+                'profit': data['summary']['total'],
+                'win_rate': data['summary']['winPercentage']
+            }
+    except Exception as e:
+        logging.error(f"Error fetching wallet stats: {e}")
+    return {'profit': 0, 'win_rate': 0}
+
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
-    # Create top 5 percentages with embedded Solscan links
+    # Create top 5 percentages with embedded Solscan links and wallet stats
     top_5_links = []
     for percent, addr in zip(holders_info["top_5_percentages"], holders_info["top_5_addresses"]):
-        top_5_links.append(f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>")
-    top_5 = " | ".join(top_5_links)
+        stats = get_wallet_stats(addr)
+        wallet_info = (
+            f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>\n"
+            f"├─ Profit: ${stats['profit']:,.2f}\n"
+            f"└─ Win Rate: {stats['win_rate']:.1f}%"
+        )
+        top_5_links.append(wallet_info)
+    top_5 = "\n".join(top_5_links)
     
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
@@ -481,7 +501,7 @@ def format_holders_message(holders_info):
         f"├─ <b>Total Holders:</b> {holders_info.get('total_holders', 0):,}\n"
         f"├─ <b>TH 10:</b> {holders_info['top_10_percentage']:.2f}%\n"
         f"├─ <b>TH 20:</b> {holders_info['top_20_percentage']:.2f}%\n"
-        f"└─ <b>TH:</b> {top_5}\n\n"
+        f"└─ <b>Top Holders:</b>\n{top_5}\n\n"
         f"🏧 <b>Trades 1h</b>\n"
         f"└─ <b>🅣</b> {holders_info.get('trade_1h', 0)} | <b>🅑</b> {holders_info.get('buy_1h', 0)} | <b>🅢</b> {holders_info.get('sell_1h', 0)}\n\n"
         f"🧑‍💻 <b>Makers</b>\n"
