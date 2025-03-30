@@ -462,54 +462,31 @@ def fetch_token_holders(token_mint):
         return None
 
 
-def get_wallet_stats(address, max_retries=3):
-    """Get wallet profit and win rate from Solana Tracker API with retries."""
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        'Accept': 'application/json',
-        'X-API-Key': 'YOUR-API-KEY-HERE'  # Add if you have an API key
-    }
+def get_wallet_stats(address):
+    """Get wallet profit and win rate from Solana Tracker API."""
+    try:
+        print(f"\nFetching stats for wallet: {address}")
+        url = f"https://mainnet.solanatracker.io/pnl/address/{address}"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept': 'application/json'
+        }
+        response = requests.get(url, headers=headers, timeout=15)
+        
+        print(f"Response status: {response.status_code}")
+        print(f"Response content: {response.text[:500]}")  # Print first 500 chars
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'summary' in data:
+                total = data['summary'].get('total', 0)
+                win_percentage = data['summary'].get('winPercentage', 0)
+                print(f"Profit: ${total:,.2f}")
+                print(f"Win Rate: {win_percentage}%")
+                return {'profit': total, 'win_rate': win_percentage}
+    except Exception as e:
+        print(f"Error fetching stats for {address}: {e}")
     
-    for attempt in range(max_retries):
-        try:
-            response = requests.get(
-                f"https://mainnet.solanatracker.io/pnl/address/{address}",
-                headers=headers,
-                timeout=10
-            )
-            
-            # Log the response for debugging
-            logging.info(f"Wallet stats response for {address}: {response.status_code}")
-            if response.status_code == 200:
-                try:
-                    data = response.json()
-                    logging.info(f"Wallet stats data: {data}")
-                    if isinstance(data, dict) and 'summary' in data:
-                        summary = data['summary']
-                        return {
-                            'profit': float(summary.get('total', 0)),
-                            'win_rate': float(summary.get('winPercentage', 0))
-                        }
-                except ValueError as e:
-                    logging.error(f"JSON decode error: {e}")
-            
-            elif response.status_code == 429:  # Rate limit
-                wait_time = 2 ** attempt
-                logging.warning(f"Rate limited, waiting {wait_time} seconds")
-                time.sleep(wait_time)
-                continue
-                
-            elif response.status_code >= 500:  # Server error
-                if attempt < max_retries - 1:
-                    time.sleep(1)
-                    continue
-                    
-        except requests.exceptions.RequestException as e:
-            logging.error(f"Request error for {address}: {e}")
-            if attempt < max_retries - 1:
-                time.sleep(1)
-                continue
-                
     return {'profit': 0, 'win_rate': 0}
 
 def format_holders_message(holders_info):
