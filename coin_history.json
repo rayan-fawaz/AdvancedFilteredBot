@@ -6914,5 +6914,271 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "3Hor59D8qLbwSDV2vpTAZoBZqVqGfVN9sfKBdmcdpump": {
+    "mint": "3Hor59D8qLbwSDV2vpTAZoBZqVqGfVN9sfKBdmcdpump",
+    "name": "Egyptian Egg",
+    "symbol": "EGGYPT",
+    "market_cap": 11048.68130823204,
+    "total_bundles": 10,
+    "holding_percentage": 0.0702729474757,
+    "price_changes": {
+      "5m": -4.7,
+      "1h": 106.0,
+      "6h": 200.0,
+      "24h": 200.0
+    },
+    "volumes": {
+      "5m": 1511.63,
+      "1h": 19879.13,
+      "6h": 29976.74,
+      "24h": 29976.74
+    },
+    "ath": 14467.336171078032,
+    "total_holders": 72,
+    "trades_1h": {
+      "total": 2596,
+      "buys": 1331,
+      "sells": 1265
+    },
+    "makers_1h": 114,
+    "makers_24h": 191,
+    "timestamp": 1743348955.746934,
+    "initial_price": 0,
+    "initial_market_cap": 11048.68130823204,
+    "prediction_score": 69.483731,
+    "prediction_confidence": 694.83731,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3q2pnWx4gH2pi2LqyQJPybvnWJoziNfHhx1qk5nWpump": {
+    "mint": "3q2pnWx4gH2pi2LqyQJPybvnWJoziNfHhx1qk5nWpump",
+    "name": "First Egyptian Meme",
+    "symbol": "MEDJED",
+    "market_cap": 14514.55046319806,
+    "total_bundles": 19,
+    "holding_percentage": 10.7568988820262,
+    "price_changes": {
+      "5m": 47.74,
+      "1h": 277.0,
+      "6h": 277.0,
+      "24h": 277.0
+    },
+    "volumes": {
+      "5m": 4733.59,
+      "1h": 51592.92,
+      "6h": 51592.92,
+      "24h": 51592.92
+    },
+    "ath": 19907.121114360612,
+    "total_holders": 90,
+    "trades_1h": {
+      "total": 1215,
+      "buys": 679,
+      "sells": 536
+    },
+    "makers_1h": 301,
+    "makers_24h": 301,
+    "timestamp": 1743348956.961466,
+    "initial_price": 0,
+    "initial_market_cap": 14514.55046319806,
+    "prediction_score": 94.81834,
+    "prediction_confidence": 948.1834000000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "LcV7RvmiwzfXHS8EJE8j9KWLcGDDmMCr9L3Uu57pump": {
+    "mint": "LcV7RvmiwzfXHS8EJE8j9KWLcGDDmMCr9L3Uu57pump",
+    "name": "Minecraft Black Pig",
+    "symbol": "Pigga",
+    "market_cap": 16497.203063125184,
+    "total_bundles": 78,
+    "holding_percentage": 24.2630973493317,
+    "price_changes": {
+      "5m": 7.79,
+      "1h": 319.0,
+      "6h": 319.0,
+      "24h": 319.0
+    },
+    "volumes": {
+      "5m": 9907.59,
+      "1h": 104995.09,
+      "6h": 104995.09,
+      "24h": 104995.09
+    },
+    "ath": 22715.256227285594,
+    "total_holders": 231,
+    "trades_1h": {
+      "total": 2101,
+      "buys": 1156,
+      "sells": 945
+    },
+    "makers_1h": 757,
+    "makers_24h": 757,
+    "timestamp": 1743348961.463175,
+    "initial_price": 0,
+    "initial_market_cap": 16497.203063125184,
+    "prediction_score": 108.0,
+    "prediction_confidence": 1080.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "GwFm8R8UC6NAgae5Y1xfnq3bwrLSZqUHCwyCaLzkpump": {
+    "mint": "GwFm8R8UC6NAgae5Y1xfnq3bwrLSZqUHCwyCaLzkpump",
+    "name": "ELON IS A NIGGER",
+    "symbol": "NIGLON",
+    "market_cap": 18393.19195132115,
+    "total_bundles": 148,
+    "holding_percentage": 8.7118594311994,
+    "price_changes": {
+      "5m": 37.56,
+      "1h": -62.94,
+      "6h": -62.94,
+      "24h": -62.94
+    },
+    "volumes": {
+      "5m": 2426.69,
+      "1h": 172865.65,
+      "6h": 172865.65,
+      "24h": 172865.65
+    },
+    "ath": 81796.04890779269,
+    "total_holders": 390,
+    "trades_1h": {
+      "total": 7279,
+      "buys": 3829,
+      "sells": 3450
+    },
+    "makers_1h": 2066,
+    "makers_24h": 2066,
+    "timestamp": 1743348987.736027,
+    "initial_price": 0,
+    "initial_market_cap": 18393.19195132115,
+    "prediction_score": 66.4244,
+    "prediction_confidence": 664.244,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7CSdfjjq355CdVhMe3ir6eV3AdXZL3vhDZxRw2tzpump": {
+    "mint": "7CSdfjjq355CdVhMe3ir6eV3AdXZL3vhDZxRw2tzpump",
+    "name": "Blackfication",
+    "symbol": "Black",
+    "market_cap": 9767.785198616479,
+    "total_bundles": 2,
+    "holding_percentage": 4.9321692451529,
+    "price_changes": {
+      "5m": 77.24,
+      "1h": 140.0,
+      "6h": 140.0,
+      "24h": 140.0
+    },
+    "volumes": {
+      "5m": 3331.35,
+      "1h": 6283.84,
+      "6h": 6283.84,
+      "24h": 6283.84
+    },
+    "ath": 9768.419701373568,
+    "total_holders": 47,
+    "trades_1h": {
+      "total": 274,
+      "buys": 159,
+      "sells": 115
+    },
+    "makers_1h": 71,
+    "makers_24h": 71,
+    "timestamp": 1743349062.350224,
+    "initial_price": 0,
+    "initial_market_cap": 9767.785198616479,
+    "prediction_score": 42.383688,
+    "prediction_confidence": 423.83688,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7a2VxKZqYrDHyz4oEvnFVvshHF8HjBPxaXXEb4Rypump": {
+    "mint": "7a2VxKZqYrDHyz4oEvnFVvshHF8HjBPxaXXEb4Rypump",
+    "name": "clitcoin",
+    "symbol": "clitcoin",
+    "market_cap": 9769.88898941916,
+    "total_bundles": 6,
+    "holding_percentage": 18.5025115007886,
+    "price_changes": {
+      "5m": 166.0,
+      "1h": 166.0,
+      "6h": 166.0,
+      "24h": 166.0
+    },
+    "volumes": {
+      "5m": 10771.74,
+      "1h": 10771.74,
+      "6h": 10771.74,
+      "24h": 10771.74
+    },
+    "ath": 10677.829775807984,
+    "total_holders": 28,
+    "trades_1h": {
+      "total": 144,
+      "buys": 94,
+      "sells": 50
+    },
+    "makers_1h": 72,
+    "makers_24h": 72,
+    "timestamp": 1743349068.67855,
+    "initial_price": 0,
+    "initial_market_cap": 9769.88898941916,
+    "prediction_score": 41.20021799999999,
+    "prediction_confidence": 412.0021799999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "BozG2ZjQH8VpxLVu22ZAKKX4jWzfCy5SYW9vxQmhpump": {
+    "mint": "BozG2ZjQH8VpxLVu22ZAKKX4jWzfCy5SYW9vxQmhpump",
+    "name": "Indian Morning Routine",
+    "symbol": "IROUTINE",
+    "market_cap": 13701.478040096441,
+    "total_bundles": 44,
+    "holding_percentage": 0.9490915207076,
+    "price_changes": {
+      "5m": -7.22,
+      "1h": 262.0,
+      "6h": 317.0,
+      "24h": 317.0
+    },
+    "volumes": {
+      "5m": 1556.09,
+      "1h": 14538.44,
+      "6h": 130350.32,
+      "24h": 130350.32
+    },
+    "ath": 34156.0613196046,
+    "total_holders": 119,
+    "trades_1h": {
+      "total": 884,
+      "buys": 484,
+      "sells": 400
+    },
+    "makers_1h": 117,
+    "makers_24h": 643,
+    "timestamp": 1743349169.073445,
+    "initial_price": 0,
+    "initial_market_cap": 13701.478040096441,
+    "prediction_score": 68.31190799999999,
+    "prediction_confidence": 683.1190799999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
