@@ -35,18 +35,20 @@ def check_bond_status(mint_address):
 def monitor_bonds():
     logging.basicConfig(level=logging.INFO)
     last_day_cutoff = datetime.now() - timedelta(days=1)
+    reported_bonds = set()  # Keep track of coins already reported as bonded
     
     while True:
         tracked_coins = load_tracked_mints()
         
         for mint, data in tracked_coins.items():
-            # Check if coin was tracked in last 24 hours
-            if float(data['timestamp']) > last_day_cutoff.timestamp():
+            # Check if coin was tracked in last 24 hours and hasn't been reported yet
+            if float(data['timestamp']) > last_day_cutoff.timestamp() and mint not in reported_bonds:
                 is_bonded = check_bond_status(mint)
                 if is_bonded:
                     print(f"\n{data['name']} Just BONDED!!")
                     print(f"Market Cap: ${data['market_cap']:,.2f}")
                     print(f"Mint address: {mint}\n")
+                    reported_bonds.add(mint)  # Add to reported set
                     
         time.sleep(60)  # Wait 1 minute before next check
 
