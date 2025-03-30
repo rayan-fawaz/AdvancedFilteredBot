@@ -466,13 +466,13 @@ def get_wallet_stats(address):
     """Get wallet profit and win rate from Solana Tracker API."""
     try:
         print(f"\nFetching stats for wallet: {address}")
-        url = f"https://solanatracker.io/api/address/pnl/{address}"
+        url = f"https://solanatracker.io/api/v1/wallet/{address}/pnl"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'application/json',
             'Origin': 'https://solanatracker.io',
             'Referer': 'https://solanatracker.io/',
-            'Authorization': 'Bearer ' + os.environ.get('SOLANA_TRACKER_TOKEN', '')
+            'X-API-Key': 'solanatracker-1234567890'
         }
         
         session = requests.Session()
