@@ -463,81 +463,34 @@ def fetch_token_holders(token_mint):
 
 
 def get_wallet_stats(address):
-    """Get wallet profit and win rate from multiple endpoints."""
+    """Get wallet profit and win rate from Solana Tracker API."""
     try:
         print(f"\nFetching stats for wallet: {address}")
-        
-        # Fetch basic wallet info from Helius
-        helius_url = f"https://api.helius.xyz/v0/addresses/{address}/portfolio"
-        helius_headers = {
-            'Authorization': f'Bearer {HELIUS_API_KEY}'
-        }
-        try:
-            helius_response = requests.get(helius_url, headers=helius_headers, timeout=30)
-            helius_data = helius_response.json() if helius_response.ok else {}
-            print(f"Helius data: {helius_data}")
-        except Exception as e:
-            print(f"Helius API error: {e}")
-            helius_data = {}
-
-        # Fetch trading stats from Solana Tracker
-        tracker_url = f"https://api.solanatracker.io/v1/wallet/{address}/stats"
-        tracker_headers = {
+        url = f"https://mainnet.solanatracker.io/pnl/{address}"
+        headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'application/json',
             'Origin': 'https://solanatracker.io',
             'Referer': 'https://solanatracker.io/'
         }
         
-        try:
-            tracker_response = requests.get(tracker_url, headers=tracker_headers, timeout=30)
-            tracker_data = tracker_response.json() if tracker_response.ok else {}
-            print(f"Tracker data: {tracker_data}")
-        except Exception as e:
-            print(f"Tracker API error: {e}")
-            tracker_data = {}
-
-        # Fetch additional metrics from Birdeye
-        birdeye_url = f"https://public-api.birdeye.so/v1/wallet/profitAndLoss?wallet={address}"
-        birdeye_headers = {
-            'x-api-key': '114f18a5eb5e4d51a9ac7c6100dfe756',
-            'accept': 'application/json'
-        }
+        session = requests.Session()
+        response = session.get(url, headers=headers, timeout=30)
+        print(f"Response status: {response.status_code}")
+        print(f"Response content: {response.text}")
         
-        try:
-            birdeye_response = requests.get(birdeye_url, headers=birdeye_headers, timeout=30)
-            birdeye_data = birdeye_response.json() if birdeye_response.ok else {}
-            print(f"Birdeye data: {birdeye_data}")
-        except Exception as e:
-            print(f"Birdeye API error: {e}")
-            birdeye_data = {}
-
-        # Combine data from all sources
-        total_profit = (
-            float(tracker_data.get('summary', {}).get('total', 0)) or
-            float(birdeye_data.get('data', {}).get('totalPnl', 0)) or
-            float(helius_data.get('stats', {}).get('profit', 0))
-        )
-        
-        win_percentage = (
-            float(tracker_data.get('summary', {}).get('winPercentage', 0)) or
-            float(birdeye_data.get('data', {}).get('winRate', 0)) or
-            float(helius_data.get('stats', {}).get('winRate', 0))
-        )
-
-        print(f"Combined stats for {address}:")
-        print(f"Profit: ${total_profit:,.2f}")
-        print(f"Win Rate: {win_percentage}%")
-        
-        return {
-            'profit': total_profit,
-            'win_rate': win_percentage,
-            'raw_data': {
-                'helius': helius_data,
-                'tracker': tracker_data,
-                'birdeye': birdeye_data
-            }
-        }
+        if response.status_code == 200:
+            data = response.json()
+            if isinstance(data, dict):
+                summary = data.get("summary", {})
+                if isinstance(summary, dict):
+                    total_profit = float(summary.get("total", 0))
+                    win_percentage = float(summary.get("winPercentage", 0))
+                    
+                    print(f"Successfully fetched stats for {address}")
+                    print(f"Profit: ${total_profit:,.2f}")
+                    print(f"Win Rate: {win_percentage}%")
+                    return {'profit': total_profit, 'win_rate': win_percentage}
             
     except requests.exceptions.RequestException as e:
         print(f"Request error for {address}: {e}")
