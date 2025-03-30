@@ -466,12 +466,13 @@ def get_wallet_stats(address):
     """Get wallet profit and win rate from Solana Tracker API."""
     try:
         print(f"\nFetching stats for wallet: {address}")
-        url = f"https://solanatracker.io/api/v1/wallet/{address}/pnl"
+        url = f"https://mainnet.solanatracker.io/pnl/{address}"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'application/json',
             'Origin': 'https://solanatracker.io',
-            'Referer': 'https://solanatracker.io/'
+            'Referer': 'https://solanatracker.io/',
+            'X-API-Key': 'solanatracker-api-key'
         }
         
         session = requests.Session()
@@ -481,14 +482,16 @@ def get_wallet_stats(address):
         
         if response.status_code == 200:
             data = response.json()
-            summary = data.get("summary", {})
-            total_profit = summary.get("total", 0)
-            win_percentage = summary.get("winPercentage", 0)
-            
-            print(f"Successfully fetched stats for {address}")
-            print(f"Profit: ${total_profit:,.2f}")
-            print(f"Win Rate: {win_percentage}%")
-            return {'profit': total_profit, 'win_rate': win_percentage}
+            if isinstance(data, dict):
+                summary = data.get("summary", {})
+                if isinstance(summary, dict):
+                    total_profit = float(summary.get("total", 0))
+                    win_percentage = float(summary.get("winPercentage", 0))
+                    
+                    print(f"Successfully fetched stats for {address}")
+                    print(f"Profit: ${total_profit:,.2f}")
+                    print(f"Win Rate: {win_percentage}%")
+                    return {'profit': total_profit, 'win_rate': win_percentage}
             
     except requests.exceptions.RequestException as e:
         print(f"Request error for {address}: {e}")
