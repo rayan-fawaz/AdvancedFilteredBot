@@ -715,7 +715,7 @@ async def scan_coins():
                     "sell_1h", 0) < MIN_SELLS:
                 continue
 
-            # DEX data (without ATH initially)
+            # Initial empty DEX data
             dex_data = {
                 "volume_5m": 0,
                 "volume_1h": 0,
@@ -725,9 +725,21 @@ async def scan_coins():
                 "price_change_1h": 0,
                 "price_change_6h": 0,
                 "price_change_24h": 0,
+                "ath_price": 0
             }
-            
-            # Get base DEX data first
+
+            # 1. Initial Filters (No API calls)
+            if holders_info.get("total_holders", 0) < MIN_HOLDERS:
+                continue
+
+            trades_1h = holders_info.get("trade_1h", 0)
+            if trades_1h < MIN_TRADES_1H:
+                continue
+
+            if holders_info.get("buy_1h", 0) < MIN_BUYS or holders_info.get("sell_1h", 0) < MIN_SELLS:
+                continue
+
+            # 2. DexScreener Data (Less expensive API)
             try:
                 dex_response = requests.get(
                     f"https://api.dexscreener.com/latest/dex/tokens/{mint}",
@@ -753,53 +765,38 @@ async def scan_coins():
                 logging.error(f"Error fetching base DEX data for {mint}: {e}")
                 continue
 
-            # Get volumes and price changes
-            volume_5m = dex_data["volume_5m"]
-            volume_1h = dex_data["volume_1h"]
-            price_change_5m = dex_data["price_change_5m"]
-            price_change_1h = dex_data["price_change_1h"]
-            trades_1h = holders_info.get("trade_1h", 0)
-
+            # 3. Secondary Filters
             # Check if 5m volume is too high
-            if volume_5m > MAX_VOLUME_5M:
+            if dex_data["volume_5m"] > MAX_VOLUME_5M:
                 continue
 
-            # 1. Price Momentum Check
+            # Price Momentum Check
             price_momentum_check = (
-                (price_change_5m >= MIN_PRICE_5M) or 
-                (price_change_1h >= HIGH_PRICE_1H) or 
-                (price_change_1h >= MIN_PRICE_1H)
+                (dex_data["price_change_5m"] >= MIN_PRICE_5M) or 
+                (dex_data["price_change_1h"] >= HIGH_PRICE_1H) or 
+                (dex_data["price_change_1h"] >= MIN_PRICE_1H)
             )
 
-            # 2. Volume Liquidity Check
+            # Volume Liquidity Check
             volume_check = (
-                (volume_5m >= MIN_VOLUME_5M) or
-                (volume_1h >= MIN_VOLUME_1H)            )
+                (dex_data["volume_5m"] >= MIN_VOLUME_5M) or
+                (dex_data["volume_1h"] >= MIN_VOLUME_1H)
+            )
 
-            # 3. Trades Check
-            trades_check = trades_1h >= MIN_TRADES_1H
-
-            # 4. Holders Check
-            holders_check = holders_info.get("total_holders", 0) >= MIN_HOLDERS
-
-            # All conditions must be true
-            if not all([price_momentum_check, volume_check, trades_check, holders_check]):
+            # All secondary conditions must be true
+            if not all([price_momentum_check, volume_check]):
                 continue
 
-            # Initialize ATH price to 0
-            dex_data['ath_price'] = 0
-            
-            # Only fetch Birdeye ATH data if all other conditions are met
-            if all([price_momentum_check, volume_check, trades_check, holders_check]):
-                try:
-                    birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
-                    headers = {
-                        "accept": "application/json",
-                        "x-chain": "solana",
-                        "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
-                    }
-                    response = requests.get(birdeye_url, headers=headers)
-                    data = response.json()
+            # 4. Only now fetch Birdeye data (Most expensive API)
+            try:
+                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+                headers = {
+                    "accept": "application/json",
+                    "x-chain": "solana",
+                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                }
+                response = requests.get(birdeye_url, headers=headers)
+                data = response.json()
                     
                     if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
                         ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
