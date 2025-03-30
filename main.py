@@ -758,26 +758,26 @@ async def scan_coins():
             if not all([price_momentum_check, volume_check, trades_check, holders_check]):
                 continue
 
-            # Now get Birdeye ATH data since coin passed all filters
-            try:
-                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
-                headers = {
-                    "accept": "application/json",
-                    "x-chain": "solana",
-                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
-                }
-                response = requests.get(birdeye_url, headers=headers)
-                data = response.json()
-                logging.info(f"Birdeye ATH response: {response.text}")
-                
-                if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
-                    ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
-                    dex_data['ath_price'] = ath * 1000000000
-                else:
-                    dex_data['ath_price'] = 0
-            except Exception as e:
-                logging.error(f"Error fetching Birdeye ATH data: {e}")
-                dex_data['ath_price'] = 0
+            # Initialize ATH price to 0
+            dex_data['ath_price'] = 0
+            
+            # Only fetch Birdeye ATH data if all other conditions are met
+            if all([price_momentum_check, volume_check, trades_check, holders_check]):
+                try:
+                    birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+                    headers = {
+                        "accept": "application/json",
+                        "x-chain": "solana",
+                        "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                    }
+                    response = requests.get(birdeye_url, headers=headers)
+                    data = response.json()
+                    
+                    if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
+                        ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
+                        dex_data['ath_price'] = ath * 1000000000
+                except Exception as e:
+                    logging.error(f"Error fetching Birdeye ATH data: {e}")
 
             # Get Trench data before tracking
             trench_data = await get_trench_data(mint)
