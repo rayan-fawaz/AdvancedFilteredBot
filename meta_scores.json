@@ -1,14 +1,14 @@
 {
-  "grok": 0.63798,
-  "egyptian": 0.60026,
-  "dog": 0.50713,
-  "ai": 0.45475,
-  "united states": 0.4356,
-  "elon": 0.41613,
-  "super": 0.40551,
-  "trump": 0.38235,
-  "superhero": 0.35905,
-  "united": 0.3204,
-  "states": 0.31975,
-  "superjudge": 0.31805
+  "dog": 0.60482,
+  "super": 0.59766,
+  "elon": 0.58422,
+  "ai": 0.5534,
+  "grok": 0.5484,
+  "trump": 0.54057,
+  "egyptian": 0.51215,
+  "united states": 0.44082,
+  "superjudge": 0.36776,
+  "president": 0.3556,
+  "meatcanyon": 0.33994,
+  "solana": 0.33579
 }
