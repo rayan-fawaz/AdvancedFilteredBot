@@ -471,30 +471,24 @@ def get_wallet_stats(address):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'application/json',
             'Origin': 'https://solanatracker.io',
-            'Referer': 'https://solanatracker.io/',
-            'X-API-Key': 'solanatracker-1234567890'
+            'Referer': 'https://solanatracker.io/'
         }
         
         session = requests.Session()
         response = session.get(url, headers=headers, timeout=30)
-        response.raise_for_status()
+        print(f"Response status: {response.status_code}")
+        print(f"Response content: {response.text}")
         
         if response.status_code == 200:
-            try:
-                data = response.json()
-                if isinstance(data, dict) and 'summary' in data:
-                    total = float(data['summary'].get('total', 0))
-                    win_percentage = float(data['summary'].get('winPercentage', 0))
-                    print(f"Successfully fetched stats for {address}")
-                    print(f"Profit: ${total:,.2f}")
-                    print(f"Win Rate: {win_percentage}%")
-                    return {'profit': total, 'win_rate': win_percentage}
-                else:
-                    print(f"Invalid data structure received: {data}")
-            except ValueError as e:
-                print(f"Error parsing JSON for {address}: {e}")
-        else:
-            print(f"Error status code: {response.status_code}")
+            data = response.json()
+            summary = data.get("summary", {})
+            total_profit = summary.get("total", 0)
+            win_percentage = summary.get("winPercentage", 0)
+            
+            print(f"Successfully fetched stats for {address}")
+            print(f"Profit: ${total_profit:,.2f}")
+            print(f"Win Rate: {win_percentage}%")
+            return {'profit': total_profit, 'win_rate': win_percentage}
             
     except requests.exceptions.RequestException as e:
         print(f"Request error for {address}: {e}")
