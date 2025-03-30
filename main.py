@@ -462,11 +462,12 @@ def fetch_token_holders(token_mint):
 
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
-    top_5 = " | ".join(f"{percent:.2f}" for percent in holders_info["top_5_percentages"])
-    # Create Solscan links for addresses
-    top_5_addresses = "\n".join(f"├─ <a href='https://solscan.io/account/{addr}'>{addr[:4]}...{addr[-4:]}</a>" for addr in holders_info["top_5_addresses"][:-1])
-    last_addr = holders_info['top_5_addresses'][-1]
-    top_5_addresses += f"\n└─ <a href='https://solscan.io/account/{last_addr}'>{last_addr[:4]}...{last_addr[-4:]}</a>"
+    # Create top 5 percentages with embedded Solscan links
+    top_5_links = []
+    for percent, addr in zip(holders_info["top_5_percentages"], holders_info["top_5_addresses"]):
+        top_5_links.append(f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>")
+    top_5 = " | ".join(top_5_links)
+    
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
     makers_24h = (
@@ -479,8 +480,6 @@ def format_holders_message(holders_info):
         f"├─ <b>TH 10:</b> {holders_info['top_10_percentage']:.2f}%\n"
         f"├─ <b>TH 20:</b> {holders_info['top_20_percentage']:.2f}%\n"
         f"└─ <b>TH:</b> {top_5}\n\n"
-        f"🏦 <b>Top 5 Holders</b>\n"
-        f"{top_5_addresses}\n\n"
         f"🏧 <b>Trades 1h</b>\n"
         f"└─ <b>🅣</b> {holders_info.get('trade_1h', 0)} | <b>🅑</b> {holders_info.get('buy_1h', 0)} | <b>🅢</b> {holders_info.get('sell_1h', 0)}\n\n"
         f"🧑‍💻 <b>Makers</b>\n"
