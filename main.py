@@ -196,7 +196,7 @@ def get_dex_data(token_mint):
             response = requests.get(url, headers=headers)
             data = response.json()
             logging.info(f"Birdeye ATH response: {response.text}")
-            
+
             if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
                 # Get the highest 'h' value across all time periods
                 ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
@@ -647,12 +647,12 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
-    
+
 
     # Get creation time and format it
     minutes_old = get_minutes_since_creation(coin.get('created_timestamp', 0))
     time_ago = format_time_ago(minutes_old)
-    
+
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
@@ -745,7 +745,7 @@ async def scan_coins():
                     f"https://api.dexscreener.com/latest/dex/tokens/{mint}",
                     timeout=10)
                 dex_response.raise_for_status()
-                
+
                 data = dex_response.json()
                 if 'pairs' in data and len(data['pairs']) > 0:
                     pair = data['pairs'][0]
@@ -797,8 +797,8 @@ async def scan_coins():
                 }
                 response = requests.get(birdeye_url, headers=headers)
                 data = response.json()
-                    
-                    if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
+
+                if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
                     ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
                     dex_data['ath_price'] = ath * 1000000000
             except Exception as e:
