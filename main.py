@@ -11,6 +11,29 @@ BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN",
                            "8046651136:AAGHoEFIJhW3zHTe6CI0iOcn6FgePpljXqM")
 GROUP_ID = os.environ.get("TELEGRAM_GROUP_ID", "-1002429691769")
 
+
+def get_minutes_since_creation(created_timestamp: int) -> int:
+    """
+    Converts the created_timestamp from milliseconds to minutes elapsed since creation.
+    """
+    created_timestamp_s = created_timestamp / 1000
+    created_datetime = datetime.fromtimestamp(created_timestamp_s, tz=timezone.utc)
+    current_time_utc = datetime.now(timezone.utc)
+    minutes_since_creation = (current_time_utc - created_datetime).total_seconds() / 60
+    return int(minutes_since_creation)
+
+def format_time_ago(minutes: int) -> str:
+    """Convert minutes to a human readable time format."""
+    if minutes < 60:
+        return f"{minutes}m ago"
+    hours = minutes // 60
+    mins = minutes % 60
+    if hours < 24:
+        return f"{hours}h {mins}m ago"
+    days = hours // 24
+    hrs = hours % 24
+    return f"{days}d {hrs}h ago"
+
 # Featured Coins API
 API_URL = "https://frontend-api-v3.pump.fun/coins/for-you?offset=0&limit=50&includeNsfw=false"
 
@@ -626,10 +649,15 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
     
 
+    # Get creation time and format it
+    minutes_old = get_minutes_since_creation(coin.get('created_timestamp', 0))
+    time_ago = format_time_ago(minutes_old)
+    
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
         f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 0):,.2f}\n"
+        f"⏰ <b>Age:</b> {time_ago}\n"
         #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
         f"🎯 <b>DEX Paid:</b> {dex_status}\n"
         f"🥷 <b>Insiders:</b> {await get_insider_data(mint_address)}\n\n"
