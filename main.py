@@ -381,6 +381,9 @@ def fetch_token_holders(token_mint):
 
         if not holders or len(holders) < 2:
             return None
+            
+        # Extract top 5 holder addresses
+        top_5_addresses = [holder["address"] for holder in holders[:6] if holder["address"]]
 
         total_supply = sum(float(holder["amount"]) for holder in holders)
         if total_supply == 0:
@@ -443,6 +446,7 @@ def fetch_token_holders(token_mint):
         return {
             "total_holders": total_holders,
             "top_5_percentages": top_5,
+            "top_5_addresses": top_5_addresses[1:6],  # Skip first (bonding curve)
             "top_10_percentage": top_10_percentage,
             "top_20_percentage": top_20_percentage,
             "buy_1h": buy_1h,
@@ -459,6 +463,8 @@ def fetch_token_holders(token_mint):
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
     top_5 = " | ".join(f"{percent:.2f}" for percent in holders_info["top_5_percentages"])
+    top_5_addresses = "\n".join(f"├─ {addr}" for addr in holders_info["top_5_addresses"][:-1])
+    top_5_addresses += f"\n└─ {holders_info['top_5_addresses'][-1]}"
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
     makers_24h = (
@@ -471,6 +477,8 @@ def format_holders_message(holders_info):
         f"├─ <b>TH 10:</b> {holders_info['top_10_percentage']:.2f}%\n"
         f"├─ <b>TH 20:</b> {holders_info['top_20_percentage']:.2f}%\n"
         f"└─ <b>TH:</b> {top_5}\n\n"
+        f"🏦 <b>Top 5 Holders</b>\n"
+        f"{top_5_addresses}\n\n"
         f"🏧 <b>Trades 1h</b>\n"
         f"└─ <b>🅣</b> {holders_info.get('trade_1h', 0)} | <b>🅑</b> {holders_info.get('buy_1h', 0)} | <b>🅢</b> {holders_info.get('sell_1h', 0)}\n\n"
         f"🧑‍💻 <b>Makers</b>\n"
