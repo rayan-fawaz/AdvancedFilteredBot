@@ -7180,5 +7180,195 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "5okB8VGZsV84qbiaHg8mWFZfUm9VQ142epSurpEJpump": {
+    "mint": "5okB8VGZsV84qbiaHg8mWFZfUm9VQ142epSurpEJpump",
+    "name": "Grok Wif Hat",
+    "symbol": "grokkk",
+    "market_cap": 11881.719862486909,
+    "total_bundles": 2,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 15.83,
+      "1h": 228.0,
+      "6h": 228.0,
+      "24h": 228.0
+    },
+    "volumes": {
+      "5m": 2600.02,
+      "1h": 29488.0,
+      "6h": 29488.0,
+      "24h": 29488.0
+    },
+    "ath": 12879.818807888618,
+    "total_holders": 95,
+    "trades_1h": {
+      "total": 1592,
+      "buys": 873,
+      "sells": 719
+    },
+    "makers_1h": 201,
+    "makers_24h": 201,
+    "timestamp": 1743352732.628366,
+    "initial_price": 0,
+    "initial_market_cap": 11881.719862486909,
+    "prediction_score": 79.83847999999999,
+    "prediction_confidence": 798.3847999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Eq93fxLmydwkbmh2te5eerjDYo1FnqDBVZGNevRMpump": {
+    "mint": "Eq93fxLmydwkbmh2te5eerjDYo1FnqDBVZGNevRMpump",
+    "name": "SPURDO",
+    "symbol": "spurdo",
+    "market_cap": 20369.44221524792,
+    "total_bundles": 12,
+    "holding_percentage": 13.9773348037664,
+    "price_changes": {
+      "5m": -10.45,
+      "1h": 354.0,
+      "6h": 354.0,
+      "24h": 354.0
+    },
+    "volumes": {
+      "5m": 2602.2,
+      "1h": 46117.44,
+      "6h": 46117.44,
+      "24h": 46117.44
+    },
+    "ath": 29751.059105802666,
+    "total_holders": 114,
+    "trades_1h": {
+      "total": 729,
+      "buys": 429,
+      "sells": 300
+    },
+    "makers_1h": 280,
+    "makers_24h": 280,
+    "timestamp": 1743352736.863141,
+    "initial_price": 0,
+    "initial_market_cap": 20369.44221524792,
+    "prediction_score": 88.467208,
+    "prediction_confidence": 884.67208,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "2qKirP7mdGQssbepWAD9rmcdG8rzbX4fhPtEbNwbpump": {
+    "mint": "2qKirP7mdGQssbepWAD9rmcdG8rzbX4fhPtEbNwbpump",
+    "name": "feetcoin",
+    "symbol": "feetcoin",
+    "market_cap": 11305.447766693009,
+    "total_bundles": 11,
+    "holding_percentage": 8.1436096279757,
+    "price_changes": {
+      "5m": 3.67,
+      "1h": 196.0,
+      "6h": 196.0,
+      "24h": 196.0
+    },
+    "volumes": {
+      "5m": 1923.74,
+      "1h": 21678.1,
+      "6h": 21678.1,
+      "24h": 21678.1
+    },
+    "ath": 17024.22094016353,
+    "total_holders": 73,
+    "trades_1h": {
+      "total": 520,
+      "buys": 245,
+      "sells": 275
+    },
+    "makers_1h": 182,
+    "makers_24h": 182,
+    "timestamp": 1743352738.570734,
+    "initial_price": 0,
+    "initial_market_cap": 11305.447766693009,
+    "prediction_score": 61.099669999999996,
+    "prediction_confidence": 610.9966999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "LuMjQfsMCkEVH5FUAyDR5iUykdKtgEUwLhqEg5Cpump": {
+    "mint": "LuMjQfsMCkEVH5FUAyDR5iUykdKtgEUwLhqEg5Cpump",
+    "name": "bif",
+    "symbol": "bif",
+    "market_cap": 9541.972790103278,
+    "total_bundles": 4,
+    "holding_percentage": 18.1894793117268,
+    "price_changes": {
+      "5m": 81.59,
+      "1h": 158.0,
+      "6h": 158.0,
+      "24h": 158.0
+    },
+    "volumes": {
+      "5m": 9411.45,
+      "1h": 12093.02,
+      "6h": 12093.02,
+      "24h": 12093.02
+    },
+    "ath": 11978.36815563537,
+    "total_holders": 52,
+    "trades_1h": {
+      "total": 260,
+      "buys": 158,
+      "sells": 102
+    },
+    "makers_1h": 99,
+    "makers_24h": 99,
+    "timestamp": 1743352740.124576,
+    "initial_price": 0,
+    "initial_market_cap": 9541.972790103278,
+    "prediction_score": 46.865114,
+    "prediction_confidence": 468.65113999999994,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "64aAbwovv3rdbs3oDVqSreUeswfAqZx6RLHTviXCpump": {
+    "mint": "64aAbwovv3rdbs3oDVqSreUeswfAqZx6RLHTviXCpump",
+    "name": "Walsh Truth Token",
+    "symbol": "WTT",
+    "market_cap": 22653.38539330027,
+    "total_bundles": 2,
+    "holding_percentage": 2.0667772260816,
+    "price_changes": {
+      "5m": -6.16,
+      "1h": 434.0,
+      "6h": 434.0,
+      "24h": 434.0
+    },
+    "volumes": {
+      "5m": 352.0,
+      "1h": 14108.91,
+      "6h": 14108.91,
+      "24h": 14108.91
+    },
+    "ath": 24558.04393993452,
+    "total_holders": 144,
+    "trades_1h": {
+      "total": 263,
+      "buys": 180,
+      "sells": 83
+    },
+    "makers_1h": 163,
+    "makers_24h": 163,
+    "timestamp": 1743352747.295393,
+    "initial_price": 0,
+    "initial_market_cap": 22653.38539330027,
+    "prediction_score": 61.821237,
+    "prediction_confidence": 618.21237,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
