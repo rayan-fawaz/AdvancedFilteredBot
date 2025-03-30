@@ -38,19 +38,34 @@ def monitor_bonds():
     reported_bonds = set()  # Keep track of coins already reported as bonded
     
     while True:
-        tracked_coins = load_tracked_mints()
-        
-        for mint, data in tracked_coins.items():
-            # Check if coin was tracked in last 24 hours and hasn't been reported yet
-            if float(data['timestamp']) > last_day_cutoff.timestamp() and mint not in reported_bonds:
-                is_bonded = check_bond_status(mint)
-                if is_bonded:
-                    print(f"\n{data['name']} Just BONDED!!")
-                    print(f"Market Cap: ${data['market_cap']:,.2f}")
-                    print(f"Mint address: {mint}\n")
-                    reported_bonds.add(mint)  # Add to reported set
+        try:
+            tracked_coins = load_tracked_mints()
+            current_time = datetime.now()
+            
+            for mint, data in tracked_coins.items():
+                try:
+                    # Check if coin was tracked in last 24 hours and hasn't been reported yet
+                    coin_timestamp = float(data.get('timestamp', 0))
+                    if coin_timestamp > last_day_cutoff.timestamp() and mint not in reported_bonds:
+                        logging.info(f"Checking bond status for {data.get('name', 'Unknown')} ({mint})")
+                        is_bonded = check_bond_status(mint)
+                        if is_bonded:
+                            message = f"\n{data.get('name', 'Unknown')} Just BONDED!!\n"
+                            message += f"Market Cap: ${data.get('market_cap', 0):,.2f}\n"
+                            message += f"Mint address: {mint}\n"
+                            print(message)
+                            reported_bonds.add(mint)  # Add to reported set
+                except Exception as e:
+                    logging.error(f"Error processing coin {mint}: {e}")
+                    continue
                     
-        time.sleep(60)  # Wait 1 minute before next check
+            # Update cutoff time
+            last_day_cutoff = current_time - timedelta(days=1)
+            time.sleep(60)  # Wait 1 minute before next check
+            
+        except Exception as e:
+            logging.error(f"Error in monitor_bonds main loop: {e}")
+            time.sleep(60)  # Wait before retrying
 
 if __name__ == "__main__":
     monitor_bonds()
