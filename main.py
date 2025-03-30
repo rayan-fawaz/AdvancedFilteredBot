@@ -476,8 +476,6 @@ def get_wallet_stats(address):
         
         session = requests.Session()
         response = session.get(url, headers=headers, timeout=30)
-        print(f"Response status: {response.status_code}")
-        print(f"Response content: {response.text}")
         
         if response.status_code == 200:
             data = response.json()
@@ -487,10 +485,13 @@ def get_wallet_stats(address):
                     total_profit = float(summary.get("total", 0))
                     win_percentage = float(summary.get("winPercentage", 0))
                     
-                    print(f"Successfully fetched stats for {address}")
-                    print(f"Profit: ${total_profit:,.2f}")
-                    print(f"Win Rate: {win_percentage}%")
+                    print(f"\nWallet Stats for {address}:")
+                    print(f"Total Profit: ${total_profit:,.2f}")
+                    print(f"Win Percentage: {win_percentage}%")
+                    print("-" * 50)
                     return {'profit': total_profit, 'win_rate': win_percentage}
+        else:
+            print(f"Failed to fetch stats. Status code: {response.status_code}")
             
     except requests.exceptions.RequestException as e:
         print(f"Request error for {address}: {e}")
