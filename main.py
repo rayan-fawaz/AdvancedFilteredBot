@@ -463,8 +463,10 @@ def fetch_token_holders(token_mint):
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
     top_5 = " | ".join(f"{percent:.2f}" for percent in holders_info["top_5_percentages"])
-    top_5_addresses = "\n".join(f"├─ {addr}" for addr in holders_info["top_5_addresses"][:-1])
-    top_5_addresses += f"\n└─ {holders_info['top_5_addresses'][-1]}"
+    # Create Solscan links for addresses
+    top_5_addresses = "\n".join(f"├─ <a href='https://solscan.io/account/{addr}'>{addr[:4]}...{addr[-4:]}</a>" for addr in holders_info["top_5_addresses"][:-1])
+    last_addr = holders_info['top_5_addresses'][-1]
+    top_5_addresses += f"\n└─ <a href='https://solscan.io/account/{last_addr}'>{last_addr[:4]}...{last_addr[-4:]}</a>"
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
     makers_24h = (
