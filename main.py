@@ -466,26 +466,39 @@ def get_wallet_stats(address):
     """Get wallet profit and win rate from Solana Tracker API."""
     try:
         print(f"\nFetching stats for wallet: {address}")
-        url = f"https://mainnet.solanatracker.io/pnl/address/{address}"
+        url = f"https://mainnet.solanatracker.io/pnl/{address}"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Origin': 'https://solanatracker.io',
+            'Referer': 'https://solanatracker.io/'
         }
-        response = requests.get(url, headers=headers, timeout=15)
         
-        print(f"Response status: {response.status_code}")
-        print(f"Response content: {response.text[:500]}")  # Print first 500 chars
+        session = requests.Session()
+        response = session.get(url, headers=headers, timeout=30)
+        response.raise_for_status()
         
         if response.status_code == 200:
-            data = response.json()
-            if 'summary' in data:
-                total = data['summary'].get('total', 0)
-                win_percentage = data['summary'].get('winPercentage', 0)
-                print(f"Profit: ${total:,.2f}")
-                print(f"Win Rate: {win_percentage}%")
-                return {'profit': total, 'win_rate': win_percentage}
+            try:
+                data = response.json()
+                if isinstance(data, dict) and 'summary' in data:
+                    total = float(data['summary'].get('total', 0))
+                    win_percentage = float(data['summary'].get('winPercentage', 0))
+                    print(f"Successfully fetched stats for {address}")
+                    print(f"Profit: ${total:,.2f}")
+                    print(f"Win Rate: {win_percentage}%")
+                    return {'profit': total, 'win_rate': win_percentage}
+                else:
+                    print(f"Invalid data structure received: {data}")
+            except ValueError as e:
+                print(f"Error parsing JSON for {address}: {e}")
+        else:
+            print(f"Error status code: {response.status_code}")
+            
+    except requests.exceptions.RequestException as e:
+        print(f"Request error for {address}: {e}")
     except Exception as e:
-        print(f"Error fetching stats for {address}: {e}")
+        print(f"Unexpected error for {address}: {e}")
     
     return {'profit': 0, 'win_rate': 0}
 
