@@ -8434,5 +8434,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "Gto2F5X49ZvbQZKGH2JckJAEh6uKGrUhSNZnPKXUpump": {
+    "mint": "Gto2F5X49ZvbQZKGH2JckJAEh6uKGrUhSNZnPKXUpump",
+    "name": "PlayDohnald",
+    "symbol": "DOHNALD",
+    "market_cap": 17196.0756925663,
+    "total_bundles": 13,
+    "holding_percentage": 14.384987434804,
+    "price_changes": {
+      "5m": 5.15,
+      "1h": 287.0,
+      "6h": 287.0,
+      "24h": 287.0
+    },
+    "volumes": {
+      "5m": 9388.12,
+      "1h": 43454.28,
+      "6h": 43454.28,
+      "24h": 43454.28
+    },
+    "ath": 21871.10764115705,
+    "total_holders": 153,
+    "trades_1h": {
+      "total": 1292,
+      "buys": 746,
+      "sells": 546
+    },
+    "makers_1h": 322,
+    "makers_24h": 322,
+    "timestamp": 1743387838.481882,
+    "initial_price": 0,
+    "initial_market_cap": 17196.0756925663,
+    "prediction_score": 96.54299599999999,
+    "prediction_confidence": 965.4299599999998,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
