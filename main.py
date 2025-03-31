@@ -375,35 +375,35 @@ def fetch_token_holders(token_mint):
             "x-chain": "solana",
             "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
         }
-        
+
         response = requests.get(url, headers=headers)
         response.raise_for_status()
         data = response.json()
-        
+
         if not data or 'data' not in data or 'items' not in data['data']:
             return None
-            
+
         holders = data['data']['items']
         if not holders or len(holders) < 6:  # Need at least 6 holders for analysis
             return None
-            
+
         # Calculate total supply from actual holder amounts
         total_supply = sum(float(holder.get('amount', 0)) for holder in holders)
         if total_supply == 0:
             return None
-            
+
         # Calculate holder percentages
         holder_amounts = [float(holder.get('amount', 0)) for holder in holders[:6]]
         holder_percentages = [(amount / total_supply * 100) for amount in holder_amounts]
-        
+
         # Skip first holder (assumed bonding curve) and get next 5
         top_5_percentages = holder_percentages[1:6]
         top_5_addresses = [holder.get('owner', '') for holder in holders[1:6]]
-        
+
         # Check for minimum and maximum wallet percentage limits
         if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(top_5_percentages) < 2.0:
             return None
-            
+
         top_5 = top_5_percentages
 
         # Birdeye request for additional holder/trade info
@@ -430,11 +430,11 @@ def fetch_token_holders(token_mint):
         # Calculate additional percentages from Birdeye data
         real_holders = holders[1:]  # Skip first holder (usually liquidity)
         total_supply = sum(float(holder.get('amount', 0)) for holder in holders)
-        
+
         top_10_percentage = sum(
             float(holder.get('amount', 0))
             for holder in real_holders[:10]) / total_supply * 100
-            
+
         top_20_percentage = sum(
             float(holder.get('amount', 0))
             for holder in real_holders[:20]) / total_supply * 100
@@ -463,7 +463,7 @@ def format_holders_message(holders_info):
     for percent, addr in zip(holders_info["top_5_percentages"], holders_info["top_5_addresses"]):
         top_5_links.append(f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>")
     top_5 = " | ".join(top_5_links)
-    
+
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
     makers_24h = (
@@ -660,7 +660,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
-        f"💰 <b>Market Cap:</b> ${coin['usd_market_cap']:,.2f}\n"
+        f"💰 <b>Market Cap:</b>${coin['usd_market_cap']:,.2f}\n"
         f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 0):,.2f}\n"
         f"⏰ <b>Age:</b> {time_ago}\n"
         #f"🤖 <b>AI Prediction:</b> {coin_tracker.tracked_coins[mint_address]['prediction_result']} ({coin_tracker.tracked_coins[mint_address]['prediction_confidence']:.1f}% confidence)\n"
@@ -910,6 +910,19 @@ async def scan_coins():
         await asyncio.sleep(15)
 
 
+async def send_hourly_leaderboard():
+    """Send /lb 1h message every hour."""
+    while True:
+        await send_telegram_message("/lb 1h")
+        await asyncio.sleep(3600)  # Wait 1 hour (3600 seconds)
+
+async def main():
+    # Run both the coin scanner and hourly leaderboard sender
+    await asyncio.gather(
+        scan_coins(),
+        send_hourly_leaderboard()
+    )
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 import json
@@ -1069,6 +1082,9 @@ if __name__ == "__main__":
 
     # Run the coin scanner
     async def main():
-        await scan_coins()
+        await asyncio.gather(
+            scan_coins(),
+            send_hourly_leaderboard()
+        )
 
     asyncio.run(main())
