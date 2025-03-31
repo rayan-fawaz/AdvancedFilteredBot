@@ -9156,5 +9156,119 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "sUEtHwi9SX1N6p51F48EuY6tMvEudT1V83DijDbpump": {
+    "mint": "sUEtHwi9SX1N6p51F48EuY6tMvEudT1V83DijDbpump",
+    "name": "Mii-fy",
+    "symbol": "Mii-fy",
+    "market_cap": 9822.83886774812,
+    "total_bundles": 27,
+    "holding_percentage": 4.2113730844888,
+    "price_changes": {
+      "5m": 8.55,
+      "1h": 137.0,
+      "6h": 137.0,
+      "24h": 137.0
+    },
+    "volumes": {
+      "5m": 4035.45,
+      "1h": 77182.55,
+      "6h": 77182.55,
+      "24h": 77182.55
+    },
+    "ath": 31803.443214775238,
+    "total_holders": 121,
+    "trades_1h": {
+      "total": 1461,
+      "buys": 832,
+      "sells": 629
+    },
+    "makers_1h": 475,
+    "makers_24h": 475,
+    "timestamp": 1743402939.734834,
+    "initial_price": 0,
+    "initial_market_cap": 9822.83886774812,
+    "prediction_score": 97.125,
+    "prediction_confidence": 971.25,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "9atyYyFmiBUpQGH4cdY8ESnk4ayb859FQT32FsRKpump": {
+    "mint": "9atyYyFmiBUpQGH4cdY8ESnk4ayb859FQT32FsRKpump",
+    "name": "Zias & Blou Core",
+    "symbol": "ZIAS",
+    "market_cap": 23800.04429514088,
+    "total_bundles": 25,
+    "holding_percentage": 56.2702417634918,
+    "price_changes": {
+      "5m": 9.9,
+      "1h": 394.0,
+      "6h": 394.0,
+      "24h": 394.0
+    },
+    "volumes": {
+      "5m": 1651.93,
+      "1h": 36791.95,
+      "6h": 36791.95,
+      "24h": 36791.95
+    },
+    "ath": 26989.400572172803,
+    "total_holders": 121,
+    "trades_1h": {
+      "total": 705,
+      "buys": 400,
+      "sells": 305
+    },
+    "makers_1h": 290,
+    "makers_24h": 290,
+    "timestamp": 1743402943.846721,
+    "initial_price": 0,
+    "initial_market_cap": 23800.04429514088,
+    "prediction_score": 82.454365,
+    "prediction_confidence": 824.5436500000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Ei8oNUDoubixfZvy1wmeJh16NeQJDi2mrNDx1gg6pump": {
+    "mint": "Ei8oNUDoubixfZvy1wmeJh16NeQJDi2mrNDx1gg6pump",
+    "name": "The Mouse Cat Warrior",
+    "symbol": "Mat",
+    "market_cap": 20289.88284285699,
+    "total_bundles": 27,
+    "holding_percentage": 29.3962901269887,
+    "price_changes": {
+      "5m": 78.93,
+      "1h": 51.78,
+      "6h": 485.0,
+      "24h": 485.0
+    },
+    "volumes": {
+      "5m": 7996.58,
+      "1h": 60211.12,
+      "6h": 69944.73,
+      "24h": 69944.73
+    },
+    "ath": 35727.655021092425,
+    "total_holders": 141,
+    "trades_1h": {
+      "total": 3556,
+      "buys": 1836,
+      "sells": 1720
+    },
+    "makers_1h": 351,
+    "makers_24h": 386,
+    "timestamp": 1743402979.589779,
+    "initial_price": 0,
+    "initial_market_cap": 20289.88284285699,
+    "prediction_score": 87.87016,
+    "prediction_confidence": 878.7016,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
