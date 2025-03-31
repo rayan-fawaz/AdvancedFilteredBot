@@ -383,35 +383,50 @@ def fetch_token_holders(token_mint):
             return None
 
         # Calculate total supply including bonding curve
-        total_supply = sum(float(holder["amount"]) for holder in holders)
+        total_supply = sum(float(holder.get("amount", 0)) for holder in holders)
         
         if total_supply == 0:
             return None
 
         # Skip first holder (bonding curve) and get real holders
         real_holders = holders[1:]
+        total_holders = len(real_holders)
+
+        # Calculate percentages using total supply
+        top_10_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:10]) / total_supply * 100
+        top_20_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:20]) / total_supply * 100
         
         # Get top 5 holders (excluding bonding curve)
         top_5_addresses = []
         top_5_percentages = []
         
-        sorted_holders = sorted(real_holders, key=lambda x: float(x["amount"]), reverse=True)
+        sorted_holders = sorted(real_holders, key=lambda x: float(x.get("amount", 0)), reverse=True)
         for holder in sorted_holders[:5]:
-            if holder["address"]:
-                top_5_addresses.append(holder["address"])
-                percentage = (float(holder["amount"]) / total_supply) * 100
+            address = holder.get("address")
+            if address:
+                top_5_addresses.append(address)
+                percentage = (float(holder.get("amount", 0)) / total_supply) * 100
                 top_5_percentages.append(percentage)
 
         if not top_5_addresses or not top_5_percentages:
             return None
 
-        # Calculate percentages using total supply
-        top_10_percentage = sum(float(holder["amount"]) for holder in real_holders[:10]) / total_supply * 100
-        top_20_percentage = sum(float(holder["amount"]) for holder in real_holders[:20]) / total_supply * 100
-
         # Validate holder percentages
         if max(top_5_percentages) > BIGGEST_WALLET_MAX:
             return None
+
+        return {
+            "total_holders": total_holders,
+            "top_5_percentages": top_5_percentages,
+            "top_5_addresses": top_5_addresses,
+            "top_10_percentage": top_10_percentage,
+            "top_20_percentage": top_20_percentage,
+            "buy_1h": 0,  # These will be updated by Birdeye data later
+            "sell_1h": 0,
+            "trade_1h": 0,
+            "unique_wallet_1h": 0,
+            "unique_wallet_24h": 0
+        }
 
         # Birdeye request for additional holder/trade info
         birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={token_mint}"
