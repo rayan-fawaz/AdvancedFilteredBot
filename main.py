@@ -366,73 +366,41 @@ def fetch_unique_reply_makers(mint_address):
 
 
 def fetch_token_holders(token_mint):
-    """Fetch token holder count and distribution from Birdeye API."""
+    """Fetch token holder count and distribution from Helius and Birdeye APIs."""
     try:
-        # Get holder distribution from Birdeye
-        birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/holder?address={token_mint}&offset=0&limit=100"
-        headers = {
-            "accept": "application/json",
-            "x-chain": "solana",
-            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+        # Get holder distribution from Helius
+        payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "getTokenLargestAccounts",
+            "params": [token_mint]
         }
-        
-        response = requests.get(birdeye_url, headers=headers)
+        response = requests.post(HELIUS_RPC_URL, json=payload)
         response.raise_for_status()
-        data = response.json()
-        
-        if not data or 'data' not in data or 'items' not in data['data']:
-            return None
-            
-        holders = data['data']['items']
+        holders = response.json().get("result", {}).get("value", [])
+
         if not holders or len(holders) < 2:
             return None
+            
+        # Extract top 5 holder addresses
+        top_5_addresses = [holder["address"] for holder in holders[:6] if holder["address"]]
 
-        # Calculate total supply
-        total_supply = sum(float(holder.get("amount", 0)) for holder in holders)
+        # Calculate supply excluding bonding curve (first holder)
+        real_holders = holders[1:]  # Skip bonding curve
+        circulating_supply = sum(float(holder["amount"]) for holder in real_holders)
         
-        if total_supply == 0:
+        if circulating_supply == 0:
             return None
 
-        # Skip first holder (bonding curve) and get real holders
-        real_holders = holders[1:]
-        total_holders = len(real_holders)
+        # Calculate percentages based on circulating supply
+        top_5_amounts = [float(holder["amount"]) for holder in real_holders[:5]]
+        top_5_percentages = [(amount / circulating_supply * 100) for amount in top_5_amounts]
 
-        # Calculate percentages using total supply (divide by 1B to convert from lamports)
-        billion = 1_000_000_000
-        top_10_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:10]) / (total_supply * billion) * 100
-        top_20_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:20]) / (total_supply * billion) * 100
-        
-        # Get top 5 holders (excluding bonding curve)
-        top_5_addresses = []
-        top_5_percentages = []
-        
-        sorted_holders = sorted(real_holders, key=lambda x: float(x.get("amount", 0)), reverse=True)
-        for holder in sorted_holders[:5]:
-            address = holder.get("owner")  # Birdeye uses 'owner' instead of 'address'
-            if address:
-                top_5_addresses.append(address)
-                percentage = (float(holder.get("amount", 0)) / (total_supply * billion)) * 100
-                top_5_percentages.append(percentage)
-
-        if not top_5_addresses or not top_5_percentages:
+        # Check for minimum and maximum wallet percentage limits
+        if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(top_5_percentages) < 2.0:
             return None
 
-        # Validate holder percentages
-        if max(top_5_percentages) > BIGGEST_WALLET_MAX:
-            return None
-
-        return {
-            "total_holders": total_holders,
-            "top_5_percentages": top_5_percentages,
-            "top_5_addresses": top_5_addresses,
-            "top_10_percentage": top_10_percentage,
-            "top_20_percentage": top_20_percentage,
-            "buy_1h": 0,  # These will be updated by Birdeye data later
-            "sell_1h": 0,
-            "trade_1h": 0,
-            "unique_wallet_1h": 0,
-            "unique_wallet_24h": 0
-        }
+        top_5 = top_5_percentages
 
         # Birdeye request for additional holder/trade info
         birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={token_mint}"
@@ -462,21 +430,18 @@ def fetch_token_holders(token_mint):
         if not holders or len(holders) < 2:
             return None
 
-        # Calculate supply excluding bonding curve (first holder)
-        real_holders = holders[1:]  # Skip bonding curve account
-        circulating_supply = sum(float(holder["amount"]) for holder in real_holders)
-        if circulating_supply == 0:
+        total_supply = sum(float(holder["amount"]) for holder in holders)
+        if total_supply == 0:
             return None
-
-        # Calculate percentages based on circulating supply
+        real_holders = holders[1:]
         top_10_percentage = sum(
             float(holder["amount"])
-            for holder in real_holders[:10]) / circulating_supply * 100
+            for holder in real_holders[:10]) / total_supply * 100
         top_20_percentage = sum(
             float(holder["amount"])
-            for holder in real_holders[:20]) / circulating_supply * 100
+            for holder in real_holders[:20]) / total_supply * 100
         top_5 = [
-            float(holder["amount"]) / circulating_supply * 100
+            float(holder["amount"]) / total_supply * 100
             for holder in real_holders[:5]
         ]
 
@@ -833,8 +798,12 @@ async def scan_coins():
             if not all([price_momentum_check, volume_check]):
                 continue
 
-            # 4. Only now fetch Birdeye data (Most expensive API)
+            # Get Trench data before Birdeye requests
+            trench_data = await get_trench_data(mint)
+
+            # 4. Finally fetch Birdeye data (Most expensive API) - Exit early if any fail
             try:
+                # First Birdeye request - ATH data
                 birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
                 headers = {
                     "accept": "application/json",
@@ -847,11 +816,32 @@ async def scan_coins():
                 if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
                     ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
                     dex_data['ath_price'] = ath * 1000000000
-            except Exception as e:
-                logging.error(f"Error fetching Birdeye ATH data: {e}")
+                else:
+                    logging.error(f"Invalid Birdeye ATH data format for {mint}")
+                    continue
 
-            # Get Trench data before tracking
-            trench_data = await get_trench_data(mint)
+                # Second Birdeye request - Trade data
+                birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={mint}"
+                response = requests.get(birdeye_url, headers=headers)
+                response.raise_for_status()
+                data = response.json()
+
+                if not data.get('data', {}):
+                    logging.error(f"Invalid Birdeye trade data for {mint}")
+                    continue
+
+                # Update holders_info with Birdeye trade data
+                holders_info.update({
+                    "buy_1h": data['data'].get('buy_1h', 0),
+                    "sell_1h": data['data'].get('sell_1h', 0),
+                    "trade_1h": data['data'].get('trade_1h', 0),
+                    "unique_wallet_1h": data['data'].get('unique_wallet_1h', 0),
+                    "unique_wallet_24h": data['data'].get('unique_wallet_24h', 0)
+                })
+
+            except Exception as e:
+                logging.error(f"Error fetching Birdeye data for {mint}: {e}")
+                continue
 
             # Track the coin in our AI system
             coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
