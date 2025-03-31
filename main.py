@@ -382,9 +382,8 @@ def fetch_token_holders(token_mint):
         if not holders or len(holders) < 2:
             return None
             
-        # Remove bonding curve and sort all other holders by amount
+        # Remove bonding curve holder
         non_bonding_holders = holders[1:]  # Skip first holder (bonding curve)
-        sorted_holders = sorted(non_bonding_holders, key=lambda x: float(x["amount"]), reverse=True)
         
         # Calculate total circulating supply (excluding bonding curve)
         circulating_supply = sum(float(holder["amount"]) for holder in non_bonding_holders)
@@ -392,15 +391,22 @@ def fetch_token_holders(token_mint):
         if circulating_supply == 0:
             return None
 
-        # Get top 5 holders and calculate their percentages
+        # Sort holders by amount and get top 5
+        sorted_holders = sorted(non_bonding_holders, key=lambda x: float(x["amount"]), reverse=True)
         top_5_holders = sorted_holders[:5]
-        top_5_amounts = [float(holder["amount"]) for holder in top_5_holders]
-        top_5_percentages = [(amount / circulating_supply * 100) for amount in top_5_amounts]
-        top_5_addresses = [holder["address"] for holder in top_5_holders]
-
-        # Validate we have enough holders
+        
         if len(top_5_holders) < 5:
             return None
+            
+        # Calculate percentages using circulating supply
+        top_5_percentages = []
+        top_5_addresses = []
+        
+        for holder in top_5_holders:
+            amount = float(holder["amount"])
+            percentage = (amount / circulating_supply) * 100
+            top_5_percentages.append(percentage)
+            top_5_addresses.append(holder["address"])
 
         # Additional validation
         if not top_5_amounts or not top_5_addresses:
