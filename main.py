@@ -911,10 +911,17 @@ async def scan_coins():
 
 
 async def send_hourly_leaderboard():
-    """Send /lb 1h message every hour."""
+    """Send /lb 1h message at the start of each hour."""
     while True:
+        # Get current time
+        now = datetime.now()
+        # Calculate time until next hour
+        next_hour = (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
+        wait_seconds = (next_hour - now).total_seconds()
+        
+        # Wait until next hour
+        await asyncio.sleep(wait_seconds)
         await send_telegram_message("/lb 1h")
-        await asyncio.sleep(3600)  # Wait 1 hour (3600 seconds)
 
 async def main():
     # Run both the coin scanner and hourly leaderboard sender
