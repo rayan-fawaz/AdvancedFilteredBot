@@ -382,13 +382,15 @@ def fetch_token_holders(token_mint):
         if not holders or len(holders) < 2:
             return None
 
-        # Skip the bonding curve (first holder) and calculate circulating supply
-        real_holders = holders[1:]  # Skip first holder
-        circulating_supply = sum(float(holder["amount"]) for holder in real_holders)
+        # Calculate total supply including bonding curve
+        total_supply = sum(float(holder["amount"]) for holder in holders)
         
-        if circulating_supply == 0:
+        if total_supply == 0:
             return None
 
+        # Skip first holder (bonding curve) and get real holders
+        real_holders = holders[1:]
+        
         # Get top 5 holders (excluding bonding curve)
         top_5_addresses = []
         top_5_percentages = []
@@ -397,17 +399,19 @@ def fetch_token_holders(token_mint):
         for holder in sorted_holders[:5]:
             if holder["address"]:
                 top_5_addresses.append(holder["address"])
-                percentage = (float(holder["amount"]) / circulating_supply) * 100
+                percentage = (float(holder["amount"]) / total_supply) * 100
                 top_5_percentages.append(percentage)
 
         if not top_5_addresses or not top_5_percentages:
             return None
 
+        # Calculate percentages using total supply
+        top_10_percentage = sum(float(holder["amount"]) for holder in real_holders[:10]) / total_supply * 100
+        top_20_percentage = sum(float(holder["amount"]) for holder in real_holders[:20]) / total_supply * 100
+
         # Validate holder percentages
         if max(top_5_percentages) > BIGGEST_WALLET_MAX:
             return None
-
-        top_5 = top_5_percentages
 
         # Birdeye request for additional holder/trade info
         birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={token_mint}"
