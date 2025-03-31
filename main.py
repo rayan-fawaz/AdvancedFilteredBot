@@ -430,21 +430,21 @@ def fetch_token_holders(token_mint):
         if not holders or len(holders) < 2:
             return None
 
-        # Calculate supply excluding bonding curve (first holder)
-        real_holders = holders[1:]  # Skip bonding curve account
-        circulating_supply = sum(float(holder["amount"]) for holder in real_holders)
-        if circulating_supply == 0:
+        # Get total supply from first holder (bonding curve)
+        total_supply = float(holders[0]["amount"]) if holders else 0
+        if total_supply == 0:
             return None
 
-        # Calculate percentages based on circulating supply
+        # Calculate percentages based on total supply, excluding bonding curve
+        real_holders = holders[1:]  # Skip bonding curve account
         top_10_percentage = sum(
             float(holder["amount"])
-            for holder in real_holders[:10]) / circulating_supply * 100
+            for holder in real_holders[:10]) / total_supply * 100
         top_20_percentage = sum(
             float(holder["amount"])
-            for holder in real_holders[:20]) / circulating_supply * 100
+            for holder in real_holders[:20]) / total_supply * 100
         top_5 = [
-            float(holder["amount"]) / circulating_supply * 100
+            float(holder["amount"]) / total_supply * 100
             for holder in real_holders[:5]
         ]
 
