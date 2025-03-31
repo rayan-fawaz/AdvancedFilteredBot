@@ -798,8 +798,12 @@ async def scan_coins():
             if not all([price_momentum_check, volume_check]):
                 continue
 
-            # 4. Only now fetch Birdeye data (Most expensive API)
+            # Get Trench data before Birdeye requests
+            trench_data = await get_trench_data(mint)
+
+            # 4. Finally fetch Birdeye data (Most expensive API) - Exit early if any fail
             try:
+                # First Birdeye request - ATH data
                 birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
                 headers = {
                     "accept": "application/json",
@@ -812,11 +816,32 @@ async def scan_coins():
                 if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
                     ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
                     dex_data['ath_price'] = ath * 1000000000
-            except Exception as e:
-                logging.error(f"Error fetching Birdeye ATH data: {e}")
+                else:
+                    logging.error(f"Invalid Birdeye ATH data format for {mint}")
+                    continue
 
-            # Get Trench data before tracking
-            trench_data = await get_trench_data(mint)
+                # Second Birdeye request - Trade data
+                birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={mint}"
+                response = requests.get(birdeye_url, headers=headers)
+                response.raise_for_status()
+                data = response.json()
+
+                if not data.get('data', {}):
+                    logging.error(f"Invalid Birdeye trade data for {mint}")
+                    continue
+
+                # Update holders_info with Birdeye trade data
+                holders_info.update({
+                    "buy_1h": data['data'].get('buy_1h', 0),
+                    "sell_1h": data['data'].get('sell_1h', 0),
+                    "trade_1h": data['data'].get('trade_1h', 0),
+                    "unique_wallet_1h": data['data'].get('unique_wallet_1h', 0),
+                    "unique_wallet_24h": data['data'].get('unique_wallet_24h', 0)
+                })
+
+            except Exception as e:
+                logging.error(f"Error fetching Birdeye data for {mint}: {e}")
+                continue
 
             # Track the coin in our AI system
             coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
