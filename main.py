@@ -710,39 +710,84 @@ async def scan_coins():
             if market_cap < MIN_MARKET_CAP or market_cap > MAX_MARKET_CAP:
                 continue
 
-            # Get holders data and apply filters
-            holders_info = fetch_token_holders(mint)
-            if not holders_info:
-                continue
-            if holders_info.get("total_holders", 0) < MIN_HOLDERS:
-                continue
-            if holders_info.get("buy_1h", 0) < MIN_BUYS or holders_info.get(
-                    "sell_1h", 0) < MIN_SELLS:
+            # 1. Initial Market Cap Filter (No API calls)
+            if market_cap < MIN_MARKET_CAP or market_cap > MAX_MARKET_CAP:
                 continue
 
-            # Initial empty DEX data
-            dex_data = {
-                "volume_5m": 0,
-                "volume_1h": 0,
-                "volume_6h": 0,
-                "volume_24h": 0,
-                "price_change_5m": 0,
-                "price_change_1h": 0,
-                "price_change_6h": 0,
-                "price_change_24h": 0,
-                "ath_price": 0
-            }
+            # 2. DexScreener Data (Less expensive API)
+            try:
+                dex_response = requests.get(
+                    f"https://api.dexscreener.com/latest/dex/tokens/{mint}",
+                    timeout=10)
+                dex_response.raise_for_status()
 
-            # 1. Initial Filters (No API calls)
-            if holders_info.get("total_holders", 0) < MIN_HOLDERS:
+                data = dex_response.json()
+                if 'pairs' not in data or not data['pairs']:
+                    continue
+
+                pair = data['pairs'][0]
+                dex_data = {
+                    'volume_24h': float(pair.get('volume', {}).get('h24', 0)),
+                    'volume_6h': float(pair.get('volume', {}).get('h6', 0)),
+                    'volume_1h': float(pair.get('volume', {}).get('h1', 0)),
+                    'volume_5m': float(pair.get('volume', {}).get('m5', 0)),
+                    'price_change_24h': float(pair.get('priceChange', {}).get('h24', 0)),
+                    'price_change_6h': float(pair.get('priceChange', {}).get('h6', 0)),
+                    'price_change_1h': float(pair.get('priceChange', {}).get('h1', 0)),
+                    'price_change_5m': float(pair.get('priceChange', {}).get('m5', 0)),
+                    'ath_price': 0  # Will be updated later if needed
+                }
+            except Exception as e:
+                logging.error(f"Error fetching base DEX data for {mint}: {e}")
                 continue
 
-            trades_1h = holders_info.get("trade_1h", 0)
-            if trades_1h < MIN_TRADES_1H:
+            # 3. Volume and Price Checks
+            if dex_data["volume_5m"] > MAX_VOLUME_5M:
                 continue
 
-            if holders_info.get("buy_1h", 0) < MIN_BUYS or holders_info.get("sell_1h", 0) < MIN_SELLS:
+            price_momentum_check = (
+                (dex_data["price_change_5m"] >= MIN_PRICE_5M) or 
+                (dex_data["price_change_1h"] >= HIGH_PRICE_1H) or 
+                (dex_data["price_change_1h"] >= MIN_PRICE_1H)
+            )
+
+            volume_check = (
+                (dex_data["volume_5m"] >= MIN_VOLUME_5M) or
+                (dex_data["volume_1h"] >= MIN_VOLUME_1H)
+            )
+
+            if not all([price_momentum_check, volume_check]):
                 continue
+
+            # 4. Get Trench data before Birdeye requests
+            trench_data = await get_trench_data(mint)
+            if not trench_data:
+                continue
+
+            # 5. Finally fetch Birdeye data (Most expensive API) - Only if all other checks pass
+            try:
+                # First get holder info
+                holders_info = fetch_token_holders(mint)
+                if not holders_info:
+                    continue
+                if holders_info.get("total_holders", 0) < MIN_HOLDERS:
+                    continue
+                if holders_info.get("buy_1h", 0) < MIN_BUYS or holders_info.get("sell_1h", 0) < MIN_SELLS:
+                    continue
+
+                # Then get ATH data
+                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+                headers = {
+                    "accept": "application/json",
+                    "x-chain": "solana",
+                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                }
+                response = requests.get(birdeye_url, headers=headers)
+                data = response.json()
+
+                if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
+                    ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
+                    dex_data['ath_price'] = ath * 1000000000
 
             # 2. DexScreener Data (Less expensive API)
             try:
