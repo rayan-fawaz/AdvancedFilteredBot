@@ -765,6 +765,7 @@ async def scan_coins():
                 continue
 
             # 5. Finally fetch Birdeye data (Most expensive API) - Only if all other checks pass
+            # Get Birdeye holder info and ATH data
             try:
                 # First get holder info
                 holders_info = fetch_token_holders(mint)
@@ -788,6 +789,9 @@ async def scan_coins():
                 if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
                     ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
                     dex_data['ath_price'] = ath * 1000000000
+            except Exception as e:
+                logging.error(f"Error fetching Birdeye data for {mint}: {e}")
+                continue
 
             # 2. DexScreener Data (Less expensive API)
             try:
