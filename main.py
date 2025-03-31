@@ -381,20 +381,25 @@ def fetch_token_holders(token_mint):
 
         if not holders or len(holders) < 2:
             return None
-            
-        # Extract top 5 holder addresses
-        top_5_addresses = [holder["address"] for holder in holders[:6] if holder["address"]]
 
-        # Calculate supply excluding bonding curve (first holder)
-        real_holders = holders[1:]  # Skip bonding curve
-        circulating_supply = sum(float(holder["amount"]) for holder in real_holders)
-        
-        if circulating_supply == 0:
+        # Calculate total supply (including bonding curve)
+        total_supply = sum(float(holder["amount"]) for holder in holders)
+        if total_supply == 0:
             return None
 
-        # Calculate percentages based on circulating supply
-        top_5_amounts = [float(holder["amount"]) for holder in real_holders[:5]]
-        top_5_percentages = [(amount / circulating_supply * 100) for amount in top_5_amounts]
+        # Extract top 5 holder addresses and calculate percentages
+        top_5_addresses = []
+        top_5_percentages = []
+        
+        # Skip first holder (bonding curve) and get next 5
+        for holder in holders[1:6]:
+            if holder["address"]:
+                top_5_addresses.append(holder["address"])
+                percentage = (float(holder["amount"]) / total_supply) * 100
+                top_5_percentages.append(percentage)
+
+        if not top_5_addresses or not top_5_percentages:
+            return None
 
         # Check for minimum and maximum wallet percentage limits
         if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(top_5_percentages) < 2.0:
