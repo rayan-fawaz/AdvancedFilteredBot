@@ -366,23 +366,28 @@ def fetch_unique_reply_makers(mint_address):
 
 
 def fetch_token_holders(token_mint):
-    """Fetch token holder count and distribution from Helius and Birdeye APIs."""
+    """Fetch token holder count and distribution from Birdeye API."""
     try:
-        # Get holder distribution from Helius
-        payload = {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "getTokenLargestAccounts",
-            "params": [token_mint]
+        # Get holder distribution from Birdeye
+        birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/holder?address={token_mint}&offset=0&limit=100"
+        headers = {
+            "accept": "application/json",
+            "x-chain": "solana",
+            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
         }
-        response = requests.post(HELIUS_RPC_URL, json=payload)
+        
+        response = requests.get(birdeye_url, headers=headers)
         response.raise_for_status()
-        holders = response.json().get("result", {}).get("value", [])
-
+        data = response.json()
+        
+        if not data or 'data' not in data or 'items' not in data['data']:
+            return None
+            
+        holders = data['data']['items']
         if not holders or len(holders) < 2:
             return None
 
-        # Calculate total supply including bonding curve
+        # Calculate total supply
         total_supply = sum(float(holder.get("amount", 0)) for holder in holders)
         
         if total_supply == 0:
@@ -392,9 +397,10 @@ def fetch_token_holders(token_mint):
         real_holders = holders[1:]
         total_holders = len(real_holders)
 
-        # Calculate percentages using total supply
-        top_10_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:10]) / total_supply * 100
-        top_20_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:20]) / total_supply * 100
+        # Calculate percentages using total supply (divide by 1B to convert from lamports)
+        billion = 1_000_000_000
+        top_10_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:10]) / (total_supply * billion) * 100
+        top_20_percentage = sum(float(holder.get("amount", 0)) for holder in real_holders[:20]) / (total_supply * billion) * 100
         
         # Get top 5 holders (excluding bonding curve)
         top_5_addresses = []
@@ -402,10 +408,10 @@ def fetch_token_holders(token_mint):
         
         sorted_holders = sorted(real_holders, key=lambda x: float(x.get("amount", 0)), reverse=True)
         for holder in sorted_holders[:5]:
-            address = holder.get("address")
+            address = holder.get("owner")  # Birdeye uses 'owner' instead of 'address'
             if address:
                 top_5_addresses.append(address)
-                percentage = (float(holder.get("amount", 0)) / total_supply) * 100
+                percentage = (float(holder.get("amount", 0)) / (total_supply * billion)) * 100
                 top_5_percentages.append(percentage)
 
         if not top_5_addresses or not top_5_percentages:
