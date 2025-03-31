@@ -8434,5 +8434,347 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "5wRgeft6uR6u51jG2MtbtvdbH13h9EsdHjkTuB1Xpump": {
+    "mint": "5wRgeft6uR6u51jG2MtbtvdbH13h9EsdHjkTuB1Xpump",
+    "name": "Drox",
+    "symbol": "Drox",
+    "market_cap": 11856.52155710232,
+    "total_bundles": 2,
+    "holding_percentage": 9.4806360425729,
+    "price_changes": {
+      "5m": 35.44,
+      "1h": 255.0,
+      "6h": 255.0,
+      "24h": 255.0
+    },
+    "volumes": {
+      "5m": 4468.79,
+      "1h": 15636.66,
+      "6h": 15636.66,
+      "24h": 15636.66
+    },
+    "ath": 13230.882856022165,
+    "total_holders": 69,
+    "trades_1h": {
+      "total": 2304,
+      "buys": 1188,
+      "sells": 1116
+    },
+    "makers_1h": 119,
+    "makers_24h": 119,
+    "timestamp": 1743458774.936775,
+    "initial_price": 0,
+    "initial_market_cap": 11856.52155710232,
+    "prediction_score": 65.570662,
+    "prediction_confidence": 655.7066199999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HoTCQ25aNS8gKZNMEyh1Ps8szKMGJDfMkfyT5qX7pump": {
+    "mint": "HoTCQ25aNS8gKZNMEyh1Ps8szKMGJDfMkfyT5qX7pump",
+    "name": "straight to god",
+    "symbol": "STG",
+    "market_cap": 14869.50177392044,
+    "total_bundles": 13,
+    "holding_percentage": 9.3469910978129,
+    "price_changes": {
+      "5m": 5.67,
+      "1h": 275.0,
+      "6h": 275.0,
+      "24h": 275.0
+    },
+    "volumes": {
+      "5m": 6228.13,
+      "1h": 35851.54,
+      "6h": 35851.54,
+      "24h": 35851.54
+    },
+    "ath": 15566.974721978993,
+    "total_holders": 100,
+    "trades_1h": {
+      "total": 1215,
+      "buys": 673,
+      "sells": 542
+    },
+    "makers_1h": 257,
+    "makers_24h": 257,
+    "timestamp": 1743458776.395355,
+    "initial_price": 0,
+    "initial_market_cap": 14869.50177392044,
+    "prediction_score": 85.48487800000001,
+    "prediction_confidence": 854.84878,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "EkVy5AM1W9Kxv1J2UXxAVF4TNWjYVoBKLq2u3Mcqpump": {
+    "mint": "EkVy5AM1W9Kxv1J2UXxAVF4TNWjYVoBKLq2u3Mcqpump",
+    "name": "housefication",
+    "symbol": "housify",
+    "market_cap": 21519.32674260564,
+    "total_bundles": 55,
+    "holding_percentage": 24.1836451632442,
+    "price_changes": {
+      "5m": -11.36,
+      "1h": 500.0,
+      "6h": 381.0,
+      "24h": 381.0
+    },
+    "volumes": {
+      "5m": 17951.81,
+      "1h": 117009.22,
+      "6h": 123706.84,
+      "24h": 123706.84
+    },
+    "ath": 50321.67802841272,
+    "total_holders": 193,
+    "trades_1h": {
+      "total": 2031,
+      "buys": 1127,
+      "sells": 904
+    },
+    "makers_1h": 540,
+    "makers_24h": 560,
+    "timestamp": 1743458778.566061,
+    "initial_price": 0,
+    "initial_market_cap": 21519.32674260564,
+    "prediction_score": 106.125,
+    "prediction_confidence": 1061.25,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "5VrT7J8oU3WEvEtHXYUiGjBB6gTq19ZRU9ea3RZEpump": {
+    "mint": "5VrT7J8oU3WEvEtHXYUiGjBB6gTq19ZRU9ea3RZEpump",
+    "name": "jesuscoin",
+    "symbol": "jesuscoin",
+    "market_cap": 18977.49515734744,
+    "total_bundles": 4,
+    "holding_percentage": 1.6726180653405,
+    "price_changes": {
+      "5m": 10.74,
+      "1h": 146.0,
+      "6h": 388.0,
+      "24h": 388.0
+    },
+    "volumes": {
+      "5m": 3617.89,
+      "1h": 19752.87,
+      "6h": 41394.6,
+      "24h": 41394.6
+    },
+    "ath": 19911.109988269345,
+    "total_holders": 90,
+    "trades_1h": {
+      "total": 2402,
+      "buys": 1243,
+      "sells": 1159
+    },
+    "makers_1h": 132,
+    "makers_24h": 230,
+    "timestamp": 1743458784.093119,
+    "initial_price": 0,
+    "initial_market_cap": 18977.49515734744,
+    "prediction_score": 70.077009,
+    "prediction_confidence": 700.7700900000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "CjpcQ3isxF6xhd2ecNcBqkVCAMME2SXYVFWLsoSppump": {
+    "mint": "CjpcQ3isxF6xhd2ecNcBqkVCAMME2SXYVFWLsoSppump",
+    "name": "JEPE",
+    "symbol": "JEPE",
+    "market_cap": 8453.946845232,
+    "total_bundles": 6,
+    "holding_percentage": 7.8452673157623,
+    "price_changes": {
+      "5m": -6.1,
+      "1h": 111.0,
+      "6h": 111.0,
+      "24h": 111.0
+    },
+    "volumes": {
+      "5m": 5038.45,
+      "1h": 18841.08,
+      "6h": 18841.08,
+      "24h": 18841.08
+    },
+    "ath": 11485.22837426453,
+    "total_holders": 34,
+    "trades_1h": {
+      "total": 439,
+      "buys": 253,
+      "sells": 186
+    },
+    "makers_1h": 103,
+    "makers_24h": 103,
+    "timestamp": 1743458858.261916,
+    "initial_price": 0,
+    "initial_market_cap": 8453.946845232,
+    "prediction_score": 52.023756,
+    "prediction_confidence": 520.23756,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "FAHrZq4Pv9xswKPvb8eCxMWj7HGEhCHPyMXhgs1upump": {
+    "mint": "FAHrZq4Pv9xswKPvb8eCxMWj7HGEhCHPyMXhgs1upump",
+    "name": "Grok's Manifesto",
+    "symbol": "Manifesto",
+    "market_cap": 24196.4421390666,
+    "total_bundles": 62,
+    "holding_percentage": 9.3853627314224,
+    "price_changes": {
+      "5m": 39.97,
+      "1h": -53.92,
+      "6h": -53.92,
+      "24h": -53.92
+    },
+    "volumes": {
+      "5m": 5678.77,
+      "1h": 192386.22,
+      "6h": 192386.22,
+      "24h": 192386.22
+    },
+    "ath": 84039.34628609403,
+    "total_holders": 337,
+    "trades_1h": {
+      "total": 5549,
+      "buys": 2950,
+      "sells": 2599
+    },
+    "makers_1h": 1549,
+    "makers_24h": 1552,
+    "timestamp": 1743458951.370909,
+    "initial_price": 0,
+    "initial_market_cap": 24196.4421390666,
+    "prediction_score": 68.27626,
+    "prediction_confidence": 682.7625999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "8bUHBLSt1bTbbj4pSGN6cUKbd8gP4Qjb4hvxrMLkpump": {
+    "mint": "8bUHBLSt1bTbbj4pSGN6cUKbd8gP4Qjb4hvxrMLkpump",
+    "name": "I\u2019m Still Gonna Send It",
+    "symbol": "sendit",
+    "market_cap": 21456.674721171497,
+    "total_bundles": 68,
+    "holding_percentage": 36.2865099127519,
+    "price_changes": {
+      "5m": 44.37,
+      "1h": -53.18,
+      "6h": -53.18,
+      "24h": -53.18
+    },
+    "volumes": {
+      "5m": 11713.46,
+      "1h": 67459.65,
+      "6h": 67459.65,
+      "24h": 67459.65
+    },
+    "ath": 68067.06141776306,
+    "total_holders": 305,
+    "trades_1h": {
+      "total": 3767,
+      "buys": 2019,
+      "sells": 1748
+    },
+    "makers_1h": 1145,
+    "makers_24h": 1145,
+    "timestamp": 1743458952.862227,
+    "initial_price": 0,
+    "initial_market_cap": 21456.674721171497,
+    "prediction_score": 67.705,
+    "prediction_confidence": 677.0500000000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "AzaPdX6sfPnUQrcezZZbYxwPLUAJwC4p77AdDVN6pump": {
+    "mint": "AzaPdX6sfPnUQrcezZZbYxwPLUAJwC4p77AdDVN6pump",
+    "name": "Godlification",
+    "symbol": "GODLY",
+    "market_cap": 7809.25649777309,
+    "total_bundles": 8,
+    "holding_percentage": 8.4516567173317,
+    "price_changes": {
+      "5m": 19.91,
+      "1h": 88.82,
+      "6h": 88.82,
+      "24h": 88.82
+    },
+    "volumes": {
+      "5m": 3136.51,
+      "1h": 29226.08,
+      "6h": 29226.08,
+      "24h": 29226.08
+    },
+    "ath": 10451.69171476021,
+    "total_holders": 33,
+    "trades_1h": {
+      "total": 1194,
+      "buys": 629,
+      "sells": 565
+    },
+    "makers_1h": 141,
+    "makers_24h": 141,
+    "timestamp": 1743459189.366956,
+    "initial_price": 0,
+    "initial_market_cap": 7809.25649777309,
+    "prediction_score": 67.368796,
+    "prediction_confidence": 673.68796,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "13tHJQZmJuxtfspCpWLwvegfv9NWeJrHcdjNFc7oso21": {
+    "mint": "13tHJQZmJuxtfspCpWLwvegfv9NWeJrHcdjNFc7oso21",
+    "name": "The Uncrowned",
+    "symbol": "YZYX",
+    "market_cap": 18654.34170190487,
+    "total_bundles": 12,
+    "holding_percentage": 31.014001292866,
+    "price_changes": {
+      "5m": -1.86,
+      "1h": 366.0,
+      "6h": 366.0,
+      "24h": 366.0
+    },
+    "volumes": {
+      "5m": 217.99,
+      "1h": 29070.18,
+      "6h": 29070.18,
+      "24h": 29070.18
+    },
+    "ath": 33024.45507261817,
+    "total_holders": 78,
+    "trades_1h": {
+      "total": 308,
+      "buys": 184,
+      "sells": 124
+    },
+    "makers_1h": 144,
+    "makers_24h": 144,
+    "timestamp": 1743459277.409477,
+    "initial_price": 0,
+    "initial_market_cap": 18654.34170190487,
+    "prediction_score": 64.71912599999999,
+    "prediction_confidence": 647.1912599999998,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
