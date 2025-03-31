@@ -366,20 +366,15 @@ def fetch_unique_reply_makers(mint_address):
 
 
 def fetch_token_holders(token_mint):
-    """Fetch the top holders for a token using Helius API."""
-    PROGRAM_IDS = [
-        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",  # Token Program
-        "11111111111111111111111111111111",  # System Program
-        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",  # Associated Token Program
-    ]
-
-    payload = {
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "getTokenLargestAccounts",
-        "params": [token_mint]
-    }
+    """Fetch token holder count and distribution from Helius and Birdeye APIs."""
     try:
+        # Get holder distribution from Helius
+        payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "getTokenLargestAccounts",
+            "params": [token_mint]
+        }
         response = requests.post(HELIUS_RPC_URL, json=payload)
         response.raise_for_status()
         holders = response.json().get("result", {}).get("value", [])
@@ -387,34 +382,32 @@ def fetch_token_holders(token_mint):
         if not holders or len(holders) < 2:
             return None
 
-        # First get total supply including bonding curve
-        total_supply = sum(float(holder["amount"]) for holder in holders)
-
-        if total_supply == 0:
+        # Skip the bonding curve (first holder) and calculate circulating supply
+        real_holders = holders[1:]  # Skip first holder
+        circulating_supply = sum(float(holder["amount"]) for holder in real_holders)
+        
+        if circulating_supply == 0:
             return None
 
-        # Skip the first holder (bonding curve) and use the rest
-        real_holders = holders[1:]
+        # Get top 5 holders (excluding bonding curve)
+        top_5_addresses = []
+        top_5_percentages = []
+        
+        sorted_holders = sorted(real_holders, key=lambda x: float(x["amount"]), reverse=True)
+        for holder in sorted_holders[:5]:
+            if holder["address"]:
+                top_5_addresses.append(holder["address"])
+                percentage = (float(holder["amount"]) / circulating_supply) * 100
+                top_5_percentages.append(percentage)
 
-        # Calculate total number of holders (excluding bonding curve)
-        total_holders = len(real_holders)
+        if not top_5_addresses or not top_5_percentages:
+            return None
 
-        # Calculate percentages using total supply with real holders
-        top_10_percentage = sum(float(holder["amount"]) for holder in real_holders[:10]) / total_supply * 100
-        top_20_percentage = sum(float(holder["amount"]) for holder in real_holders[:20]) / total_supply * 100
-        top_5 = [float(holder["amount"]) / total_supply * 100 for holder in real_holders[:5]]
+        # Validate holder percentages
+        if max(top_5_percentages) > BIGGEST_WALLET_MAX:
+            return None
 
-        # Get top 5 addresses for links
-        top_5_addresses = [holder["address"] for holder in real_holders[:5] if holder["address"]]
-
-        # Return combined data
-        return {
-            "total_holders": total_holders,
-            "top_5_percentages": top_5,
-            "top_5_addresses": top_5_addresses,
-            "top_10_percentage": top_10_percentage,
-            "top_20_percentage": top_20_percentage
-        }
+        top_5 = top_5_percentages
 
         # Birdeye request for additional holder/trade info
         birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={token_mint}"
@@ -480,20 +473,30 @@ def fetch_token_holders(token_mint):
 
 
 def format_holders_message(holders_info):
-    """Format holders information for the message."""
+    """Format holders information into a readable message."""
     # Create top 5 percentages with embedded Solscan links
     top_5_links = []
     for percent, addr in zip(holders_info["top_5_percentages"], holders_info["top_5_addresses"]):
         top_5_links.append(f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>")
     top_5 = " | ".join(top_5_links)
     
+    makers_line = '├' if holders_info.get(
+        'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
+    makers_24h = (
+        f'└─ <b>24h Makers:</b> {holders_info.get("unique_wallet_24h", 0)}\n'
+        if holders_info.get('unique_wallet_1h')
+        != holders_info.get('unique_wallet_24h') else '')
     return (
         f"👥 <b>Holders</b>\n"
-        f"├─ <b>Total:</b> {holders_info['total_holders']}\n"
+        f"├─ <b>Total Holders:</b> {holders_info.get('total_holders', 0):,}\n"
         f"├─ <b>TH 10:</b> {holders_info['top_10_percentage']:.2f}%\n"
         f"├─ <b>TH 20:</b> {holders_info['top_20_percentage']:.2f}%\n"
         f"└─ <b>TH:</b> {top_5}\n\n"
-    )
+        f"🏧 <b>Trades 1h</b>\n"
+        f"└─ <b>🅣</b> {holders_info.get('trade_1h', 0)} | <b>🅑</b> {holders_info.get('buy_1h', 0)} | <b>🅢</b> {holders_info.get('sell_1h', 0)}\n\n"
+        f"🧑‍💻 <b>Makers</b>\n"
+        f"{makers_line}─ <b>1h Makers:</b> {holders_info.get('unique_wallet_1h', 0)}\n"
+        f"{makers_24h}\n")
 
 
 async def get_insider_data(mint_address):
