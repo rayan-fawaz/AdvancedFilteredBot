@@ -366,40 +366,42 @@ def fetch_unique_reply_makers(mint_address):
 
 
 def fetch_token_holders(token_mint):
-    """Fetch token holder count and distribution from Helius and Birdeye APIs."""
+    """Fetch token holder count and distribution from Birdeye API."""
     try:
-        # Get holder distribution from Helius
-        payload = {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "getTokenLargestAccounts",
-            "params": [token_mint]
+        # Get holder distribution from Birdeye
+        url = f"https://public-api.birdeye.so/defi/v3/token/holder?address={token_mint}&offset=0&limit=100"
+        headers = {
+            "accept": "application/json",
+            "x-chain": "solana",
+            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
         }
-        response = requests.post(HELIUS_RPC_URL, json=payload)
+        
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
-        holders = response.json().get("result", {}).get("value", [])
-
-        if not holders or len(holders) < 2:
+        data = response.json()
+        
+        if not data or 'data' not in data or 'items' not in data['data']:
             return None
             
-        # Extract top 5 holder addresses
-        top_5_addresses = [holder["address"] for holder in holders[:6] if holder["address"]]
-
-        # Calculate supply excluding bonding curve (first holder)
-        real_holders = holders[1:]  # Skip bonding curve
-        circulating_supply = sum(float(holder["amount"]) for holder in real_holders)
-        
-        if circulating_supply == 0:
+        holders = data['data']['items']
+        if not holders or len(holders) < 6:  # Need at least 6 holders for analysis
             return None
-
-        # Calculate percentages based on circulating supply
-        top_5_amounts = [float(holder["amount"]) for holder in real_holders[:5]]
-        top_5_percentages = [(amount / circulating_supply * 100) for amount in top_5_amounts]
-
+            
+        # Calculate total supply (1 billion base)
+        total_supply = 1_000_000_000
+        
+        # Calculate holder percentages
+        holder_amounts = [float(holder['amount']) for holder in holders[:6]]
+        holder_percentages = [(amount / total_supply * 100) for amount in holder_amounts]
+        
+        # Skip first holder (assumed bonding curve) and get next 5
+        top_5_percentages = holder_percentages[1:6]
+        top_5_addresses = [holder.get('owner') for holder in holders[1:6]]
+        
         # Check for minimum and maximum wallet percentage limits
         if max(top_5_percentages) > BIGGEST_WALLET_MAX or min(top_5_percentages) < 2.0:
             return None
-
+            
         top_5 = top_5_percentages
 
         # Birdeye request for additional holder/trade info
