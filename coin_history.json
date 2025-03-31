@@ -8819,35 +8819,35 @@
     "mint": "HRpNGCBHZV9M1PG94pQBKkskkL661VXozFfe9a1wpump",
     "name": "TransCoin",
     "symbol": "TRANSCOIN",
-    "market_cap": 8357.076230710802,
-    "total_bundles": 3,
-    "holding_percentage": 8.3905142431848,
+    "market_cap": 9793.517705914799,
+    "total_bundles": 7,
+    "holding_percentage": 17.9162639142945,
     "price_changes": {
-      "5m": 70.7,
-      "1h": 118.0,
-      "6h": 118.0,
-      "24h": 118.0
+      "5m": -8.29,
+      "1h": 162.0,
+      "6h": 162.0,
+      "24h": 162.0
     },
     "volumes": {
-      "5m": 3451.2,
-      "1h": 5754.74,
-      "6h": 5754.74,
-      "24h": 5754.74
+      "5m": 2319.95,
+      "1h": 24419.47,
+      "6h": 24419.47,
+      "24h": 24419.47
     },
-    "ath": 8898.139075095634,
-    "total_holders": 34,
+    "ath": 14634.020898986086,
+    "total_holders": 137,
     "trades_1h": {
-      "total": 126,
-      "buys": 86,
-      "sells": 40
+      "total": 622,
+      "buys": 372,
+      "sells": 250
     },
-    "makers_1h": 61,
-    "makers_24h": 61,
-    "timestamp": 1743397876.547445,
+    "makers_1h": 184,
+    "makers_24h": 184,
+    "timestamp": 1743400621.992623,
     "initial_price": 0,
-    "initial_market_cap": 8357.076230710802,
-    "prediction_score": 38.168318,
-    "prediction_confidence": 381.68318,
+    "initial_market_cap": 9793.517705914799,
+    "prediction_score": 73.548629,
+    "prediction_confidence": 735.48629,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
@@ -9038,6 +9038,120 @@
     "initial_market_cap": 7805.2047494848,
     "prediction_score": 55.519594,
     "prediction_confidence": 555.19594,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7oH17HiyM3bpkFsQKyE1Xc1fNyqYLtctVabZziSjpump": {
+    "mint": "7oH17HiyM3bpkFsQKyE1Xc1fNyqYLtctVabZziSjpump",
+    "name": "wut ",
+    "symbol": "wut",
+    "market_cap": 10374.078255375121,
+    "total_bundles": 21,
+    "holding_percentage": 26.5989943837474,
+    "price_changes": {
+      "5m": 64.11,
+      "1h": 162.0,
+      "6h": 162.0,
+      "24h": 162.0
+    },
+    "volumes": {
+      "5m": 6849.18,
+      "1h": 42213.49,
+      "6h": 42213.49,
+      "24h": 42213.49
+    },
+    "ath": 12502.071800246216,
+    "total_holders": 62,
+    "trades_1h": {
+      "total": 957,
+      "buys": 522,
+      "sells": 435
+    },
+    "makers_1h": 213,
+    "makers_24h": 213,
+    "timestamp": 1743400585.470922,
+    "initial_price": 0,
+    "initial_market_cap": 10374.078255375121,
+    "prediction_score": 80.654443,
+    "prediction_confidence": 806.5444299999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "pdYpF6W6afvt65gQikRjGwTwd4Zjnkj4fLgJYwkpump": {
+    "mint": "pdYpF6W6afvt65gQikRjGwTwd4Zjnkj4fLgJYwkpump",
+    "name": "AXSOL",
+    "symbol": "AXSOL",
+    "market_cap": 8935.554605749201,
+    "total_bundles": 27,
+    "holding_percentage": 4.9666424500533,
+    "price_changes": {
+      "5m": -44.22,
+      "1h": 152.0,
+      "6h": 152.0,
+      "24h": 152.0
+    },
+    "volumes": {
+      "5m": 8957.53,
+      "1h": 55247.83,
+      "6h": 55247.83,
+      "24h": 55247.83
+    },
+    "ath": 19292.1269856902,
+    "total_holders": 108,
+    "trades_1h": {
+      "total": 948,
+      "buys": 495,
+      "sells": 453
+    },
+    "makers_1h": 346,
+    "makers_24h": 346,
+    "timestamp": 1743400586.682635,
+    "initial_price": 0,
+    "initial_market_cap": 8935.554605749201,
+    "prediction_score": 93.72,
+    "prediction_confidence": 937.2,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "8Vviwk891uw8tWd2LhQZmuZ3bUejywNmdLnrLpt9pump": {
+    "mint": "8Vviwk891uw8tWd2LhQZmuZ3bUejywNmdLnrLpt9pump",
+    "name": "Kid Wif Cheese",
+    "symbol": "CHEESEKID",
+    "market_cap": 9421.083682787921,
+    "total_bundles": 15,
+    "holding_percentage": 24.6145980963243,
+    "price_changes": {
+      "5m": -29.47,
+      "1h": 123.0,
+      "6h": 123.0,
+      "24h": 123.0
+    },
+    "volumes": {
+      "5m": 11458.66,
+      "1h": 36022.94,
+      "6h": 36022.94,
+      "24h": 36022.94
+    },
+    "ath": 13242.819097181935,
+    "total_holders": 64,
+    "trades_1h": {
+      "total": 653,
+      "buys": 368,
+      "sells": 285
+    },
+    "makers_1h": 231,
+    "makers_24h": 231,
+    "timestamp": 1743400623.307659,
+    "initial_price": 0,
+    "initial_market_cap": 9421.083682787921,
+    "prediction_score": 74.428138,
+    "prediction_confidence": 744.28138,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
