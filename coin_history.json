@@ -8434,5 +8434,613 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "BJ1grW77wvtwxidTPZt6sc796SNxv6RxgFpEsAHupump": {
+    "mint": "BJ1grW77wvtwxidTPZt6sc796SNxv6RxgFpEsAHupump",
+    "name": "Titazoids",
+    "symbol": "Titazoids",
+    "market_cap": 11820.75087804468,
+    "total_bundles": 16,
+    "holding_percentage": 5.0283774546467,
+    "price_changes": {
+      "5m": -31.51,
+      "1h": 223.0,
+      "6h": 223.0,
+      "24h": 223.0
+    },
+    "volumes": {
+      "5m": 6665.76,
+      "1h": 38663.3,
+      "6h": 38663.3,
+      "24h": 38663.3
+    },
+    "ath": 19853.619759435307,
+    "total_holders": 140,
+    "trades_1h": {
+      "total": 1241,
+      "buys": 666,
+      "sells": 575
+    },
+    "makers_1h": 334,
+    "makers_24h": 334,
+    "timestamp": 1743395845.53899,
+    "initial_price": 0,
+    "initial_market_cap": 11820.75087804468,
+    "prediction_score": 91.56431,
+    "prediction_confidence": 915.6431000000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "GYBCn7wEKgn7XUV1w675EVLe6wGw6kj5UY5MYHqtpump": {
+    "mint": "GYBCn7wEKgn7XUV1w675EVLe6wGw6kj5UY5MYHqtpump",
+    "name": "Minedeck",
+    "symbol": "MINEDECK",
+    "market_cap": 19166.74061160573,
+    "total_bundles": 57,
+    "holding_percentage": 17.4600749748056,
+    "price_changes": {
+      "5m": 14.24,
+      "1h": 444.0,
+      "6h": 444.0,
+      "24h": 444.0
+    },
+    "volumes": {
+      "5m": 6565.91,
+      "1h": 122333.44,
+      "6h": 122333.44,
+      "24h": 122333.44
+    },
+    "ath": 32501.98334419607,
+    "total_holders": 258,
+    "trades_1h": {
+      "total": 2288,
+      "buys": 1286,
+      "sells": 1002
+    },
+    "makers_1h": 739,
+    "makers_24h": 739,
+    "timestamp": 1743395849.097392,
+    "initial_price": 0,
+    "initial_market_cap": 19166.74061160573,
+    "prediction_score": 108.0,
+    "prediction_confidence": 1080.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HQiisCPw8nDxBUQGRPc2pwtZryfoLEyJY3GqT1y9pump": {
+    "mint": "HQiisCPw8nDxBUQGRPc2pwtZryfoLEyJY3GqT1y9pump",
+    "name": "Just a Cheese Mona",
+    "symbol": "CheeseMona",
+    "market_cap": 8800.07705727579,
+    "total_bundles": 1,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 8.67,
+      "1h": 117.0,
+      "6h": 117.0,
+      "24h": 117.0
+    },
+    "volumes": {
+      "5m": 3209.22,
+      "1h": 13702.7,
+      "6h": 13702.7,
+      "24h": 13702.7
+    },
+    "ath": 8822.645039266168,
+    "total_holders": 50,
+    "trades_1h": {
+      "total": 1550,
+      "buys": 797,
+      "sells": 753
+    },
+    "makers_1h": 94,
+    "makers_24h": 94,
+    "timestamp": 1743395850.140642,
+    "initial_price": 0,
+    "initial_market_cap": 8800.07705727579,
+    "prediction_score": 61.33967,
+    "prediction_confidence": 613.3967,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3QKYgFsY39nYF7JZmNo5TfACoxDAVQSJpw3dJYzvpump": {
+    "mint": "3QKYgFsY39nYF7JZmNo5TfACoxDAVQSJpw3dJYzvpump",
+    "name": "PlayDohnald",
+    "symbol": "DOHNALD",
+    "market_cap": 16275.156210979381,
+    "total_bundles": 54,
+    "holding_percentage": 27.895439077528,
+    "price_changes": {
+      "5m": -28.8,
+      "1h": 246.0,
+      "6h": 246.0,
+      "24h": 246.0
+    },
+    "volumes": {
+      "5m": 5938.46,
+      "1h": 105351.08,
+      "6h": 105351.08,
+      "24h": 105351.08
+    },
+    "ath": 32613.432037634055,
+    "total_holders": 148,
+    "trades_1h": {
+      "total": 1490,
+      "buys": 846,
+      "sells": 644
+    },
+    "makers_1h": 455,
+    "makers_24h": 455,
+    "timestamp": 1743395855.588371,
+    "initial_price": 0,
+    "initial_market_cap": 16275.156210979381,
+    "prediction_score": 99.5,
+    "prediction_confidence": 994.9999999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Dnah3vFwaaVotS4pBeUL4YU3B1TQmM4R8nRudMoEpump": {
+    "mint": "Dnah3vFwaaVotS4pBeUL4YU3B1TQmM4R8nRudMoEpump",
+    "name": "MCPBerg",
+    "symbol": "mBerg",
+    "market_cap": 12059.178513800069,
+    "total_bundles": 11,
+    "holding_percentage": 6.8617633773876,
+    "price_changes": {
+      "5m": 115.0,
+      "1h": 121.0,
+      "6h": 237.0,
+      "24h": 237.0
+    },
+    "volumes": {
+      "5m": 4977.12,
+      "1h": 26828.28,
+      "6h": 29079.22,
+      "24h": 29079.22
+    },
+    "ath": 14577.95127219146,
+    "total_holders": 55,
+    "trades_1h": {
+      "total": 722,
+      "buys": 551,
+      "sells": 171
+    },
+    "makers_1h": 159,
+    "makers_24h": 172,
+    "timestamp": 1743396211.931281,
+    "initial_price": 0,
+    "initial_market_cap": 12059.178513800069,
+    "prediction_score": 65.48479599999999,
+    "prediction_confidence": 654.8479599999998,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "GFVyc2huYvGhvkvNHozhc9HZXKxc5ZKhYRBVG59Zpump": {
+    "mint": "GFVyc2huYvGhvkvNHozhc9HZXKxc5ZKhYRBVG59Zpump",
+    "name": "\u304b\u308f\u3044\u3044",
+    "symbol": "kawaifiy",
+    "market_cap": 19717.89152005283,
+    "total_bundles": 103,
+    "holding_percentage": 33.1931855196862,
+    "price_changes": {
+      "5m": 3.43,
+      "1h": 351.0,
+      "6h": 351.0,
+      "24h": 351.0
+    },
+    "volumes": {
+      "5m": 19807.66,
+      "1h": 140102.2,
+      "6h": 140102.2,
+      "24h": 140102.2
+    },
+    "ath": 41060.85800493765,
+    "total_holders": 241,
+    "trades_1h": {
+      "total": 2469,
+      "buys": 1368,
+      "sells": 1101
+    },
+    "makers_1h": 786,
+    "makers_24h": 786,
+    "timestamp": 1743396264.450558,
+    "initial_price": 0,
+    "initial_market_cap": 19717.89152005283,
+    "prediction_score": 108.35888,
+    "prediction_confidence": 1083.5888,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Vs26GUaKoj9DT1CWPiK44VQaCCrPisGG1CrEaGkpump": {
+    "mint": "Vs26GUaKoj9DT1CWPiK44VQaCCrPisGG1CrEaGkpump",
+    "name": "PlayDohnald",
+    "symbol": "DOHNALD",
+    "market_cap": 11165.23592085376,
+    "total_bundles": 4,
+    "holding_percentage": 24.3507074336691,
+    "price_changes": {
+      "5m": 87.65,
+      "1h": 102.0,
+      "6h": 102.0,
+      "24h": 102.0
+    },
+    "volumes": {
+      "5m": 14918.73,
+      "1h": 16300.75,
+      "6h": 16300.75,
+      "24h": 16300.75
+    },
+    "ath": 13424.6619371552,
+    "total_holders": 53,
+    "trades_1h": {
+      "total": 186,
+      "buys": 120,
+      "sells": 66
+    },
+    "makers_1h": 92,
+    "makers_24h": 92,
+    "timestamp": 1743396332.415942,
+    "initial_price": 0,
+    "initial_market_cap": 11165.23592085376,
+    "prediction_score": 48.825525,
+    "prediction_confidence": 488.25525,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "D722ELYMrc4ZY9bmiHDpUhjR59qM6HXBfCdeeW2apump": {
+    "mint": "D722ELYMrc4ZY9bmiHDpUhjR59qM6HXBfCdeeW2apump",
+    "name": "dih",
+    "symbol": "dih",
+    "market_cap": 9698.29789601491,
+    "total_bundles": 8,
+    "holding_percentage": 29.868636158557297,
+    "price_changes": {
+      "5m": 357.0,
+      "1h": 444.0,
+      "6h": 444.0,
+      "24h": 444.0
+    },
+    "volumes": {
+      "5m": 5092.35,
+      "1h": 8123.07,
+      "6h": 8123.07,
+      "24h": 8123.07
+    },
+    "ath": 28086.91253617221,
+    "total_holders": 74,
+    "trades_1h": {
+      "total": 412,
+      "buys": 241,
+      "sells": 171
+    },
+    "makers_1h": 100,
+    "makers_24h": 100,
+    "timestamp": 1743396371.851705,
+    "initial_price": 0,
+    "initial_market_cap": 9698.29789601491,
+    "prediction_score": 50.116149,
+    "prediction_confidence": 501.16148999999996,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "FyrmsqqvRjyejvndLFvZKsPco7EX39uMC4HZUahzpump": {
+    "mint": "FyrmsqqvRjyejvndLFvZKsPco7EX39uMC4HZUahzpump",
+    "name": "schizification",
+    "symbol": "schiz",
+    "market_cap": 10274.12608253977,
+    "total_bundles": 7,
+    "holding_percentage": 8.7684919303589,
+    "price_changes": {
+      "5m": 24.2,
+      "1h": 135.0,
+      "6h": 135.0,
+      "24h": 135.0
+    },
+    "volumes": {
+      "5m": 4997.28,
+      "1h": 13090.45,
+      "6h": 13090.45,
+      "24h": 13090.45
+    },
+    "ath": 10254.939992261483,
+    "total_holders": 46,
+    "trades_1h": {
+      "total": 349,
+      "buys": 183,
+      "sells": 166
+    },
+    "makers_1h": 116,
+    "makers_24h": 116,
+    "timestamp": 1743396938.708657,
+    "initial_price": 0,
+    "initial_market_cap": 10274.12608253977,
+    "prediction_score": 48.148315,
+    "prediction_confidence": 481.48314999999997,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "FVESvsfpgi9uWzXqbVCV8tPb4jboQdKTmmWJBb5tpump": {
+    "mint": "FVESvsfpgi9uWzXqbVCV8tPb4jboQdKTmmWJBb5tpump",
+    "name": "Cheesius Maximus",
+    "symbol": "CM",
+    "market_cap": 9370.167501758151,
+    "total_bundles": 5,
+    "holding_percentage": 2.7742731237741998,
+    "price_changes": {
+      "5m": 36.8,
+      "1h": 147.0,
+      "6h": 147.0,
+      "24h": 147.0
+    },
+    "volumes": {
+      "5m": 3776.09,
+      "1h": 22098.3,
+      "6h": 22098.3,
+      "24h": 22098.3
+    },
+    "ath": 12075.732965015519,
+    "total_holders": 58,
+    "trades_1h": {
+      "total": 410,
+      "buys": 236,
+      "sells": 174
+    },
+    "makers_1h": 175,
+    "makers_24h": 175,
+    "timestamp": 1743397773.360294,
+    "initial_price": 0,
+    "initial_market_cap": 9370.167501758151,
+    "prediction_score": 57.868809999999996,
+    "prediction_confidence": 578.6881,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HRpNGCBHZV9M1PG94pQBKkskkL661VXozFfe9a1wpump": {
+    "mint": "HRpNGCBHZV9M1PG94pQBKkskkL661VXozFfe9a1wpump",
+    "name": "TransCoin",
+    "symbol": "TRANSCOIN",
+    "market_cap": 8357.076230710802,
+    "total_bundles": 3,
+    "holding_percentage": 8.3905142431848,
+    "price_changes": {
+      "5m": 70.7,
+      "1h": 118.0,
+      "6h": 118.0,
+      "24h": 118.0
+    },
+    "volumes": {
+      "5m": 3451.2,
+      "1h": 5754.74,
+      "6h": 5754.74,
+      "24h": 5754.74
+    },
+    "ath": 8898.139075095634,
+    "total_holders": 34,
+    "trades_1h": {
+      "total": 126,
+      "buys": 86,
+      "sells": 40
+    },
+    "makers_1h": 61,
+    "makers_24h": 61,
+    "timestamp": 1743397876.547445,
+    "initial_price": 0,
+    "initial_market_cap": 8357.076230710802,
+    "prediction_score": 38.168318,
+    "prediction_confidence": 381.68318,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "97HvqqrAsRmadrtpKgAyfv71EZuZSMDDhqCn4pk5pump": {
+    "mint": "97HvqqrAsRmadrtpKgAyfv71EZuZSMDDhqCn4pk5pump",
+    "name": "Dogfication",
+    "symbol": "Dogficated",
+    "market_cap": 7517.123116806901,
+    "total_bundles": 1,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 78.9,
+      "1h": 96.77,
+      "6h": 96.77,
+      "24h": 96.77
+    },
+    "volumes": {
+      "5m": 3011.18,
+      "1h": 6591.09,
+      "6h": 6591.09,
+      "24h": 6591.09
+    },
+    "ath": 7913.611131400048,
+    "total_holders": 27,
+    "trades_1h": {
+      "total": 154,
+      "buys": 100,
+      "sells": 54
+    },
+    "makers_1h": 49,
+    "makers_24h": 49,
+    "timestamp": 1743397933.208915,
+    "initial_price": 0,
+    "initial_market_cap": 7517.123116806901,
+    "prediction_score": 36.990603,
+    "prediction_confidence": 369.90603000000004,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HM1XKj1PRAE44qh9rxb98Fujm4PioCHCqyqmWSFSpump": {
+    "mint": "HM1XKj1PRAE44qh9rxb98Fujm4PioCHCqyqmWSFSpump",
+    "name": "BLACKPINK",
+    "symbol": "KNIGGA",
+    "market_cap": 21240.081366884013,
+    "total_bundles": 31,
+    "holding_percentage": 5.5422596660588,
+    "price_changes": {
+      "5m": 74.64,
+      "1h": -61.39,
+      "6h": -61.39,
+      "24h": -61.39
+    },
+    "volumes": {
+      "5m": 6770.18,
+      "1h": 116872.35,
+      "6h": 116872.35,
+      "24h": 116872.35
+    },
+    "ath": 65677.58202009716,
+    "total_holders": 329,
+    "trades_1h": {
+      "total": 3371,
+      "buys": 1838,
+      "sells": 1533
+    },
+    "makers_1h": 1117,
+    "makers_24h": 1121,
+    "timestamp": 1743398023.027061,
+    "initial_price": 0,
+    "initial_market_cap": 21240.081366884013,
+    "prediction_score": 67.6525,
+    "prediction_confidence": 676.525,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "VU7hG4bQKydkViAu2Rx7JG1dQ6Fj8YwK16pPiXdpump": {
+    "mint": "VU7hG4bQKydkViAu2Rx7JG1dQ6Fj8YwK16pPiXdpump",
+    "name": "Trump Wif Cheese",
+    "symbol": "Trumpeese",
+    "market_cap": 7757.00431125438,
+    "total_bundles": 10,
+    "holding_percentage": 10.0333121867826,
+    "price_changes": {
+      "5m": 19.35,
+      "1h": 89.25,
+      "6h": 89.25,
+      "24h": 89.25
+    },
+    "volumes": {
+      "5m": 2524.2,
+      "1h": 15163.06,
+      "6h": 15163.06,
+      "24h": 15163.06
+    },
+    "ath": 10341.931944395901,
+    "total_holders": 61,
+    "trades_1h": {
+      "total": 248,
+      "buys": 158,
+      "sells": 90
+    },
+    "makers_1h": 133,
+    "makers_24h": 133,
+    "timestamp": 1743398553.273428,
+    "initial_price": 0,
+    "initial_market_cap": 7757.00431125438,
+    "prediction_score": 48.150602,
+    "prediction_confidence": 481.50602,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7gPPytv8yzDQoAKxTQzHaKzzJLEXDTcwmAo8GEbcpump": {
+    "mint": "7gPPytv8yzDQoAKxTQzHaKzzJLEXDTcwmAo8GEbcpump",
+    "name": "cheese pain",
+    "symbol": "cheesepain",
+    "market_cap": 9076.19277624736,
+    "total_bundles": 1,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 18.68,
+      "1h": 145.0,
+      "6h": 145.0,
+      "24h": 145.0
+    },
+    "volumes": {
+      "5m": 4296.13,
+      "1h": 9400.24,
+      "6h": 9400.24,
+      "24h": 9400.24
+    },
+    "ath": 10648.651390489098,
+    "total_holders": 66,
+    "trades_1h": {
+      "total": 402,
+      "buys": 233,
+      "sells": 169
+    },
+    "makers_1h": 119,
+    "makers_24h": 119,
+    "timestamp": 1743398611.378784,
+    "initial_price": 0,
+    "initial_market_cap": 9076.19277624736,
+    "prediction_score": 50.716828,
+    "prediction_confidence": 507.16828,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "BZsDt8AprbcN6ezEpRpqw2k6ZUtzBEQxmKQ9XTRMpump": {
+    "mint": "BZsDt8AprbcN6ezEpRpqw2k6ZUtzBEQxmKQ9XTRMpump",
+    "name": "Lil Grok",
+    "symbol": "LilGrok",
+    "market_cap": 7805.2047494848,
+    "total_bundles": 2,
+    "holding_percentage": 2.2041178075179,
+    "price_changes": {
+      "5m": 10.71,
+      "1h": 119.0,
+      "6h": 119.0,
+      "24h": 119.0
+    },
+    "volumes": {
+      "5m": 2315.04,
+      "1h": 10008.02,
+      "6h": 10008.02,
+      "24h": 10008.02
+    },
+    "ath": 8168.678664948963,
+    "total_holders": 44,
+    "trades_1h": {
+      "total": 983,
+      "buys": 519,
+      "sells": 464
+    },
+    "makers_1h": 85,
+    "makers_24h": 85,
+    "timestamp": 1743398739.856369,
+    "initial_price": 0,
+    "initial_market_cap": 7805.2047494848,
+    "prediction_score": 55.519594,
+    "prediction_confidence": 555.19594,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
