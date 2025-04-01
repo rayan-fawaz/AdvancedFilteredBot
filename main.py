@@ -658,8 +658,12 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     minutes_old = get_minutes_since_creation(coin.get('created_timestamp', 0))
     time_ago = format_time_ago(minutes_old)
 
+    # Get bond status from trench
+    bond_status = "🟢 BONDED" if trench_data.get('bonded', False) else "🔴 NOT BONDED"
+    
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
+        f"🔒 <b>Bond Status:</b> {bond_status}\n"
         f"💰 <b>Market Cap:</b>${coin['usd_market_cap']:,.2f}\n"
         f"📈 <b>ATH:</b> ${dex_data.get('ath_price', 0):,.2f}\n"
         f"⏰ <b>Age:</b> {time_ago}\n"
