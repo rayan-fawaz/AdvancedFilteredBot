@@ -9422,5 +9422,271 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "3xuzzpZRvV45yhNk4YF1StAaGZihGJdNKg2PcAJ8pump": {
+    "mint": "3xuzzpZRvV45yhNk4YF1StAaGZihGJdNKg2PcAJ8pump",
+    "name": "Pwiests",
+    "symbol": "Pwiests",
+    "market_cap": 11323.38497771845,
+    "total_bundles": 9,
+    "holding_percentage": 4.1368806556563,
+    "price_changes": {
+      "5m": -8.91,
+      "1h": 201.0,
+      "6h": 201.0,
+      "24h": 201.0
+    },
+    "volumes": {
+      "5m": 2116.21,
+      "1h": 29086.54,
+      "6h": 29086.54,
+      "24h": 29086.54
+    },
+    "ath": 12801.175700422378,
+    "total_holders": 82,
+    "trades_1h": {
+      "total": 1448,
+      "buys": 770,
+      "sells": 678
+    },
+    "makers_1h": 221,
+    "makers_24h": 221,
+    "timestamp": 1743490130.449883,
+    "initial_price": 0,
+    "initial_market_cap": 11323.38497771845,
+    "prediction_score": 76.610578,
+    "prediction_confidence": 766.10578,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "8TFhQajG9yEjdZfT7tcivTJnqi5o4CWA8CsaD65jpump": {
+    "mint": "8TFhQajG9yEjdZfT7tcivTJnqi5o4CWA8CsaD65jpump",
+    "name": "Pumpverbs 7:77",
+    "symbol": "HOLYPUMP",
+    "market_cap": 9888.242332615011,
+    "total_bundles": 11,
+    "holding_percentage": 5.774261700491199,
+    "price_changes": {
+      "5m": 1.05,
+      "1h": 175.0,
+      "6h": 175.0,
+      "24h": 175.0
+    },
+    "volumes": {
+      "5m": 8608.93,
+      "1h": 29764.1,
+      "6h": 29764.1,
+      "24h": 29764.1
+    },
+    "ath": 13036.809265967759,
+    "total_holders": 92,
+    "trades_1h": {
+      "total": 670,
+      "buys": 385,
+      "sells": 285
+    },
+    "makers_1h": 208,
+    "makers_24h": 208,
+    "timestamp": 1743490136.217568,
+    "initial_price": 0,
+    "initial_market_cap": 9888.242332615011,
+    "prediction_score": 71.38486999999999,
+    "prediction_confidence": 713.8487,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "FrxeHJqkXAj45gjJcUaZ7rtjpFnQp47V2W4xRcgnYcvY": {
+    "mint": "FrxeHJqkXAj45gjJcUaZ7rtjpFnQp47V2W4xRcgnYcvY",
+    "name": "FIRST POLAR SPACESHIP",
+    "symbol": "DRAGON",
+    "market_cap": 19538.51137925323,
+    "total_bundles": 23,
+    "holding_percentage": 22.0408525345834,
+    "price_changes": {
+      "5m": 36.2,
+      "1h": 292.0,
+      "6h": 292.0,
+      "24h": 292.0
+    },
+    "volumes": {
+      "5m": 7476.5,
+      "1h": 61757.42,
+      "6h": 61757.42,
+      "24h": 61757.42
+    },
+    "ath": 25131.886973827975,
+    "total_holders": 105,
+    "trades_1h": {
+      "total": 778,
+      "buys": 443,
+      "sells": 335
+    },
+    "makers_1h": 308,
+    "makers_24h": 308,
+    "timestamp": 1743490141.416928,
+    "initial_price": 0,
+    "initial_market_cap": 19538.51137925323,
+    "prediction_score": 91.795,
+    "prediction_confidence": 917.95,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "9ynCh45PBXonNveLEdNEUZ6pihaYrxUYxXnMZYzpump": {
+    "mint": "9ynCh45PBXonNveLEdNEUZ6pihaYrxUYxXnMZYzpump",
+    "name": "Surah Al-Imran (3:77)",
+    "symbol": "OATH",
+    "market_cap": 16553.91169250546,
+    "total_bundles": 11,
+    "holding_percentage": 2.652808461353,
+    "price_changes": {
+      "5m": 32.95,
+      "1h": 390.0,
+      "6h": 390.0,
+      "24h": 390.0
+    },
+    "volumes": {
+      "5m": 2264.51,
+      "1h": 27909.01,
+      "6h": 27909.01,
+      "24h": 27909.01
+    },
+    "ath": 22211.338330411676,
+    "total_holders": 110,
+    "trades_1h": {
+      "total": 1005,
+      "buys": 578,
+      "sells": 427
+    },
+    "makers_1h": 239,
+    "makers_24h": 239,
+    "timestamp": 1743490148.890772,
+    "initial_price": 0,
+    "initial_market_cap": 16553.91169250546,
+    "prediction_score": 80.286307,
+    "prediction_confidence": 802.8630699999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "5J8LSTSqedq5T2oZp9YtToLavHg8ENsutQwMZG2upump": {
+    "mint": "5J8LSTSqedq5T2oZp9YtToLavHg8ENsutQwMZG2upump",
+    "name": "bracoin",
+    "symbol": "bracoin",
+    "market_cap": 23322.49583392638,
+    "total_bundles": 7,
+    "holding_percentage": 14.536436467400701,
+    "price_changes": {
+      "5m": -2.0,
+      "1h": 180.0,
+      "6h": 547.0,
+      "24h": 547.0
+    },
+    "volumes": {
+      "5m": 339.51,
+      "1h": 16486.71,
+      "6h": 25509.32,
+      "24h": 25509.32
+    },
+    "ath": 26981.09817898474,
+    "total_holders": 73,
+    "trades_1h": {
+      "total": 773,
+      "buys": 424,
+      "sells": 349
+    },
+    "makers_1h": 97,
+    "makers_24h": 157,
+    "timestamp": 1743490150.687471,
+    "initial_price": 0,
+    "initial_market_cap": 23322.49583392638,
+    "prediction_score": 60.26069699999999,
+    "prediction_confidence": 602.6069699999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "78vjPzHSbZktzYgtHxKunAMPeo2uLsXSENnvt2opump": {
+    "mint": "78vjPzHSbZktzYgtHxKunAMPeo2uLsXSENnvt2opump",
+    "name": "First Cabal",
+    "symbol": "Disciples",
+    "market_cap": 7767.3826824239095,
+    "total_bundles": 5,
+    "holding_percentage": 15.839541371260198,
+    "price_changes": {
+      "5m": 20.03,
+      "1h": 99.94,
+      "6h": 99.94,
+      "24h": 99.94
+    },
+    "volumes": {
+      "5m": 1420.21,
+      "1h": 16480.58,
+      "6h": 16480.58,
+      "24h": 16480.58
+    },
+    "ath": 14996.573179668398,
+    "total_holders": 40,
+    "trades_1h": {
+      "total": 240,
+      "buys": 144,
+      "sells": 96
+    },
+    "makers_1h": 103,
+    "makers_24h": 103,
+    "timestamp": 1743490183.171338,
+    "initial_price": 0,
+    "initial_market_cap": 7767.3826824239095,
+    "prediction_score": 47.121406,
+    "prediction_confidence": 471.21405999999996,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "H3VSTCZq666qEUXKMsL9uE8fagmtmEpuunbCBS4zpump": {
+    "mint": "H3VSTCZq666qEUXKMsL9uE8fagmtmEpuunbCBS4zpump",
+    "name": "AllahCoin",
+    "symbol": "AllahCoin",
+    "market_cap": 22110.589223688417,
+    "total_bundles": 23,
+    "holding_percentage": 9.3180399425796,
+    "price_changes": {
+      "5m": 7.53,
+      "1h": 205.0,
+      "6h": 495.0,
+      "24h": 495.0
+    },
+    "volumes": {
+      "5m": 4011.1,
+      "1h": 46500.2,
+      "6h": 119432.28,
+      "24h": 119432.28
+    },
+    "ath": 31242.705170103094,
+    "total_holders": 143,
+    "trades_1h": {
+      "total": 2040,
+      "buys": 1063,
+      "sells": 977
+    },
+    "makers_1h": 219,
+    "makers_24h": 524,
+    "timestamp": 1743490188.640719,
+    "initial_price": 0,
+    "initial_market_cap": 22110.589223688417,
+    "prediction_score": 98.42514,
+    "prediction_confidence": 984.2514,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
