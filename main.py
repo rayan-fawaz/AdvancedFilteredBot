@@ -463,15 +463,15 @@ async def get_wallet_pnl(wallet_address):
         logging.info(f"Making PNL request to: {url}")
         response = requests.get(url, timeout=10)
         logging.info(f"PNL Response status: {response.status_code}")
-        logging.info(f"PNL Response content: {response.text[:500]}")  # Log first 500 chars
         if response.status_code == 200:
             data = response.json()
-            result = {
-                'total': data.get('summary', {}).get('total', 0),
-                'winPercentage': data.get('summary', {}).get('winPercentage', 0)
-            }
-            logging.info(f"Extracted PNL data: {result}")
-            return result
+            if 'summary' in data:
+                result = {
+                    'total': float(data['summary']['total']),
+                    'winPercentage': float(data['summary']['winPercentage'])
+                }
+                logging.info(f"Extracted PNL data: {result}")
+                return result
     except Exception as e:
         logging.error(f"Error fetching PnL data: {e}")
     return {'total': 0, 'winPercentage': 0}
