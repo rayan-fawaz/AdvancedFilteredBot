@@ -460,13 +460,18 @@ async def get_wallet_pnl(wallet_address):
     """Get PnL data for a wallet from Solana Tracker API."""
     try:
         url = f"https://mainnet.solanatracker.io/pnl/{wallet_address}"
+        logging.info(f"Making PNL request to: {url}")
         response = requests.get(url, timeout=10)
+        logging.info(f"PNL Response status: {response.status_code}")
+        logging.info(f"PNL Response content: {response.text[:500]}")  # Log first 500 chars
         if response.status_code == 200:
             data = response.json()
-            return {
+            result = {
                 'total': data.get('summary', {}).get('total', 0),
                 'winPercentage': data.get('summary', {}).get('winPercentage', 0)
             }
+            logging.info(f"Extracted PNL data: {result}")
+            return result
     except Exception as e:
         logging.error(f"Error fetching PnL data: {e}")
     return {'total': 0, 'winPercentage': 0}
