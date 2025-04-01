@@ -460,28 +460,31 @@ async def get_wallet_pnl(wallet_address):
     """Get PnL data for a wallet from Solana Tracker API."""
     try:
         url = f"https://mainnet.solanatracker.io/pnl/{wallet_address}"
-        logging.info(f"Making PNL request to: {url}")
-        
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'application/json'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Origin': 'https://mainnet.solanatracker.io',
+            'Referer': 'https://mainnet.solanatracker.io/',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache'
         }
         
-        response = requests.get(url, headers=headers, timeout=10)
-        logging.info(f"PNL Response status: {response.status_code}")
-        logging.info(f"PNL Response headers: {dict(response.headers)}")
-        logging.info(f"PNL Response content: {response.text[:1000]}")  # Show first 1000 chars
+        session = requests.Session()
+        response = session.get(url, headers=headers, timeout=15)
         
         if response.status_code == 200:
             data = response.json()
-            logging.info(f"Parsed JSON data: {data}")
             if 'summary' in data:
-                result = {
+                return {
                     'total': float(data['summary']['total']),
                     'winPercentage': float(data['summary']['winPercentage'])
                 }
-                logging.info(f"Extracted PNL data: {result}")
-                return result
+    except Exception as e:
+        logging.error(f"Error fetching PnL data: {e}")
     except Exception as e:
         logging.error(f"Error fetching PnL data: {e}")
     return {'total': 0, 'winPercentage': 0}
