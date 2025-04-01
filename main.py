@@ -457,28 +457,7 @@ def fetch_token_holders(token_mint):
 
 
 async def get_wallet_pnl(wallet_address):
-    """Get PnL data for a wallet from Birdeye API."""
-    try:
-        url = f"https://public-api.birdeye.so/defi/wallet_performance?wallet={wallet_address}&time_from=0"
-        headers = {
-            "x-api-key": "114f18a5eb5e4d51a9ac7c6100dfe756",
-            "x-chain": "solana"
-        }
-        
-        response = requests.get(url, headers=headers, timeout=15)
-        if response.status_code == 200:
-            data = response.json()
-            if 'data' in data:
-                total_pnl = data['data'].get('total_pnl_dollar', 0)
-                trades = data['data'].get('total_trades', 0)
-                wins = data['data'].get('win_trades', 0)
-                win_percentage = (wins / trades * 100) if trades > 0 else 0
-                return {
-                    'total': float(total_pnl),
-                    'winPercentage': float(win_percentage)
-                }
-    except Exception as e:
-        logging.error(f"Error fetching PnL data: {e}")
+    """Placeholder for PnL data - not available via public APIs."""
     return {'total': 0, 'winPercentage': 0}
 
 async def format_holders_message(holders_info):
@@ -486,11 +465,8 @@ async def format_holders_message(holders_info):
     # Create top 5 percentages with embedded Solscan links and PnL data
     top_5_links = []
     for percent, addr in zip(holders_info["top_5_percentages"], holders_info["top_5_addresses"]):
-        pnl_data = await get_wallet_pnl(addr)
         top_5_links.append(
-            f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>\n"
-            f"   ├─ Total PnL: ${pnl_data['total']:,.2f}\n"
-            f"   └─ Win Rate: {pnl_data['winPercentage']:.1f}%"
+            f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>"
         )
     top_5 = "\n".join(top_5_links)
 
