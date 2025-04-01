@@ -456,13 +456,33 @@ def fetch_token_holders(token_mint):
         return None
 
 
+async def get_wallet_pnl(wallet_address):
+    """Get PnL data for a wallet from Solana Tracker API."""
+    try:
+        url = f"https://mainnet.solanatracker.io/api/v1/wallet/{wallet_address}/pnl"
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            return {
+                'total': data.get('summary', {}).get('total', 0),
+                'winPercentage': data.get('summary', {}).get('winPercentage', 0)
+            }
+    except Exception as e:
+        logging.error(f"Error fetching PnL data: {e}")
+    return {'total': 0, 'winPercentage': 0}
+
 def format_holders_message(holders_info):
     """Format holders information into a readable message."""
-    # Create top 5 percentages with embedded Solscan links
+    # Create top 5 percentages with embedded Solscan links and PnL data
     top_5_links = []
     for percent, addr in zip(holders_info["top_5_percentages"], holders_info["top_5_addresses"]):
-        top_5_links.append(f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>")
-    top_5 = " | ".join(top_5_links)
+        pnl_data = asyncio.run(get_wallet_pnl(addr))
+        top_5_links.append(
+            f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>\n"
+            f"   ├─ Total PnL: ${pnl_data['total']:,.2f}\n"
+            f"   └─ Win Rate: {pnl_data['winPercentage']:.1f}%"
+        )
+    top_5 = "\n".join(top_5_links)
 
     makers_line = '├' if holders_info.get(
         'unique_wallet_1h') != holders_info.get('unique_wallet_24h') else '└'
