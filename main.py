@@ -457,34 +457,26 @@ def fetch_token_holders(token_mint):
 
 
 async def get_wallet_pnl(wallet_address):
-    """Get PnL data for a wallet from Solana Tracker API."""
+    """Get PnL data for a wallet from Birdeye API."""
     try:
-        url = f"https://mainnet.solanatracker.io/pnl/{wallet_address}"
+        url = f"https://public-api.birdeye.so/defi/wallet_performance?wallet={wallet_address}&time_from=0"
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-            'Accept': 'application/json, text/plain, */*',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Origin': 'https://mainnet.solanatracker.io',
-            'Referer': 'https://mainnet.solanatracker.io/',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-origin',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache'
+            "x-api-key": "114f18a5eb5e4d51a9ac7c6100dfe756",
+            "x-chain": "solana"
         }
         
-        session = requests.Session()
-        response = session.get(url, headers=headers, timeout=15)
-        
+        response = requests.get(url, headers=headers, timeout=15)
         if response.status_code == 200:
             data = response.json()
-            if 'summary' in data:
+            if 'data' in data:
+                total_pnl = data['data'].get('total_pnl_dollar', 0)
+                trades = data['data'].get('total_trades', 0)
+                wins = data['data'].get('win_trades', 0)
+                win_percentage = (wins / trades * 100) if trades > 0 else 0
                 return {
-                    'total': float(data['summary']['total']),
-                    'winPercentage': float(data['summary']['winPercentage'])
+                    'total': float(total_pnl),
+                    'winPercentage': float(win_percentage)
                 }
-    except Exception as e:
-        logging.error(f"Error fetching PnL data: {e}")
     except Exception as e:
         logging.error(f"Error fetching PnL data: {e}")
     return {'total': 0, 'winPercentage': 0}
