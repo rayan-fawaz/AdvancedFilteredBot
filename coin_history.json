@@ -9004,5 +9004,119 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "CMTt2D6AVzx5qk8cATfmjkA3zZHwgtV15eZcXYKGpump": {
+    "mint": "CMTt2D6AVzx5qk8cATfmjkA3zZHwgtV15eZcXYKGpump",
+    "name": "pweazoid",
+    "symbol": "pweazoid",
+    "market_cap": 10290.06764622405,
+    "total_bundles": 2,
+    "holding_percentage": 2.5541521360521,
+    "price_changes": {
+      "5m": -1.79,
+      "1h": 161.0,
+      "6h": 161.0,
+      "24h": 161.0
+    },
+    "volumes": {
+      "5m": 2246.45,
+      "1h": 17059.47,
+      "6h": 17059.47,
+      "24h": 17059.47
+    },
+    "ath": 10821.467799662647,
+    "total_holders": 65,
+    "trades_1h": {
+      "total": 1305,
+      "buys": 692,
+      "sells": 613
+    },
+    "makers_1h": 131,
+    "makers_24h": 131,
+    "timestamp": 1743480892.224394,
+    "initial_price": 0,
+    "initial_market_cap": 10290.06764622405,
+    "prediction_score": 64.066629,
+    "prediction_confidence": 640.6662900000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "CW1Jc3ZBgbpwJq8axnPN5wv6NmWeL9V5jgxzoM9ipump": {
+    "mint": "CW1Jc3ZBgbpwJq8axnPN5wv6NmWeL9V5jgxzoM9ipump",
+    "name": "Biggest April Fools Joke",
+    "symbol": "My Life",
+    "market_cap": 17498.26232082108,
+    "total_bundles": 6,
+    "holding_percentage": 21.8353904470945,
+    "price_changes": {
+      "5m": 173.0,
+      "1h": 319.0,
+      "6h": 319.0,
+      "24h": 319.0
+    },
+    "volumes": {
+      "5m": 9535.65,
+      "1h": 16682.0,
+      "6h": 16682.0,
+      "24h": 16682.0
+    },
+    "ath": 18168.33338389734,
+    "total_holders": 82,
+    "trades_1h": {
+      "total": 314,
+      "buys": 196,
+      "sells": 118
+    },
+    "makers_1h": 161,
+    "makers_24h": 161,
+    "timestamp": 1743480894.958742,
+    "initial_price": 0,
+    "initial_market_cap": 17498.26232082108,
+    "prediction_score": 58.511979999999994,
+    "prediction_confidence": 585.1197999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HQhsuTYcDVD6CSY42dX1W5BHYEYkvriN8PmNoQHkpump": {
+    "mint": "HQhsuTYcDVD6CSY42dX1W5BHYEYkvriN8PmNoQHkpump",
+    "name": "Religion of Fool",
+    "symbol": "FOOLISM",
+    "market_cap": 9081.785177443619,
+    "total_bundles": 7,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 32.05,
+      "1h": 150.0,
+      "6h": 150.0,
+      "24h": 150.0
+    },
+    "volumes": {
+      "5m": 1917.73,
+      "1h": 27468.02,
+      "6h": 27468.02,
+      "24h": 27468.02
+    },
+    "ath": 13330.982424631306,
+    "total_holders": 46,
+    "trades_1h": {
+      "total": 2403,
+      "buys": 1244,
+      "sells": 1159
+    },
+    "makers_1h": 161,
+    "makers_24h": 161,
+    "timestamp": 1743480942.77726,
+    "initial_price": 0,
+    "initial_market_cap": 9081.785177443619,
+    "prediction_score": 70.977614,
+    "prediction_confidence": 709.77614,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
