@@ -471,12 +471,12 @@ async def get_wallet_pnl(wallet_address):
         logging.error(f"Error fetching PnL data: {e}")
     return {'total': 0, 'winPercentage': 0}
 
-def format_holders_message(holders_info):
+async def format_holders_message(holders_info):
     """Format holders information into a readable message."""
     # Create top 5 percentages with embedded Solscan links and PnL data
     top_5_links = []
     for percent, addr in zip(holders_info["top_5_percentages"], holders_info["top_5_addresses"]):
-        pnl_data = asyncio.run(get_wallet_pnl(addr))
+        pnl_data = await get_wallet_pnl(addr)
         top_5_links.append(
             f"<a href='https://solscan.io/account/{addr}'>{percent:.2f}%</a>\n"
             f"   ├─ Total PnL: ${pnl_data['total']:,.2f}\n"
@@ -694,7 +694,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"{price_text}"
         f"{volume_text}"
         f"💬 <b>Replies:</b> {reply_count} | <b>Reply Makers:</b> {unique_reply_makers}\n\n"
-        f"{format_holders_message(holders_info)}"
+        f"{await format_holders_message(holders_info)}"
         f"🔗 <a href='{pumpfun_link}'>PF</a> | "
         f"📊 <a href='{bullx_link}'>NEO</a>\n\n"
 
