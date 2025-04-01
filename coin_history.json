@@ -9118,5 +9118,119 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "XTwBP5MSQ7675qjjpQUbBBX2boQpFEwb6Zqt843pump": {
+    "mint": "XTwBP5MSQ7675qjjpQUbBBX2boQpFEwb6Zqt843pump",
+    "name": "Aperil by ChatGPT",
+    "symbol": "APERIL",
+    "market_cap": 8845.704448729399,
+    "total_bundles": 5,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 19.82,
+      "1h": 142.0,
+      "6h": 142.0,
+      "24h": 142.0
+    },
+    "volumes": {
+      "5m": 1653.08,
+      "1h": 13162.66,
+      "6h": 13162.66,
+      "24h": 13162.66
+    },
+    "ath": 8869.58353291382,
+    "total_holders": 47,
+    "trades_1h": {
+      "total": 503,
+      "buys": 281,
+      "sells": 222
+    },
+    "makers_1h": 132,
+    "makers_24h": 132,
+    "timestamp": 1743485990.597601,
+    "initial_price": 0,
+    "initial_market_cap": 8845.704448729399,
+    "prediction_score": 50.633862,
+    "prediction_confidence": 506.33862,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "5AB8JNJCMpGBcfgDHsT2NinNciephhTRWQzX5ThWpump": {
+    "mint": "5AB8JNJCMpGBcfgDHsT2NinNciephhTRWQzX5ThWpump",
+    "name": "APEril",
+    "symbol": "APEril",
+    "market_cap": 12079.916274503079,
+    "total_bundles": 20,
+    "holding_percentage": 4.4773629473256,
+    "price_changes": {
+      "5m": 17.2,
+      "1h": 114.0,
+      "6h": 202.0,
+      "24h": 202.0
+    },
+    "volumes": {
+      "5m": 909.71,
+      "1h": 31936.16,
+      "6h": 49652.27,
+      "24h": 49652.27
+    },
+    "ath": 13562.182161100012,
+    "total_holders": 66,
+    "trades_1h": {
+      "total": 423,
+      "buys": 250,
+      "sells": 173
+    },
+    "makers_1h": 137,
+    "makers_24h": 211,
+    "timestamp": 1743485995.384094,
+    "initial_price": 0,
+    "initial_market_cap": 12079.916274503079,
+    "prediction_score": 65.950312,
+    "prediction_confidence": 659.50312,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "EeznZ9c6TkLyx8uuJP3WmPLti7MY5cJjYmQxD8uqpump": {
+    "mint": "EeznZ9c6TkLyx8uuJP3WmPLti7MY5cJjYmQxD8uqpump",
+    "name": "Addicted To Memes",
+    "symbol": "ATM",
+    "market_cap": 16545.48125747827,
+    "total_bundles": 28,
+    "holding_percentage": 26.966959154527597,
+    "price_changes": {
+      "5m": -38.26,
+      "1h": 316.0,
+      "6h": 316.0,
+      "24h": 316.0
+    },
+    "volumes": {
+      "5m": 16199.2,
+      "1h": 41658.9,
+      "6h": 41658.9,
+      "24h": 41658.9
+    },
+    "ath": 30289.661798193476,
+    "total_holders": 98,
+    "trades_1h": {
+      "total": 706,
+      "buys": 399,
+      "sells": 307
+    },
+    "makers_1h": 309,
+    "makers_24h": 309,
+    "timestamp": 1743486005.831199,
+    "initial_price": 0,
+    "initial_market_cap": 16545.48125747827,
+    "prediction_score": 82.00122999999999,
+    "prediction_confidence": 820.0123,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
