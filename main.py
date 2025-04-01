@@ -459,7 +459,7 @@ def fetch_token_holders(token_mint):
 async def get_wallet_pnl(wallet_address):
     """Get PnL data for a wallet from Solana Tracker API."""
     try:
-        url = f"https://mainnet.solanatracker.io/api/v1/wallet/{wallet_address}/pnl"
+        url = f"https://mainnet.solanatracker.io/pnl/{wallet_address}"
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
             data = response.json()
