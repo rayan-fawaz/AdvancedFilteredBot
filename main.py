@@ -461,10 +461,20 @@ async def get_wallet_pnl(wallet_address):
     try:
         url = f"https://mainnet.solanatracker.io/pnl/{wallet_address}"
         logging.info(f"Making PNL request to: {url}")
-        response = requests.get(url, timeout=10)
+        
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept': 'application/json'
+        }
+        
+        response = requests.get(url, headers=headers, timeout=10)
         logging.info(f"PNL Response status: {response.status_code}")
+        logging.info(f"PNL Response headers: {dict(response.headers)}")
+        logging.info(f"PNL Response content: {response.text[:1000]}")  # Show first 1000 chars
+        
         if response.status_code == 200:
             data = response.json()
+            logging.info(f"Parsed JSON data: {data}")
             if 'summary' in data:
                 result = {
                     'total': float(data['summary']['total']),
