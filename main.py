@@ -564,9 +564,13 @@ async def get_trench_data(mint_address, max_retries=3):
     return {'bonded': False, 'total_bundles': 0, 'total_holding_percentage': 0}
 
 async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
+    """Format coin information into a readable Telegram message."""
+    # Get Trench data first
+    mint_address = coin["mint"]
+    trench_data = await get_trench_data(mint_address)
+    
     # Add to database
     db.insert_token(coin, holders_info, dex_data, trench_data)
-    """Format coin information into a readable Telegram message."""
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
     bullx_link = f"https://neo.bullx.io/terminal?chainId=1399811149&address={mint_address}&r=YEGC2RLRAUE&l=en"
