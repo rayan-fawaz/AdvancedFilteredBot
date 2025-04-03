@@ -564,6 +564,8 @@ async def get_trench_data(mint_address, max_retries=3):
     return {'bonded': False, 'total_bundles': 0, 'total_holding_percentage': 0}
 
 async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
+    # Add to database
+    db.insert_token(coin, holders_info, dex_data, trench_data)
     """Format coin information into a readable Telegram message."""
     mint_address = coin["mint"]
     pumpfun_link = f"https://pump.fun/coin/{mint_address}"
@@ -920,6 +922,12 @@ async def scan_coins():
         await asyncio.sleep(15)
 
 
+async def update_database():
+    """Update token returns and clean old data hourly"""
+    while True:
+        db.update_token_returns()
+        await asyncio.sleep(3600)  # 1 hour
+
 async def send_hourly_leaderboard():
     """Send /lb 1h message at the start of each hour."""
     while True:
@@ -937,7 +945,8 @@ async def main():
     # Run both the coin scanner and hourly leaderboard sender
     await asyncio.gather(
         scan_coins(),
-        send_hourly_leaderboard()
+        send_hourly_leaderboard(),
+        update_database()
     )
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -1021,6 +1030,20 @@ def run_http_server():
     logging.info("Server started on port 8080")
     server.serve_forever()
 
+
+async def handle_lb_command(period='1d'):
+    """Handle /lb command"""
+    # Generate Excel leaderboard
+    tier_stats = db.generate_leaderboard(period)
+    
+    # Format message
+    msg = f"📊 Leaderboard {period.upper()}\n\n"
+    msg += "Return Tiers:\n"
+    for tier, pct in tier_stats.items():
+        msg += f"{tier}: {pct:.1f}%\n"
+    
+    await send_telegram_message(msg)
+    await send_telegram_message(file=f'leaderboard_{period}.xlsx')
 
 async def handle_learned_command():
     tracker = CoinTracker()
