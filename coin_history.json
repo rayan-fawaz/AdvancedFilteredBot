@@ -9802,5 +9802,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "FMzKFrWUW3azb28NUKW2Bb9GhqsyxR6Txm74aJE2pump": {
+    "mint": "FMzKFrWUW3azb28NUKW2Bb9GhqsyxR6Txm74aJE2pump",
+    "name": "HITLER YE AND JESUS",
+    "symbol": "HYJ",
+    "market_cap": 7866.48658920316,
+    "total_bundles": 0,
+    "holding_percentage": 0,
+    "price_changes": {
+      "5m": -7.21,
+      "1h": 89.13,
+      "6h": 118.0,
+      "24h": 118.0
+    },
+    "volumes": {
+      "5m": 383.72,
+      "1h": 13310.19,
+      "6h": 16128.08,
+      "24h": 16128.08
+    },
+    "ath": 12067.808285255038,
+    "total_holders": 42,
+    "trades_1h": {
+      "total": 461,
+      "buys": 249,
+      "sells": 212
+    },
+    "makers_1h": 103,
+    "makers_24h": 122,
+    "timestamp": 1743661758.811622,
+    "initial_price": 0,
+    "initial_market_cap": 7866.48658920316,
+    "prediction_score": 45.764632999999996,
+    "prediction_confidence": 457.6463299999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "7qpNcET7s58Z2aKJXNX6pkbLC3zMrSu5zvWBi9Qfpump": {
+    "mint": "7qpNcET7s58Z2aKJXNX6pkbLC3zMrSu5zvWBi9Qfpump",
+    "name": "Dumlon and Tariffer",
+    "symbol": "D&T",
+    "market_cap": 12639.93463742116,
+    "total_bundles": 0,
+    "holding_percentage": 0,
+    "price_changes": {
+      "5m": 18.62,
+      "1h": 363.0,
+      "6h": 363.0,
+      "24h": 363.0
+    },
+    "volumes": {
+      "5m": 3193.24,
+      "1h": 36549.26,
+      "6h": 36549.26,
+      "24h": 36549.26
+    },
+    "ath": 17250.867149466627,
+    "total_holders": 134,
+    "trades_1h": {
+      "total": 1728,
+      "buys": 956,
+      "sells": 772
+    },
+    "makers_1h": 270,
+    "makers_24h": 270,
+    "timestamp": 1743661947.377233,
+    "initial_price": 0,
+    "initial_market_cap": 12639.93463742116,
+    "prediction_score": 91.03384199999999,
+    "prediction_confidence": 910.3384199999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
