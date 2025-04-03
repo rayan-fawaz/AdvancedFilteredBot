@@ -1109,8 +1109,8 @@ async def schedule_meta_update():
 
 if __name__ == "__main__":
     logging.info("Starting HTTP server on port 8080")
-    # Fetch meta words on startup
-    asyncio.run(fetch_meta_words())
+    
+    # Start HTTP server in a thread
     server = HTTPServer(('0.0.0.0', 8080), EnhancedHTTPRequestHandler)
     server_thread = threading.Thread(target=server.serve_forever, daemon=True)
     server_thread.start()
@@ -1120,11 +1120,14 @@ if __name__ == "__main__":
     bond_monitor_thread = threading.Thread(target=monitor_bonds, daemon=True)
     bond_monitor_thread.start()
 
-    # Run the coin scanner
+    # Run all async tasks
     async def main():
         await asyncio.gather(
+            fetch_meta_words(),
             scan_coins(),
-            send_hourly_leaderboard()
+            send_hourly_leaderboard(),
+            update_database()
         )
 
+    # Run the event loop
     asyncio.run(main())
