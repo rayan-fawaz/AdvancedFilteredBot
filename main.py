@@ -859,10 +859,11 @@ async def scan_coins():
                 # Get Supply Sniped from trench data
                 supply_sniped = trench_data.get('total_holding_percentage', 0)
                 
-                # Calculate ATH drop
-                current_price = float(pair.get('priceUsd', 0))
-                ath_price = float(pair.get('priceATH', 0)) if 'priceATH' in pair else current_price
-                ath_drop = ((ath_price - current_price) / ath_price * 100) if ath_price > current_price else 0
+                # Calculate ATH drop using market cap
+                current_mc = coin['usd_market_cap']
+                pair_data = data['pairs'][0] if 'pairs' in data and len(data['pairs']) > 0 else None
+                ath_mc = float(pair_data.get('fdv', 0)) if pair_data else current_mc
+                ath_drop = ((ath_mc - current_mc) / ath_mc * 100) if ath_mc > current_mc else 0
 
                 # 7,000 - 8,500 range
                 if 7000 <= market_cap <= 8500:
