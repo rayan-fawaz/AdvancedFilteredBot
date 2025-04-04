@@ -9883,35 +9883,149 @@
     "mint": "7nmMaSPEtrGtk51YmkGtcsSJ7wTMem6V4EqPUAzApump",
     "name": "no tariff coin",
     "symbol": "0%",
-    "market_cap": 19907.58975540387,
+    "market_cap": 14536.23760530263,
     "total_bundles": 8,
     "holding_percentage": 11.2258670625017,
     "price_changes": {
-      "5m": 8.57,
-      "1h": 418.0,
-      "6h": 418.0,
-      "24h": 418.0
+      "5m": -22.4,
+      "1h": 310.0,
+      "6h": 310.0,
+      "24h": 310.0
     },
     "volumes": {
-      "5m": 5572.63,
-      "1h": 28255.45,
-      "6h": 28255.45,
-      "24h": 28255.45
+      "5m": 7119.85,
+      "1h": 30516.6,
+      "6h": 30516.6,
+      "24h": 30516.6
     },
     "ath": 21451.284660394285,
-    "total_holders": 110,
+    "total_holders": 106,
     "trades_1h": {
-      "total": 689,
-      "buys": 398,
-      "sells": 291
+      "total": 712,
+      "buys": 411,
+      "sells": 301
     },
-    "makers_1h": 264,
-    "makers_24h": 264,
-    "timestamp": 1743780411.491063,
+    "makers_1h": 268,
+    "makers_24h": 268,
+    "timestamp": 1743780451.63198,
     "initial_price": 0,
-    "initial_market_cap": 19907.58975540387,
-    "prediction_score": 76.108795,
-    "prediction_confidence": 761.08795,
+    "initial_market_cap": 14536.23760530263,
+    "prediction_score": 77.53659999999999,
+    "prediction_confidence": 775.3659999999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HZL5fHipT3y3XbVsrU29CTCHE75AjKRaicSVFb7hpump": {
+    "mint": "HZL5fHipT3y3XbVsrU29CTCHE75AjKRaicSVFb7hpump",
+    "name": "Toecoin",
+    "symbol": "TEC",
+    "market_cap": 23404.738100411338,
+    "total_bundles": 27,
+    "holding_percentage": 8.1493132010844,
+    "price_changes": {
+      "5m": -13.13,
+      "1h": 132.0,
+      "6h": 601.0,
+      "24h": 601.0
+    },
+    "volumes": {
+      "5m": 3793.39,
+      "1h": 81605.06,
+      "6h": 93040.99,
+      "24h": 93040.99
+    },
+    "ath": 37110.21063378064,
+    "total_holders": 238,
+    "trades_1h": {
+      "total": 2812,
+      "buys": 1531,
+      "sells": 1281
+    },
+    "makers_1h": 457,
+    "makers_24h": 520,
+    "timestamp": 1743780465.664116,
+    "initial_price": 0,
+    "initial_market_cap": 23404.738100411338,
+    "prediction_score": 109.0,
+    "prediction_confidence": 1090.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "F3MbePgdDVoETyTrGwncQuHMgXFUTPmu6b5YFsqGpump": {
+    "mint": "F3MbePgdDVoETyTrGwncQuHMgXFUTPmu6b5YFsqGpump",
+    "name": "catcoin",
+    "symbol": "catcoin",
+    "market_cap": 14057.17816921986,
+    "total_bundles": 10,
+    "holding_percentage": 16.2705510984439,
+    "price_changes": {
+      "5m": -20.49,
+      "1h": 309.0,
+      "6h": 309.0,
+      "24h": 309.0
+    },
+    "volumes": {
+      "5m": 1637.44,
+      "1h": 22443.03,
+      "6h": 22443.03,
+      "24h": 22443.03
+    },
+    "ath": 18603.579043050624,
+    "total_holders": 85,
+    "trades_1h": {
+      "total": 362,
+      "buys": 233,
+      "sells": 129
+    },
+    "makers_1h": 175,
+    "makers_24h": 175,
+    "timestamp": 1743780458.766878,
+    "initial_price": 0,
+    "initial_market_cap": 14057.17816921986,
+    "prediction_score": 62.415001000000004,
+    "prediction_confidence": 624.1500100000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "DmN2cYTsSzE8mjFaQdSNLKWW6ZDqUp6imjDFkcp57AT7": {
+    "mint": "DmN2cYTsSzE8mjFaQdSNLKWW6ZDqUp6imjDFkcp57AT7",
+    "name": "Raccoon Rainbow Fart",
+    "symbol": "RRF",
+    "market_cap": 10411.276448416,
+    "total_bundles": 9,
+    "holding_percentage": 6.3019977047107005,
+    "price_changes": {
+      "5m": -7.5,
+      "1h": 158.0,
+      "6h": 158.0,
+      "24h": 158.0
+    },
+    "volumes": {
+      "5m": 7513.96,
+      "1h": 31291.77,
+      "6h": 31291.77,
+      "24h": 31291.77
+    },
+    "ath": 13820.340369367072,
+    "total_holders": 55,
+    "trades_1h": {
+      "total": 517,
+      "buys": 291,
+      "sells": 226
+    },
+    "makers_1h": 177,
+    "makers_24h": 177,
+    "timestamp": 1743780559.031739,
+    "initial_price": 0,
+    "initial_market_cap": 10411.276448416,
+    "prediction_score": 66.23143900000001,
+    "prediction_confidence": 662.31439,
     "prediction_result": "Likely Profitable",
     "ath_24h": null,
     "ath_market_cap_24h": null,
