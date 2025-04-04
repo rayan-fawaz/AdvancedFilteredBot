@@ -730,52 +730,6 @@ async def scan_coins():
             if market_cap < MIN_MARKET_CAP or market_cap > MAX_MARKET_CAP:
                 continue
 
-            # Get ATH and market cap data first
-            try:
-                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
-                headers = {
-                    "accept": "application/json",
-                    "x-chain": "solana",
-                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
-                }
-                response = requests.get(birdeye_url, headers=headers)
-                data = response.json()
-
-                if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
-                    ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
-                    ath_price = ath * 1000000000
-                else:
-                    continue
-            except Exception as e:
-                logging.error(f"Error fetching Birdeye ATH data for {mint}: {e}")
-                continue
-
-            # Calculate ATH Drop and market cap filters
-            def check_range_filters(market_cap, ath_price, current_price, price_change_5m, volume_5m, 
-                                 top_10_pct, top_20_pct, total_holders, makers_1h, ath_drop):
-                if 7000 <= market_cap <= 8500:
-                    return (ath_drop < 65 and price_change_5m > -40 and volume_5m > -800 and
-                            top_10_pct > 10 and top_20_pct > 17 and total_holders <= 220 and makers_1h < 625)
-                elif 8500 < market_cap <= 10000:
-                    return (ath_drop < 70 and price_change_5m > -45 and volume_5m > -300 and
-                            top_10_pct > 11 and top_20_pct > 18 and total_holders <= 230 and makers_1h < 655)
-                elif 10000 < market_cap <= 12500:
-                    return (ath_drop < 70 and price_change_5m > -30 and volume_5m > 700 and
-                            top_10_pct > 12 and top_20_pct > 20 and total_holders <= 240 and makers_1h < 675)
-                elif 12500 < market_cap <= 15000:
-                    return (ath_drop < 70 and price_change_5m > -30 and volume_5m > 1200 and
-                            top_10_pct > 12 and top_20_pct > 21 and total_holders <= 260 and makers_1h < 695)
-                elif 15000 < market_cap <= 18000:
-                    return (ath_drop < 72 and price_change_5m > -25 and volume_5m > 1700 and
-                            top_10_pct > 13 and top_20_pct > 22 and total_holders <= 280 and makers_1h < 725)
-                elif 18000 < market_cap <= 21000:
-                    return (ath_drop < 75 and price_change_5m > -70 and volume_5m > 2700 and
-                            top_10_pct > 11 and top_20_pct > 21 and total_holders <= 320 and makers_1h < 775)
-                elif 21000 < market_cap <= 25000:
-                    return (ath_drop < 78 and price_change_5m > -70 and volume_5m > 3700 and
-                            top_10_pct > 11 and top_20_pct > 20 and total_holders <= 340 and makers_1h < 825)
-                return False
-
             # 2. DexScreener Data (Less expensive API)
             try:
                 dex_response = requests.get(
@@ -899,27 +853,8 @@ async def scan_coins():
                 (dex_data["volume_1h"] >= MIN_VOLUME_1H)
             )
 
-            # Calculate ATH Drop percentage
-            ath_market_cap = ath_price * (market_cap / float(pair.get('priceUsd', 1)))
-            ath_drop = ((ath_market_cap - market_cap) / ath_market_cap * 100) if ath_market_cap > 0 else 0
-
-            # All secondary conditions must be true including new range-specific filters
-            if not all([
-                price_momentum_check, 
-                volume_check,
-                check_range_filters(
-                    market_cap=market_cap,
-                    ath_price=ath_price,
-                    current_price=float(pair.get('priceUsd', 0)),
-                    price_change_5m=dex_data['price_change_5m'],
-                    volume_5m=dex_data['volume_5m'],
-                    top_10_pct=holders_info['top_10_percentage'],
-                    top_20_pct=holders_info['top_20_percentage'],
-                    total_holders=holders_info['total_holders'],
-                    makers_1h=holders_info['unique_wallet_1h'],
-                    ath_drop=ath_drop
-                )
-            ]):
+            # All secondary conditions must be true
+            if not all([price_momentum_check, volume_check]):
                 continue
 
             # Get Trench data before Birdeye requests
