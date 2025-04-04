@@ -965,6 +965,39 @@ async def scan_coins():
             logging.info(f"- Top 20%: {holders_info['top_20_percentage']:.2f}%")
             logging.info(f"- Unique Makers 1h: {holders_info['unique_wallet_1h']}")
             
+            # Calculate ATH drop
+            current_price = float(pair.get('priceUsd', 0))
+            ath_price = dex_data.get('ath_price', 0)
+            ath_drop = ((ath_price - current_price) / ath_price * 100) if ath_price > 0 else 0
+            
+            # Get Supply Sniped from trench data
+            supply_sniped = trench_data.get('total_holding_percentage', 0)
+
+            logging.info(f"\nRange-specific filters for MC ${market_cap:,.2f}:")
+            
+            if 7000 <= market_cap <= 8500:
+                logging.info("Range: 7,000 - 8,500")
+                logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 65 else '❌'} (< 65%)")
+                logging.info(f"Price Change 5m: {dex_data['price_change_5m']:.2f}% {'✅' if dex_data['price_change_5m'] > -40 else '❌'} (> -40%)")
+                logging.info(f"Volume 5m: ${dex_data['volume_5m']:.2f} {'✅' if dex_data['volume_5m'] > -800 else '❌'} (> -800)")
+                logging.info(f"Top 10: {holders_info['top_10_percentage']:.2f}% {'✅' if holders_info['top_10_percentage'] > 10 else '❌'} (> 10%)")
+                logging.info(f"Top 20: {holders_info['top_20_percentage']:.2f}% {'✅' if holders_info['top_20_percentage'] > 17 else '❌'} (> 17%)")
+                logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 16 else '❌'} (< 16%)")
+                logging.info(f"Total Holders: {holders_info['total_holders']} {'✅' if holders_info['total_holders'] <= 220 else '❌'} (<= 220)")
+            
+            elif 8500 < market_cap <= 10000:
+                logging.info("Range: 8,500 - 10,000")
+                logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 70 else '❌'} (< 70%)")
+                logging.info(f"Price Change 5m: {dex_data['price_change_5m']:.2f}% {'✅' if dex_data['price_change_5m'] > -45 else '❌'} (> -45%)")
+                logging.info(f"Volume 5m: ${dex_data['volume_5m']:.2f} {'✅' if dex_data['volume_5m'] > -300 else '❌'} (> -300)")
+                logging.info(f"Top 10: {holders_info['top_10_percentage']:.2f}% {'✅' if holders_info['top_10_percentage'] > 11 else '❌'} (> 11%)")
+                logging.info(f"Top 20: {holders_info['top_20_percentage']:.2f}% {'✅' if holders_info['top_20_percentage'] > 18 else '❌'} (> 18%)")
+                logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 16.5 else '❌'} (< 16.5%)")
+                logging.info(f"Total Holders: {holders_info['total_holders']} {'✅' if holders_info['total_holders'] <= 230 else '❌'} (<= 230)")
+                logging.info(f"Makers 1h: {holders_info['unique_wallet_1h']} {'✅' if holders_info['unique_wallet_1h'] < 655 else '❌'} (< 655)")
+
+            # Add similar blocks for other ranges...
+            
             range_check = check_range_filters(
                 market_cap,
                 dex_data['price_change_5m'],
@@ -975,7 +1008,7 @@ async def scan_coins():
                 holders_info['unique_wallet_1h']
             )
             
-            logging.info(f"\nRange-specific filters: {'✅' if range_check else '❌'}")
+            logging.info(f"\nOverall range-specific filters: {'✅' if range_check else '❌'}")
             
             if not all([price_momentum_check, volume_check, range_check]):
                 logging.info("❌ Coin failed filters\n")
