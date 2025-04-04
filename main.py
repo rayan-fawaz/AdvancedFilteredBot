@@ -855,11 +855,7 @@ async def scan_coins():
             # All secondary conditions must be true including new range-specific filters
             def check_range_filters(market_cap, ath_drop, price_change_5m, volume_5m, top_10_pct, top_20_pct, total_holders, 
                                  makers_1h):
-                trench_info = await get_trench_data(mint)
-                active_snipers = [s for s in trench_info.get('snipers', []) if s['tokens'] > 0]
-                total_tokens = sum(sniper['tokens'] for sniper in active_snipers)
-                total_supply = 10_000_000_000_000_000  # 10 quadrillion total supply
-                snipe_percentage = (total_tokens / total_supply) * 100
+             
 
                 # 7,000 - 8,500 range
                 if 7000 <= market_cap <= 8500:
