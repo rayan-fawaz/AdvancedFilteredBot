@@ -861,8 +861,8 @@ async def scan_coins():
                 
                 # Calculate ATH drop
                 current_price = float(pair.get('priceUsd', 0))
-                ath_price = float(pair.get('priceATH', 0)) if 'priceATH' in pair else current_price
-                ath_drop = ((ath_price - current_price) / ath_price * 100) if ath_price > current_price else 0
+                ath_price = dex_data.get('ath_price', 0)
+                ath_drop = ((ath_price - current_price) / ath_price * 100) if ath_price > 0 else 0
 
                 # 7,000 - 8,500 range
                 if 7000 <= market_cap <= 8500:
