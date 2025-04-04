@@ -660,7 +660,8 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         else:
             dexpaid = False
     except Exception as e:
-        logging.error(f"Error checking DEX status: {e}")        dex_paid = False
+        logging.error(f"Error checking DEX status: {e}")
+        dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
 
