@@ -908,61 +908,111 @@ async def scan_coins():
                     )
                 # 10,000 - 12,500 range
                 elif 10000 < market_cap <= 12500:
+                    logging.info("Range: 10,000 - 12,500")
+                    logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 70 else '❌'} (< 70%)")
+                    logging.info(f"Price Change 5m: {price_change_5m:.2f}% {'✅' if price_change_5m > -30 else '❌'} (> -30%)")
+                    logging.info(f"Volume 5m: ${volume_5m:.2f} {'✅' if volume_5m > 700 else '❌'} (> 700)")
+                    logging.info(f"Top 10: {top_10_pct:.2f}% {'✅' if top_10_pct > 12 else '❌'} (> 12%)")
+                    logging.info(f"Top 20: {top_20_pct:.2f}% {'✅' if top_20_pct > 20 else '❌'} (> 20%)")
+                    logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 17 else '❌'} (< 17%)")
+                    logging.info(f"Total Holders: {total_holders} {'✅' if total_holders <= 240 else '❌'} (<= 240)")
+                    logging.info(f"Makers 1h: {makers_1h} {'✅' if makers_1h < 675 else '❌'} (< 675)")
+                    
                     return (
                         ath_drop < 70 and
                         price_change_5m > -30 and
                         volume_5m > 700 and
                         top_10_pct > 12 and
                         top_20_pct > 20 and
-                        snipe_percentage < 17 and
+                        supply_sniped < 17 and
                         total_holders <= 240 and
                         makers_1h < 675
                     )
                 # 12,500 - 15,000 range
                 elif 12500 < market_cap <= 15000:
+                    logging.info("Range: 12,500 - 15,000")
+                    logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 70 else '❌'} (< 70%)")
+                    logging.info(f"Price Change 5m: {price_change_5m:.2f}% {'✅' if price_change_5m > -30 else '❌'} (> -30%)")
+                    logging.info(f"Volume 5m: ${volume_5m:.2f} {'✅' if volume_5m > 1200 else '❌'} (> 1200)")
+                    logging.info(f"Top 10: {top_10_pct:.2f}% {'✅' if top_10_pct > 12 else '❌'} (> 12%)")
+                    logging.info(f"Top 20: {top_20_pct:.2f}% {'✅' if top_20_pct > 21 else '❌'} (> 21%)")
+                    logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 17 else '❌'} (< 17%)")
+                    logging.info(f"Total Holders: {total_holders} {'✅' if total_holders <= 260 else '❌'} (<= 260)")
+                    logging.info(f"Makers 1h: {makers_1h} {'✅' if makers_1h < 695 else '❌'} (< 695)")
+                    
                     return (
                         ath_drop < 70 and
                         price_change_5m > -30 and
                         volume_5m > 1200 and
                         top_10_pct > 12 and
                         top_20_pct > 21 and
-                        snipe_percentage < 17 and
+                        supply_sniped < 17 and
                         total_holders <= 260 and
                         makers_1h < 695
                     )
                 # 15,000 - 18,000 range
                 elif 15000 < market_cap <= 18000:
+                    logging.info("Range: 15,000 - 18,000")
+                    logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 72 else '❌'} (< 72%)")
+                    logging.info(f"Price Change 5m: {price_change_5m:.2f}% {'✅' if price_change_5m > -25 else '❌'} (> -25%)")
+                    logging.info(f"Volume 5m: ${volume_5m:.2f} {'✅' if volume_5m > 1700 else '❌'} (> 1700)")
+                    logging.info(f"Top 10: {top_10_pct:.2f}% {'✅' if top_10_pct > 13 else '❌'} (> 13%)")
+                    logging.info(f"Top 20: {top_20_pct:.2f}% {'✅' if top_20_pct > 22 else '❌'} (> 22%)")
+                    logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 17 else '❌'} (< 17%)")
+                    logging.info(f"Total Holders: {total_holders} {'✅' if total_holders <= 280 else '❌'} (<= 280)")
+                    logging.info(f"Makers 1h: {makers_1h} {'✅' if makers_1h < 725 else '❌'} (< 725)")
+                    
                     return (
                         ath_drop < 72 and
                         price_change_5m > -25 and
                         volume_5m > 1700 and
                         top_10_pct > 13 and
                         top_20_pct > 22 and
-                        snipe_percentage < 17 and
+                        supply_sniped < 17 and
                         total_holders <= 280 and
                         makers_1h < 725
                     )
                 # 18,000 - 21,000 range
                 elif 18000 < market_cap <= 21000:
+                    logging.info("Range: 18,000 - 21,000")
+                    logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 75 else '❌'} (< 75%)")
+                    logging.info(f"Price Change 5m: {price_change_5m:.2f}% {'✅' if price_change_5m > -70 else '❌'} (> -70%)")
+                    logging.info(f"Volume 5m: ${volume_5m:.2f} {'✅' if volume_5m > 2700 else '❌'} (> 2700)")
+                    logging.info(f"Top 10: {top_10_pct:.2f}% {'✅' if top_10_pct > 11 else '❌'} (> 11%)")
+                    logging.info(f"Top 20: {top_20_pct:.2f}% {'✅' if top_20_pct > 21 else '❌'} (> 21%)")
+                    logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 18 else '❌'} (< 18%)")
+                    logging.info(f"Total Holders: {total_holders} {'✅' if total_holders <= 320 else '❌'} (<= 320)")
+                    logging.info(f"Makers 1h: {makers_1h} {'✅' if makers_1h < 775 else '❌'} (< 775)")
+                    
                     return (
                         ath_drop < 75 and
                         price_change_5m > -70 and
                         volume_5m > 2700 and
                         top_10_pct > 11 and
                         top_20_pct > 21 and
-                        snipe_percentage < 18 and
+                        supply_sniped < 18 and
                         total_holders <= 320 and
                         makers_1h < 775
                     )
                 # 21,000 - 25,000 range
                 elif 21000 < market_cap <= 25000:
+                    logging.info("Range: 21,000 - 25,000")
+                    logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 78 else '❌'} (< 78%)")
+                    logging.info(f"Price Change 5m: {price_change_5m:.2f}% {'✅' if price_change_5m > -70 else '❌'} (> -70%)")
+                    logging.info(f"Volume 5m: ${volume_5m:.2f} {'✅' if volume_5m > 3700 else '❌'} (> 3700)")
+                    logging.info(f"Top 10: {top_10_pct:.2f}% {'✅' if top_10_pct > 11 else '❌'} (> 11%)")
+                    logging.info(f"Top 20: {top_20_pct:.2f}% {'✅' if top_20_pct > 20 else '❌'} (> 20%)")
+                    logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 18 else '❌'} (< 18%)")
+                    logging.info(f"Total Holders: {total_holders} {'✅' if total_holders <= 340 else '❌'} (<= 340)")
+                    logging.info(f"Makers 1h: {makers_1h} {'✅' if makers_1h < 825 else '❌'} (< 825)")
+                    
                     return (
                         ath_drop < 78 and
                         price_change_5m > -70 and
                         volume_5m > 3700 and
                         top_10_pct > 11 and
                         top_20_pct > 20 and
-                        snipe_percentage < 18 and
+                        supply_sniped < 18 and
                         total_holders <= 340 and
                         makers_1h < 825
                     )
