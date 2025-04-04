@@ -949,21 +949,39 @@ async def scan_coins():
                     )
                 return False
 
-            # Apply both core and range-specific filters
-            if not all([
-                price_momentum_check, 
-                volume_check,
-                check_range_filters(
-                    market_cap,
-                    dex_data['price_change_5m'],
-                    dex_data['volume_5m'],
-                    holders_info['top_10_percentage'],
-                    holders_info['top_20_percentage'],
-                    holders_info['total_holders'],
-                    holders_info['unique_wallet_1h']
-                )
-            ]):
+            # Log filter results
+            logging.info(f"\nChecking filters for {coin['name']} (MC: ${market_cap:,.2f}):")
+            logging.info(f"Price Momentum: {'✅' if price_momentum_check else '❌'}")
+            logging.info(f"- 5m Change: {dex_data['price_change_5m']}% (min: {MIN_PRICE_5M}%)")
+            logging.info(f"- 1h Change: {dex_data['price_change_1h']}% (min: {MIN_PRICE_1H}%)")
+            
+            logging.info(f"\nVolume Check: {'✅' if volume_check else '❌'}")
+            logging.info(f"- 5m Volume: ${dex_data['volume_5m']:,.2f} (min: ${MIN_VOLUME_5M:,.2f})")
+            logging.info(f"- 1h Volume: ${dex_data['volume_1h']:,.2f} (min: ${MIN_VOLUME_1H:,.2f})")
+            
+            logging.info(f"\nHolder Metrics:")
+            logging.info(f"- Total Holders: {holders_info['total_holders']} (min: {MIN_HOLDERS})")
+            logging.info(f"- Top 10%: {holders_info['top_10_percentage']:.2f}%")
+            logging.info(f"- Top 20%: {holders_info['top_20_percentage']:.2f}%")
+            logging.info(f"- Unique Makers 1h: {holders_info['unique_wallet_1h']}")
+            
+            range_check = check_range_filters(
+                market_cap,
+                dex_data['price_change_5m'],
+                dex_data['volume_5m'],
+                holders_info['top_10_percentage'],
+                holders_info['top_20_percentage'],
+                holders_info['total_holders'],
+                holders_info['unique_wallet_1h']
+            )
+            
+            logging.info(f"\nRange-specific filters: {'✅' if range_check else '❌'}")
+            
+            if not all([price_momentum_check, volume_check, range_check]):
+                logging.info("❌ Coin failed filters\n")
                 continue
+            
+            logging.info("✅ All filters passed!\n")
 
             # Track the coin in our AI system
             coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
