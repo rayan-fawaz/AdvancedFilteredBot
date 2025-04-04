@@ -861,9 +861,26 @@ async def scan_coins():
                 
                 # Calculate ATH drop using market cap
                 current_mc = coin['usd_market_cap']
-                pair_data = data['pairs'][0] if 'pairs' in data and len(data['pairs']) > 0 else None
-                ath_mc = float(pair_data.get('fdv', 0)) if pair_data else current_mc
-                ath_drop = ((ath_mc - current_mc) / ath_mc * 100) if ath_mc > current_mc else 0
+                # Get historical ATH from Birdeye response
+                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
+                headers = {
+                    "accept": "application/json",
+                    "x-chain": "solana",
+                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                }
+                try:
+                    response = requests.get(birdeye_url, headers=headers)
+                    data = response.json()
+                    if 'data' in data and 'items' in data['data']:
+                        # Find highest market cap in history
+                        ath_mc = max((float(item.get('h', 0)) * 1000000000 for item in data['data']['items']), default=current_mc)
+                    else:
+                        ath_mc = current_mc
+                except:
+                    ath_mc = current_mc
+                
+                # Calculate drop percentage
+                ath_drop = ((ath_mc - current_mc) / ath_mc * 100) if ath_mc > current_mc else ((current_mc - ath_mc) / current_mc * 100)
 
                 # 7,000 - 8,500 range
                 if 7000 <= market_cap <= 8500:
