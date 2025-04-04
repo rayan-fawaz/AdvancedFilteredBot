@@ -854,10 +854,15 @@ async def scan_coins():
             )
 
             # All secondary conditions must be true including new range-specific filters
-            def check_range_filters(market_cap, ath_drop, price_change_5m, volume_5m, top_10_pct, top_20_pct, total_holders, 
+            def check_range_filters(market_cap, price_change_5m, volume_5m, top_10_pct, top_20_pct, total_holders, 
                                  makers_1h):
                 # Get Supply Sniped from trench data
                 supply_sniped = trench_data.get('Supply Sniped', 0)
+                
+                # Calculate ATH drop
+                current_price = float(pair.get('priceUsd', 0))
+                ath_price = dex_data.get('ath_price', 0)
+                ath_drop = ((ath_price - current_price) / ath_price * 100) if ath_price > 0 else 0
 
                 # 7,000 - 8,500 range
                 if 7000 <= market_cap <= 8500:
@@ -949,8 +954,7 @@ async def scan_coins():
                 price_momentum_check, 
                 volume_check,
                 check_range_filters(
-                    market_cap, 
-                    ath_drop,
+                    market_cap,
                     dex_data['price_change_5m'],
                     dex_data['volume_5m'],
                     holders_info['top_10_percentage'],
