@@ -857,7 +857,7 @@ async def scan_coins():
             def check_range_filters(market_cap, price_change_5m, volume_5m, top_10_pct, top_20_pct, total_holders, 
                                  makers_1h):
                 # Get Supply Sniped from trench data
-                supply_sniped = trench_data.get('Supply Sniped', 0)
+                supply_sniped = trench_data.get('total_holding_percentage', 0)
                 
                 # Calculate ATH drop
                 current_price = float(pair.get('priceUsd', 0))
@@ -866,6 +866,15 @@ async def scan_coins():
 
                 # 7,000 - 8,500 range
                 if 7000 <= market_cap <= 8500:
+                    logging.info("\nRange 7,000 - 8,500 Filters:")
+                    logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 65 else '❌'} (< 65%)")
+                    logging.info(f"Price Change 5m: {price_change_5m:.2f}% {'✅' if price_change_5m > -40 else '❌'} (> -40%)")
+                    logging.info(f"Volume 5m: ${volume_5m:.2f} {'✅' if volume_5m > -800 else '❌'} (> -800)")
+                    logging.info(f"Top 10: {top_10_pct:.2f}% {'✅' if top_10_pct > 10 else '❌'} (> 10%)")
+                    logging.info(f"Top 20: {top_20_pct:.2f}% {'✅' if top_20_pct > 17 else '❌'} (> 17%)")
+                    logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 16 else '❌'} (< 16%)")
+                    logging.info(f"Total Holders: {total_holders} {'✅' if total_holders <= 220 else '❌'} (<= 220)")
+                    
                     return (
                         ath_drop < 65 and
                         price_change_5m > -40 and 
@@ -877,6 +886,16 @@ async def scan_coins():
                     )
                 # 8,500 - 10,000 range
                 elif 8500 < market_cap <= 10000:
+                    logging.info("\nRange 8,500 - 10,000 Filters:")
+                    logging.info(f"ATH Drop: {ath_drop:.2f}% {'✅' if ath_drop < 70 else '❌'} (< 70%)")
+                    logging.info(f"Price Change 5m: {price_change_5m:.2f}% {'✅' if price_change_5m > -45 else '❌'} (> -45%)")
+                    logging.info(f"Volume 5m: ${volume_5m:.2f} {'✅' if volume_5m > -300 else '❌'} (> -300)")
+                    logging.info(f"Top 10: {top_10_pct:.2f}% {'✅' if top_10_pct > 11 else '❌'} (> 11%)")
+                    logging.info(f"Top 20: {top_20_pct:.2f}% {'✅' if top_20_pct > 18 else '❌'} (> 18%)")
+                    logging.info(f"Supply Sniped: {supply_sniped:.2f}% {'✅' if supply_sniped < 16.5 else '❌'} (< 16.5%)")
+                    logging.info(f"Total Holders: {total_holders} {'✅' if total_holders <= 230 else '❌'} (<= 230)")
+                    logging.info(f"Makers 1h: {makers_1h} {'✅' if makers_1h < 655 else '❌'} (< 655)")
+                    
                     return (
                         ath_drop < 70 and
                         price_change_5m > -45 and
