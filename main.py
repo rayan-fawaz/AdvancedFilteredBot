@@ -568,7 +568,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
     # Get Trench data first
     mint_address = coin["mint"]
     trench_data = await get_trench_data(mint_address)
-    
+
     # Add to database
     db.insert_token(coin, holders_info, dex_data, trench_data)
     mint_address = coin["mint"]
@@ -658,7 +658,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
             dex_data_orders = dex_response.json()
             dex_paid = len(dex_data_orders.get("pairs", [])) > 0
         else:
-            dex_paid = False
+            dexpaid = False
     except Exception as e:
         logging.error(f"Error checking DEX status: {e}")
         dex_paid = False
@@ -672,7 +672,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
 
     # Get bond status from trench
     bond_status = "🟢 BONDED" if trench_data.get('bonded', False) else "🔴 NOT BONDED"
-    
+
     return (
         f"🔹 <b>{coin['name']}</b> ({coin['symbol']})\n"
         f"🔒 <b>Bond Status:</b> {bond_status}\n"
@@ -902,6 +902,45 @@ async def scan_coins():
                 logging.error(f"Error fetching Birdeye data for {mint}: {e}")
                 continue
 
+            # Calculate ATH Drop percentage and market cap
+            current_price = float(pair.get('priceUsd', 0))
+            ath_market_cap = dex_data['ath_price'] * (market_cap / current_price) if current_price > 0 else 0
+            ath_drop = ((ath_market_cap - market_cap) / ath_market_cap * 100) if ath_market_cap > 0 else 0
+
+            # All secondary conditions must be true including new range-specific filters
+            def check_range_filters(market_cap, ath_price, current_price, price_change_5m, volume_5m, 
+                                 top_10_pct, top_20_pct, total_holders, makers_1h, ath_drop):
+                if 7000 <= market_cap <= 8500:
+                    snipe_percentage = (makers_1h / total_holders * 100) if total_holders > 0 else 100
+                    return (
+                        ath_drop < 65 and
+                        price_change_5m > -40 and 
+                        volume_5m > -800 and
+                        top_10_pct > 10 and 
+                        top_20_pct > 17 and 
+                        total_holders <= 220 and
+                        snipe_percentage < 16
+                    )
+                return False
+
+            if not all([
+                price_momentum_check, 
+                volume_check,
+                check_range_filters(
+                    market_cap, 
+                    dex_data['ath_price'], 
+                    current_price, 
+                    dex_data['price_change_5m'], 
+                    dex_data['volume_5m'], 
+                    holders_info['top_10_percentage'], 
+                    holders_info['top_20_percentage'], 
+                    holders_info['total_holders'], 
+                    holders_info['unique_wallet_1h'],
+                    ath_drop
+                )
+            ]):
+                continue
+
             # Track the coin in our AI system
             coin_tracker.track_coin(coin, holders_info, dex_data, trench_data)
             new_coins.append((coin, holders_info, dex_data))
@@ -940,7 +979,7 @@ async def send_hourly_leaderboard():
         # Calculate time until next hour
         next_hour = (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
         wait_seconds = (next_hour - now).total_seconds()
-        
+
         # Wait until next hour
         await asyncio.sleep(wait_seconds)
         await send_telegram_message("/lb 1h")
@@ -1043,13 +1082,13 @@ async def handle_lb_command(period='1d'):
     """Handle /lb command"""
     # Generate Excel leaderboard
     tier_stats = db.generate_leaderboard(period)
-    
+
     # Format message
     msg = f"📊 Leaderboard {period.upper()}\n\n"
     msg += "Return Tiers:\n"
     for tier, pct in tier_stats.items():
         msg += f"{tier}: {pct:.1f}%\n"
-    
+
     await send_telegram_message(msg)
     await send_telegram_message(file=f'leaderboard_{period}.xlsx')
 
@@ -1117,7 +1156,7 @@ async def schedule_meta_update():
 
 if __name__ == "__main__":
     logging.info("Starting HTTP server on port 8080")
-    
+
     # Start HTTP server in a thread
     server = HTTPServer(('0.0.0.0', 8080), EnhancedHTTPRequestHandler)
     server_thread = threading.Thread(target=server.serve_forever, daemon=True)
