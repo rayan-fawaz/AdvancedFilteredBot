@@ -10030,5 +10030,81 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "2G367unJ2nYoXnVLeyJqazCzvUdm6igdGJ4C79afpump": {
+    "mint": "2G367unJ2nYoXnVLeyJqazCzvUdm6igdGJ4C79afpump",
+    "name": "Goon Trading Alliance",
+    "symbol": "GTA",
+    "market_cap": 7506.40579079,
+    "total_bundles": 6,
+    "holding_percentage": 0.7958522932704999,
+    "price_changes": {
+      "5m": 24.95,
+      "1h": 85.59,
+      "6h": 85.59,
+      "24h": 85.59
+    },
+    "volumes": {
+      "5m": 3743.43,
+      "1h": 12021.51,
+      "6h": 12021.51,
+      "24h": 12021.51
+    },
+    "ath": 7538.20720982216,
+    "total_holders": 41,
+    "trades_1h": {
+      "total": 407,
+      "buys": 224,
+      "sells": 183
+    },
+    "makers_1h": 105,
+    "makers_24h": 105,
+    "timestamp": 1743780628.262159,
+    "initial_price": 0,
+    "initial_market_cap": 7506.40579079,
+    "prediction_score": 43.042556999999995,
+    "prediction_confidence": 430.42557,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "65REXz16xzzLCrDudbTL2nK52UwFx8bqxauALtCzpump": {
+    "mint": "65REXz16xzzLCrDudbTL2nK52UwFx8bqxauALtCzpump",
+    "name": "BlockHeadz",
+    "symbol": "BHZ",
+    "market_cap": 16912.1583361536,
+    "total_bundles": 22,
+    "holding_percentage": 9.541560995667,
+    "price_changes": {
+      "5m": 44.22,
+      "1h": 239.0,
+      "6h": 344.0,
+      "24h": 344.0
+    },
+    "volumes": {
+      "5m": 2013.88,
+      "1h": 22510.38,
+      "6h": 72103.39,
+      "24h": 72103.39
+    },
+    "ath": 23906.71474947047,
+    "total_holders": 62,
+    "trades_1h": {
+      "total": 215,
+      "buys": 130,
+      "sells": 85
+    },
+    "makers_1h": 105,
+    "makers_24h": 312,
+    "timestamp": 1743803299.948686,
+    "initial_price": 0,
+    "initial_market_cap": 16912.1583361536,
+    "prediction_score": 56.732266,
+    "prediction_confidence": 567.32266,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
