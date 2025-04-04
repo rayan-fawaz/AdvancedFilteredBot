@@ -9878,5 +9878,43 @@
     "ath_24h": null,
     "ath_market_cap_24h": null,
     "ath_timestamp_24h": null
+  },
+  "7nmMaSPEtrGtk51YmkGtcsSJ7wTMem6V4EqPUAzApump": {
+    "mint": "7nmMaSPEtrGtk51YmkGtcsSJ7wTMem6V4EqPUAzApump",
+    "name": "no tariff coin",
+    "symbol": "0%",
+    "market_cap": 19907.58975540387,
+    "total_bundles": 8,
+    "holding_percentage": 11.2258670625017,
+    "price_changes": {
+      "5m": 8.57,
+      "1h": 418.0,
+      "6h": 418.0,
+      "24h": 418.0
+    },
+    "volumes": {
+      "5m": 5572.63,
+      "1h": 28255.45,
+      "6h": 28255.45,
+      "24h": 28255.45
+    },
+    "ath": 21451.284660394285,
+    "total_holders": 110,
+    "trades_1h": {
+      "total": 689,
+      "buys": 398,
+      "sells": 291
+    },
+    "makers_1h": 264,
+    "makers_24h": 264,
+    "timestamp": 1743780411.491063,
+    "initial_price": 0,
+    "initial_market_cap": 19907.58975540387,
+    "prediction_score": 76.108795,
+    "prediction_confidence": 761.08795,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
   }
 }
