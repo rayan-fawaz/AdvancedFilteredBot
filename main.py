@@ -660,8 +660,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         else:
             dexpaid = False
     except Exception as e:
-        logging.error(f"Error checking DEX status: {e}")
-        dex_paid = False
+        logging.error(f"Error checking DEX status: {e}")        dex_paid = False
     dex_status = "🟢" if dex_paid else "🔴"
 
 
@@ -853,90 +852,109 @@ async def scan_coins():
                 (dex_data["volume_1h"] >= MIN_VOLUME_1H)
             )
 
-            # All secondary conditions must be true
-            if not all([price_momentum_check, volume_check]):
-                continue
-
-            # Get Trench data before Birdeye requests
-            trench_data = await get_trench_data(mint)
-
-            # 4. Finally fetch Birdeye data (Most expensive API) - Exit early if any fail
-            try:
-                # First Birdeye request - ATH data
-                birdeye_url = f"https://public-api.birdeye.so/defi/ohlcv?address={mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
-                headers = {
-                    "accept": "application/json",
-                    "x-chain": "solana",
-                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
-                }
-                response = requests.get(birdeye_url, headers=headers)
-                data = response.json()
-
-                if 'data' in data and 'items' in data['data'] and isinstance(data['data']['items'], list):
-                    ath = max((float(item.get('h', 0)) for item in data['data']['items']), default=0)
-                    dex_data['ath_price'] = ath * 1000000000
-                else:
-                    logging.error(f"Invalid Birdeye ATH data format for {mint}")
-                    continue
-
-                # Second Birdeye request - Trade data
-                birdeye_url = f"https://public-api.birdeye.so/defi/v3/token/trade-data/single?address={mint}"
-                response = requests.get(birdeye_url, headers=headers)
-                response.raise_for_status()
-                data = response.json()
-
-                if not data.get('data', {}):
-                    logging.error(f"Invalid Birdeye trade data for {mint}")
-                    continue
-
-                # Update holders_info with Birdeye trade data
-                holders_info.update({
-                    "buy_1h": data['data'].get('buy_1h', 0),
-                    "sell_1h": data['data'].get('sell_1h', 0),
-                    "trade_1h": data['data'].get('trade_1h', 0),
-                    "unique_wallet_1h": data['data'].get('unique_wallet_1h', 0),
-                    "unique_wallet_24h": data['data'].get('unique_wallet_24h', 0)
-                })
-
-            except Exception as e:
-                logging.error(f"Error fetching Birdeye data for {mint}: {e}")
-                continue
-
-            # Calculate ATH Drop percentage and market cap
-            current_price = float(pair.get('priceUsd', 0))
-            ath_market_cap = dex_data['ath_price'] * (market_cap / current_price) if current_price > 0 else 0
-            ath_drop = ((ath_market_cap - market_cap) / ath_market_cap * 100) if ath_market_cap > 0 else 0
-
             # All secondary conditions must be true including new range-specific filters
-            def check_range_filters(market_cap, ath_price, current_price, price_change_5m, volume_5m, 
-                                 top_10_pct, top_20_pct, total_holders, makers_1h, ath_drop):
+            def check_range_filters(market_cap, ath_drop, price_change_5m, volume_5m, top_10_pct, top_20_pct, total_holders, 
+                                 makers_1h):
+                snipe_percentage = (makers_1h / total_holders * 100) if total_holders > 0 else 100
+
+                # 7,000 - 8,500 range
                 if 7000 <= market_cap <= 8500:
-                    snipe_percentage = (makers_1h / total_holders * 100) if total_holders > 0 else 100
                     return (
                         ath_drop < 65 and
                         price_change_5m > -40 and 
                         volume_5m > -800 and
                         top_10_pct > 10 and 
                         top_20_pct > 17 and 
-                        total_holders <= 220 and
-                        snipe_percentage < 16
+                        snipe_percentage < 16 and
+                        total_holders <= 220
+                    )
+                # 8,500 - 10,000 range
+                elif 8500 < market_cap <= 10000:
+                    return (
+                        ath_drop < 70 and
+                        price_change_5m > -45 and
+                        volume_5m > -300 and
+                        top_10_pct > 11 and
+                        top_20_pct > 18 and
+                        snipe_percentage < 16.5 and
+                        total_holders <= 230 and
+                        makers_1h < 655
+                    )
+                # 10,000 - 12,500 range
+                elif 10000 < market_cap <= 12500:
+                    return (
+                        ath_drop < 70 and
+                        price_change_5m > -30 and
+                        volume_5m > 700 and
+                        top_10_pct > 12 and
+                        top_20_pct > 20 and
+                        snipe_percentage < 17 and
+                        total_holders <= 240 and
+                        makers_1h < 675
+                    )
+                # 12,500 - 15,000 range
+                elif 12500 < market_cap <= 15000:
+                    return (
+                        ath_drop < 70 and
+                        price_change_5m > -30 and
+                        volume_5m > 1200 and
+                        top_10_pct > 12 and
+                        top_20_pct > 21 and
+                        snipe_percentage < 17 and
+                        total_holders <= 260 and
+                        makers_1h < 695
+                    )
+                # 15,000 - 18,000 range
+                elif 15000 < market_cap <= 18000:
+                    return (
+                        ath_drop < 72 and
+                        price_change_5m > -25 and
+                        volume_5m > 1700 and
+                        top_10_pct > 13 and
+                        top_20_pct > 22 and
+                        snipe_percentage < 17 and
+                        total_holders <= 280 and
+                        makers_1h < 725
+                    )
+                # 18,000 - 21,000 range
+                elif 18000 < market_cap <= 21000:
+                    return (
+                        ath_drop < 75 and
+                        price_change_5m > -70 and
+                        volume_5m > 2700 and
+                        top_10_pct > 11 and
+                        top_20_pct > 21 and
+                        snipe_percentage < 18 and
+                        total_holders <= 320 and
+                        makers_1h < 775
+                    )
+                # 21,000 - 25,000 range
+                elif 21000 < market_cap <= 25000:
+                    return (
+                        ath_drop < 78 and
+                        price_change_5m > -70 and
+                        volume_5m > 3700 and
+                        top_10_pct > 11 and
+                        top_20_pct > 20 and
+                        snipe_percentage < 18 and
+                        total_holders <= 340 and
+                        makers_1h < 825
                     )
                 return False
 
+            # Apply both core and range-specific filters
             if not all([
                 price_momentum_check, 
                 volume_check,
                 check_range_filters(
                     market_cap, 
-                    dex_data['ath_price'], 
-                    current_price, 
-                    dex_data['price_change_5m'], 
-                    dex_data['volume_5m'], 
-                    holders_info['top_10_percentage'], 
-                    holders_info['top_20_percentage'], 
-                    holders_info['total_holders'], 
-                    holders_info['unique_wallet_1h'],
-                    ath_drop
+                    ath_drop,
+                    dex_data['price_change_5m'],
+                    dex_data['volume_5m'],
+                    holders_info['top_10_percentage'],
+                    holders_info['top_20_percentage'],
+                    holders_info['total_holders'],
+                    holders_info['unique_wallet_1h']
                 )
             ]):
                 continue
