@@ -1289,9 +1289,22 @@ async def fetch_meta_words():
             # Update CoinTracker with new meta scores
             coin_tracker = CoinTracker()
             coin_tracker.update_meta_scores(meta_scores)
-            
+
+            # Format for display
+            word_scores = [f"{word} ({score:.3f})" for word, score in meta_scores.items()]
+            words_str = ', '.join(word_scores)
+
+            # Send update to Telegram
+            message = (
+                "🔄 Meta Update\n\n"
+                f"📊 Current Meta Words (score):\n{words_str}\n\n"
+                "Higher scores indicate stronger market potential."
+            )
+            await send_telegram_message(message)
+
             # Schedule next update
             asyncio.create_task(schedule_meta_update())
+
         else:
             logging.error("Invalid meta API response format")
 
