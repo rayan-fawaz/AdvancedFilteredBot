@@ -24,7 +24,7 @@ author = 39229138
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python main.py"
+args = "python src/main.py"
 
 [[ports]]
 localPort = 8080
