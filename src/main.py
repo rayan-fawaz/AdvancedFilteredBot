@@ -1157,7 +1157,7 @@ async def main():
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 import json
-from db import TokenDB
+from models.db import TokenDB
 
 # Initialize database instance
 db = TokenDB()
