@@ -1,0 +1,29 @@
+
+"""Constants used throughout the application."""
+
+# API Keys and URLs
+BOT_TOKEN = "8046651136:AAGHoEFIJhW3zHTe6CI0iOcn6FgePpljXqM"
+GROUP_ID = "-1002429691769"
+HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
+BIRDEYE_API_KEY = "114f18a5eb5e4d51a9ac7c6100dfe756"
+
+# Filter Constants
+MIN_HOLDERS = 25
+MIN_TRADES_1H = 80
+MAX_VOLUME_5M = 20000
+BIGGEST_WALLET_MAX = 55
+MIN_BUYS = 40
+MIN_SELLS = 40
+
+# Price Momentum Filters
+MIN_PRICE_5M = 30
+MIN_PRICE_1H = 80
+HIGH_PRICE_1H = 1000
+
+# Volume Filters
+MIN_VOLUME_5M = 3000
+MIN_VOLUME_1H = 10000
+
+# Market Cap Limits
+MIN_MARKET_CAP = 7500
+MAX_MARKET_CAP = 25000
