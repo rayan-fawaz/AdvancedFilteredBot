@@ -699,7 +699,7 @@ async def format_coin_message(coin, holders_info, dex_data, coin_tracker):
         f"——————————————————————————————\n")
 
 
-from coin_tracker import CoinTracker
+from models.coin_tracker import CoinTracker
 
 async def scan_coins():
     """Continuously scan the featured coins API for new coins meeting filter criteria."""
