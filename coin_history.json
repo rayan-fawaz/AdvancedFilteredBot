@@ -1,0 +1,914 @@
+{
+  "BtLSPjt9knUUJbhTk2a1qg45varFGU4a8PuPmkHRpump": {
+    "mint": "BtLSPjt9knUUJbhTk2a1qg45varFGU4a8PuPmkHRpump",
+    "name": "CRASHification",
+    "symbol": "CRASH",
+    "market_cap": 7804.21971189194,
+    "total_bundles": 5,
+    "holding_percentage": 2.0360386778757,
+    "price_changes": {
+      "5m": -2.24,
+      "1h": 143.0,
+      "6h": 145.0,
+      "24h": 145.0
+    },
+    "volumes": {
+      "5m": 1833.4,
+      "1h": 16637.89,
+      "6h": 17198.07,
+      "24h": 17198.07
+    },
+    "ath": 9531.022300832534,
+    "total_holders": 50,
+    "trades_1h": {
+      "total": 1088,
+      "buys": 588,
+      "sells": 500
+    },
+    "makers_1h": 95,
+    "makers_24h": 99,
+    "timestamp": 1744063636.556909,
+    "initial_price": 0,
+    "initial_market_cap": 7804.21971189194,
+    "prediction_score": 62.499783,
+    "prediction_confidence": 624.99783,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "ARbdNVTzAtS5VDE26C99vbb9FFbuSBVeQSSGX9HZpump": {
+    "mint": "ARbdNVTzAtS5VDE26C99vbb9FFbuSBVeQSSGX9HZpump",
+    "name": "Minecraft Wolf",
+    "symbol": "MINEWOLF",
+    "market_cap": 16720.998227325308,
+    "total_bundles": 5,
+    "holding_percentage": 2.3849768651834,
+    "price_changes": {
+      "5m": -24.48,
+      "1h": 197.0,
+      "6h": 332.0,
+      "24h": 332.0
+    },
+    "volumes": {
+      "5m": 2337.34,
+      "1h": 24417.45,
+      "6h": 30664.27,
+      "24h": 30664.27
+    },
+    "ath": 20811.86118299952,
+    "total_holders": 97,
+    "trades_1h": {
+      "total": 1992,
+      "buys": 1043,
+      "sells": 949
+    },
+    "makers_1h": 156,
+    "makers_24h": 195,
+    "timestamp": 1744063651.352667,
+    "initial_price": 0,
+    "initial_market_cap": 16720.998227325308,
+    "prediction_score": 75.284455,
+    "prediction_confidence": 752.8445499999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "DjrWuosQeQu5HWMjHofwHFujAkta5ipe4XfUK8Qppump": {
+    "mint": "DjrWuosQeQu5HWMjHofwHFujAkta5ipe4XfUK8Qppump",
+    "name": "Dehumanziation",
+    "symbol": "Dehumanize",
+    "market_cap": 12974.80052647829,
+    "total_bundles": 39,
+    "holding_percentage": 7.7680068001669005,
+    "price_changes": {
+      "5m": -13.38,
+      "1h": 288.0,
+      "6h": 288.0,
+      "24h": 288.0
+    },
+    "volumes": {
+      "5m": 8270.77,
+      "1h": 91676.56,
+      "6h": 91676.56,
+      "24h": 91676.56
+    },
+    "ath": 20007.72829103529,
+    "total_holders": 111,
+    "trades_1h": {
+      "total": 1717,
+      "buys": 968,
+      "sells": 749
+    },
+    "makers_1h": 461,
+    "makers_24h": 461,
+    "timestamp": 1744063652.895386,
+    "initial_price": 0,
+    "initial_market_cap": 12974.80052647829,
+    "prediction_score": 96.875,
+    "prediction_confidence": 968.75,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "68GFCyn8eCH8sFskKHTrsm6cZkDoY4WPXT3QHxKmpump": {
+    "mint": "68GFCyn8eCH8sFskKHTrsm6cZkDoY4WPXT3QHxKmpump",
+    "name": "COINIFY",
+    "symbol": "COIN",
+    "market_cap": 14107.145279283477,
+    "total_bundles": 66,
+    "holding_percentage": 15.6284342110966,
+    "price_changes": {
+      "5m": 55.06,
+      "1h": 307.0,
+      "6h": 307.0,
+      "24h": 307.0
+    },
+    "volumes": {
+      "5m": 7362.05,
+      "1h": 74857.11,
+      "6h": 74857.11,
+      "24h": 74857.11
+    },
+    "ath": 18466.50302459843,
+    "total_holders": 100,
+    "trades_1h": {
+      "total": 1132,
+      "buys": 621,
+      "sells": 511
+    },
+    "makers_1h": 464,
+    "makers_24h": 464,
+    "timestamp": 1744063690.230763,
+    "initial_price": 0,
+    "initial_market_cap": 14107.145279283477,
+    "prediction_score": 92.5,
+    "prediction_confidence": 925.0,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Jctwphu6HuFkskJJVtdZuU1xKRbyAQsfVYgzE29pump": {
+    "mint": "Jctwphu6HuFkskJJVtdZuU1xKRbyAQsfVYgzE29pump",
+    "name": "Ancient Degen DNA",
+    "symbol": "DgNA",
+    "market_cap": 8563.23399430916,
+    "total_bundles": 5,
+    "holding_percentage": 10.1331174970387,
+    "price_changes": {
+      "5m": 62.21,
+      "1h": 165.0,
+      "6h": 165.0,
+      "24h": 165.0
+    },
+    "volumes": {
+      "5m": 3260.9,
+      "1h": 8099.54,
+      "6h": 8099.54,
+      "24h": 8099.54
+    },
+    "ath": 8716.156855434447,
+    "total_holders": 58,
+    "trades_1h": {
+      "total": 544,
+      "buys": 298,
+      "sells": 246
+    },
+    "makers_1h": 103,
+    "makers_24h": 103,
+    "timestamp": 1744063724.654022,
+    "initial_price": 0,
+    "initial_market_cap": 8563.23399430916,
+    "prediction_score": 49.079678,
+    "prediction_confidence": 490.79677999999996,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HcuyKUeYgYssdHNN9f1wM8wgNFbSCok65Muiu8iepump": {
+    "mint": "HcuyKUeYgYssdHNN9f1wM8wgNFbSCok65Muiu8iepump",
+    "name": "Humanized fart ",
+    "symbol": "FART",
+    "market_cap": 11346.992724146308,
+    "total_bundles": 17,
+    "holding_percentage": 16.146265669209,
+    "price_changes": {
+      "5m": -10.49,
+      "1h": 155.0,
+      "6h": 155.0,
+      "24h": 155.0
+    },
+    "volumes": {
+      "5m": 3943.41,
+      "1h": 58349.24,
+      "6h": 58349.24,
+      "24h": 58349.24
+    },
+    "ath": 17887.016390813835,
+    "total_holders": 97,
+    "trades_1h": {
+      "total": 1908,
+      "buys": 1025,
+      "sells": 883
+    },
+    "makers_1h": 259,
+    "makers_24h": 259,
+    "timestamp": 1744063951.832042,
+    "initial_price": 0,
+    "initial_market_cap": 11346.992724146308,
+    "prediction_score": 94.07946,
+    "prediction_confidence": 940.7946,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "BsHNqiippaqzexJmKDGkpuKMPotp7UDdb3puFnS7pump": {
+    "mint": "BsHNqiippaqzexJmKDGkpuKMPotp7UDdb3puFnS7pump",
+    "name": "Trenches are forever",
+    "symbol": "Forever",
+    "market_cap": 10208.30624119754,
+    "total_bundles": 30,
+    "holding_percentage": 2.6574887598284,
+    "price_changes": {
+      "5m": 34.4,
+      "1h": 22.26,
+      "6h": 213.0,
+      "24h": 213.0
+    },
+    "volumes": {
+      "5m": 2140.52,
+      "1h": 75699.38,
+      "6h": 81228.81,
+      "24h": 81228.81
+    },
+    "ath": 23673.841916988684,
+    "total_holders": 107,
+    "trades_1h": {
+      "total": 3311,
+      "buys": 1705,
+      "sells": 1606
+    },
+    "makers_1h": 503,
+    "makers_24h": 523,
+    "timestamp": 1744064134.195173,
+    "initial_price": 0,
+    "initial_market_cap": 10208.30624119754,
+    "prediction_score": 75.94,
+    "prediction_confidence": 759.4,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "6NLsoDhUJtizZsJvjVkUf3G5daumtpbUwBU7hNJWpump": {
+    "mint": "6NLsoDhUJtizZsJvjVkUf3G5daumtpbUwBU7hNJWpump",
+    "name": "Fast Food Joint",
+    "symbol": "Joint ",
+    "market_cap": 12917.31978433316,
+    "total_bundles": 6,
+    "holding_percentage": 14.431171337936599,
+    "price_changes": {
+      "5m": 254.0,
+      "1h": 255.0,
+      "6h": 255.0,
+      "24h": 255.0
+    },
+    "volumes": {
+      "5m": 5270.41,
+      "1h": 5765.59,
+      "6h": 5765.59,
+      "24h": 5765.59
+    },
+    "ath": 15166.422338464878,
+    "total_holders": 56,
+    "trades_1h": {
+      "total": 157,
+      "buys": 109,
+      "sells": 48
+    },
+    "makers_1h": 71,
+    "makers_24h": 71,
+    "timestamp": 1744064162.099616,
+    "initial_price": 0,
+    "initial_market_cap": 12917.31978433316,
+    "prediction_score": 42.390913,
+    "prediction_confidence": 423.90913,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "2hemYDZcT6Njf6LMq7c7eWyLaAfiv7VvRLzKC1H1pump": {
+    "mint": "2hemYDZcT6Njf6LMq7c7eWyLaAfiv7VvRLzKC1H1pump",
+    "name": "trading cards",
+    "symbol": "tc",
+    "market_cap": 12284.33267723704,
+    "total_bundles": 23,
+    "holding_percentage": 5.4247086675159,
+    "price_changes": {
+      "5m": -2.25,
+      "1h": 186.0,
+      "6h": 186.0,
+      "24h": 186.0
+    },
+    "volumes": {
+      "5m": 15278.68,
+      "1h": 43813.82,
+      "6h": 43813.82,
+      "24h": 43813.82
+    },
+    "ath": 21268.027848006113,
+    "total_holders": 94,
+    "trades_1h": {
+      "total": 736,
+      "buys": 416,
+      "sells": 320
+    },
+    "makers_1h": 299,
+    "makers_24h": 299,
+    "timestamp": 1744064531.52412,
+    "initial_price": 0,
+    "initial_market_cap": 12284.33267723704,
+    "prediction_score": 82.459674,
+    "prediction_confidence": 824.5967400000002,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "Gq2AH7zh9oWGRxsX92rN5ZURKdWJH6LaDDJ4cY2cpump": {
+    "mint": "Gq2AH7zh9oWGRxsX92rN5ZURKdWJH6LaDDJ4cY2cpump",
+    "name": "my biggest fumble so far",
+    "symbol": "FUMBLE",
+    "market_cap": 7956.490286905861,
+    "total_bundles": 27,
+    "holding_percentage": 15.818878411085798,
+    "price_changes": {
+      "5m": 34.94,
+      "1h": 154.0,
+      "6h": 154.0,
+      "24h": 154.0
+    },
+    "volumes": {
+      "5m": 2524.33,
+      "1h": 64719.56,
+      "6h": 64719.56,
+      "24h": 64719.56
+    },
+    "ath": 15111.865732533386,
+    "total_holders": 52,
+    "trades_1h": {
+      "total": 973,
+      "buys": 514,
+      "sells": 459
+    },
+    "makers_1h": 342,
+    "makers_24h": 342,
+    "timestamp": 1744064666.495364,
+    "initial_price": 0,
+    "initial_market_cap": 7956.490286905861,
+    "prediction_score": 86.095,
+    "prediction_confidence": 860.95,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "2RQtYsFVXkxRJB5YJECv6rCkB2h1yuLh2TyLMDNqpump": {
+    "mint": "2RQtYsFVXkxRJB5YJECv6rCkB2h1yuLh2TyLMDNqpump",
+    "name": "Win or leave forever",
+    "symbol": "WOLF",
+    "market_cap": 9893.7609085644,
+    "total_bundles": 12,
+    "holding_percentage": 10.6742913757108,
+    "price_changes": {
+      "5m": -4.37,
+      "1h": 242.0,
+      "6h": 242.0,
+      "24h": 242.0
+    },
+    "volumes": {
+      "5m": 5451.82,
+      "1h": 15886.19,
+      "6h": 15886.19,
+      "24h": 15886.19
+    },
+    "ath": 12944.980461103503,
+    "total_holders": 62,
+    "trades_1h": {
+      "total": 567,
+      "buys": 314,
+      "sells": 253
+    },
+    "makers_1h": 137,
+    "makers_24h": 137,
+    "timestamp": 1744065426.945147,
+    "initial_price": 0,
+    "initial_market_cap": 9893.7609085644,
+    "prediction_score": 57.442572999999996,
+    "prediction_confidence": 574.4257299999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "3GzKfNzQHW6gaLVjAHDswjfk7yywphVLkwxXZRVfpump": {
+    "mint": "3GzKfNzQHW6gaLVjAHDswjfk7yywphVLkwxXZRVfpump",
+    "name": "ich will nicht",
+    "symbol": "nicht",
+    "market_cap": 22822.861974362,
+    "total_bundles": 47,
+    "holding_percentage": 9.8035977915409,
+    "price_changes": {
+      "5m": 43.14,
+      "1h": -59.18,
+      "6h": -59.18,
+      "24h": -59.18
+    },
+    "volumes": {
+      "5m": 5566.7,
+      "1h": 81765.85,
+      "6h": 81765.85,
+      "24h": 81765.85
+    },
+    "ath": 45915.323539529694,
+    "total_holders": 252,
+    "trades_1h": {
+      "total": 4931,
+      "buys": 2599,
+      "sells": 2332
+    },
+    "makers_1h": 820,
+    "makers_24h": 900,
+    "timestamp": 1744065445.888067,
+    "initial_price": 0,
+    "initial_market_cap": 22822.861974362,
+    "prediction_score": 68.205,
+    "prediction_confidence": 682.05,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "FvBVcf9pHxKvAMaQTsP1BSHr44GdcyoWqtX1nBehpump": {
+    "mint": "FvBVcf9pHxKvAMaQTsP1BSHr44GdcyoWqtX1nBehpump",
+    "name": "Alienization",
+    "symbol": "ALIENATE",
+    "market_cap": 8162.556841378099,
+    "total_bundles": 9,
+    "holding_percentage": 14.9305850657829,
+    "price_changes": {
+      "5m": -9.95,
+      "1h": 144.0,
+      "6h": 144.0,
+      "24h": 144.0
+    },
+    "volumes": {
+      "5m": 10126.19,
+      "1h": 15828.13,
+      "6h": 15828.13,
+      "24h": 15828.13
+    },
+    "ath": 11637.921236462173,
+    "total_holders": 53,
+    "trades_1h": {
+      "total": 330,
+      "buys": 201,
+      "sells": 129
+    },
+    "makers_1h": 135,
+    "makers_24h": 135,
+    "timestamp": 1744065538.258158,
+    "initial_price": 0,
+    "initial_market_cap": 8162.556841378099,
+    "prediction_score": 50.654691,
+    "prediction_confidence": 506.54690999999997,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "ELbpXQ9rzTP8oyjRy3xhdx1rmK5eYXi7qQg1e7wSpump": {
+    "mint": "ELbpXQ9rzTP8oyjRy3xhdx1rmK5eYXi7qQg1e7wSpump",
+    "name": "Feet Finder Coin",
+    "symbol": "FFC",
+    "market_cap": 8612.09980744603,
+    "total_bundles": 3,
+    "holding_percentage": 0.0,
+    "price_changes": {
+      "5m": 15.98,
+      "1h": 163.0,
+      "6h": 163.0,
+      "24h": 163.0
+    },
+    "volumes": {
+      "5m": 2965.44,
+      "1h": 14503.68,
+      "6h": 14503.68,
+      "24h": 14503.68
+    },
+    "ath": 8600.35615997196,
+    "total_holders": 42,
+    "trades_1h": {
+      "total": 697,
+      "buys": 379,
+      "sells": 318
+    },
+    "makers_1h": 107,
+    "makers_24h": 107,
+    "timestamp": 1744152898.01989,
+    "initial_price": 0,
+    "initial_market_cap": 8612.09980744603,
+    "prediction_score": 55.13015599999999,
+    "prediction_confidence": 551.3015599999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "9vyJUkSGafe49bsjj2swAsUspBHhgwjjiu9P3mNXpump": {
+    "mint": "9vyJUkSGafe49bsjj2swAsUspBHhgwjjiu9P3mNXpump",
+    "name": "Tesra",
+    "symbol": "Tesra",
+    "market_cap": 7785.84147340283,
+    "total_bundles": 12,
+    "holding_percentage": 6.854844821930101,
+    "price_changes": {
+      "5m": 4.84,
+      "1h": 159.0,
+      "6h": 159.0,
+      "24h": 159.0
+    },
+    "volumes": {
+      "5m": 2557.49,
+      "1h": 27378.21,
+      "6h": 27378.21,
+      "24h": 27378.21
+    },
+    "ath": 10415.650006710614,
+    "total_holders": 59,
+    "trades_1h": {
+      "total": 1927,
+      "buys": 1003,
+      "sells": 924
+    },
+    "makers_1h": 155,
+    "makers_24h": 155,
+    "timestamp": 1744152903.925137,
+    "initial_price": 0,
+    "initial_market_cap": 7785.84147340283,
+    "prediction_score": 71.53974699999999,
+    "prediction_confidence": 715.3974699999999,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "DrLtSdM7VHJZnQrR4PPXwhHj2xCLf8a8cSG2XLAipump": {
+    "mint": "DrLtSdM7VHJZnQrR4PPXwhHj2xCLf8a8cSG2XLAipump",
+    "name": "G-Spot Finder Coin",
+    "symbol": "GFC",
+    "market_cap": 10765.50074810076,
+    "total_bundles": 4,
+    "holding_percentage": 6.02e-11,
+    "price_changes": {
+      "5m": 12.24,
+      "1h": 90.41,
+      "6h": 276.0,
+      "24h": 276.0
+    },
+    "volumes": {
+      "5m": 2669.2,
+      "1h": 31853.9,
+      "6h": 45841.34,
+      "24h": 45841.34
+    },
+    "ath": 17128.941249112453,
+    "total_holders": 88,
+    "trades_1h": {
+      "total": 2412,
+      "buys": 1272,
+      "sells": 1140
+    },
+    "makers_1h": 160,
+    "makers_24h": 226,
+    "timestamp": 1744152965.349072,
+    "initial_price": 0,
+    "initial_market_cap": 10765.50074810076,
+    "prediction_score": 77.17281,
+    "prediction_confidence": 771.7281,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "9Gz9b1QkyXFYBmgbh4KUjUUxyygqQR3s2ZPQB9ppTmKV": {
+    "mint": "9Gz9b1QkyXFYBmgbh4KUjUUxyygqQR3s2ZPQB9ppTmKV",
+    "name": "strudel the unicorn",
+    "symbol": "strudel",
+    "market_cap": 18361.77439609216,
+    "total_bundles": 50,
+    "holding_percentage": 16.555597563335,
+    "price_changes": {
+      "5m": -12.21,
+      "1h": 426.0,
+      "6h": 426.0,
+      "24h": 426.0
+    },
+    "volumes": {
+      "5m": 4806.39,
+      "1h": 76487.79,
+      "6h": 76487.79,
+      "24h": 76487.79
+    },
+    "ath": 19993.455435314623,
+    "total_holders": 121,
+    "trades_1h": {
+      "total": 2095,
+      "buys": 1132,
+      "sells": 963
+    },
+    "makers_1h": 463,
+    "makers_24h": 463,
+    "timestamp": 1744153007.822678,
+    "initial_price": 0,
+    "initial_market_cap": 18361.77439609216,
+    "prediction_score": 97.125,
+    "prediction_confidence": 971.25,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "27mqo3WkT523UshUNuPFBR84STNSbLjAxCczXocMpump": {
+    "mint": "27mqo3WkT523UshUNuPFBR84STNSbLjAxCczXocMpump",
+    "name": "Vietnamese Monkey Racing",
+    "symbol": "VMR",
+    "market_cap": 7724.333111403039,
+    "total_bundles": 2,
+    "holding_percentage": 11.757308840117101,
+    "price_changes": {
+      "5m": 80.93,
+      "1h": 147.0,
+      "6h": 147.0,
+      "24h": 147.0
+    },
+    "volumes": {
+      "5m": 5634.54,
+      "1h": 7115.41,
+      "6h": 7115.41,
+      "24h": 7115.41
+    },
+    "ath": 9356.427599815066,
+    "total_holders": 43,
+    "trades_1h": {
+      "total": 127,
+      "buys": 84,
+      "sells": 43
+    },
+    "makers_1h": 74,
+    "makers_24h": 74,
+    "timestamp": 1744153127.950218,
+    "initial_price": 0,
+    "initial_market_cap": 7724.333111403039,
+    "prediction_score": 40.260787,
+    "prediction_confidence": 402.60787000000005,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "HZ4pk9pYn3ixDMYnBvtcFzyYPAVhi1pBggp3Zwpipump": {
+    "mint": "HZ4pk9pYn3ixDMYnBvtcFzyYPAVhi1pBggp3Zwpipump",
+    "name": "Money Finder Coin",
+    "symbol": "MFC",
+    "market_cap": 7709.92664923712,
+    "total_bundles": 3,
+    "holding_percentage": 2.5687199228362,
+    "price_changes": {
+      "5m": 54.67,
+      "1h": 140.0,
+      "6h": 140.0,
+      "24h": 140.0
+    },
+    "volumes": {
+      "5m": 3365.5,
+      "1h": 8705.62,
+      "6h": 8705.62,
+      "24h": 8705.62
+    },
+    "ath": 7532.031511807383,
+    "total_holders": 30,
+    "trades_1h": {
+      "total": 141,
+      "buys": 89,
+      "sells": 52
+    },
+    "makers_1h": 68,
+    "makers_24h": 68,
+    "timestamp": 1744153348.922772,
+    "initial_price": 0,
+    "initial_market_cap": 7709.92664923712,
+    "prediction_score": 41.231514000000004,
+    "prediction_confidence": 412.31514000000004,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "8CiQrZCi25Nq48zoTpd4qqFqkfpi68waRrorJp82pump": {
+    "mint": "8CiQrZCi25Nq48zoTpd4qqFqkfpi68waRrorJp82pump",
+    "name": "Murad Trump",
+    "symbol": "MUMP",
+    "market_cap": 9779.06566749726,
+    "total_bundles": 9,
+    "holding_percentage": 13.6176865134934,
+    "price_changes": {
+      "5m": 9.84,
+      "1h": 136.0,
+      "6h": 209.0,
+      "24h": 209.0
+    },
+    "volumes": {
+      "5m": 598.76,
+      "1h": 10106.78,
+      "6h": 12942.65,
+      "24h": 12942.65
+    },
+    "ath": 10739.793805142182,
+    "total_holders": 38,
+    "trades_1h": {
+      "total": 1092,
+      "buys": 564,
+      "sells": 528
+    },
+    "makers_1h": 71,
+    "makers_24h": 95,
+    "timestamp": 1744153447.450299,
+    "initial_price": 0,
+    "initial_market_cap": 9779.06566749726,
+    "prediction_score": 56.555966000000005,
+    "prediction_confidence": 565.5596600000001,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "DRgR9oXjzWFGrUeuGKCfBUq99RCrisiSibUdG9KApump": {
+    "mint": "DRgR9oXjzWFGrUeuGKCfBUq99RCrisiSibUdG9KApump",
+    "name": "Pumpfunza Palloro",
+    "symbol": "PUMPFUNZA",
+    "market_cap": 7735.42473227776,
+    "total_bundles": 8,
+    "holding_percentage": 0.7602659283771,
+    "price_changes": {
+      "5m": 59.89,
+      "1h": 132.0,
+      "6h": 129.0,
+      "24h": 129.0
+    },
+    "volumes": {
+      "5m": 1551.44,
+      "1h": 11808.88,
+      "6h": 15735.82,
+      "24h": 15735.82
+    },
+    "ath": 8043.114139965258,
+    "total_holders": 36,
+    "trades_1h": {
+      "total": 209,
+      "buys": 124,
+      "sells": 85
+    },
+    "makers_1h": 82,
+    "makers_24h": 101,
+    "timestamp": 1744153904.987416,
+    "initial_price": 0,
+    "initial_market_cap": 7735.42473227776,
+    "prediction_score": 43.901216,
+    "prediction_confidence": 439.01215999999994,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "2UswphvcTz4UnwFsCtdJbHjZmv1xieiCQdN3PKNRpump": {
+    "mint": "2UswphvcTz4UnwFsCtdJbHjZmv1xieiCQdN3PKNRpump",
+    "name": "FIRST SOLANA EVER",
+    "symbol": "1991",
+    "market_cap": 14316.25203767808,
+    "total_bundles": 58,
+    "holding_percentage": 16.494381713880298,
+    "price_changes": {
+      "5m": 36.79,
+      "1h": 327.0,
+      "6h": 327.0,
+      "24h": 327.0
+    },
+    "volumes": {
+      "5m": 3498.05,
+      "1h": 92281.2,
+      "6h": 92281.2,
+      "24h": 92281.2
+    },
+    "ath": 30355.13127108954,
+    "total_holders": 145,
+    "trades_1h": {
+      "total": 1468,
+      "buys": 833,
+      "sells": 635
+    },
+    "makers_1h": 514,
+    "makers_24h": 514,
+    "timestamp": 1744154050.462388,
+    "initial_price": 0,
+    "initial_market_cap": 14316.25203767808,
+    "prediction_score": 99.125,
+    "prediction_confidence": 991.25,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "39EV5DVCWpDw5sVvFNVUwHqzJNsBMX5XMkgPS8BFpump": {
+    "mint": "39EV5DVCWpDw5sVvFNVUwHqzJNsBMX5XMkgPS8BFpump",
+    "name": "good boy",
+    "symbol": "good boy",
+    "market_cap": 11825.473504656,
+    "total_bundles": 36,
+    "holding_percentage": 14.086804665289701,
+    "price_changes": {
+      "5m": 6.13,
+      "1h": 238.0,
+      "6h": 239.0,
+      "24h": 239.0
+    },
+    "volumes": {
+      "5m": 12653.35,
+      "1h": 41031.98,
+      "6h": 43712.63,
+      "24h": 43712.63
+    },
+    "ath": 15243.05166818637,
+    "total_holders": 43,
+    "trades_1h": {
+      "total": 641,
+      "buys": 338,
+      "sells": 303
+    },
+    "makers_1h": 221,
+    "makers_24h": 229,
+    "timestamp": 1744154069.735727,
+    "initial_price": 0,
+    "initial_market_cap": 11825.473504656,
+    "prediction_score": 73.712386,
+    "prediction_confidence": 737.12386,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  },
+  "5EhWccKec2puNkHn1zZ8QjaDgU3C5M2Xx2HF7fiBpump": {
+    "mint": "5EhWccKec2puNkHn1zZ8QjaDgU3C5M2Xx2HF7fiBpump",
+    "name": "APE THIS DOG NOW",
+    "symbol": "PAYLATER",
+    "market_cap": 9334.44723323574,
+    "total_bundles": 20,
+    "holding_percentage": 1.8823497903689999,
+    "price_changes": {
+      "5m": 79.15,
+      "1h": 139.0,
+      "6h": 139.0,
+      "24h": 139.0
+    },
+    "volumes": {
+      "5m": 3619.24,
+      "1h": 26469.75,
+      "6h": 26469.75,
+      "24h": 26469.75
+    },
+    "ath": 13253.05236648357,
+    "total_holders": 30,
+    "trades_1h": {
+      "total": 502,
+      "buys": 259,
+      "sells": 243
+    },
+    "makers_1h": 216,
+    "makers_24h": 216,
+    "timestamp": 1744154100.231094,
+    "initial_price": 0,
+    "initial_market_cap": 9334.44723323574,
+    "prediction_score": 59.229205,
+    "prediction_confidence": 592.29205,
+    "prediction_result": "Likely Profitable",
+    "ath_24h": null,
+    "ath_market_cap_24h": null,
+    "ath_timestamp_24h": null
+  }
+}
