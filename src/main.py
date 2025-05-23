@@ -7,9 +7,9 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 # Telegram API (still used for sending messages)
 import os
 
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN",
-                           "8046651136:AAGHoEFIJhW3zHTe6CI0iOcn6FgePpljXqM")
-GROUP_ID = os.environ.get("TELEGRAM_GROUP_ID", "-1002429691769")
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", #   ---- Telegram Bot api key goes here
+                           "")
+GROUP_ID = os.environ.get("TELEGRAM_GROUP_ID", "")  #  --- Telegram Group id goes here  
 
 
 def get_minutes_since_creation(created_timestamp: int) -> int:
@@ -38,7 +38,7 @@ def format_time_ago(minutes: int) -> str:
 API_URL = "https://frontend-api-v3.pump.fun/coins/for-you?offset=0&limit=50&includeNsfw=false"
 
 # Helius API
-HELIUS_API_KEY = "d2eb41e9-0474-45d9-8c53-f487ac8fdd96"
+HELIUS_API_KEY = "" # api key goes here
 HELIUS_RPC_URL = f"https://mainnet.helius-rpc.com/?api-key={HELIUS_API_KEY}"
 
 # Filter Constants
@@ -184,14 +184,14 @@ def get_dex_data(token_mint):
         birdeye_headers = {
             "accept": "application/json",
             "x-chain": "solana",
-            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+            "X-API-KEY": ""  ## -- birdeye api 
         }
         try:
             url = f"https://public-api.birdeye.so/defi/ohlcv?address={token_mint}&type=3D&currency=usd&time_from=10&time_to=10000000000"
             headers = {
                 "accept": "application/json",
                 "x-chain": "solana",
-                "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                "X-API-KEY": ""  ## -- birdeye api 
             }
             response = requests.get(url, headers=headers)
             data = response.json()
@@ -217,7 +217,7 @@ def get_dex_data(token_mint):
         moralis_url = f"https://solana-gateway.moralis.io/token/mainnet/{token_mint}/pairs"
         moralis_headers = {
             "Accept": "application/json",
-            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImNkNjVlMDM4LWE4ODktNDYyNC1iNzIyLWQwODY1ZDdmODFkMyIsIm9yZ0lkIjoiNDMyNTIwIiwidXNlcklkIjoiNDQ0OTExIiwidHlwZUlkIjoiZmU1OTFkNmYtNTYyYi00OTYwLWI0ZjQtYzUxMTZmMTk3ZWNlIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDAwMTUzOTUsImV4cCI6NDg5NTc3NTM5NX0.xrYHL35_6-yXMT5qksrqjGIe8Z5YbiuAgdh6FpL_fpQ"
+            "X-API-Key": ""  #Moralis API key here
         }
         moralis_response = requests.get(moralis_url,
                                         headers=moralis_headers,
@@ -373,7 +373,7 @@ def fetch_token_holders(token_mint):
         headers = {
             "accept": "application/json",
             "x-chain": "solana",
-            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+            "X-API-KEY": ""  
         }
 
         response = requests.get(url, headers=headers)
@@ -411,7 +411,7 @@ def fetch_token_holders(token_mint):
         headers = {
             "accept": "application/json",
             "x-chain": "solana",
-            "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+            "X-API-KEY": ""  
         }
         birdeye_response = requests.get(birdeye_url, headers=headers)
         birdeye_response.raise_for_status()
@@ -797,7 +797,7 @@ async def scan_coins():
                 headers = {
                     "accept": "application/json",
                     "x-chain": "solana",
-                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                    "X-API-KEY": ""
                 }
                 response = requests.get(birdeye_url, headers=headers)
                 data = response.json()
@@ -866,7 +866,7 @@ async def scan_coins():
                 headers = {
                     "accept": "application/json",
                     "x-chain": "solana",
-                    "X-API-KEY": "114f18a5eb5e4d51a9ac7c6100dfe756"
+                    "X-API-KEY": ""
                 }
                 try:
                     response = requests.get(birdeye_url, headers=headers)
